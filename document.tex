@@ -76,6 +76,7 @@ In this paper, we propose a lightweight approach that estimates potential bias o
 \end{itemize}
 \subsection{Workload Variation}
 \begin{itemize}
+	\item benchmark vs workload vs workload generator / parameterizable workloads
 	\item Micro-benchmarks?
 	\item \textsc{x264}~\cite{alves_sampling_2020}, varying workloads for prediction~\cite{liao_2020_using_emse}
 \end{itemize}
@@ -87,7 +88,7 @@ In this paper, we propose a lightweight approach that estimates potential bias o
 	\item Software reconnaissance ~\cite{wong_integrated_2005,wilde_early_1996,agrawal_fault_1995,simmons_industrial_2006,chen_dynamic_nodate,sherwood_reducing_nodate}
 \end{itemize}
 
-\section{Mapping Code to Features and Workloads}
+\section{Mapping Code to Features and Workloads}\label{sec:mapping}
 \begin{itemize}
 	\item Software features are \emph{intrinsic} variability, often encoded as traceable program options, whereas workloads are \emph{extrinsic} factors, which cannot be explicitly traced in a software system.
 	\item Extrinsic factors exclude the use of code analysis tracing data and control-flow. Intrinsic factors, however can be traced using static or dynamic code analysis. 
@@ -107,9 +108,14 @@ To evaluate our approach, we ask the following research questions.
 
 \subsection{Research Questions}
 
-\subsubsection{Do workloads bias the expressiveness of performance prediction models for software configuration options?}
-\subsubsection{Do workloads bias the \emph{feature code coverage} within configurable software systems?}
-\subsubsection{Can we infer benchmark-specific bias from differences in feature code coverage?}
+\subsubsection{Do workloads bias the expressiveness of performance prediction models for software configuration options?}\label{sec:rq1}
+As a sanity check, we reenact the perspective of previous work~\cite{alves_sampling_2020,jamishidi_transfer_2017,jamshidi_learning_2018,jamshidi_transfer_gp_2017} and quantify for our subject systems and workloads the differences in performance and, subsequently, performance influences. For each experiment setup, we report the differences in configuration-specific performance across all used workloads to investigate. For all workloads, we subsequently learn performance prediction models and compare the inferred influences for configuration options (and interactions) across all workloads.
+
+\subsubsection{Do workloads bias the feature code coverage within configurable software systems?}\label{sec:rq2}
+We analyze the feature mapping obtained in Section~\ref{sec:mapping} with the coverage of each workload (across all configurations) to quantify, whether workloads miss feature-specific code or favor particular features. If a workloads fails to cover a feature region, it is plausible that the corresponding performance measurements cannot be used to make statements about the missed feature's influence on performance.
+
+\subsubsection{Can we infer benchmark-specific bias from differences in feature code coverage?}\label{sec:rq3}
+The findings of the previous research question can tell us about which features we cannot make a statement. To see, if the benchmark-specific bias in feature coverage can be a valid proxy for performance prediction modeling, we correlate the differences in performance influence (cf.~\ref{sec:rq1}) with the differences in feature coverage (cf.~\ref{sec:rq2}).
 
 \subsection{Subject Systems}
 \begin{table}
