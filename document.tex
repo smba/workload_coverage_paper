@@ -7,6 +7,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{booktabs}
+\usepackage{comment}
 \usepackage{textcomp}
 \usepackage[dvipsnames,table,xcdraw]{xcolor}
 \usepackage{blindtext}
@@ -32,7 +33,7 @@
 %\setlength\parindent{0pt}
 \begin{document}
 
-\title{Workload Performance Variation meets\\ Code Coverage Analysis}
+\title{Workload Representativeness Estimation for Performance-Prediction Models}
 
 \author{
 
@@ -57,24 +58,26 @@
 
 \section{Introduction}
 \subsection{Context}
-Most contemporary software systems can be customized via configuration options to meet user demands. The selection of configuration options can enable desired functionality (features) or tweak non-functional aspects of a software system, such as improving performance or energy consumption. All too often, software performance bugs can be linked to configuration options provided by a software system\cite{han_empirical_2016}. As performance bugs are conceived to be harder to fix than purely functional bugs, they increase the overall cost of missed or deferred performance regression testing~\cite{molyneauxArtApplicationPerformance2015}. The relationship of configuration choices and their influence on non-functional properties has been extensively studied in recent years. The main focus here is set on estimating non-functional properties for arbitrary configurations~\cite{siegmund_performance-influence_2015,haDeepPerf2019,guoVariabilityawarePerformancePrediction2013,guo_2018_data,sarkarCostEfficientSamplingPerformance} or finding configurations which optimize one or more non-functional properties~\cite{nairUsingBadLearners2017,nairFlash18,ohFindingNearoptimalConfigurations2017}. Practitioners with \emph{representative} performance prediction models at hand can make informed decisions when integrating or deploying configurable software systems. Given that software performance is an often overlooked, but nonetheless decisive factor for software quality, performance prediction models are only useful to practitioners if predictions hold for a large number of application scenarios.
+Most contemporary software systems can be customized via configuration options to meet user demands. The selection of configuration options can enable desired functionality (features) or tweak non-functional aspects of a software system, such as improving performance or energy consumption. All too often, software performance bugs can be linked to configuration options provided by a software system\cite{han_empirical_2016}. Performance bugs are conceived to be harder to fix than purely functional bugs and they can easily increase the overall cost of missed or deferred performance regression testing~\cite{molyneauxArtApplicationPerformance2015}. The relationship of configuration choices and their influence on non-functional properties has been extensively studied in recent years. The main focus here is set on the estimation non-functional properties, such as performance, for arbitrary configurations~\cite{siegmund_performance-influence_2015,haDeepPerf2019,guoVariabilityawarePerformancePrediction2013,guo_2018_data,sarkarCostEfficientSamplingPerformance} or finding configurations with near-optimal non-functional properties~\cite{nairUsingBadLearners2017,nairFlash18,ohFindingNearoptimalConfigurations2017}. Practitioners with \emph{representative} performance prediction models at hand can make informed decisions when integrating or deploying configurable software systems. Given that software performance is an often overlooked, but nonetheless decisive factor for software quality, performance prediction models are only useful to practitioners if predictions hold for a large number of application scenarios.
 
 \subsection{Motivation}
-Learning predictive models for software performance usually bases on a training set of configuration-specific observations. Such experiments employ a single workload that corresponds to a specific application scenario. While existing work has yielded effective and efficient learning approaches, in essence, predictive models obtained this way can only target workload-specific performance~\cite{siegmund_performance-influence_2015,haDeepPerf2019,guoVariabilityawarePerformancePrediction2013,guo_2018_data,sarkarCostEfficientSamplingPerformance}. The choice of a single workload can introduce additional bias as the predictive model is only as useful as close as the underlying workload resembles different use cases in in the wild. Pereira et al. illustrate this fact with an analysis of the video transcoder \textsc{x264} under different workloads~\cite{alves_sampling_2020}. The authors observed a wide variation in the performance behavior across a large set of different configurations when encoding different workloads. In case a changed workload is the main factor varied in an execution environment, such bias can be explicitly learned~\cite{jamishidi_transfer_2017,jamshidi_learning_2018,jamshidi_transfer_gp_2017,ding_bayesian_2020}. Transformed performance prediction models, however, only rather adapt to a specific environment change exploiting similarities between corresponding performance prediction models.
+Learning predictive models for software performance usually bases on a training set of configuration-specific observations. Established approaches however, such experiments employ a single workload that corresponds to a specific application scenario. While existing work has yielded effective and efficient learning approaches, in essence, predictive models obtained this way can only target workload-specific performance~\cite{siegmund_performance-influence_2015,haDeepPerf2019,guoVariabilityawarePerformancePrediction2013,guo_2018_data,sarkarCostEfficientSamplingPerformance}. The choice of a single workload can introduce additional bias as the predictive model is only as useful as close as the underlying workload resembles different use cases in in the wild. Pereira et al. illustrate this fact with an analysis of the video transcoder \textsc{x264} under different workloads~\cite{alves_sampling_2020}. The authors observed a wide variation in the performance behavior across a large set of different configurations when encoding different workloads. In case a changed workload is the main factor varied in an execution environment, such bias can be explicitly learned~\cite{jamishidi_transfer_2017,jamshidi_learning_2018,jamshidi_transfer_gp_2017,ding_bayesian_2020}. Transformed performance prediction models, however, only rather adapt to a specific environment change exploiting similarities between corresponding performance prediction models. Contrary to transfer learning of performance prediction models, the influence of workloads on software performance has not been studied to the best of our knowledge. 
 
 \subsection{Problem Statement}
-We aim at opening a new perspective on choosing a workload for performance prediction modeling, as so far, the view on workload variation is a black-box perspective, where existing approaches require explicit measurements~\cite{jamishidi_transfer_2017,jamshidi_learning_2018,jamshidi_transfer_gp_2017} or are entirely agnostic of potential worklaod bias~\cite{liao_2020_using_emse}. To circumvent the costly and tedious task of performance measurement, we ask the following question: Can the effect of different benchmarks on performance prediction models be \emph{inferred} based on analysis of code artifacts --- a task widely used in CI/CD tool chains, for instance, in the form of code coverage testing?
+We aim at opening a new perspective on choosing a workload for performance prediction modeling, as so far, the view on workload variation is a black-box perspective, where existing approaches require explicit measurements~\cite{jamishidi_transfer_2017,jamshidi_learning_2018,jamshidi_transfer_gp_2017} or are entirely agnostic of potential workload bias~\cite{liao_2020_using_emse}. To better understand the influence of workloads on software performance, we shift the perspective from a black-box setting towards a more code-centered view and ask the following question: Aside from configuration options, what code sections are actually influenced by the choice of workload and how does this affect performance? We envision a perspective which takes both configuration options as well as workloads into account to obtain lightweight tools that can help detect performance defects or regressions exhibited only under specific workloads. 
 
-In this paper, we propose a lightweight approach that estimates potential bias of workload on different selectable software features. We are using lightweight, dynamic methods known under the umbrella term \emph{software reconnaissance} to identify feature-specific code and correlate differences in performance, as well as modeled performance influence to workload-specific differences in feature code coverage. To this end, we aim at answering the following research questions:
+In this paper, we propose a lightweight approach that estimates potential bias of workload on different selectable software features. %We are using lightweight, dynamic methods known under the umbrella term \emph{software reconnaissance}
+We identify workload-specific code sections and correlate its coverage with differences in performance, as well as individual configuration options'  performance-influence. To this end, we aim at answering the following research questions:
 
 \begin{enumerate}
-	\item Do workloads bias the \emph{expressiveness} of performance prediction models for software configuration options?
-	\item Do workloads bias the \emph{feature code coverage} within configurable software systems?
-	\item Can we \emph{infer} benchmark-specific bias from differences in feature code coverage?
+	\item Do workloads bias the code coverage of configurable software systems, and if so, to what degree?
+	\item Do differences in code or feature-code coverage under different workloads account for differences in the influence of configuration options?
+	\item Can we use coverage testing (under varying workloads) to detect performance defects or regressions?
 \end{enumerate}
 
 The remainder of this paper is structured as follows: Section~\ref{sec:related_work} reviews existing and related work...
 
+\begin{comment}
 \section{Background and Related Work}\label{sec:related_work}
 \subsection{Configurable Software Systems}
 A configurable software system is a software system which exhibits one or more interfaces at which by selecting configuration options or setting custom parameters the behavior of an individual deployment or execution can be altered. This includes systematically developed software systems, such as software product lines (SPL), but also covers configuration options visible to the end user.  
@@ -90,7 +93,7 @@ Existing performance prediction approaches employ different machine learning tec
 \begin{itemize}
 	\item benchmark vs workload vs workload generator / parameterizable workloads
 	\item Micro-benchmarks?
-	\item \textsc{x264}~\cite{alves_sampling_2020}, varying workloads for prediction~\cite{liao_2020_using_emse}
+	\item \textsc{x264}~\cite{alves_sampling_2020}, varying workloads for prediction~\cite{liao_2020_using_emse} Recent work by Liao et al. illustrates that the potential bias of an individual workload can be averaged out by learning a prediction model on a set of workloads rather than only relying on a single one~\cite{liao_2020_using_emse}. By comparing prediction models learned from disjoint sets of workloads, the authors are able to detect performance regressions from one version of a software system to another.
 \end{itemize}
 \subsection{Feature Location}
 \begin{itemize}
@@ -194,7 +197,7 @@ Differences between environments~\cite{jamishidi_transfer_2017,jamshidi_learning
 \subsection{Workload Variation}
 Performance under varying workloads~\cite{liao_2020_using_emse}
 \section{Conclusion}
-
+\end{comment}
 \clearpage
 \bibliographystyle{IEEEtran}
 \bibliography{literature.bib}
