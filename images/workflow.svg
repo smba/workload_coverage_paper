@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="sankey_svg"
+   height="600"
+   width="1400"
+   version="1.1"
+   sodipodi:docname="workflow.svg"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)">
+  <metadata
+     id="metadata121">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs119" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2560"
+     inkscape:window-height="1389"
+     id="namedview117"
+     showgrid="false"
+     inkscape:zoom="0.87857143"
+     inkscape:cx="702.27642"
+     inkscape:cy="300"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="sankey_svg" />
+  <title
+     id="title2">Your Diagram Title</title>
+  <!-- Generated with SankeyMATIC on Wed May 26 2021 17:49:04 GMT+0200 (Central European Summer Time)-->
+  <g
+     transform="translate(7.0445014,17.887382)"
+     id="g112">
+    <g
+       id="g38">
+      <path
+         class="link"
+         d="M 10,241.17755 C 366.26667,241.17755 99.066667,223.2 455.33333,223.2"
+         style="fill:none;stroke:#00cc00;stroke-width:446.4;stroke-opacity:0.4"
+         id="path8">
+        <title
+           id="title6">Total Lines → Covered-in-experiment:
+800</title>
+      </path>
+      <path
+         class="link"
+         d="M 465.33333,139.5 C 712,139.5 527,155.6085 773.66667,155.6085"
+         style="fill:none;stroke:#888888;stroke-width:279;stroke-opacity:0.4"
+         id="path12">
+        <title
+           id="title10">Covered-in-experiment → Workload-Invariant:
+500</title>
+      </path>
+      <path
+         class="link"
+         d="m 783.66667,141.6585 c 465.86663,0 116.46666,0.55744 582.33333,0.55744"
+         style="fill:none;stroke:#aaaaaa;stroke-width:251.1;stroke-opacity:0.4"
+         id="path16">
+        <title
+           id="title14">Workload-Invariant → Configuration-Invariant:
+450</title>
+      </path>
+      <path
+         class="link"
+         d="M 465.33333,362.7 C 716,362.7 528,413.8085 778.66667,413.8085"
+         style="fill:none;stroke:#9ecae1;stroke-width:167.4;stroke-opacity:0.4"
+         id="path20">
+        <title
+           id="title18">Covered-in-experiment → Workload-Variant:
+300</title>
+      </path>
+      <path
+         class="link"
+         d="m 788.66667,441.7085 c 228.26663,0 57.06666,64.55744 285.33333,64.55744"
+         style="fill:none;stroke:#aaaaaa;stroke-width:111.6;stroke-opacity:0.4"
+         id="path24">
+        <title
+           id="title22">Workload-Variant → Feature-Invariant:
+200</title>
+      </path>
+      <path
+         class="link"
+         d="m 10,520.17755 c 356.26667,0 89.066667,0.0225 445.33333,0.0225"
+         style="fill:none;stroke:#cc0000;stroke-width:111.6;stroke-opacity:0.4"
+         id="path28">
+        <title
+           id="title26">Total Lines → 'Not covered in experiment':
+200</title>
+      </path>
+      <path
+         class="link"
+         d="m 788.66667,358.0085 c 246.66663,0 61.66666,23.55744 308.33333,23.55744"
+         style="fill:none;stroke:#e6550d;stroke-width:55.8;stroke-opacity:0.4"
+         id="path32">
+        <title
+           id="title30">Workload-Variant → Feature-Variant:
+100</title>
+      </path>
+      <path
+         class="link"
+         d="m 783.66667,281.1585 c 465.86663,0 116.46666,18.55744 582.33333,18.55744"
+         style="fill:none;stroke:#0000aa;stroke-width:27.9;stroke-opacity:0.4"
+         id="path36">
+        <title
+           id="title34">Workload-Invariant → Configuration-variant:
+50</title>
+      </path>
+    </g>
+    <g
+       class="node"
+       transform="translate(0,17.977552)"
+       id="g52">
+      <rect
+         height="558"
+         width="10"
+         id="r1"
+         shape-rendering="crispEdges"
+         style="fill:#3182bd;fill-opacity:0.9;stroke:#183f5c;stroke-width:0"
+         x="0"
+         y="0">
+        <title
+           id="title47">Total Lines:
+1,000</title>
+      </rect>
+      <text
+         x="16"
+         y="279"
+         dy="0.34999999em"
+         text-anchor="start"
+         style="font-weight:400;font-size:15px;font-family:sans-serif;fill:#000000;stroke-width:0"
+         id="text50">Total Lines: 1,000</text>
+    </g>
+    <g
+       class="node"
+       transform="translate(455.33333)"
+       id="g59">
+      <rect
+         height="446.39999"
+         width="10"
+         id="r2"
+         shape-rendering="crispEdges"
+         style="fill:#6baed6;fill-opacity:0.9;stroke:#345568;stroke-width:0"
+         x="0"
+         y="0">
+        <title
+           id="title54">Covered-in-experiment:
+800</title>
+      </rect>
+      <text
+         x="16"
+         y="223.2"
+         dy="0.34999999em"
+         text-anchor="start"
+         style="font-weight:400;font-size:15px;font-family:sans-serif;fill:#000000;stroke-width:0"
+         id="text57">Covered-in-experiment: 800</text>
+    </g>
+    <g
+       class="node"
+       transform="translate(1366,16.665937)"
+       id="g66">
+      <rect
+         height="251.10001"
+         width="10"
+         id="r5"
+         shape-rendering="crispEdges"
+         style="fill:#c6dbef;fill-opacity:0.9;stroke:#616b75;stroke-width:0"
+         x="0"
+         y="0">
+        <title
+           id="title61">Configuration-Invariant:
+450</title>
+      </rect>
+      <text
+         x="-6"
+         y="125.55"
+         dy="0.34999999em"
+         text-anchor="end"
+         style="font-weight:400;font-size:15px;font-family:sans-serif;fill:#000000;stroke-width:0"
+         id="text64">Configuration-Invariant: 450</text>
+    </g>
+    <g
+       class="node"
+       transform="translate(1366,285.76594)"
+       id="g73">
+      <rect
+         height="27.9"
+         width="10"
+         id="r6"
+         shape-rendering="crispEdges"
+         style="fill:#c6dbef;fill-opacity:0.9;stroke:#616b75;stroke-width:0"
+         x="0"
+         y="0">
+        <title
+           id="title68">Configuration-variant:
+50</title>
+      </rect>
+      <text
+         x="-6"
+         y="13.95"
+         dy="0.34999999em"
+         text-anchor="end"
+         style="font-weight:400;font-size:15px;font-family:sans-serif;fill:#000000;stroke-width:0"
+         id="text71">Configuration-variant: 50</text>
+    </g>
+    <g
+       class="node"
+       transform="translate(455.33333,464.4)"
+       id="g80">
+      <rect
+         height="111.6"
+         width="10"
+         id="r9"
+         shape-rendering="crispEdges"
+         style="fill:#fd8d3c;fill-opacity:0.9;stroke:#7b451d;stroke-width:0"
+         x="0"
+         y="0">
+        <title
+           id="title75">'Not covered in experiment':
+200</title>
+      </rect>
+      <text
+         x="16"
+         y="55.799999"
+         dy="0.34999999em"
+         text-anchor="start"
+         style="font-weight:400;font-size:15px;font-family:sans-serif;fill:#000000;stroke-width:0"
+         id="text78">'Not covered in experiment': 200</text>
+    </g>
+    <g
+       class="node"
+       transform="translate(1074,450.46594)"
+       id="g87">
+      <rect
+         height="111.6"
+         width="10"
+         id="r8"
+         shape-rendering="crispEdges"
+         style="fill:#e6550d;fill-opacity:0.9;stroke:#702906;stroke-width:0"
+         x="0"
+         y="0">
+        <title
+           id="title82">Feature-Invariant:
+200</title>
+      </rect>
+      <text
+         x="-6"
+         y="55.799999"
+         dy="0.34999999em"
+         text-anchor="end"
+         style="font-weight:400;font-size:15px;font-family:sans-serif;fill:#000000;stroke-width:0"
+         id="text85">Feature-Invariant: 200</text>
+    </g>
+    <g
+       class="node"
+       transform="translate(1097,353.66594)"
+       id="g94">
+      <rect
+         height="55.799999"
+         width="10"
+         id="r7"
+         shape-rendering="crispEdges"
+         style="fill:#e6550d;fill-opacity:0.9;stroke:#702906;stroke-width:0"
+         x="0"
+         y="0">
+        <title
+           id="title89">Feature-Variant:
+100</title>
+      </rect>
+      <text
+         x="-6"
+         y="27.9"
+         dy="0.34999999em"
+         text-anchor="end"
+         style="font-weight:400;font-size:15px;font-family:sans-serif;fill:#000000;stroke-width:0"
+         id="text92">Feature-Variant: 100</text>
+    </g>
+    <g
+       class="node"
+       transform="translate(778.66667,330.1085)"
+       id="g101">
+      <rect
+         height="167.39999"
+         width="10"
+         id="r3"
+         shape-rendering="crispEdges"
+         style="fill:#9ecae1;fill-opacity:0.9;stroke:#4d626e;stroke-width:0"
+         x="0"
+         y="0">
+        <title
+           id="title96">Workload-Variant:
+300</title>
+      </rect>
+      <text
+         x="-6"
+         y="83.699997"
+         dy="0.34999999em"
+         text-anchor="end"
+         style="font-weight:400;font-size:15px;font-family:sans-serif;fill:#000000;stroke-width:0"
+         id="text99">Workload-Variant: 300</text>
+    </g>
+    <g
+       class="node"
+       transform="translate(773.66667,16.108496)"
+       id="g108">
+      <rect
+         height="279"
+         width="10"
+         id="r4"
+         shape-rendering="crispEdges"
+         style="fill:#9ecae1;fill-opacity:0.9;stroke:#4d626e;stroke-width:0"
+         x="0"
+         y="0">
+        <title
+           id="title103">Workload-Invariant:
+500</title>
+      </rect>
+      <text
+         x="-6"
+         y="139.5"
+         dy="0.34999999em"
+         text-anchor="end"
+         style="font-weight:400;font-size:15px;font-family:sans-serif;fill:#000000;stroke-width:0"
+         id="text106">Workload-Invariant: 500</text>
+    </g>
+  </g>
+</svg>
