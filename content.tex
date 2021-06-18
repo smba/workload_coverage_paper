@@ -85,7 +85,8 @@ In case a changed workload is the main factor varied in an execution environment
 
 \section{Problem Statement}
 \subsection{Motivating Example}
-\begin{comment}
+\blindtext
+\begin{comment}56
 \begin{lstlisting}[caption={Illustrative code example with one configuration option (\texttt{CACHING}) and workload-specific behavior.},label=lst:bener, language=Python]
 CACHING = parse_options()
 
@@ -115,13 +116,16 @@ def calc_word_frequency(self, path: String)
 
 \subsection{Exploring Workload-specific Differences}
 
+In this paper, we want to address two aspects of workload variability. In the first part, we explore the influence that different workloads can have on performance behavior. While an influence of workloads has been described in literature, to the best of our knowledge, we are the first to study workload impact explicitly. To this end, we ask the following first research question:
 \greybox{RQ1.1 \textit{Are there workload-specific differences in performance influence for configurable software systems?}}
-
+Our study described later is on exploratory nature and does not claim to generalize to all configurable settings, but raise awareness to workload variability when building performance models for configurable software systems. 
+To shift our perspective from a code-agnostic one to a more code-aware setting, in the next research question, we quantify the differences in code coverage across different workloads:
 \greybox{RQ1.2 \textit{Are there workload-specific differences in code coverage for configurations of a software system?}}
-
+If there are workload-specific differences in performance influence \emph{and} code coverage present in the software systems studied, we next want to explore possible connections between the two. If influence difference could be attributed to or even be explained by differences in code coverage, this ultimately could serve as a cheap-to-compute proxy for representativeness. Therefore, we want to ask the following research question:
 \greybox{RQ1.3 \textit{Do workload-specific differences in code coverage correspond to differences in performance influence?}}
 
 \subsection{Code Coverage for Representativeness}
+As different workloads can stress different feature's code, using a collection of workloads will provide a more broad code coverage and potential bias should be averaged out. To ultimately assess a workload's representativeness via code coverage, we ultimately require some sort of feature location technique. From a collection of workloads, one should be able to extract code regions that whose coverage is conditioned by the choice of workload. To this end, we ask the following research question:
 
 \greybox{RQ2.1 \textit{Can we use different workloads to identify option-specific code sections via superimposition?}}
 
