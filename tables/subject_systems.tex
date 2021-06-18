@@ -1,35 +1,44 @@
-\begin{tabular}{lllrrr|cccc}
+\begin{tabular}{lllrrr|cccc|l}
 		\toprule
-		\multicolumn{6}{c}{\textbf{Subject System Characteristics}} & \multicolumn{4}{c}{\textbf{Non-functional Properties}}\\
+		\multicolumn{6}{c}{\textbf{Subject System Characteristics}} & \multicolumn{4}{c}{\textbf{Non-functional Properties}} & \multicolumn{1}{c}{\textbf{Hardware Setup}}\\
 		\midrule
-		Software System &  Application Type & Release Version & \#O & \#C & \#W & RT & CR & TP & MU \\
+		Software System &  Application Type & Release Version & \#O & \#C & \#W & RT & CR & TP & MU & \\
 		\midrule
-		\rowcolor{MidnightBlue!0}
-		\textsc{jump3r} & Audio Encoder & 1.0.4 & 52 & \textit{4\,298} & 6 & $\surd$ & $\surd$ &  & $\surd$\\
+		\rowcolor{OliveGreen!50}
+		\textsc{jump3r} & Audio Encoder & 1.0.4 & 52 & - & 6 & $\surd$ & $\surd$ &  & $\surd$ & \texttt{edison5\{a,b\}} \\
 		
-		\rowcolor{MidnightBlue!0}	
-		\textsc{kanzi} & File Compressor & 1.8 & 29 & \textit{4\,180} & 10 & $\surd$ & $\surd$ &  & $\surd$ \\
+		\rowcolor{OliveGreen!50}	
+		\textsc{kanzi} & File Compressor & 1.8 & 29 & - & 10 & $\surd$ & $\surd$ &  & $\surd$ & \texttt{edison5\{a,b\}} \\
 		
-		\rowcolor{MidnightBlue!0}
-		\textsc{density-converter} & Image Scaling & 1.0.0-alpha7 & - & - & - & $\surd$  &  &  & $\surd$ \\
+		\rowcolor{OliveGreen!30}	
+		\textsc{density-converter} & Image Scaling & 1.0.0-alpha7 & - & - & 12 & $\surd$  &  &  & $\surd$ & \texttt{edison7} \\
+				
+		\rowcolor{OliveGreen!30}	
+		\textsc{h2} & Embedded Database & 1.4.200 & - & -  & 8 &   &  & $\surd$ & & \texttt{edison5b} \\
 		
-		\rowcolor{MidnightBlue!0}
-		\textsc{jadx} & Dex-to-Java Decompiler & 1.2.0 & - & - & - & $\surd$ &  &  & $\surd$ \\
+		\rowcolor{OliveGreen!15}	
+		--- micro-\textsc{h2} & Embedded Database & 1.4.200 & - & -  & 34 &   &  & $\surd$ & & \texttt{edison5b} \\
+		\rowcolor{OliveGreen!30}	
+		\textsc{hsqldb} & Embedded Database & 2.4.1 & - & - & 8  &  &  & $\surd$ & & \texttt{edison5a} \\
 		
-		\rowcolor{MidnightBlue!0}
-		\textsc{Apache Batik} & SVG Rasterizer & 1.14 & - & - &  - & $\surd$ &   &  & $\surd$ \\
+		\rowcolor{OliveGreen!15}	
+		--- micro-\textsc{hsqldb} & Embedded Database & 2.4.1 & - & - & 34  &  &  & $\surd$ & & \texttt{edison5a} \\
 		
-		\rowcolor{MidnightBlue!0}	
-		\textsc{h2} & Embedded Database & 1.4.200 & - &  & 9 &   &  & $\surd$ & \\
+
 		
-		\rowcolor{MidnightBlue!0}
-		\textsc{hsqldb} & Embedded Database & 2.6.0 & - & - & 9  &  &  & $\surd$ & \\
+
 		
+		\rowcolor{OliveGreen!0}
+		\textsc{jadx} & Dex-to-Java Decompiler & 1.2.0 & - & - & - & $\surd$ &  &  & $\surd$ & \texttt{} \\
+		
+		\rowcolor{OliveGreen!0}
+		\textsc{Apache Batik} & SVG Rasterizer & 1.14 & - & - &  - & $\surd$ &   &  & $\surd$ & \texttt{} \\
 		%\rowcolor{Orange!30}
 		%\textsc{Daffodil} & DFDL Converter & 3.1.0 & - & - & -  & $\surd$ & $\surd$ &  &  & $\surd$ \\
 		
 		\bottomrule
 	\end{tabular}
+	
 	{\vspace{1mm}\#O = Options, \#C = \#Configurations, \#W = \#Workloads}\\
 	{RT = Response Time, EC = Energy Consumption, CR = Compression Ratio, TP = Throughput, MU = Memory Usage}
 	\vspace{0.1cm}
