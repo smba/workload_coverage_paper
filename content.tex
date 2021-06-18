@@ -49,19 +49,15 @@ which performance models and configuration options are more susceptible to workl
 \subsection{Performance Models for Configurable Software}
 Configurable software systems are an umbrella term for any kind of software system that exhibits configuration options to customize functionality. 
 While the primary purpose of configuration options is to select (categorical or binary options) and tune (numerical options) functionality, each configuration choice may also have implications on non-functional properties---be it intentional or unintentional. Finding configurations with optimal performance~\cite{nairUsingBadLearners2017,nairFlash18,ohFindingNearoptimalConfigurations2017} and estimating the performance for arbitrary configurations is an established line of research\cite{siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso}. 
-Performance models are machine learning models that approximate non-functional properties, such as execution time or memory usage, as a function of software configurations $c \in C$, formally:
-
-\begin{equation}
-	\Pi: C \rightarrow \mathbb{R}
-\end{equation}
+Performance models are machine learning models that approximate non-functional properties, such as execution time or memory usage, as a function of software configurations $c \in C$, formally $\Pi: C \rightarrow \mathbb{R}$.
 
 Performance models are an approximation of real-world behavior based on training measurements and have been successfully obtained using a variety of machine learning techniques, including probabilistic programming\cite{dorn2020}, multiple linear regression\cite{siegmundPerformanceinfluenceModelsHighly2015}, classification-and-regression trees\cite{sarkarCostEfficientSamplingPerformance,guo_2018_data}, Fourier learning~\cite{fourier_learning_2015,perLasso}, and deep neural networks\cite{haDeepPerf2019,perfAL}. Most approaches share the perspective of treating a configurable software system as a black-box and model application-level performance agnostic of any code. 
 Beyond the predominantly black-box perspective, recent work has incorporated feature location techniques to guide sampling effort towards relevant configuration options~\cite{velez_2020_configcrusher_jase,velez_comprex_2021} or model non-functional properties in a similar fashion, but at finer grain~\cite{weber_white_2021}.
 
 \subsection{Configuration Sampling}
 \begin{itemize}
-	\item coverage sampling
-	\item random sampling
+	\item coverage sampling~\cite{siegmundPredictingPerformanceAutomated2012}
+	\item solver-based and random sampling~\cite{ohFindingNearoptimalConfigurations2017,henardCombining2015,kaltenecker_distance-based_2019}
 	\item design of experiments
 \end{itemize}
 
