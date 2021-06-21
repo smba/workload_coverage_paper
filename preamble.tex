@@ -2,8 +2,6 @@
 \IEEEoverridecommandlockouts
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 
-
-\usepackage{mathpazo}
 \usepackage{blindtext}
 
 \usepackage{listings}
@@ -19,8 +17,17 @@
 
 % configure hyperlinks 
 \usepackage{hyperref}
-\usepackage{url}
+\hypersetup{
+	colorlinks,
+	linkcolor={red!70!black},
+	citecolor={blue!70!black},
+	urlcolor={Orange!80!black}
+}
 
+\usepackage{sourcecodepro}
+
+\usepackage{url}
+\usepackage{float}
 
 % configure subfigures
 \usepackage{subcaption}
@@ -34,8 +41,8 @@
 \usepackage[framemethod=TikZ]{mdframed}
 \newcommand{\greybox}[1]{
 	\begin{mdframed}[
-		backgroundcolor=OliveGreen!10,
-		linewidth=0pt,
+		backgroundcolor=Black!8,
+		linewidth=0.1pt,
 		innerleftmargin=5pt,
 		innertopmargin=5pt,
 		roundcorner=3pt,
@@ -48,3 +55,35 @@
 % utility imports
 \usepackage{comment}
 \usepackage{todonotes}
+\lstset{framesep=4pt}
+\lstset{
+	language=Python, 
+	basicstyle=\footnotesize\ttfamily,
+	linewidth=0.48\textwidth,
+	numbers=left,
+	columns=flexible,
+	numbersep=5pt,      % Abstand der Nummern zum Text
+	tabsize=5,
+	%breaklines=true,
+	frame=bt,
+	showspaces=false,
+	showtabs=false,
+	xleftmargin=10pt,
+	breakatwhitespace=true,
+	framexleftmargin=10pt,
+	framexrightmargin=5pt,
+	framexbottommargin=4pt,
+	showstringspaces=false,
+	literate=%
+	{Ö}{{\"O}}1
+	{Ä}{{\"A}}1
+	{Ü}{{\"U}}1
+	{ß}{{\ss}}2
+	{ü}{{\"u}}1
+	{ä}{{\"a}}1
+	{ö}{{\"o}}1
+}
+
+\newcommand{\cova}{\makebox[0pt][l]{\color{Orange!20!white}\rule[-2pt]{0.95\linewidth}{10pt}}}
+\newcommand{\covb}{\makebox[0pt][l]{\color{Orange!20!white}\rule[-2pt]{0.95\linewidth}{10pt}}}
+\newcommand{\covc}{\makebox[0pt][l]{\color{Orange!20!white}\rule[-2pt]{0.95\linewidth}{10pt}}}

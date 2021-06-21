@@ -1,7 +1,10 @@
 \begin{abstract}
-~ {\color{Orange}Configurable software system ...} Non-functional properties such as software performance often depend on configuration choices. Existing performance modeling approaches for configurable software systems do not take into account that further factors, most importantly, the workload. Performance models biased by the choice of the workload used during learning may not generalize to real-world use cases. {\color{Orange}Further description...}
+Most modern software systems exhibit configuration options to customize functionality to meet user demands. 
+Even from a small number of configuration options, the space of possible configurations grows large due to combinatorial explosion. Hence, it is infeasible to assess software quality exhaustively for all configurations. 
+Non-functional properties such as software performance often depend on configuration choices and can be learned from a sample set configurations using performance models. Existing performance modeling approaches often do not consider further variation beyond configurations, most importantly, the choice of workload.
+For code sections that are not stressed by a workload, one cannot determine the influence they might have on performance under different workloads. This leaves performance models susceptible to bias by the choice of the workload, so that a model can over-approximate used during learning and may not generalize to real-world use cases.
 
-In this paper, we explore the influence of different workloads on {\color{Orange}four} different non-functional properties across {\color{Orange}seven} configurable Java software systems. We augment performance measurements with dynamic code analysis to assess the feature coverage and representativeness of performance models in the presence of varying workloads. We devise a novel strategy to interpret performance models via lightweight code analysis and aim to raise awareness of multi-factor influences on software performance.
+In this paper, we explore the influence of different workloads on {\color{Red}4} different non-functional properties across {\color{Red}7} configurable Java software systems. We augment performance measurements with dynamic code analysis to assess the feature coverage and representativeness of performance models in the presence of varying workloads. We devise a novel strategy to interpret performance models via lightweight code analysis and aim to raise awareness of multi-factor influences on software performance.
 \end{abstract}
 
 
@@ -16,62 +19,45 @@ In general, performance prediction models are only useful to practitioners if pr
 \subsection*{Performance models can be workload-biased}
 Learning performance models for software performance usually relies on a training set of configuration-specific performance measurements. 
 Typically, established approaches employ a single workload (e.g., a benchmark or test suite) to measure performance, which usually aims at emulating a real-world application scenario. 
-As the collected measurements represent only the one application scenario, the resulting performance model is able to reliably estimate performance for this scenario. 
-% rephrase sentence
-{\color{Magenta}While existing work has demonstrated effective and efficient learning approaches, in essence, performance models obtained this way can target only workload-specific performance.}
+However, as the collected measurements represent only the one application scenario, the resulting performance model can  estimate performance for this single scenario reliably. 
 The choice of a single workload can introduce bias as the predictive model is only as useful as the underlying workload resembles a wide range of use cases in the real world. 
 Pereira et al. illustrate this fact with an analysis of the video encoder \textsc{x264} under different workloads~\cite{alves_sampling_2020}. 
-They observed a wide variation in the performance behavior across a large set of different configurations and workloads. 
+For two different workloads, they observed vastly different performance distributions across a large set of configurations.
 While this particular observation can be an outlier, in general, one cannot assume that performance behavior under a single workload is generalizable, and therefore consistent in every real-world setting.
 In this vein, a recent exploratory study by Jamshidi et al.\cite{jamishidi_transfer_2017} illustrates that performance models of a configurable software system often exhibit differences in estimated performance influences when learned in different environments, including different versions, hardware setups, and workloads.
-Influences across different environments remain largely congruent and differences only affect small numbers of configuration options, such that differences can be learned efficiently via transfer learning~\cite{jamshidi_transfer_gp_2017,jamshidi_learning_2018}. 
+Performance  influences across different environments remain largely congruent and differences only affect small numbers of configuration options, such that differences can be learned efficiently via transfer learning~\cite{jamshidi_transfer_gp_2017,jamshidi_learning_2018}. 
 Nonetheless, under a single workload, we are left with performance models whose estimations are potentially inaccurate for different environments.
 
-\subsection*{Representativeness}
+\subsection*{Towards Estimating Representativeness}
 Given not one, but a set of performance models based on different workloads, the question arises: Which performance model of the set is most general, whose estimations are more likely to \emph{represent} real-world scenarios? 
-%rephrase
-{\color{Magenta} The current perspective for performance models conceives these as predictors obtained from application-level, black-box observations.} 
 To assess which model's estimations to trust most, we require information about whether and how different workloads interact with the software system under test. 
-That is, we extend the black-box perspective of existing approaches~\cite{siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso} {\color{Magenta}with similarities from software testing} where the question usually is, what code is covered by a test case.
-If the selection of a workload affecs the execution of performance-relevant code or determines how frequently code is executed, this can introduce substantial bias to a performance model. 
-In addition, if such interactions affect option-specific code, the influence of configuration option is more susceptible to potential bias. {\color{Magenta}For example, ...}
+To this end, we extend the black-box perspective of existing approaches~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso} with code coverage analysis, where the question usually is, what code is covered by a test case.
+If the execution of performance-relevant code is determined by a specific workload, one cannot measure the influence such code would contribute to performance otherwise.
+In addition, if such interactions affect option-specific code, the influence of configuration option is more susceptible to potential bias. 
 
-As for a code section to contribute to performance requires its coverage, we argue that code coverage can serve as a lightweight, but effective indicator to assess potential workload bias and thus \emph{workload representativeness}. Along with coverage of feature-specific code sections, this indicator can extend to feature-specific performance influences.
-To this end, we connect code coverage and estimated performance influences to make informed statements about 
-which performance models and configuration options are more susceptible to workload bias and explore whether we can utilize code coverage testing as a means to select representative workloads to obtain robust and reliable performance models.
+\subsection*{Approach, Results \& Implications}
+In this paper, we conduct an exploratory study of {\color{red}7} configurable Java systems across a multitude of configurations and workloads to assses the influence of workloads on performance models as well as code coverage. 
+Our study results show that workload-specific differences are prevalent across different domains, both with regard to performance behavior and code coverage. We explore how code coverage could serve as a lightweight, but effective indicator to identify potential workload bias and, thus, select representative \emph{representative} workloads a priori. Our results show that\ldots.
 
-\begin{itemize}
-	\item {\color{Orange} Approach/Experimente description }
-	\item {\color{Orange} Results and findings }
-\end{itemize}
 
 \section{Background and Related Work}
 \subsection{Performance Models for Configurable Software}
 Configurable software systems are an umbrella term for any kind of software system that exhibits configuration options to customize functionality. 
 While the primary purpose of configuration options is to select (categorical or binary options) and tune (numerical options) functionality, each configuration choice may also have implications on non-functional properties---be it intentional or unintentional. Finding configurations with optimal performance~\cite{nairUsingBadLearners2017,nairFlash18,ohFindingNearoptimalConfigurations2017} and estimating the performance for arbitrary configurations is an established line of research\cite{siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso}. 
-Performance models are machine learning models that approximate non-functional properties, such as execution time or memory usage, as a function of software configurations $c \in C$, formally $\Pi: C \rightarrow \mathbb{R}$.
 
-Performance models are an approximation of real-world behavior based on training measurements and have been successfully obtained using a variety of machine learning techniques, including probabilistic programming\cite{dorn2020}, multiple linear regression\cite{siegmundPerformanceinfluenceModelsHighly2015}, classification-and-regression trees\cite{sarkarCostEfficientSamplingPerformance,guo_2018_data}, Fourier learning~\cite{fourier_learning_2015,perLasso}, and deep neural networks\cite{haDeepPerf2019,perfAL}. Most approaches share the perspective of treating a configurable software system as a black-box and model application-level performance agnostic of any code. 
-Beyond the predominantly black-box perspective, recent work has incorporated feature location techniques to guide sampling effort towards relevant configuration options~\cite{velez_2020_configcrusher_jase,velez_comprex_2021} or model non-functional properties in a similar fashion, but at finer grain~\cite{weber_white_2021}.
+For the latter, machine learning techniques are used to learn \emph{performance models} that approximate non-functional properties, such as execution time or memory usage, as a function of software configurations $c \in C$, formally $\Pi: C \rightarrow \mathbb{R}$.
+Performance models can be obtained using a variety of machine learning techniques, including probabilistic programming~\cite{dorn2020}, multiple linear regression~\cite{siegmundPerformanceinfluenceModelsHighly2015}, classification-and-regression trees~\cite{sarkarCostEfficientSamplingPerformance,guo_2018_data}, Fourier learning~\cite{fourier_learning_2015,perLasso}, and deep neural networks~\cite{haDeepPerf2019,perfAL}.
+The set of configurations for training can be sampled from the configuration space using a variety of different sampling techniques. All sampling strategies aim at yielding a representative sample, either by covering main effects of configuration options and interactions among them~\cite{siegmundPredictingPerformanceAutomated2012}, or sampling uniformly from the configuration space~\cite{ohFindingNearoptimalConfigurations2017,kaltenecker_distance-based_2019}.
 
-\subsection{Configuration Sampling}
-\begin{itemize}
-	\item coverage sampling~\cite{siegmundPredictingPerformanceAutomated2012}
-	\item solver-based and random sampling~\cite{ohFindingNearoptimalConfigurations2017,henardCombining2015,kaltenecker_distance-based_2019}
-	\item design of experiments
-\end{itemize}
+Most approaches share the perspective of treating a configurable software system as a black-box and model application-level performance agnostic of any code. Besides, recent work has incorporated feature location techniques to guide sampling effort towards relevant configuration options~\cite{velez_2020_configcrusher_jase,velez_comprex_2021} or model non-functional properties similarly, but at finer granularity~\cite{weber_white_2021}.
 
-\subsection{Varying Workloads / Transfer Learning}
-In case a changed workload is the main factor varied in an execution environment (e.g., hardware setup or workload), such bias can be explicitly learned~\cite{jamishidi_transfer_2017,jamshidi_learning_2018,jamshidi_transfer_gp_2017,ding_bayesian_2020}. Transformed performance prediction models, however, only rather adapt to a specific environment change exploiting similarities between corresponding performance prediction models. Contrary to transfer learning of performance prediction models, the influence of workloads on performance of configurable software systems has not been studied to the best of our knowledge.
+\subsection{Performance under Varying Workloads}
+Differences in the performance behavior of configurable software systems have been documented before~\cite{jamishidi_transfer_2017,alves_sampling_2020}. Jamshidi et al. observe that performance influences across different environments remain largely congruent and differences only affect small numbers of configuration options, such that differences can be learned efficiently via transfer learning~\cite{jamishidi_transfer_2017,jamshidi_learning_2018,jamshidi_transfer_gp_2017,ding_bayesian_2020}. Here, the bias is explicitly learned to adapt an already existing – and potentially also biased -- performance model. The benefit of using more than one specific workload for performance models is illustrated by work of Liao et al.~\cite{liao_2020_using_emse}. For two different versions of a software system, they learned performance models based on disjoint sets of workloads. From the comparison of both performance models, they were able to identify performance shifts as the workload bias was averaged out.
 
-\begin{itemize}
-	\item performance spectra under different workloads~\cite{alves_sampling_2020}, 
-	\item varying workloads for prediction~\cite{liao_2020_using_emse}
-	\item relevance of micro-benchmarks \cite{laaber_emse_2021,grambow_peerj_2021}
-\end{itemize}
+Closely related to our work, aspects of workload variability and bias have been studied for micro-benchmarks, such as test suites for performance testing. Laaber et al. use static analysis to estimate the stability (convergence after repeated measurements) of a given micro-benchmark based on usage of specific code features~\cite{laaber_emse_2021}. Similarly to our problem, yet for micro-benchmarks instead of system-level workloads, Grambow et al. use static analysis to infer redundant or missing coverage~\cite{grambow_peerj_2021}. With this approach, they are able to condense benchmark suites to select only relevant ones and also recommend code sections to test with further workloads.
 
 \subsection{Associating Code and Features}
-\begin{itemize}
+{\color{Orange}\begin{itemize}
 	\item Static code analysis\cite{velez_2020_configcrusher_jase,lillack_2018_lotrack_tse,luo_2019_cova}
 	\item Dynamic code analysis \cite{bell_phosphor_2014,velez_comprex_2021}
 	\item Static program slicing and dynamic slicing (dicing)
@@ -79,46 +65,47 @@ In case a changed workload is the main factor varied in an execution environment
 \end{itemize}
 \begin{itemize}
 	\item comparison with \textsc{Comprex}~\cite{velez_comprex_2021}
-	\item comparison with \textsc{SPLat}
-\end{itemize}
+	\item comparison with \textsc{SPLat}~\cite{splat_kim_2013}
+\end{itemize}}
 
 
 \section{Problem Statement}
 \subsection{Motivating Example}
-\blindtext
-\begin{comment}56
-\begin{lstlisting}[caption={Illustrative code example with one configuration option (\texttt{CACHING}) and workload-specific behavior.},label=lst:bener, language=Python]
-CACHING = parse_options()
+{\color{black}Take as an example the Python method in Listing~\ref{lst:intro}. The method computes a dictionary of word frequencies in a given file and can write results to or retrieve results from a cache, which is enabled by a configuration option. We highlighted all code regions that are dependent on either the configuration option. }
 
+\begin{lstlisting}[caption={Illustrative code example with one configuration option (line~1), option-dependent behavior (line~10), workload-dependent behavior (lines~14--17), and mixed-dependency behavior (line~21).},label=lst:intro, escapechar=\%]
+CACHING = parse_options()
+	
 def calc_word_frequency(self, path: String)
 	workload = open(path, 'r').read()
 	workload_size = len(workload)
 	frequencies = dict()
-
+	
 	# option-dependent
 	if CACHING and path in self.cache:
-		return self.cache[path]
-		
+%\cova%		return self.cache[path]}
+	
 	# workload-dependent
 	if workload_size > 1024:	
-		for word in workload.split(' '):
-			if word not in frequencies: 
-				frequencies[word] = 0
-			frequencies[word] += 1
+%\covb%		for word in workload.split(' '):
+%\covb%			if word not in frequencies: 
+%\covb%				frequencies[word] = 0
+%\covb%			frequencies[word] += 1
 	
 	# option- and workload-dependent
 	if CACHING and workload_size > 65536:
-		self.cache[path] = frequencies
-					
+%\covc%		self.cache[path] = frequencies
+	
 	return frequencies
 \end{lstlisting}
-\end{comment}
+
+
 
 \subsection{Exploring Workload-specific Differences}
 
 In this paper, we want to address two aspects of workload variability. In the first part, we explore the influence that different workloads can have on performance behavior. While an influence of workloads has been described in literature, to the best of our knowledge, we are the first to study workload impact explicitly. To this end, we ask the following first research question:
 \greybox{RQ1.1 \textit{Are there workload-specific differences in performance influence for configurable software systems?}}
-Our study described later is on exploratory nature and does not claim to generalize to all configurable settings, but raise awareness to workload variability when building performance models for configurable software systems. 
+Our study described later on (cf. Section~\ref{sec:study}) is of exploratory nature and does not claim to generalize to all configurable settings, but raise awareness to workload variability when building performance models for configurable software systems. 
 To shift our perspective from a code-agnostic one to a more code-aware setting, in the next research question, we quantify the differences in code coverage across different workloads:
 \greybox{RQ1.2 \textit{Are there workload-specific differences in code coverage for configurations of a software system?}}
 If there are workload-specific differences in performance influence \emph{and} code coverage present in the software systems studied, we next want to explore possible connections between the two. If influence difference could be attributed to or even be explained by differences in code coverage, this ultimately could serve as a cheap-to-compute proxy for representativeness. Therefore, we want to ask the following research question:
@@ -129,8 +116,13 @@ As different workloads can stress different feature's code, using a collection o
 
 \greybox{RQ2.1 \textit{Can we use different workloads to identify option-specific code sections via superimposition?}}
 
-\greybox{RQ2.2 \textit{Can we use code coverage or option-code coverage as a indicator for representativeness?}}
+\greybox{RQ2.2 \textit{Can we use code coverage or option-code coverage as an indicator for representativeness?}}
 
+
+
+\section{Empirical Study (RQ1)}~\label{sec:study}
+\subsection{Subject Systems and Workloads}
+Table~\ref{tab:subject_systems}
 \begin{table*}
 	\centering
 	\caption{Experiment Characteristics}
@@ -138,15 +130,23 @@ As different workloads can stress different feature's code, using a collection o
 	\label{tab:subject_systems}
 \end{table*}
 
-
-
-\section{Study Setup}
-\subsection{Subject Systems and Workloads}
 \subsection{Operationalization}
 \subsection{Results}
+
+\section{Estimating Representativeness (RQ2)}
 
 \section{Discussion}
 
 \section{Threats to Validity}
-
+\subsection{Internal Validity}
+\begin{itemize}
+	\item dedicated hardware to mitigate measurement noise, 
+	\item five repetitions per data point, 
+	\item database experiments robustness assessed in pre-study
+\end{itemize}
+\subsection{External Validity}
+\begin{itemize}
+	\item Java only, but different application domains,
+	\item consistent with observations from related work
+\end{itemize}
 \section{Conclusion}
