@@ -4,7 +4,7 @@ Even from a small number of configuration options, the space of possible configu
 Non-functional properties such as software performance often depend on configuration choices and can be learned from a sample set configurations using performance models. Existing performance modeling approaches often do not consider further variation beyond configurations, most importantly, the choice of workload.
 For code sections that are not stressed by a workload, one cannot determine the influence they might have on performance under different workloads. This leaves performance models susceptible to bias by the choice of the workload, so that a model can over-approximate used during learning and may not generalize to real-world use cases.
 
-In this paper, we explore the influence of different workloads on {\color{Red}4} different non-functional properties across {\color{Red}7} configurable Java software systems. We augment performance measurements with dynamic code analysis to assess the feature coverage and representativeness of performance models in the presence of varying workloads. We devise a novel strategy to interpret performance models via lightweight code analysis and aim to raise awareness of multi-factor influences on software performance.
+In this paper, we explore the influence of different workloads on {\color{Orange}four} different non-functional properties across {\color{Orange}seven} configurable Java software systems. We augment performance measurements with dynamic code analysis to assess the feature coverage and representativeness of performance models in the presence of varying workloads. We devise a novel strategy to interpret performance models via lightweight code analysis and aim to raise awareness of multi-factor influences on software performance.
 \end{abstract}
 
 
@@ -53,27 +53,17 @@ Most approaches share the perspective of treating a configurable software system
 
 \subsection{Performance under Varying Workloads}
 Differences in the performance behavior of configurable software systems have been documented before~\cite{jamishidi_transfer_2017,alves_sampling_2020}. Jamshidi et al. observe that performance influences across different environments remain largely congruent and differences only affect small numbers of configuration options, such that differences can be learned efficiently via transfer learning~\cite{jamishidi_transfer_2017,jamshidi_learning_2018,jamshidi_transfer_gp_2017,ding_bayesian_2020}. Here, the bias is explicitly learned to adapt an already existing – and potentially also biased -- performance model. The benefit of using more than one specific workload for performance models is illustrated by work of Liao et al.~\cite{liao_2020_using_emse}. For two different versions of a software system, they learned performance models based on disjoint sets of workloads. From the comparison of both performance models, they were able to identify performance shifts as the workload bias was averaged out.
-
 Closely related to our work, aspects of workload variability and bias have been studied for micro-benchmarks, such as test suites for performance testing. Laaber et al. use static analysis to estimate the stability (convergence after repeated measurements) of a given micro-benchmark based on usage of specific code features~\cite{laaber_emse_2021}. Similarly to our problem, yet for micro-benchmarks instead of system-level workloads, Grambow et al. use static analysis to infer redundant or missing coverage~\cite{grambow_peerj_2021}. With this approach, they are able to condense benchmark suites to select only relevant ones and also recommend code sections to test with further workloads.
 
-\subsection{Associating Code and Features}
-{\color{Orange}\begin{itemize}
-	\item Static code analysis\cite{velez_2020_configcrusher_jase,lillack_2018_lotrack_tse,luo_2019_cova}
-	\item Dynamic code analysis \cite{bell_phosphor_2014,velez_comprex_2021}
-	\item Static program slicing and dynamic slicing (dicing)
-	\item Software reconnaissance ~\cite{wong_integrated_2005,wilde_early_1996,agrawal_fault_1995,simmons_industrial_2006,chen_dynamic_nodate,sherwood_reducing_nodate}
-\end{itemize}
-\begin{itemize}
-	\item comparison with \textsc{Comprex}~\cite{velez_comprex_2021}
-	\item comparison with \textsc{SPLat}~\cite{splat_kim_2013}
-\end{itemize}}
-
+\subsection{Associating Code and Features}\label{sec:feature_location}
+The problem of determining what code sections implement certain functionality in a software system is known as feature location. To reason about the degree to what a software feature (i.e., code conditioned by a configuration option) is covered under a workload, knowledge of corresponding code regions is necessary and can be obtained from program analysis techniques.
+In this vein, most approaches either employ static or dynamic analysis to infer an association between code and features. For static analyses, variables that encode configuration options are tainted and from following data-flow and control-flow one can infer code sections tainted by such variables~\cite{velez_2020_configcrusher_jase,lillack_2018_lotrack_tse,luo_2019_cova}.
+While static analyses can yield precise results, scalability is often limited by the exploration of possible execution paths. To mitigate this shortcoming, dynamic taint analysis taints variables similarly to the above works, but only follows one execution path~\cite{bell_phosphor_2014,velez_comprex_2021,splat_kim_2013}. From few executions of different configurations one can then extract feature-specific code from the code that was covered. A related, less precise, but also less computationally expensive approach is \emph{differential coverage testing}~\cite{wong_integrated_2005,wilde_early_1996,agrawal_fault_1995,simmons_industrial_2006,chen_dynamic_nodate,sherwood_reducing_nodate}. Here, code that is covered when an option is selected, but not covered otherwise, is associated with that option.
 
 \section{Problem Statement}
-\subsection{Motivating Example}
-{\color{black}Take as an example the Python method in Listing~\ref{lst:intro}. The method computes a dictionary of word frequencies in a given file and can write results to or retrieve results from a cache, which is enabled by a configuration option. We highlighted all code regions that are dependent on either the configuration option. }
+Performance models are often learned from observations under a single workload. While the implications of potential bias have been described to some extent in related work, we want to revisit these with an introductory example in Listing~\ref{lst:intro}. The Python method computes a dictionary of word frequencies in a given file and can write results to or retrieve results from a cache, which is enabled by a configuration option. We highlighted all code regions that are dependent on either the configuration option. The three highlighted code sections depend on the selection of the caching option, the workload size, or both: The first part will increase execution time if the target file has already been cached, the second part will only be executed for files that contains more than 1024 characters, and the last part will cache a large file for later re-use to save on execution time. That is, depending on the workload and configuration, one can expect different performance behavior. 
 
-\begin{lstlisting}[caption={Illustrative code example with one configuration option (line~1), option-dependent behavior (line~10), workload-dependent behavior (lines~14--17), and mixed-dependency behavior (line~21).},label=lst:intro, escapechar=\%]
+\begin{lstlisting}[caption={Illustrative code example with one configuration option (line~1), option-dependent behavior (line~10), workload-dependent behavior (lines~14--17), and mixed-dependency behavior (line~21).},label=lst:intro, escapechar=\%,float]
 CACHING = parse_options()
 	
 def calc_word_frequency(self, path: String)
@@ -99,46 +89,68 @@ def calc_word_frequency(self, path: String)
 	return frequencies
 \end{lstlisting}
 
-
-
 \subsection{Exploring Workload-specific Differences}
+Workload selection can determine the coverage of code regions, but this does not necessarily translate to observable shifts in performance and vice versa. Nonetheless, both metrics, code coverage and performance, in isolation are used to make statements about the quality of a software system. We argue that, even without drawing a connection between both, exploring the impact that the selection of different workloads can have is worthwhile, for instance to select for stable workloads or robust configurations.
+In the first part of our contribution, hence, we explore the influence that different workloads can have on performance behavior, as well as code coverage and ask the following two research questions:
 
-In this paper, we want to address two aspects of workload variability. In the first part, we explore the influence that different workloads can have on performance behavior. While an influence of workloads has been described in literature, to the best of our knowledge, we are the first to study workload impact explicitly. To this end, we ask the following first research question:
-\greybox{RQ1.1 \textit{Are there workload-specific differences in performance influence for configurable software systems?}}
-Our study described later on (cf. Section~\ref{sec:study}) is of exploratory nature and does not claim to generalize to all configurable settings, but raise awareness to workload variability when building performance models for configurable software systems. 
-To shift our perspective from a code-agnostic one to a more code-aware setting, in the next research question, we quantify the differences in code coverage across different workloads:
-\greybox{RQ1.2 \textit{Are there workload-specific differences in code coverage for configurations of a software system?}}
-If there are workload-specific differences in performance influence \emph{and} code coverage present in the software systems studied, we next want to explore possible connections between the two. If influence difference could be attributed to or even be explained by differences in code coverage, this ultimately could serve as a cheap-to-compute proxy for representativeness. Therefore, we want to ask the following research question:
-\greybox{RQ1.3 \textit{Do workload-specific differences in code coverage correspond to differences in performance influence?}}
+\begin{enumerate}[align=left,label=RQ1.\arabic*]
+	\item\textit{Are there workload-specific differences in performance influence for configurable software systems?}\label{rq:1.1}
+	\item\textit{Are there workload-specific differences in code coverage for configurations of a software system?}\label{rq:1.2}
+\end{enumerate}
 
-\subsection{Code Coverage for Representativeness}
-As different workloads can stress different feature's code, using a collection of workloads will provide a more broad code coverage and potential bias should be averaged out. To ultimately assess a workload's representativeness via code coverage, we ultimately require some sort of feature location technique. From a collection of workloads, one should be able to extract code regions that whose coverage is conditioned by the choice of workload. To this end, we ask the following research question:
+We address the first two research questions with an empirical study of configurable software systems across a multitude of configurations and workloads (cf Section~\ref{sec:study}). Given the presence of workload-specific differences in both code coverage and performance of a configurable software system, we subsequently explore whether such differences could be attributed to workloads as a common factor of variation. To this end, we ask the following research question:
 
-\greybox{RQ2.1 \textit{Can we use different workloads to identify option-specific code sections via superimposition?}}
-
-\greybox{RQ2.2 \textit{Can we use code coverage or option-code coverage as an indicator for representativeness?}}
-
+\begin{enumerate}[align=left,label=RQ1.\arabic*]
+	\setcounter{enumi}{2}
+	\item\textit{Do workload-specific differences in code coverage correspond to differences in performance?}\label{rq:1.3}
+\end{enumerate}
 
 
+\subsection{Code Coverage and Representativeness}
+As the main target of our efforts, in the second part of our efforts, we now focus on how workload variability influences performance models. To further see, whether workload-specific coverage differences affect not only the performance of individual configurations (cf.~\ref{rq:1.3}), but the performance influence of each configuration option (or interaction among them), we ask the following research question:
+
+\begin{enumerate}[align=left,label=RQ2.\arabic*]
+	\item\textit{Do workload-specific differences in code coverage correspond to differences in the performance influence of configuration options?}\label{rq:2.1}
+\end{enumerate}
+
+Drawing a connection between differences in both code coverage and performance influences, depending on the workload, is a first approximation of how susceptible a performance model is to workload variability. To obtain a clearer picture of how susceptible individual configuration options and interactions among them are to workload bias, we require information about what code is related to one or more configuration option. To achieve this, we aim to infer such locations from using different workloads via differential coverage testing (cf. Section~\ref{sec:feature_location}) and ask the following research question:
+
+\begin{enumerate}[align=left,label=RQ2.\arabic*]
+	\setcounter{enumi}{1}
+	\item\textit{Can we use different workloads to identify option-specific code sections via superimposition?}\label{rq:2.2}
+\end{enumerate}
+
+To ultimately assess, whether we can estimate the bias for individual performance influences, we apply the findings from \ref{rq:2.2} as a baseline for feature location and correlate them with observed differences in performance influences to answer the final research question:
+
+\begin{enumerate}[align=left,label=RQ2.\arabic*]
+	\setcounter{enumi}{2}
+	\item\textit{Can we use code coverage or option-code coverage as an indicator for representativeness?}\label{rq:2.3}
+\end{enumerate}
+\clearpage
 \section{Empirical Study (RQ1)}~\label{sec:study}
-\subsection{Subject Systems and Workloads}
+\subsection{Subject Systems}
 Table~\ref{tab:subject_systems}
+
+\subsection{Workloads}
 \begin{table*}
 	\centering
 	\caption{Experiment Characteristics}
 	\input{tables/subject_systems.tex}
 	\label{tab:subject_systems}
 \end{table*}
-
+\cite{difallah_oltp_2013}
 \subsection{Operationalization}
 \subsection{Results}
 
-\section{Estimating Representativeness (RQ2)}
+\section{Estimating Representativeness (RQ2)}~\label{sec:metric}
+\subsection{Approximated Feature Regions}
+
+\subsection{Representativeness Scoring}
 
 \section{Discussion}
 
 \section{Threats to Validity}
-\subsection{Internal Validity}
+\subsection{Internal Validity}enum:rq1.1
 \begin{itemize}
 	\item dedicated hardware to mitigate measurement noise, 
 	\item five repetitions per data point, 
