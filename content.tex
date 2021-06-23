@@ -9,14 +9,14 @@ In this paper, we explore the influence of different workloads on {\color{Red}fo
 
 
 \section{Introduction}
-\subsection*{Performance models are important}
+\paragraph*{Performance models are important}
 Most software systems can be customized via configuration options to meet user demands. The selection of configuration options can enable desired functionality (features) or tweak non-functional aspects of a software system, such as improving performance or energy consumption. 
 All too often, software performance bugs can be linked to configuration options~\cite{han_empirical_2016}. 
 The relationship of configuration choices and their influence on non-functional properties has been extensively studied in recent years. The main focus was on the estimation non-functional properties, such as performance, for arbitrary configurations~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso} or on finding configurations with near-optimal non-functional properties~\cite{nairUsingBadLearners2017,nairFlash18,ohFindingNearoptimalConfigurations2017}. 
 The backbone of a performance estimate is a model that maps a given configuration to the estimated performance value. 
 In general, performance prediction models are only useful to practitioners if predictions hold for a large number of application scenarios.
 
-\subsection*{Performance models can be workload-biased}
+\paragraph*{Performance models can be workload-biased}
 Learning performance models for software performance usually relies on a training set of configuration-specific performance measurements. 
 Typically, established approaches employ a single workload (e.g., a benchmark or test suite) to measure performance, which usually aims at emulating a real-world application scenario. 
 However, as the collected measurements represent only the one application scenario, the resulting performance model can  estimate performance for this single scenario reliably. 
@@ -28,14 +28,14 @@ In this vein, a recent exploratory study by Jamshidi et al.\cite{jamishidi_trans
 Performance  influences across different environments remain largely congruent and differences only affect small numbers of configuration options, such that differences can be learned efficiently via transfer learning~\cite{jamshidi_transfer_gp_2017,jamshidi_learning_2018}. 
 Nonetheless, under a single workload, we are left with performance models whose estimations are potentially inaccurate for different environments.
 
-\subsection*{Towards Estimating Representativeness}
+\paragraph*{Towards Estimating Representativeness}
 Given not one, but a set of performance models based on different workloads, the question arises: Which performance model of the set is most general, whose estimations are more likely to \emph{represent} real-world scenarios? 
 To assess which model's estimations to trust most, we require information about whether and how different workloads interact with the software system under test. 
 To this end, we extend the black-box perspective of existing approaches~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso} with code coverage analysis, where the question usually is, what code is covered by a test case.
 If the execution of performance-relevant code is determined by a specific workload, one cannot measure the influence such code would contribute to performance otherwise.
 In addition, if such interactions affect option-specific code, the influence of configuration option is more susceptible to potential bias. 
 
-\subsection*{Approach, Results \& Implications}
+\paragraph*{Approach, Results \& Implications}
 In this paper, we conduct an exploratory study of {\color{red}7} configurable Java systems across a multitude of configurations and workloads to assses the influence of workloads on performance models as well as code coverage. 
 Our study results show that workload-specific differences are prevalent across different domains, both with regard to performance behavior and code coverage. We explore how code coverage could serve as a lightweight, but effective indicator to identify potential workload bias and, thus, select representative \emph{representative} workloads a priori. Our results show that\ldots.
 
@@ -107,7 +107,6 @@ We address the first two research questions with an empirical study of configura
 	\item\textit{Do workload-specific differences in code coverage correspond to differences in performance?}\label{rq:1.3}
 \end{enumerate}
 
-
 \subsection{Code Coverage and Representativeness}
 As the main target of our efforts, in the second part of our efforts, we now focus on how workload variability influences performance models. To further see, whether workload-specific coverage differences affect not only the performance of individual configurations (cf.~\ref{rq:1.1}), but the performance influence of each configuration option (or interaction among them), we ask the following research question:
 
@@ -129,17 +128,16 @@ To ultimately assess, whether we can estimate the bias for individual performanc
 	\item\textit{Can we use code coverage or option-code coverage as an indicator for representativeness?}\label{rq:2.3}
 \end{enumerate}
 
+We answer the first three research questions with an empirical study in the following Section~\ref{sec:study}, followed by a further analysis in Section~\ref{sec:metric} for the remaining two research questions.
 
-\section{Empirical Study (RQ)}~\label{sec:study}
-
+\clearpage
+\section{Empirical Study}~\label{sec:study}
 \begin{table*}[ht!]
 	\centering
 	\caption{Experiment Characteristics}
 	\input{tables/subject_systems.tex}
 	\label{tab:subject_systems}
 \end{table*}
-
-
 \subsection{Experiment Setup}
 Table~\ref{tab:subject_systems}\\
 Database benchmarks were run using OLTP-Bench\cite{difallah_oltp_2013}\\
@@ -155,8 +153,8 @@ For all subject systems, we sampled a set of configurations since exhaustive ass
 
 
 \subsubsection*{Hardware Setup}
-All experiments were conducted on compute clusters with an identical hardware setup, either Intel~Core~i5-8259U CPUs at 2.3~GHz (\sosy{jump3r}, \sosy{kanzi}, \sosy{jump3r}, \sosy{h2}, and \sosy{hsqldb}) or Intel~Core~i7-8559U CPUs at 2.7~GHz (\sosy{density-converter}, \sosy{batik}, and \sosy{jadx}) with 32~GB of RAM, respectively. The machines run a headless Debian 10 installation (kernel version \mbox{4.19.0-14}). To minimize measurement noise, no additional user process were running in the background and no other than necessary packages were installed.
-For all data points, we report the median across five repetitions (except for \sosy{h2} and \sosy{hsqldb}), which has shown to be a good trade-off between variance and measurement effort. The reported coefficient of variation was below {\color{Red}10\,\%}. For the two database systems, we omitted the repetitions as in a pre-study, we found that across all benchmarks the throughput coefficient of variation (standard deviation divided by the arithmetic mean) was consistently below 5\,\%.
+All experiments were conducted on compute clusters with an identical hardware setup, either Intel~Core~i5-8259U CPUs at 2.3~GHz (\sosy{jump3r}, \sosy{kanzi}, \sosy{jump3r}, \sosy{h2}, and \sosy{hsqldb}) or Intel~Core~i7-8559U CPUs at 2.7~GHz (\sosy{density-converter}, \sosy{batik}, and \sosy{jadx}) and 32~GB of RAM, respectively. The machines run a headless Debian 10 installation (kernel version \mbox{4.19.0-14}). To minimize measurement noise, no additional user process were running in the background and no other than necessary packages were installed.
+For all data points, we report the median across five repetitions (except for \sosy{h2} and \sosy{hsqldb}), which has shown to be a good trade-off between variance and measurement effort. The reported coefficient of variation was below {\color{Red}10\,\%}\change{Check number}. For the two database systems, we omitted the repetitions as in a pre-study, we found that across all benchmarks the throughput coefficient of variation (standard deviation divided by the arithmetic mean) was consistently below 5\,\%.
 
 \subsection{Performance Ranking of Configurations (RQ1.1)}
 {\color{teal}
@@ -167,14 +165,23 @@ For all data points, we report the median across five repetitions (except for \s
 	\item Discuss, how results correspond to~\cite{jamishidi_transfer_2017}
 \end{itemize}
 }
+\greybox{\textit{Summary:} This appears to work, but we do not know how and why yet.}
+
 \subsection{Coverage Set Similarity (RQ1.2)}
+To answer \ref{rq:1.2}, we ... 
 {\color{teal}
 	\begin{itemize}
 		\item Ra
 	\end{itemize}
 }
+
+\begin{equation}
+	\text{Jaccard}(C_1, C_2) = \frac{|C_1|}{|\bigcup_{i=1}^{n} C_i|}
+\end{equation}
+
 \subsection{Correlation Analysis (RQ1.3)}
 
+\clearpage
 \section{Estimating Representativeness}~\label{sec:metric}
 
 \subsection{Approximated Feature Regions}

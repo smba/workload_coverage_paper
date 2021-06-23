@@ -19,7 +19,7 @@
 \usepackage{hyperref}
 \hypersetup{
 	colorlinks,
-	linkcolor={red!70!black},
+	linkcolor={OrangeRed!60!black},
 	citecolor={blue!70!black},
 	urlcolor={Brown!80!black}
 }
@@ -28,9 +28,14 @@
 
 \usepackage{enumitem}
 
+
+
 \usepackage{url}
 \usepackage{float}
-%\usepackage{crimson}%
+
+%nice font
+\usepackage{cochineal}
+
 
 % configure subfigures
 \usepackage{subcaption}
@@ -40,15 +45,18 @@
 \usepackage{colortbl}
 \usepackage[dvipsnames,table,xcdraw]{xcolor}
 
+% table with footnotes
+\usepackage{tablefootnote}
+
 % fancy box for research questions, result summaries etc.
 \usepackage[framemethod=TikZ]{mdframed}
 \newcommand{\greybox}[1]{
 	\begin{mdframed}[
-		backgroundcolor=Black!8,
-		linewidth=0.1pt,
+		backgroundcolor=Black!10,
+		linewidth=0.0pt,
 		innerleftmargin=5pt,
 		innertopmargin=5pt,
-		roundcorner=3pt,
+		roundcorner=1pt,
 		]
 		%\noindent
 		#1
@@ -91,7 +99,7 @@
 \newcommand{\covb}{\makebox[0pt][l]{\color{black!10!white}\rule[-2pt]{1\linewidth}{10pt}}}
 \newcommand{\covc}{\makebox[0pt][l]{\color{black!10!white}\rule[-2pt]{1\linewidth}{10pt}}}
 
-\newcommand{\sosy}[1]{\textsc{\color{Brown!85!white}#1}}
+\newcommand{\sosy}[1]{\textsc{\color{Black!70!white}#1}}
 
 
 \usepackage{xargs} 
