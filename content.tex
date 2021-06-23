@@ -100,7 +100,7 @@ In the first part of our contribution, hence, we explore the influence that diff
 	\item\textit{Are there workload-specific differences in code coverage for configurations of a software system?}\label{rq:1.2}
 \end{enumerate}
 
-We address the first two research questions with an empirical study of configurable software systems across a multitude of configurations and workloads (cf Section~\ref{sec:study}). Given the presence of workload-specific differences in both code coverage and performance of a configurable software system, we subsequently explore whether such differences could be attributed to workloads as a common factor of variation. To this end, we ask the following research question:
+We address the first two research questions with an empirical study of configurable software systems across a multitude of configurations and workloads (cf. Section~\ref{sec:study}). Given the presence of workload-specific differences in both code coverage and performance of a configurable software system, we subsequently explore whether such differences could be attributed to workloads as a common factor of variation. To this end, we ask the following research question:
 
 \begin{enumerate}[align=left,label=RQ1.\arabic*]
 	\setcounter{enumi}{2}
@@ -128,11 +128,21 @@ To ultimately assess, whether we can estimate the bias for individual performanc
 	\setcounter{enumi}{2}
 	\item\textit{Can we use code coverage or option-code coverage as an indicator for representativeness?}\label{rq:2.3}
 \end{enumerate}
-\clearpage
-\section{Empirical Study (RQ1)}~\label{sec:study}
+
+
+\section{Empirical Study (RQ)}~\label{sec:study}
+
+\begin{table*}[ht!]
+	\centering
+	\caption{Experiment Characteristics}
+	\input{tables/subject_systems.tex}
+	\label{tab:subject_systems}
+\end{table*}
+
+
 \subsection{Experiment Setup}
 Table~\ref{tab:subject_systems}\\
-
+Database benchmarks were run using OLTP-Bench\cite{difallah_oltp_2013}\\
 \noindent\sosy{kanzi}\footnote{\url{https://github.com/flanglet/kanzi/}} is a compression tool.\\
 \sosy{jump3r}\footnote{\url{https://github.com/Sciss/jump3r/}} is a compression tool.\\\
 \sosy{density-converter}\footnote{\url{https://github.com/patrickfav/density-converter/}} is a compression tool.\\
@@ -141,19 +151,13 @@ Table~\ref{tab:subject_systems}\\
 \sosy{h2}\footnote{\url{https://github.com/h2database/h2database/}} is a compression tool.\\
 \sosy{hsqldb}\footnote{\url{https://github.com/ryenus/hsqldb/}} is a compression tool.\\
 \subsubsection*{Configuration Sampling}
+For all subject systems, we sampled a set of configurations since exhaustive assessment of the configuration space is infeasible due to combinatorial explosion. We combine several coverage-based sampling strategies and uniform random sampling into an \emph{ensemble} approach: to study the influence of single configuration options, we employ feature-wise and negative feature-wise sampling, where each feature is enabled once, or all except one, respectively. In the same way, pair-wise sampling applies this schema to study influences of two-way interactions between configuration options. Interactions of higher degree can be found accordingly, however, is computationally expensive. Instead, we augment our sample set with a random sample that is at least twice the size of the coverage-based sample subset. To achieve a uniform random sample, we used \emph{distance-based sampling}~\cite{kaltenecker_distance-based_2019}, which ensures uniform coverage of the configuration space. The variability models as well as sample sets can be found at the paper's companion web site.
+
 
 \subsubsection*{Hardware Setup}
-All experiments were conducted on clusters with identical hardware setup, either i7-... (cluster A) or \ldots (cluster B), all running a headless Ubuntu 18.04 installation. The machines had the minimal number of software packages installed and no additional user process running in the background to minimize measurement noise. 
+All experiments were conducted on compute clusters with an identical hardware setup, either Intel~Core~i5-8259U CPUs at 2.3~GHz (\sosy{jump3r}, \sosy{kanzi}, \sosy{jump3r}, \sosy{h2}, and \sosy{hsqldb}) or Intel~Core~i7-8559U CPUs at 2.7~GHz (\sosy{density-converter}, \sosy{batik}, and \sosy{jadx}) with 32~GB of RAM, respectively. The machines run a headless Debian 10 installation (kernel version \mbox{4.19.0-14}). To minimize measurement noise, no additional user process were running in the background and no other than necessary packages were installed.
+For all data points, we report the median across five repetitions (except for \sosy{h2} and \sosy{hsqldb}), which has shown to be a good trade-off between variance and measurement effort. The reported coefficient of variation was below {\color{Red}10\,\%}. For the two database systems, we omitted the repetitions as in a pre-study, we found that across all benchmarks the throughput coefficient of variation (standard deviation divided by the arithmetic mean) was consistently below 5\,\%.
 
-All reported data points are the median across five repetitions (except for \sosy{h2} and \sosy{hsqldb}), which has shown to be a good trade-off between variance and measurement effort. The reported coefficient of variation was below {\color{Red}10\,\%. For the two database systems, we omitted the repetitions as in a pre-study, we found that across all benchmarks throughput variation was consistently below 5\,\%.}
-
-\begin{table*}
-	\centering
-	\caption{Experiment Characteristics}
-	\input{tables/subject_systems.tex}
-	\label{tab:subject_systems}
-\end{table*}
-Database benchmarks were run using OLTP-Bench\cite{difallah_oltp_2013}
 \subsection{Performance Ranking of Configurations (RQ1.1)}
 {\color{teal}
 \begin{itemize}
@@ -171,8 +175,8 @@ Database benchmarks were run using OLTP-Bench\cite{difallah_oltp_2013}
 }
 \subsection{Correlation Analysis (RQ1.3)}
 
-\section{Estimating Representativeness (RQ2)}~\label{sec:metric}
-\blindtext
+\section{Estimating Representativeness}~\label{sec:metric}
+
 \subsection{Approximated Feature Regions}
 
 \subsection{Representativeness Scoring}
