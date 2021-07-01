@@ -158,22 +158,33 @@ We answer the first three research questions with an empirical study in the foll
 	\input{tables/subject_systems.tex}
 	\label{tab:subject_systems}
 \end{table*}
-\subsection{Subject Systems \& Workloads}
+\subsection{Experiment Setup}
+\subsubsection{Subject Systems \& Workloads}
+{\color{NavyBlue}
+For our study, we have selected {\color{red}seven} configurable software systems as illustrated in Table~\ref{tab:subject_systems}. All software systems are implemented in Java. While this limits, among others, the corpus of subject systems to be considered, we decided to use Java for mainly two reasons. Practically, because we can forgo code modifications for instrumentation by using off-line instrumentation (cf.~Section~\ref{sec:profiling}) for code coverage measurement. Strategically, because we can limit the influence of different measurement pipelines. We discuss this decision in more detail in the threats to validity (cf.~Section~\ref{sec:threats}).
+
+\sosy{jump3r}\footnote{\url{https://github.com/Sciss/jump3r/}} is a re-implementation of the LAME audio codec for MP3 in Java. In total, we have selected {\color{red}six} WAVE audio files as a workload to encode to MP3. While the selection of workloads was exploratory, we indcluded audio files with different characteristics, such as sampling rate, number of channels, and length. 
+\sosy{kanzi}\footnote{\url{https://github.com/flanglet/kanzi/}} is a file compression tool. For this subject system, we selected {\color{red}ten} workloads, including, among others, dedicated compression benchmarks (sets of files of different types) as well as binary and text files at different scales: a binary of the Linux kernel, a dump of its repository, XML and CSV data. 
+\sosy{density-converter}\footnote{\url{https://github.com/patrickfav/density-converter/}} is a compression tool
+}
+
 Table~\ref{tab:subject_systems}\\
 Database benchmarks were run using OLTP-Bench\cite{difallah_oltp_2013}\\
 For \sosy{jadx}, we sampled 30 Android applications from AndroZoo~\cite{allix_androzoo_2016}
-\noindent\sosy{kanzi}\footnote{\url{https://github.com/flanglet/kanzi/}} is a compression tool.\\
-\sosy{jump3r}\footnote{\url{https://github.com/Sciss/jump3r/}} is a compression tool.\\\
+\noindent
+
 \sosy{density-converter}\footnote{\url{https://github.com/patrickfav/density-converter/}} is a compression tool.\\
 \sosy{batik}\footnote{\url{https://xmlgraphics.apache.org/batik/tools/rasterizer.html}} is a compression tool.\\
 \sosy{jadx}\footnote{\url{https://github.com/skylot/jadx/}} is a compression tool.\\
 \sosy{h2}\footnote{\url{https://github.com/h2database/h2database/}} is a compression tool.\\
 \sosy{hsqldb}\footnote{\url{https://github.com/ryenus/hsqldb/}} is a compression tool.\\
-\subsubsection*{Configuration Sampling}
+
+\subsubsection{Configuration Sampling}
 For all subject systems, we sampled a set of configurations since exhaustive assessment of the configuration space is infeasible due to combinatorial explosion. We combine several coverage-based sampling strategies and uniform random sampling into an \emph{ensemble} approach: to study the influence of single configuration options, we employ feature-wise and negative feature-wise sampling, where each feature is enabled once, or all except one, respectively. In the same way, pair-wise sampling applies this schema to study influences of two-way interactions between configuration options. Interactions of higher degree can be found accordingly, however, is computationally expensive. Instead, we augment our sample set with a random sample that is at least twice the size of the coverage-based sample subset. To achieve a uniform random sample, we used \emph{distance-based sampling}~\cite{kaltenecker_distance-based_2019}, which ensures uniform coverage of the configuration space. The variability models as well as sample sets can be found at the paper's companion web site.
 
+\subsubsection{Coverage Profiling}\label{sec:profiling}
 
-\subsubsection*{Hardware Setup}
+\subsubsection{Hardware Setup}
 All experiments were conducted on compute clusters with an identical hardware setup, either Intel~Core~i5-8259U CPUs at 2.3~GHz (\sosy{jump3r}, \sosy{kanzi}, \sosy{jump3r}, \sosy{h2}, and \sosy{hsqldb}) or Intel~Core~i7-8559U CPUs at 2.7~GHz (\sosy{density-converter}, \sosy{batik}, and \sosy{jadx}) and 32~GB of RAM, respectively. The machines ran a headless Debian 10 installation (kernel version \mbox{4.19.0-14}). To minimize measurement noise, no additional user process were running in the background and no other than necessary packages were installed.
 For all data points, we report the median across five repetitions (except for \sosy{h2} and \sosy{hsqldb}), which has shown to be a good trade-off between variance and measurement effort. The reported coefficient of variation was below {\color{Red}10\,\%}\change{Check number}. For the two database systems, we omitted the repetitions as in a pre-study, we found that across all benchmarks the throughput coefficient of variation (standard deviation divided by the arithmetic mean) was consistently below 5\,\%.
 
@@ -211,7 +222,7 @@ To answer \ref{rq:1.2}, we ...
 
 \section{Discussion}
 
-\section{Threats to Validity}
+\section{Threats to Validity}\label{sec:threats}
 \subsection{Internal Validity}
 \begin{itemize}
 	\item dedicated hardware to mitigate measurement noise, 
