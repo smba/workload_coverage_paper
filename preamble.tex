@@ -39,7 +39,6 @@
 %nice font
 %\usepackage{cochineal}
 
-
 % configure subfigures
 \usepackage{subcaption}
 
@@ -66,12 +65,16 @@
 	\end{mdframed}
 }
 
+
+% remove indentioin for new paraghraphs
+\setlength{\parindent}{0cm}
+
 % utility imports
 \usepackage{comment}
 
 \lstset{framesep=2pt}
 \lstset{
-	language=Python, 
+	language=Java, 
 	basicstyle=\footnotesize\ttfamily,
 	linewidth=0.48\textwidth,
 	numbers=left,
@@ -98,9 +101,9 @@
 	{ö}{{\"o}}1
 }
 
-\newcommand{\cova}{\makebox[0pt][l]{\color{Red!20!white}\rule[-2pt]{1\linewidth}{10pt}}}
-\newcommand{\covb}{\makebox[0pt][l]{\color{Blue!20!white}\rule[-2pt]{1\linewidth}{10pt}}}
-\newcommand{\covc}{\makebox[0pt][l]{\color{Green!20!white}\rule[-2pt]{1\linewidth}{10pt}}}
+\newcommand{\cova}{\makebox[0pt][l]{\color{Goldenrod!15!white}\rule[-2pt]{1\linewidth}{10pt}}}
+\newcommand{\covb}{\makebox[0pt][l]{\color{Magenta!15!white}\rule[-2pt]{1\linewidth}{10pt}}}
+\newcommand{\covc}{\makebox[0pt][l]{\color{PineGreen!15!white}\rule[-2pt]{1\linewidth}{10pt}}}
 
 \newcommand{\sosy}[1]{\textsc{\color{Brown!85!white}#1}}
 

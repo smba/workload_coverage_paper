@@ -4,7 +4,7 @@ Even from a small number of configuration options, the space of possible configu
 Non-functional properties such as software performance often depend on configuration choices and can be learned from a sample set configurations using performance models. Existing performance modeling approaches often do not consider further variation beyond configurations, most importantly, the choice of workload.
 For code sections that are not covered by execution under a specific workload, one cannot determine the influence they might have on performance under different workloads. This leaves performance models susceptible to bias by the choice of the workload, so that a model can over-approximate during learning and may not generalize to real-world use cases.
 
-In this paper, we explore the influence of different workloads on {\color{Red}four} different non-functional properties across {\color{Red}seven} configurable Java software systems. We augment performance measurements with dynamic code analysis to assess the feature coverage and representativeness of performance models in the presence of varying workloads. We devise a novel strategy to interpret performance models via lightweight code analysis and aim to raise awareness of multi-factor influences on software performance.
+In this paper, we explore the influence of different workloads on four different non-functional properties across seven configurable Java software systems. We augment performance measurements with dynamic code analysis to assess the feature coverage and representativeness of performance models in the presence of varying workloads. We devise a novel strategy to interpret performance models via lightweight code analysis and aim to raise awareness of multi-factor influences on software performance.
 \end{abstract}
 
 
@@ -31,27 +31,35 @@ Nonetheless, under a single workload, we are left with performance models whose 
 \subsection*{Towards Estimating Representativeness}
 Given not one, but a set of performance models based on different workloads, the question arises: Which performance model of the set is most general, whose estimations are more likely to \emph{represent} real-world scenarios? 
 To assess which model's estimations to trust most, we require information about whether and how different workloads interact with the software system under test. 
-To this end, we extend the black box perspective of existing approaches~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso} with code coverage analysis, where the question usually is, what code is covered by a test case.
-If the execution of performance-relevant code is determined only by a specific workload, one cannot measure the influence such code would contribute to performance otherwise.
-In addition, if such interactions affect option-specific code, the influence of configuration option is more susceptible to potential bias.
-\pdfcomment[color=green!25]{
-Ich kann dir bis hier hin folgen. Allerdings sind die letzten 2 Sätze wohl für jemanden, der jetzt nicht im Thema ist, schwerer nachzuvollziehen. 
-Evtl. wäre hier ein kleines Code-Snippet gut, in welchem (1) ein bestimmter featureunabhängiger Code durch einen bestimmten Workload abgedeckt wird und (2) featureabhängiger Code (also sozusagen Code der einem Feature zugeordnet wird) in welchem Teile davon von einem spezifischen Workload abgedeckt werden. 
-Featureabhängigen Code könnte man über normale ifs realisieren. 
-if (feature-a == true) \\
-Workloadabhängigen Code könnte man beispielsweise im Datenbankkontext so realisieren:
-if (inserted-row-count > 50) 
-Also wenn sozusagen mehr als 50 Reihen in eine Tabelle einer DAtenbank eingefügt wurden, passiert was (z.B. Optimierungen). 
-NAchtrag: Ach, ich sehe jetzt erst Listing 1. Könnte man das nicht in verkleinerter Form (also beispielsweise durch ein anderes Szenario) bereits auf Seite 1 oder 2 drankommen lassen?
-Man könnte das ganze Szenario auch so abändern, dass in den farblich markierten Featureregionen irgendwelche Funktionsaufrufe drinnen sind, die andeuten, viel Performance zu brauchen. Dann würde man zumindest ein wenig besser illustrieren, dass das einen großen Effekt auf die Performance haben kann.
-} 
 
+Take as an example the method in Listing~\ref{lst:intro} from an imaginary database system. It receives as an argument an array of strings, each a row to insert. The method exhibits two configuration options, of whose selection some code sections depend: if \texttt{DUPLICATE\_CHECK} is enabled, the passed array is checked for duplicates via a separate method invocation (lines 2--4), and if \texttt{AUTOCOMMIT} is enabled, each insertion is treated as a single transaction (lines 10--12). The latter section, however, is not only depends on the selection of a configuration option, but also on the number of rows to insert. If the workload (here, the number of rows) is large enough, the individual insertion per row (line 9) is replaced by another insertion method (line 6).---This example illustrates, how the execution of a program could depend on both configuration decisions (lines 2--4) and workloads (lines 5--9), or interactions between them (lines 10--12).
+\begin{lstlisting}[caption={Illustrative code example of option-dependent code, workload-dependent code, and interaction-dependent code.},label=lst:intro, escapechar=\%,float]
+public void insertRows(String[] rows) {
+%\cova%	if (Configuration.DUPLICATE_CHECK) {
+%\cova%		rows = this.removeDuplicates(rows);
+%\cova%	}
+%\covc%	if (rows.length() > 50) {
+%\covc%		this.insertBulkRows(rows);
+%\covc%	} else {
+%\covc%		for (String row: rows) {
+%\covc%			this.insertRow(row);
+%\covb%			if (Configuration.AUTOCOMMIT) {
+%\covb%				this.commit();
+%\covb%			}	
+%\covc%		}
+%\covc%	}
+}
+\end{lstlisting}
+To now representatively assess the method's performance, one would require not only observations under a set of sample configurations, but also under different workloads to cover and measure performance for workload-dependent code. If dependent code, such as the interaction between \texttt{AUTOCOMMIT} and the workload size is missed, the estimation of an option's performance influence becomes unrepresentative and, thus, the performance model unreliable.
 
+\subsection*{Approach, Results \& Contribution}
+{
+	\color{red}
+	To this end, we extend the black box perspective of existing approaches~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso} with code coverage analysis, where the question usually is, what code is covered by a test case.
 
-\subsection*{Approach, Results \& Implications}
-In this paper, we conduct an exploratory study of {\color{red}7} configurable Java systems across a multitude of configurations and workloads to assses the influence of workloads on performance models as well as code coverage. 
+In this paper, we conduct an exploratory study of seven configurable Java systems across a multitude of configurations and workloads to assses the influence of workloads on performance models as well as code coverage. 
 Our study results show that workload-specific differences are prevalent across different domains, both with regard to performance behavior and code coverage. We explore how code coverage could serve as a lightweight, but effective indicator to identify potential workload bias and, thus, select \emph{representative} workloads a priori. Our results show that\ldots.
-
+}
 
 \section{Background and Related Work}
 \subsection{Performance Models for Configurable Software}
@@ -65,28 +73,36 @@ The set of configurations for training can be sampled from the configuration spa
 Most approaches share the perspective of treating a configurable software system as a black box model at application-level granularity. Besides, recent work has incorporated feature location techniques to guide sampling effort towards relevant configuration options~\cite{velez_2020_configcrusher_jase,velez_comprex_2021} or model non-functional properties similarly, but at finer granularity~\cite{weber_white_2021}.
 
 \subsection{Performance under Varying Workloads}
-\improvement{define benchmark and workload}
 Differences in the performance behavior of configurable software systems have been documented before~\cite{jamishidi_transfer_2017,alves_sampling_2020}. Jamshidi et al. observe that performance influences across different environments remain largely congruent and differences only affect small numbers of configuration options, such that differences can be learned efficiently via transfer learning~\cite{jamishidi_transfer_2017,jamshidi_learning_2018,jamshidi_transfer_gp_2017,ding_bayesian_2020}. Here, the bias is explicitly learned to adapt an already existing – and potentially also biased -- performance model. The benefit of using more than one specific workload for performance models is illustrated by work of Liao et al.~\cite{liao_2020_using_emse}. For two different versions of a software system, they learned performance models based on disjoint sets of workloads. From the comparison of both performance models, they were able to identify performance shifts as the workload bias was averaged out.
-Closely related to our work, aspects of workload variability and bias have been studied for micro-benchmarks, such as test suites for performance testing. Laaber et al. use static analysis to estimate the stability (convergence after repeated measurements) of a given micro-benchmark based on usage of specific code features~\cite{laaber_emse_2021}. Similarly to our problem, yet for micro-benchmarks instead of system-level workloads, Grambow et al. use static analysis to infer redundant or missing coverage~\cite{grambow_peerj_2021}. With this approach, they are able to condense benchmark suites to select only relevant ones and also recommend code sections to test with further workloads.
-\pdfcomment[color=green!25]{
-Die lernen aber ein Performance-Model nicht anhand von Konfigurationen so wie wir es tun, sondern anhand von Logs, um auch Änderungen der Workloads leicht abdecken zu können. Ich finde, dass man das verdeutlichen sollte.
-}
+Closely related to our work, aspects of workload variability and bias have been studied for micro-benchmarks, such as test suites for performance testing. Laaber et al. use static analysis to estimate the stability (convergence after repeated measurements) of a given micro-benchmark based on usage of specific code features~\cite{laaber_emse_2021}. Similarly to our problem, yet for micro-benchmarks instead of system-level workloads, Grambow et al. use execution logs to infer redundant or missing coverage~\cite{grambow_peerj_2021}. With this approach, they are able to condense benchmark suites to select only relevant ones and also recommend code sections to test with further workloads. In contrast to our work, this does not consider configuration options.
+%\pdfcomment[color=green!25]{
+%Die lernen aber ein Performance-Model nicht anhand von Konfigurationen so wie wir es tun, %sondern anhand von Logs, um auch Änderungen der Workloads leicht abdecken zu können. Ich finde, dass man das verdeutlichen sollte.
+%}
 
 
 \subsection{Associating Code and Features}\label{sec:feature_location}
-The problem of determining what code sections implement certain functionality in a software system is known as feature location. To reason about the degree to what a software feature (i.e., code conditioned by a configuration option) is covered under a workload, knowledge of corresponding code regions is necessary and can be obtained from program analysis techniques.
+The problem of determining what code sections implement certain functionality in a software system is known as \emph{feature location}. To reason about the degree to what a software feature (i.e., code conditioned by a configuration option) is covered under a workload, knowledge of corresponding code regions is necessary and can be obtained from program analysis techniques.
 In this vein, most approaches either employ static or dynamic analysis to infer an association between code and features. For static analyses, variables that encode configuration options are tainted and from following data-flow and control-flow one can infer code sections tainted by such variables~\cite{velez_2020_configcrusher_jase,lillack_2018_lotrack_tse,luo_2019_cova}.
-While static analyses can yield precise results, scalability is often limited by the exploration of possible execution paths. To mitigate this shortcoming, dynamic taint analysis taints variables similarly to the above works, but only follows one execution path~\cite{bell_phosphor_2014,velez_comprex_2021,splat_kim_2013}. From few executions of different configurations one can then extract feature-specific code from the code that was covered. A related, less precise, but also less computationally expensive approach is \emph{differential coverage testing}~\cite{wong_integrated_2005,wilde_early_1996,agrawal_fault_1995,simmons_industrial_2006,chen_dynamic_nodate,sherwood_reducing_nodate}. Here, code that is covered if an option or interaction is selected, but not covered otherwise, is associated with that option or interaction.
+While static analyses can yield precise results, scalability is often limited by the exploration of possible execution paths. To mitigate this shortcoming, dynamic taint analysis taints variables similarly to the above works, but only follows one execution path~\cite{bell_phosphor_2014,velez_comprex_2021,splat_kim_2013}. From few executions of different configurations one can then extract feature-specific code from the code that was covered. 
+
+{\color{red}A related, less precise, but also less computationally expensive approach is \emph{differential coverage testing}~\cite{wong_integrated_2005,wilde_early_1996,agrawal_fault_1995,simmons_industrial_2006,chen_dynamic_nodate,sherwood_reducing_nodate}. Here, code that is covered if an option or interaction is selected, but not covered otherwise, is associated with that option or interaction.}
+	
 \pdfcomment[color=green!25]{
 Hier könnte man dann auch wieder auf das Beispiel in Listing 1 verweisen, um das Verständnis zusätzlich zu erhöhen.
 }
 
+\change{Add work by Michelon et al~\cite{michelon_spectrum_2021}}
+
+
 
 \section{Problem Statement}
 \improvement{Re-iterate the overall idea}
+
+\begin{comment}
 Performance models are often learned from observations under a single workload. While the implications of potential bias have been described to some extent in related work, we want to revisit these with an introductory example in Listing~\ref{lst:intro}. The Python method computes a dictionary of word frequencies in a given file and can write results to or retrieve results from a cache, which is enabled by a configuration option. The three highlighted code sections depend on the selection of the caching option, the workload size, or both: The first part will increase execution time if the target file has already been cached, the second part will only be executed for files that contains more than 1024 characters, and the last part will cache a large file for later re-use to save on execution time. That is, depending on the workload and configuration, one can expect different performance behavior. 
 
-\begin{lstlisting}[caption={Illustrative code example with one configuration option (line~1), option-dependent behavior (line~10), workload-dependent behavior (lines~14--17), and mixed-dependency behavior (line~21).},label=lst:intro, escapechar=\%,float]
+
+\begin{lstlisting}[caption={fgf},label=lst:intro, escapechar=\%,float]
 CACHING = parse_options()
 	
 def calc_word_frequency(self, path: String)
@@ -111,6 +127,7 @@ def calc_word_frequency(self, path: String)
 	
 	return frequencies
 \end{lstlisting}
+\end{comment}
 
 \subsection{Exploring Workload-specific Differences}
 Workload selection can determine the coverage of code regions, but this does not necessarily translate to observable shifts in performance and vice versa. Nonetheless, both metrics, code coverage and performance, in isolation are used to make statements about the quality of a software system. We argue that, even without drawing a connection between both, exploring the impact that the selection of different workloads can have is worthwhile, for instance to select for stable workloads or robust configurations.
@@ -160,13 +177,13 @@ We answer the first three research questions with an empirical study in the foll
 \end{table*}
 \subsection{Experiment Setup}
 \subsubsection{Subject Systems \& Workloads}
-{\color{NavyBlue}
-For our study, we have selected {\color{red}seven} configurable software systems as illustrated in Table~\ref{tab:subject_systems}. All software systems are implemented in Java. While this limits, among others, the corpus of subject systems to be considered, we decided to use Java for mainly two reasons. Practically, because we can forgo code modifications for instrumentation by using off-line instrumentation (cf.~Section~\ref{sec:profiling}) for code coverage measurement. Strategically, because we can limit the influence of different measurement pipelines. We discuss this decision in more detail in the threats to validity (cf.~Section~\ref{sec:threats}).
+
+For our study, we have selected seven configurable software systems as illustrated in Table~\ref{tab:subject_systems}. All software systems are implemented in Java. While this limits, among others, the corpus of subject systems to be considered, we decided to use Java for mainly two reasons. Practically, because we can forgo code modifications for instrumentation by using off-line instrumentation (cf.~Section~\ref{sec:profiling}) for code coverage measurement. Strategically, because we can limit the influence of different measurement pipelines. We discuss this decision in more detail in the threats to validity (cf.~Section~\ref{sec:threats}).
 
 \sosy{jump3r}\footnote{\url{https://github.com/Sciss/jump3r/}} is a re-implementation of the LAME audio codec for MP3 in Java. In total, we have selected {\color{red}six} WAVE audio files as a workload to encode to MP3. While the selection of workloads was exploratory, we indcluded audio files with different characteristics, such as sampling rate, number of channels, and length. 
 \sosy{kanzi}\footnote{\url{https://github.com/flanglet/kanzi/}} is a file compression tool. For this subject system, we selected {\color{red}ten} workloads, including, among others, dedicated compression benchmarks (sets of files of different types) as well as binary and text files at different scales: a binary of the Linux kernel, a dump of its repository, XML and CSV data. 
 \sosy{density-converter}\footnote{\url{https://github.com/patrickfav/density-converter/}} is a compression tool
-}
+
 
 Table~\ref{tab:subject_systems}\\
 Database benchmarks were run using OLTP-Bench\cite{difallah_oltp_2013}\\
@@ -197,19 +214,9 @@ For all data points, we report the median across five repetitions (except for \s
 	\item Discuss, how results correspond to~\cite{jamishidi_transfer_2017}
 \end{itemize}
 }
-\greybox{\textit{Summary:} This appears to work, but we do not know how and why yet.}
 
 \subsection{Coverage Set Similarity (RQ1.2)}
-To answer \ref{rq:1.2}, we ... 
-{\color{teal}
-	\begin{itemize}
-		\item Ra
-	\end{itemize}
-}
 
-\begin{equation}
-	\text{Jaccard}(C_1, C_2) = \frac{|C_1|}{|\bigcup_{i=1}^{n} C_i|}
-\end{equation}
 
 \subsection{Correlation Analysis (RQ1.3)}
 
@@ -223,7 +230,7 @@ To answer \ref{rq:1.2}, we ...
 \section{Discussion}
 
 \section{Threats to Validity}\label{sec:threats}
-\subsection{Internal Validity}
+\subsection{Internal Validity}\label{sec:internal_validity}
 \begin{itemize}
 	\item dedicated hardware to mitigate measurement noise, 
 	\item five repetitions per data point, 
@@ -231,15 +238,21 @@ To answer \ref{rq:1.2}, we ...
 	\item separate experiment runs for coverage analysis and performance measurement to avoid profiling averhead (assuming determinism)
 	\item load generator overhead for databases, hence omitted memory consumption and other hardware-related performance indicators 
 \end{itemize}
-\subsection{External Validity}
+
+\subsection{External Validity}\label{sec:external_validity}
 \begin{itemize}
 	\item Java only, but different application domains,
 	\item consistent with observations from related work
 \end{itemize}
 
-\subsection{Construct Validity}
+\subsection{Construct Validity}\label{sec:construct_validity}
 \begin{itemize}
-	\item off-line instrumentation of Java programs to avoid possible code optimizations from the compilation process. 
+	\item \textit{off-line instrumentatio}n vs. on-line instrumentation
+	\begin{itemize}
+		\item avoid compiler optimizations or overhead from instrumented source code
+		\item byte code ad-hoc instrumentation could increase overhead in a separate run
+		\item byte-code instrumentation with Jacoco less precise than other techniques since mapping byte code instructions back to Java source code is not always trivial (observed before~\cite{luo_2019_cova})
+	\end{itemize}
 	\item Coverage analysis for middle- to low-level languages face instrumentation bias
 \end{itemize}
 
