@@ -17,6 +17,12 @@
 @String{ICC = "Proceedings of the IEEE International Conference on Communications (ICC)"}
 @String{ASPEC = "Proceedings of the Asia-Pacific Conference on Software Engineering (ASPEC)"}
 @String{SPLC = "Proceedings of the ACM International Systems and Software Product Line Conference (SPLC)"}
+@String{ISCI = "Proceedings of the IEEE International Scientific Conference on Informatics (ISCI)"}
+@String{ICPC = "Proceedings of the International Conference on Program Comprehension (ICPC)"}
+
+
+
+
 
 % ICSM became ICSME somewhen...
 @String{ICMS = "Proceedings of the International Conference on Software Maintenance (ICSM)"}
@@ -36,6 +42,8 @@
 @String{SoSyM = "Software and Systems Modeling (SoSyM)"}
 @String{TSE = "IEEE Transactions on Software Engineering (TSE)"}
 @String{WOSP = "Proceedings of the First International Workshop on Software and Performance (WOSP)"} 
+@String{SIGPLANNOT = "ACM SIGPLAN Notices"} 
+
 
 @inproceedings{eggerTimeBandwidthNarrowing2012,
 	author =        {S. {Egger} and P. {Reichl} and T. {Hoßfeld} and
@@ -238,17 +246,6 @@
 	doi =           {10.1002/0470841613},
 	isbn =          {978-0-470-84161-7 978-0-471-49287-0},
 	language =      {en},
-}
-
-@inproceedings{hanEmpiricalStudyPerformance2016,
-	author =        {Han, Xue and Yu, Tingting},
-	booktitle =     ESEM,
-	pages =         {1--10},
-	publisher =     ACM,
-	title =         {An {{Empirical Study}} on {{Performance Bugs}} for
-	{{Highly Configurable Software Systems}}},
-	year =          {2016},
-	doi = "10.1145/2961111.2962602",
 }
 
 @techreport{settlesActiveLearningLiterature2010,
@@ -626,20 +623,14 @@
 }
 
 @inproceedings{han_empirical_2016,
+		author =        {Han, Xue and Yu, Tingting},
 	title = {An {{Empirical Study}} on {{Performance Bugs}} for {{Highly Configurable Software Systems}}},
-	booktitle = {Proceedings of the 10th {{ACM}}/{{IEEE International Symposium}} on {{Empirical Software Engineering}} and {{Measurement}}},
-	author = {Han, Xue and Yu, Tingting},
+	booktitle = ESEM,
 	year = {2016},
-	month = sep,
 	pages = {1--10},
-	publisher = {{Association for Computing Machinery}},
-	address = {{Ciudad Real, Spain}},
+	publisher = ACM,
 	doi = {10.1145/2961111.2962602},
-	abstract = {Modern computer systems are highly-configurable, complicating the testing and debugging process. The sheer size of the configuration space makes the quality of software even harder to achieve. Performance is one of the key aspects of non-functional qualities, where performance bugs can cause significant performance degradation and lead to poor user experience. However, performance bugs are difficult to expose, primarily because detecting them requires specific inputs, as well as a specific execution environment (e.g., configurations). While researchers have developed techniques to analyze, quantify, detect, and fix performance bugs, we conjecture that many of these techniques may not be effective in highly-configurable systems. In this paper, we study the challenges that configurability creates for handling performance bugs. We study 113 real-world performance bugs, randomly sampled from three highly-configurable open-source projects: Apache, MySQL and Firefox. The findings of this study provide a set of lessons learned and guidance to aid practitioners and researchers to better handle performance bugs in highly-configurable software systems.},
-	file = {/home/stefan/Zotero/storage/DAM89MH9/Han und Yu - 2016 - An Empirical Study on Performance Bugs for Highly .pdf},
-	isbn = {978-1-4503-4427-2},
-	keywords = {Configuration,Empirical Study,Performance},
-	series = {{{ESEM}} '16}
+	
 }
 
 @article{guo_genetic_2011,
@@ -945,19 +936,22 @@
 }
 
 @article{difallah_oltp_2013,
-	author = {Difallah, Djellel Eddine and Pavlo, Andrew and Curino, Carlo and Cudre-Mauroux, Philippe},
-	title = {OLTP-Bench: An Extensible Testbed for Benchmarking Relational Databases},
-	year = {2013},
-	issue_date = {December 2013},
-	publisher = {VLDB Endowment},
+	title={{OLTP-Bench: An Extensible Testbed for Benchmarking Relational Databases}},
+	author={Difallah, Djellel Eddine and Pavlo, Andrew and Curino, Carlo and Cudre-Mauroux, Philippe},
+	journal={Proceedings of the VLDB Endowment},
+	pages = {277--288},
+	year={2013},
+	publisher={VLDB Endowment},
 	volume = {7},
 	number = {4},
-	doi = {10.14778/2732240.2732246},,
-	journal = {Proc. VLDB Endow.},
 	month = dec,
-	pages = {277–288},
-	numpages = {12}
+	doi = {10.14778/2732240.2732246},
+	
 }
+
+
+
+
 
 @misc{tpc_c_2013,
 	title = {TPC-C Client - Java-based implementation of the industry standard benchmark for database performance evaluation},
@@ -1031,18 +1025,13 @@
 	title = {Phosphor: Illuminating Dynamic Data Flow in Commodity Jvms},
 	year = {2014},
 	issue_date = {October 2014},
-	publisher = {Association for Computing Machinery},
-	address = {New York, NY, USA},
+	publisher = ACM,
 	volume = {49},
 	number = {10},
-	issn = {0362-1340},
-	url = {https://doi.org/10.1145/2714064.2660212},
 	doi = {10.1145/2714064.2660212},
-	journal = {SIGPLAN Not.},
+	journal = SIGPLANNOT,
 	month = oct,
 	pages = {83–101},
-	numpages = {19},
-	keywords = {dataflow analysis, taint tracking}
 }
 
 @InProceedings{schubert_phasar_2019,
@@ -1208,17 +1197,13 @@
 	pages = {18},
 }
 
-@article{chen_dynamic_nodate,
-	title = {Dynamic program dicing},
-	author = {Chen, T Y and Cheung, Y Y},
-	pages = {8},
-}
 
-@article{sherwood_reducing_nodate,
+@techreport{sherwood_reducing_nodate,
 	title = {Reducing {Code} {Navigation} {Effort} with {Differential} {Code} {Coverage}},
-	language = {en},
-	author = {Sherwood, Kaitlin Duck and Murphy, Gail C},
-	pages = {11},
+	author = {Sherwood, Kaitlin Duck and Murphy, Gail C.},
+	institution = {Department of Computer Science, University of British Columbia},
+	year        = {2008}
+	
 }
 
 @article{wilde_reconnaissance_1995,
@@ -1228,8 +1213,7 @@
 	volume = {7},
 	number = {1},
 	pages = {49-62},
-	keywords = {software maintenance, program understanding, requirements traceability, reverse-engineering, dynamic methods},
-	doi = {https://doi.org/10.1002/smr.4360070105},
+	doi = {10.1002/smr.4360070105},
 	year = {1995}
 }
 
@@ -1285,15 +1269,11 @@
 	author = {Dorn, Johannes and Apel, Sven and Siegmund, Norbert},
 	title = {Mastering Uncertainty in Performance Estimations of Configurable Software Systems},
 	year = {2020},
-	isbn = {9781450367684},
 	publisher = ACM,
-	url = {https://doi.org/10.1145/3324884.3416620},
 	doi = {10.1145/3324884.3416620},
-	booktitle = {Proceedings of the 35th IEEE/ACM International Conference on Automated Software Engineering},
-	pages = {684–696},
-	numpages = {13},
-	keywords = {P4, performance-influence modeling, configurable software systems, probabilistic programming},
-	location = {Virtual Event, Australia},
+	booktitle = ASE,
+	pages = {684--696},
+
 	series = {ASE '20}
 }
 
@@ -1338,26 +1318,8 @@
 	pages = {257-267},
 }
 
-@INPROCEEDINGS{allix_androzoo_2016,
 
-	author={Allix, Kevin and Bissyandé, Tegawendé F. and Klein, Jacques and Traon, Yves Le},
-
-	booktitle=MSR, 
-
-	title={AndroZoo: Collecting Millions of Android Apps for the Research Community}, 
-
-	year={2016},
-
-	volume={},
-
-	number={},
-
-	pages={468-471},
-
-	doi={}
-}
-
-@INPROCEEDINGS{michelon_spectrum_2021,
+@inproceedings{michelon_spectrum_2021,
 	author      = {Gabriela K. Michelon and Bruno Sotto-Mayor Jabier Martinez and Aitor Arrieta and Rui Abreu and Wesley K. G. Assunção},
 	booktitle   = SPLC,
 	title       = {{Spectrum-Based Feature Localization: A Case Study using ArgoUML}},
@@ -1366,3 +1328,75 @@
 	pages       = {},
 	intype = {to appear}
 }
+
+@inproceedings{rubin_feature_2013,
+	author="Rubin, Julia
+	and Chechik, Marsha",
+	editor="Reinhartz-Berger, Iris
+	and Sturm, Arnon
+	and Clark, Tony
+	and Cohen, Sholom
+	and Bettin, Jorn",
+	title={{A Survey of Feature Location Techniques}},
+	booktitle={{Domain Engineering: Product Lines, Languages, and Conceptual Models}},
+	year={2013},
+	publisher={Springer},
+	pages={29--58},
+	doi={10.1007/978-3-642-36654-3_2},
+}
+
+@inproceedings{Rubin2013ASO,
+	title={A Survey of Feature Location Techniques},
+	author={J. Rubin and M. Chechik},
+	booktitle={Domain Engineering, Product Lines, Languages, and Conceptual Models},
+	year={2013}
+}
+
+@inproceedings{sulir_annotation_2015,
+	author={Sulír, Matúš and Porubän, Jaroslav},
+	booktitle=ISCI, 
+	title={{Semi-automatic concern annotation using differential code coverage}},
+	year={2015},
+	pages={258-262},
+	doi={10.1109/Informatics.2015.7377843}}
+
+@ARTICLE{wong_faultloc_2016,
+	author={Wong, W. Eric and Gao, Ruizhi and Li, Yihao and Abreu, Rui and Wotawa, Franz},
+	journal=TSE, 
+	title={A Survey on Software Fault Localization}, 
+	publisher=IEEE,
+	year={2016},
+	volume={42},
+	number={8},
+	pages={707-740},
+	doi={10.1109/TSE.2016.2521368}}
+
+@article{perez_framing_2016,
+	title={Framing program comprehension as fault localization},
+	author={Alexandre Perez and Rui Abreu},
+	journal={Journal of Software: Evolution and Process},
+	year={2016},
+	volume={28},
+	pages={840 - 862}
+}
+
+@INPROCEEDINGS{castro_pangolin_2019,
+	author={Castro, Bruno and Perez, Alexandre and Abreu, Rui},
+	booktitle=ASE, 
+	title={Pangolin: An SFL-Based Toolset for Feature Localization}, 
+	year={2019},
+	pages={1130--1133},
+	doi={10.1109/ASE.2019.00119},
+	publisher = IEEE,
+}
+
+@inproceedings{perez_diagnosis_2014,
+	author = {Perez, Alexandre and Abreu, Rui},
+	title = {A Diagnosis-Based Approach to Software Comprehension},
+	year = {2014},
+	publisher = ACM,
+	doi = {10.1145/2597008.2597151},
+	booktitle = ICPC,
+	pages = {37--47},
+}
+
