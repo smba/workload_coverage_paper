@@ -19,9 +19,9 @@
 \usepackage{hyperref}
 \hypersetup{
 	colorlinks,
-	linkcolor={OrangeRed!60!black},
-	citecolor={blue!70!black},
-	urlcolor={Brown!80!black}
+	linkcolor={PineGreen!90!white},
+	citecolor={MidnightBlue!90!black},
+	urlcolor={PineGreen!80!black}
 }
 
 % nice monospace font
@@ -39,6 +39,7 @@
 %nice font
 %\usepackage{cochineal}
 
+
 % configure subfigures
 \usepackage{subcaption}
 
@@ -46,6 +47,7 @@
 \usepackage{booktabs}
 \usepackage{colortbl}
 \usepackage[dvipsnames,table,xcdraw]{xcolor}
+\usepackage{tabularx}
 
 % table with footnotes
 \usepackage{tablefootnote}
@@ -67,7 +69,7 @@
 
 
 % remove indentioin for new paraghraphs
-%\setlength{\parindent}{0cm}
+\setlength{\parindent}{0cm}
 
 % utility imports
 \usepackage{comment}
@@ -105,7 +107,7 @@
 \newcommand{\covb}{\makebox[0pt][l]{\color{Magenta!15!white}\rule[-2pt]{1\linewidth}{10pt}}}
 \newcommand{\covc}{\makebox[0pt][l]{\color{PineGreen!15!white}\rule[-2pt]{1\linewidth}{10pt}}}
 
-\newcommand{\sosy}[1]{\textsc{\color{Brown!85!white}#1}}
+
 
 
 \usepackage{xargs} 
@@ -116,4 +118,29 @@
 \newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
 \newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
 
-%\usepackage{mathpazo}
+% Custom commands for research questions
+\newcommand{\RQ}[2]{
+	\hypertarget{rq:#1}{
+		\vspace{0.5em}
+		\bgroup
+		\def\arraystretch{1.1}%  1 is the default, change whatever you need
+		\begin{tabularx}{\linewidth}{p{0.12\linewidth}|p{0.8\linewidth}}
+			%\rowcolor{PineGreen!10}
+			RQ\,#1 & \textit{#2} \\
+		\end{tabularx}
+		\egroup
+	}
+}
+\newcommand{\RQref}[1]{\hyperlink{rq:#1}{RQ\,#1}}
+
+% Custom commands for subject systems
+\usepackage{xspace}
+\newcommand{\sosy}[1]{\textsc{\color{NavyBlue!95!white}#1}\xspace}
+\newcommand{\jumper}{\sosy{jump3r}}
+\newcommand{\htwo}{\sosy{h2}}
+\newcommand{\hsqldb}{\sosy{hsqlsb}}
+\newcommand{\kanzi}{\sosy{kanzi}}
+\newcommand{\batik}{\sosy{batik}}
+\newcommand{\dconvert}{\sosy{dconvert}}
+\newcommand{\jadx}{\sosy{jadx}}
+

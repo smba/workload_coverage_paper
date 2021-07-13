@@ -96,21 +96,17 @@ The rationale is that by exercising feature code, for instance via enabling conf
 %\subsection{Exploring Workload-specific Differences}
 Workload selection can determine the coverage of code regions, but this does not necessarily translate to observable shifts in performance and vice versa. Nonetheless, both metrics, code coverage and performance, in isolation are used to make statements about the quality of a software system. We argue that, even without drawing a connection between both, exploring the impact that the selection of different workloads can have is worthwhile, for instance to select for stable workloads or robust configurations.
 
- In the first part of our contribution, hence, we explore the influence that different workloads can have on performance behavior, as well as code coverage. To better understand the characteristics and observations of the subject systems in question, we first ask the following two research questions:
+In the first part of our contribution, hence, we explore the influence that different workloads can have on performance behavior, as well as code coverage. To better understand the characteristics and observations of the subject systems in question, we first ask the following two research questions:
 
-\begin{enumerate}[align=left,label=RQ\,1.\arabic*,leftmargin=5.5em,labelwidth=5em]
-	\raggedright
-	\item\textit{How similar are spectra of configuration performance across workloads?}\label{rq:1.1}
-	\item\textit{How similar is code coverage of configurations across workloads?}\label{rq:1.2}
-\end{enumerate}
+\RQ{1.1}{How similar are spectra of configuration performance across workloads?}
 
-As previous work has already demonstrate workload-specific differences in performance spectra (performance distribution of a set of configurations)~\cite{alves_sampling_2020}, we first revisit this aspect and study how workload differences influence the distribution of both performance (\ref{rq:1.1}) and code coverage (\ref{rq:1.2}).
+\RQ{1.2}{How similar is code coverage of configurations across workloads?}
 
-{\color{teal}Given the presence of workload-specific differences in both code coverage and performance of a configurable software system}, we subsequently explore whether such differences could be attributed to workloads as a common factor of variation. The rationale is that an existing correlation between differences in both dependent variables could allow for using code coverage as a proxy/indicator for differences in performance. To this end, we ask the following research question:
-\begin{enumerate}[align=left,label=RQ\,1.\arabic*,leftmargin=5.5em,labelwidth=5em]
-	\setcounter{enumi}{2}
-	\item\textit{Do workload-specific differences in code coverage correspond to workload-specific differences in performance?}\label{rq:1.3}
-\end{enumerate}
+As previous work has already demonstrate workload-specific differences in performance spectra (performance distribution of a set of configurations)~\cite{alves_sampling_2020}, we first revisit this aspect and study how workload differences influence the distribution of both performance (\RQref{1.1}) and code coverage (\RQref{1.2}).
+
+Given the presence of workload-specific differences in both code coverage and performance of a configurable software system, we subsequently explore whether such differences could be attributed to workloads as a common factor of variation. The rationale is that an existing correlation between differences in both dependent variables could allow for using code coverage as a proxy/indicator for differences in performance. To this end, we ask the following research question:
+
+\RQ{1.3}{Do workload-specific differences in code coverage correspond to workload-specific differences in performance?}
 
 \begin{table*}[ht!]
 	\centering
@@ -118,27 +114,26 @@ As previous work has already demonstrate workload-specific differences in perfor
 	\input{tables/subject_systems.tex}
 	\label{tab:subject_systems}
 \end{table*}
-\clearpage
+
 \subsection{Experiment Setup}
 \subsubsection{Subject Systems \& Workloads}
 
-For our study, we have selected seven configurable software systems as illustrated in Table~\ref{tab:subject_systems}. All software systems are implemented in Java. While this limits, among others, the corpus of subject systems to be considered, we decided to use Java for mainly two reasons. Practically, because we can forgo code modifications for instrumentation by using off-line instrumentation (cf.~Section~\ref{sec:profiling}) for code coverage measurement. Strategically, because we can limit the influence of different measurement pipelines. We discuss this decision in more detail in the threats to validity (cf.~Section~\ref{sec:threats}).
+For our study, we have selected seven configurable software systems as illustrated in Table~\ref{tab:subject_systems}. All software systems are implemented in Java. While this limits, among others, the corpus of subject systems to be considered, we decided to use Java for mainly two reasons. Practically, because we can forgo code modifications for instrumentation by using off-line instrumentation (cf.~Section~\ref{sec:profiling}) for code coverage measurement. Strategically, because we can limit the influence of different measurement pipelines. We discuss this decision in more detail in the threats to validity (cf.~Section~\ref{sec:threats}). A full list of our subject systems and characteristics is presented in Table~\ref{tab:subject_systems}.
 
-\sosy{jump3r}\footnote{\url{https://github.com/Sciss/jump3r/}} is a re-implementation of the LAME audio codec for MP3 in Java. In total, we have selected {\color{red}six} WAVE audio files as a workload to encode to MP3. While the selection of workloads was exploratory, we indcluded audio files with different characteristics, such as sampling rate, number of channels, and length. 
-\sosy{kanzi}\footnote{\url{https://github.com/flanglet/kanzi/}} is a file compression tool. For this subject system, we selected {\color{red}ten} workloads, including, among others, dedicated compression benchmarks (sets of files of different types) as well as binary and text files at different scales: a binary of the Linux kernel, a dump of its repository, XML and CSV data. 
-\sosy{density-converter}\footnote{\url{https://github.com/patrickfav/density-converter/}} is a compression tool
+\jumper\footnote{\url{https://github.com/Sciss/jump3r/}} is a re-implementation of the LAME audio codec for MP3 in Java. In total, we have selected {\color{red}six} WAVE audio files as a workload to encode to MP3. While the selection of workloads was exploratory, we indcluded audio files with different characteristics, such as sampling rate, number of channels, and length. 
 
+\kanzi\footnote{\url{https://github.com/flanglet/kanzi/}} is a file compression tool. For this subject system, we selected {\color{red}ten} workloads, including, among others, dedicated compression benchmarks (sets of files of different types) as well as binary and text files at different scales: a binary of the Linux kernel, a dump of its repository, XML and CSV data. 
 
-Table~\ref{tab:subject_systems}\\
-Database benchmarks were run using OLTP-Bench\cite{difallah_oltp_2013}\\
-For \sosy{jadx}, we
-\noindent
+\dconvert\footnote{\url{https://github.com/patrickfav/density-converter/}} ...
 
-\sosy{density-converter}\footnote{\url{https://github.com/patrickfav/density-converter/}} is a compression tool.\\
-\sosy{batik}\footnote{\url{https://xmlgraphics.apache.org/batik/tools/rasterizer.html}} is a compression tool.\\
-\sosy{jadx}\footnote{\url{https://github.com/skylot/jadx/}} is a compression tool.\\
-\sosy{h2}\footnote{\url{https://github.com/h2database/h2database/}} is a compression tool.\\
-\sosy{hsqldb}\footnote{\url{https://github.com/ryenus/hsqldb/}} is a compression tool.\\
+\batik ...
+
+\jadx ...
+
+\htwo ...
+
+\hsqldb is a ...
+
 
 \subsubsection{Configuration Sampling}
 For all subject systems, we sampled a set of configurations since exhaustive assessment of the configuration space is infeasible due to combinatorial explosion. We combine several coverage-based sampling strategies and uniform random sampling into an \emph{ensemble} approach: to study the influence of single configuration options, we employ feature-wise and negative feature-wise sampling, where each feature is enabled once, or all except one, respectively. In the same way, pair-wise sampling applies this schema to study influences of two-way interactions between configuration options. Interactions of higher degree can be found accordingly, however, is computationally expensive. Instead, we augment our sample set with a random sample that is at least twice the size of the coverage-based sample subset. To achieve a uniform random sample, we used \emph{distance-based sampling}~\cite{kaltenecker_distance-based_2019}, which ensures uniform coverage of the configuration space. The variability models as well as sample sets can be found at the paper's companion web site.
@@ -146,10 +141,11 @@ For all subject systems, we sampled a set of configurations since exhaustive ass
 \subsubsection{Coverage Profiling}\label{sec:profiling}
 
 \subsubsection{Hardware Setup}
-All experiments were conducted on compute clusters with an identical hardware setup, either Intel~Core~i5-8259U CPUs at 2.3~GHz (\sosy{jump3r}, \sosy{kanzi}, \sosy{jump3r}, \sosy{h2}, and \sosy{hsqldb}) or Intel~Core~i7-8559U CPUs at 2.7~GHz (\sosy{density-converter}, \sosy{batik}, and \sosy{jadx}) and 32~GB of RAM, respectively. The machines ran a headless Debian 10 installation (kernel version \mbox{4.19.0-14}). To minimize measurement noise, no additional user process were running in the background and no other than necessary packages were installed.
-For all data points, we report the median across five repetitions (except for \sosy{h2} and \sosy{hsqldb}), which has shown to be a good trade-off between variance and measurement effort. The reported coefficient of variation was below {\color{Red}10\,\%}\change{Check number}. For the two database systems, we omitted the repetitions as in a pre-study, we found that across all benchmarks the throughput coefficient of variation (standard deviation divided by the arithmetic mean) was consistently below 5\,\%.
+All experiments were conducted on compute clusters with an identical hardware setup, either Intel~Core~i5-8259U CPUs at 2.3~GHz (\jumper, \kanzi, \htwo, and \hsqldb) or Intel~Core~i7-8559U CPUs at 2.7~GHz (\dconvert, \batik, and \jadx) and 32~GB of RAM, respectively. The machines ran a headless Debian 10 installation (kernel version \mbox{4.19.0-14}). To minimize measurement noise, no additional user process were running in the background and no other than necessary packages were installed.
+For all data points, we report the median across five repetitions (except for \hsqldb or \htwo), which has shown to be a good trade-off between variance and measurement effort. The reported coefficient of variation was below {\color{Red}10\,\%}\change{Check number}. For the two database systems, we omitted the repetitions as in a pre-study, we found that across all benchmarks the throughput coefficient of variation (standard deviation divided by the arithmetic mean) was consistently below 5\,\%.
 
-\subsection{Performance Spectra (RQ1.1)}
+\subsection{Performance Spectra}
+For \RQref{1.1}, we ...
 {\color{teal}
 \begin{itemize}
 	\item Rank configurations by performance for each workload
@@ -158,13 +154,15 @@ For all data points, we report the median across five repetitions (except for \s
 \end{itemize}
 }
 
-\subsection{Coverage Set Similarity (RQ1.2)}
+\subsection{Coverage Set Similarity}
+For \RQref{1.2}, we ...
 \begin{itemize}
 	\item For how many configurations are there workload-specific coverage differences?
 	\item What is the distribution similarity (Jaccard) of lines covered per configuration across all workloads
 \end{itemize}
 
-\subsection{Correlation Analysis (RQ1.3)}
+\subsection{Correlation Analysis}
+For \RQref{1.3}, we ...
 \begin{itemize}
 	\item Compare pairs of workloads $(w_1, w_2)$, do differences in rank of configuration $c$ correspond to 
 	\begin{enumerate}
@@ -178,25 +176,17 @@ For all data points, we report the median across five repetitions (except for \s
 \clearpage
 \section{Estimating Representativeness}~\label{sec:metric}
 
-As the main target of our efforts, in the second part of our efforts, we now focus on how workload variability influences performance models. To further see, whether workload-specific coverage differences affect not only the performance of individual configurations (cf.~\ref{rq:1.1}), but the performance influence of each configuration option (or interaction among them), we ask the following research question:
+As the main target of our efforts, in the second part of our efforts, we now focus on how workload variability influences performance models. To further see, whether workload-specific coverage differences affect not only the performance of individual configurations (cf.~\RQref{1.1}), but the performance influence of each configuration option (or interaction among them), we ask the following research question:
 
-\begin{enumerate}[align=left,label=RQ\,2.\arabic*,leftmargin=5.5em,labelwidth=5em]
-	\item\textit{Do workload-specific differences in code coverage correspond to differences in the performance influence of configuration options?}\label{rq:2.1}
-\end{enumerate}
+\RQ{2.1}{Do workload-specific differences in code coverage correspond to differences in the performance influence of configuration options?}
 
 Drawing a connection between differences in both code coverage and performance influences, depending on the workload, is a first approximation of how susceptible a performance model is to workload variability. To obtain a clearer picture of how susceptible individual configuration options and interactions among them are to workload bias, we require information about what code is related to one or more configuration option. To achieve this, we aim to infer such locations from using different workloads via differential coverage testing (cf. Section~\ref{sec:feature_location}) and ask the following research question:
 
-\begin{enumerate}[align=left,label=RQ\,2.\arabic*,leftmargin=5.5em,labelwidth=5em]
-	\setcounter{enumi}{1}
-	\item\textit{Can we use different workloads to identify option-specific code sections via superimposition?}\label{rq:2.2}
-\end{enumerate}
+\RQ{2.2}{Can we use different workloads to identify option-specific code sections via superimposition?}
 
-To ultimately assess, whether we can estimate the bias for individual performance influences, we apply the findings from \ref{rq:2.2} as a baseline for feature location and correlate them with observed differences in performance influences to answer the final research question:
+To ultimately assess, whether we can estimate the bias for individual performance influences, we apply the findings from \RQref{2.2} as a baseline for feature location and correlate them with observed differences in performance influences to answer the final research question:
 
-\begin{enumerate}[align=left,label=RQ\,2.\arabic*,leftmargin=5.5em,labelwidth=5em]
-	\setcounter{enumi}{2}
-	\item\textit{Can we use code coverage or option-code coverage as an indicator for representativeness?}\label{rq:2.3}
-\end{enumerate}
+\RQ{2.3}{Can we use code coverage or option-code coverage as an indicator for representativeness?}
 
 We answer the first three research questions with an empirical study in the following Section~\ref{sec:study}, followed by a further analysis in Section~\ref{sec:metric} for the remaining two research questions.
 
