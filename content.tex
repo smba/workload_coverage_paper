@@ -1,22 +1,12 @@
-\begin{abstract}
-Most modern software systems exhibit configuration options to customize functionality to meet user demands. 
-Even from a small number of configuration options, the space of possible configurations grows large due to combinatorial explosion. Hence, it is infeasible to assess software quality exhaustively for all configurations. 
-Non-functional properties such as software performance often depend on configuration choices and can be learned from a sample set configurations using performance models. Existing performance modeling approaches often do not consider further variation beyond configurations, most importantly, the choice of workload.
-For code sections that are not covered by execution under a specific workload, one cannot determine the influence they might have on performance under different workloads. This leaves performance models susceptible to bias by the choice of the workload, so that a model can over-approximate during learning and may not generalize to real-world use cases.
-
-In this paper, we explore the influence of different workloads on four different non-functional properties across seven configurable Java software systems. We augment performance measurements with dynamic code analysis to assess the feature coverage and representativeness of performance models in the presence of varying workloads. We devise a novel strategy to interpret performance models via lightweight code analysis and aim to raise awareness of multi-factor influences on software performance.
-\end{abstract}
-
-
 \section{Introduction}
-\subsection*{Performance models are important}
+%\subsection*{Performance models are important}
 Most software systems can be customized via configuration options to meet user demands. The selection of configuration options can enable desired functionality (features) or tweak non-functional aspects of a software system, such as improving performance or energy consumption. 
 All too often, software performance bugs can be linked to configuration options~\cite{han_empirical_2016}. 
 The relationship of configuration choices and their influence on non-functional properties has been extensively studied in recent years. Most work focuses on the prediction of non-functional properties\footnote{In this paper, we use the terms \textit{non-functional properties} and \textit{performance} interchangably, although the latter is more restricive. In the context of this work a performance model describes any model that predicts one or more non-functional properties.}, such as execution time or memory utilization, for arbitrary configurations~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso} or on finding configurations that are near-optimal with regard to a non-functional property~\cite{nairUsingBadLearners2017,nairFlash18,ohFindingNearoptimalConfigurations2017}. 
 The backbone of a performance estimate is a model that maps a given configuration to the estimated performance value. 
 In general, performance prediction models are only useful to practitioners if predictions hold for a large number of application scenarios.
 
-\subsection*{Performance models can be workload-biased}
+%\subsection*{Performance models can be workload-biased}
 Learning performance models for software performance usually relies on a training set of configuration-specific performance measurements. 
 Typically, established approaches employ a single workload (e.g., a benchmark or test suite) to measure performance, which usually aims at emulating a real-world application scenario. 
 However, as the collected measurements represent only the one application scenario, the resulting performance model can  estimate performance for this single scenario reliably. 
@@ -28,11 +18,12 @@ In this vein, a recent exploratory study by Jamshidi et al.\cite{jamishidi_trans
 Performance  influences across different environments remain largely congruent and differences only affect small numbers of configuration options, such that differences can be learned efficiently via transfer learning~\cite{jamshidi_transfer_gp_2017,jamshidi_learning_2018}. 
 Nonetheless, under a single workload, we are left with performance models whose estimations are potentially inaccurate for different environments.
 
-\subsection*{Towards Estimating Representativeness}
+%\subsection*{Towards Estimating Representativeness}
 Given not one, but a set of performance models based on different workloads, the question arises: Which performance model of the set is most general, whose estimations are more likely to \emph{represent} real-world scenarios? 
 To assess which model's estimations to trust most, we require information about whether and how different workloads interact with the software system under test. 
 
 Take as an example the method in Listing~\ref{lst:intro} from an imaginary database system. It receives as an argument an array of strings, each a row to insert. The method exhibits two configuration options, of whose selection some code sections depend: if \texttt{DUPLICATE\_CHECK} is enabled, the passed array is checked for duplicates via a separate method invocation (lines 2--4), and if \texttt{AUTOCOMMIT} is enabled, each insertion is treated as a single transaction (lines 10--12). The latter section, however, is not only depends on the selection of a configuration option, but also on the number of rows to insert. If the workload (here, the number of rows) is large enough, the individual insertion per row (line 9) is replaced by another insertion method (line 6). This example illustrates, how the execution of a program could depend on both configuration decisions (lines 2--4) and workloads (lines 5--9), or interactions between them (lines 10--12).
+
 \begin{lstlisting}[caption={Illustrative code example of option-dependent code, workload-dependent code, and interaction-dependent code.},label=lst:intro, escapechar=\%,float]
 public void insertRows(String[] rows) {
 %\cova%	if (Configuration.DUPLICATE_CHECK) {
@@ -50,10 +41,10 @@ public void insertRows(String[] rows) {
 %\covc%	}
 }
 \end{lstlisting}
+
 To now representatively assess the method's performance, one would require not only observations under a set of sample configurations, but also under different workloads to cover and measure performance for workload-dependent code. If dependent code, such as the interaction between \texttt{AUTOCOMMIT} and the workload size is missed, the estimation of an option's performance influence becomes unrepresentative and, thus, the performance model unreliable.
 
-\subsection*{Approach, Results \& Contribution}
-
+%\subsection*{Approach, Results \& Contribution}
 In this paper, we explore how the selection of a workload can influence performance models how prone these are to be distorted. To this end, we extend our perspective from pure black-box measurements~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso} with knowledge about the code executed. Specifically, we enrich performance measurements from different configurations under varying workloads with corresponding easy-to-compute code coverage data. 
 We conduct an empirical study of seven configurable software systems to explore how the selection of workloads can influence both performance and code coverage, and possibly distort performance models (cf. Section~\ref{sec:study}). {\color{teal}We found that \ldots.} 
 Based on our findings, we explore correlations between code coverage and differences in performance influence (Section~\ref{sec:metric}). {\color{teal}	We found that \ldots. We propose to use code coverage as a \ldots and devise a novel method to interpret performance model with regard to code coverage in order to estimate their representativeness.}
@@ -142,7 +133,7 @@ For all subject systems, we sampled a set of configurations since exhaustive ass
 
 \subsubsection{Hardware Setup}
 All experiments were conducted on compute clusters with an identical hardware setup, either Intel~Core~i5-8259U CPUs at 2.3~GHz (\jumper, \kanzi, \htwo, and \hsqldb) or Intel~Core~i7-8559U CPUs at 2.7~GHz (\dconvert, \batik, and \jadx) and 32~GB of RAM, respectively. The machines ran a headless Debian 10 installation (kernel version \mbox{4.19.0-14}). To minimize measurement noise, no additional user process were running in the background and no other than necessary packages were installed.
-For all data points, we report the median across five repetitions (except for \hsqldb or \htwo), which has shown to be a good trade-off between variance and measurement effort. The reported coefficient of variation was below {\color{Red}10\,\%}\change{Check number}. For the two database systems, we omitted the repetitions as in a pre-study, we found that across all benchmarks the throughput coefficient of variation (standard deviation divided by the arithmetic mean) was consistently below 5\,\%.
+For all data points, we report the median across five repetitions (except for \hsqldb or \htwo), which has shown to be a good trade-off between variance and measurement effort. The reported coefficient of variation was below {\color{red}10\,\%}\change{Check number}. For the two database systems, we omitted the repetitions as in a pre-study, we found that across all benchmarks the throughput coefficient of variation (standard deviation divided by the arithmetic mean) was consistently below 5\,\%.
 
 \subsection{Performance Spectra}
 For \RQref{1.1}, we ...
