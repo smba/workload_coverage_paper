@@ -1,0 +1,27 @@
+\begin{abstract}
+Most modern software systems provide configuration
+options to customize functionality to meet user demands. Even
+from a small number of configuration options, the space of
+possible configurations grows large due to combinatorial explosion.
+Hence, it is infeasible to assess software quality exhaustively for
+all configurations. Non-functional properties such as software
+performance often depend on configuration choices and can be
+learned from a sample set of configurations using performance
+models. Existing performance modeling approaches often do
+not consider further variation beyond configurations, most
+importantly, the choice of workload. For code sections that are
+not covered by execution under a specific workload, one cannot
+determine the influence they might have on performance under
+different workloads. This leaves performance models susceptible
+to bias by the choice of the workload, leading to an overapproximation of a model during learning and may not generalize to real-world use cases. 
+
+In this paper, we explore the influence different workloads have on
+four different non-functional properties across seven configurable
+Java software systems. We augment performance measurements
+with dynamic code analysis to assess the feature coverage and
+representativeness of performance models in the presence of
+varying workloads. We devise a novel strategy to interpret
+performance models via lightweight code analysis and aim to raise
+awareness of multi-factor influences on software performance.
+
+\end{abstract}
