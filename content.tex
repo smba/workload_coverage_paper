@@ -100,7 +100,7 @@ In this vein, the selection of a workload can influence code coverage. Hence, si
 
 As the overall goal of this paper is to draw a connection between workload-specific performance spectra (\RQref{1.1}) and code coverage spectra (\RQref{1.2}), the question arises, whether the observed variation in code coverage could be used to explain differences in performance. To test the hypothesis, whether such differences could be attributed to workloads as a common factor of variation, the third research question is as follows: 
 
-\RQ{1.3}{Do workload-specific differences in code coverage correspond to workload-specific differences in performance?}
+\RQ{2}{Do workload-specific differences in code coverage correspond to workload-specific differences in performance?}
 
 \begin{table*}[ht!]
 	\centering
@@ -109,7 +109,7 @@ As the overall goal of this paper is to draw a connection between workload-speci
 	\label{tab:subject_systems}
 \end{table*}
 
-The following subsection outlines our experiment setup and methodology. The results to the first three research questions are presented in the following subsections~\ref{sec:performance_spectra}, \ref{sec:coverage_spectra}, and \ref{sec:performance_coverage_correlation}. The results from \RQref{1.3} will tell us, whether we can use code coverage as a proxy for performance and lay the foundation for comparing not only performance measurements with code coverage, but extend this view to comparing performance models and (option-specific) code coverage~\ref{sec:metric}.
+The following subsection outlines our experiment setup and methodology. The results to the first three research questions are presented in the following subsections~\ref{sec:performance_spectra}, \ref{sec:coverage_spectra}, and \ref{sec:performance_coverage_correlation}. The results from \RQref{2} will tell us, whether we can use code coverage as a proxy for performance and lay the foundation for comparing not only performance measurements with code coverage, but extend this view to comparing performance models and (option-specific) code coverage~\ref{sec:metric}.
 
 \subsection{Experiment Setup}
 \subsubsection{Subject Systems \& Workloads}
@@ -143,17 +143,18 @@ For all data points, we report the median across five repetitions (except for \h
 
 \subsection{Performance Spectra (RQ\,1.1)}\label{sec:performance_spectra}
 \subsubsection{Operationalization}
-To answer \RQref{1.1}, for each workload, we ranked the configurations of a subject system by their median performance. These rankings allow for comparing whether a configuration performs \emph{well} or \emph{poorly}, regardless of the workload. For instance, if a larger or more complex workload increases all configurations' execution times by a constant factor, the rank of each configuration should remain unaffected in comparison to a smaller or less complex workload.
+To answer \RQref{1.1}, for each workload, we ranked the configurations of a subject system by their median performance. Such rankings allow for comparing whether a configuration performs \emph{well} or \emph{poorly}, regardless of the workload. For instance, if a larger or more complex workload increases all configurations' execution times by a constant factor, the rank of each configuration should remain unaffected in comparison to a smaller or less complex workload.
 We approach the \emph{similarity} of the performance spectra under each workload by computing Kendall's $\tau$ rank correlation~\cite{} between configuration rankings for every pair of two workloads. The resulting matrix of correlation coefficients allows us to assess, which workloads exhibit similar performance spectra ($\tau$ close to 1), dissimilar performance spectra ($\tau$ close to 0), or a complete inversion, such as the best configurations performing worst under another workload ($\tau$ close to -1).
 
 \subsubsection{Results}
 \begin{compactitem}
 	\item Heatmaps and clustered heatmaps
+	\item Interpretation
 \end{compactitem}
 
 \subsection{Code Coverage Spectra (RQ\,1.2)}\label{sec:coverage_spectra}
 \subsubsection{Operationalization}
-For \RQref{1.2}, we ...
+To answer \RQref{1.2}, ...
 \begin{itemize}
 	\item For how many configurations are there workload-specific coverage differences?
 	\item What is the distribution similarity (Jaccard) of lines covered per configuration across all workloads
