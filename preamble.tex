@@ -3,6 +3,9 @@
 
 \usepackage{listings}
 
+\usepackage{pifont}
+\newcommand{\xmark}{\ding{55}}
+
 %\usepackage[dvipsnames]{xcolor}
 \usepackage{tabularx}
 
@@ -68,7 +71,7 @@
 
 
 % remove indentioin for new paraghraphs
-%\setlength{\parindent}{0cm}
+\setlength{\parindent}{0cm}
 
 % utility imports
 \usepackage{comment}
@@ -123,9 +126,9 @@
 		\vspace{0.5em}
 		\bgroup
 		\def\arraystretch{1.1}%  1 is the default, change whatever you need
-		\begin{tabularx}{\linewidth}{p{0.12\linewidth}|p{0.8\linewidth}}
-			%\rowcolor{green!10}
-			RQ\,#1 & \textit{#2} \\
+		\begin{tabularx}{\linewidth}{p{0.12\linewidth}|p{0.75\linewidth}}
+			%\rowcolor{brown!10}
+			\textbf{RQ\,#1} & \textit{#2} \\
 		\end{tabularx}
 		\egroup
 	}
@@ -134,7 +137,7 @@
 
 % Custom commands for subject systems
 \usepackage{xspace}
-\newcommand{\sosy}[1]{\textsc{\color{magenta}#1}\xspace}
+\newcommand{\sosy}[1]{\textsc{\color{brown!60!black}#1}\xspace}
 \newcommand{\jumper}{\sosy{jump3r}}
 \newcommand{\htwo}{\sosy{h2}}
 \newcommand{\hsqldb}{\sosy{hsqlsb}}

@@ -3,26 +3,27 @@
 Most software systems can be customized via configuration options to meet user demands. The selection of configuration options can enable desired functionality (features) or tweak non-functional aspects of a software system, such as improving performance or energy consumption. 
 All too often, software performance bugs can be linked to configuration options~\cite{han_empirical_2016}. 
 The relationship of configuration choices and their influence on non-functional properties has been extensively studied in recent years. Most work focuses on the prediction of non-functional properties\footnote{In this paper, we use the terms \textit{non-functional properties} and \textit{performance} interchangably, although the latter is more restricive. In the context of this work a performance model describes any model that predicts one or more non-functional properties.}, such as execution time or memory utilization, for arbitrary configurations~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso} or on finding configurations that are near-optimal with regard to a non-functional property~\cite{nairUsingBadLearners2017,nairFlash18,ohFindingNearoptimalConfigurations2017}. 
-The backbone of a performance estimate is a model that maps a given configuration to the estimated performance value. 
+The backbone of performance estimation is a model that maps a given configuration to the estimated performance value. 
 In general, performance prediction models are only useful to practitioners if predictions hold for a large number of application scenarios.
 
 %\subsection*{Performance models can be workload-biased}
 Learning performance models for software performance usually relies on a training set of configuration-specific performance measurements. 
-Typically, established approaches employ a single workload (e.g., a benchmark or test suite) to measure performance, which usually aims at emulating a real-world application scenario. 
+Typically, established approaches employ only a single workload (e.g., a benchmark or test suite) to measure performance, which usually aims at emulating a specific real-world application scenario. 
 However, as the collected measurements represent only the one application scenario, the resulting performance model can  estimate performance for this single scenario reliably. 
 The choice of a single workload can introduce bias as the predictive model is only as useful as the underlying workload resembles a wide range of use cases in the real world. 
 Pereira et al. illustrate this fact with an analysis of the video encoder \textsc{x264} under different workloads~\cite{alves_sampling_2020}. 
 For two different workloads, they observed vastly different performance distributions across a large set of configurations.
 While this particular observation can be an outlier, in general, one cannot assume that performance behavior under a single workload is generalizable, and therefore consistent in every real-world setting.
-In this vein, a recent exploratory study by Jamshidi et al.\cite{jamishidi_transfer_2017} illustrates that performance models of a configurable software system often exhibit differences in estimated performance influences when learned in different environments, including different versions, hardware setups, and workloads.
+In this vein, a recent exploratory study by Jamshidi et al.~\cite{jamishidi_transfer_2017} illustrates that performance models of a configurable software system often exhibit differences in estimated performance influences when learned in different environments, including different versions, hardware setups, and workloads.
 Performance  influences across different environments remain largely congruent and differences only affect small numbers of configuration options, such that differences can be learned efficiently via transfer learning~\cite{jamshidi_transfer_gp_2017,jamshidi_learning_2018}. 
-Nonetheless, under a single workload, we are left with performance models whose estimations are potentially inaccurate for different environments.
+Nonetheless, under a single workload, we are left with performance models whose estimations are potentially inaccurate for different environments. A specific workload might miss some lines of code and, hence, it is impossible to get performance information about such code regions.
 
 %\subsection*{Towards Estimating Representativeness}
+
 Given not one, but a set of performance models based on different workloads, the question arises: Which performance model of the set is most general, whose estimations are more likely to \emph{represent} real-world scenarios? 
 To assess which model's estimations to trust most, we require information about whether and how different workloads interact with the software system under test. 
 
-Take as an example the method in Listing~\ref{lst:intro} from an imaginary database system. It receives as an argument an array of strings, each a row to insert. The method exhibits two configuration options, of whose selection some code sections depend: if \texttt{DUPLICATE\_CHECK} is enabled, the passed array is checked for duplicates via a separate method invocation (lines 2--4), and if \texttt{AUTOCOMMIT} is enabled, each insertion is treated as a single transaction (lines 10--12). The latter section, however, is not only depends on the selection of a configuration option, but also on the number of rows to insert. If the workload (here, the number of rows) is large enough, the individual insertion per row (line 9) is replaced by another insertion method (line 6). This example illustrates, how the execution of a program could depend on both configuration decisions (lines 2--4) and workloads (lines 5--9), or interactions between them (lines 10--12).
+Take as an example the method in Listing~\ref{lst:intro} from an imaginary database system. It receives as an argument an array of strings, each a row to insert. The method exhibits two configuration options, of whose selection some code sections depend: if \texttt{DUPLICATE\_CHECK} is enabled, the passed array is checked for duplicates via a separate method invocation (lines 2--4), and if \texttt{AUTOCOMMIT} is enabled, each insertion is treated as a single transaction (lines 10--12). The latter section, however, not only depends on the selection of a configuration option, but also on the number of rows to insert. If the workload (here, the number of rows) is large enough, the individual insertion per row (line 9) is replaced by another insertion method (line 6). This example illustrates, how the execution of a program could depend on both configuration decisions (lines 2--4) and workloads (lines 5--9), or interactions between them (lines 10--12).
 
 \begin{lstlisting}[caption={Illustrative code example of option-dependent code, workload-dependent code, and interaction-dependent code.},label=lst:intro, escapechar=\%,float]
 public void insertRows(String[] rows) {
@@ -50,9 +51,10 @@ We conduct an empirical study of seven configurable software systems to explore 
 Based on our findings, we explore correlations between code coverage and differences in performance influence (Section~\ref{sec:metric}). {\color{teal}	We found that \ldots. We propose to use code coverage as a \ldots and devise a novel method to interpret performance model with regard to code coverage in order to estimate their representativeness.}
 
 In summary, we offer the following contributions:
-\begin{itemize}
+\begin{compactitem}
 	\item A companion Web site\footnote{\url{https://github.com/icse-submitter123/submission}} providing supplementary material including performance measurements, code coverage data, and additional visualizations.
-\end{itemize}
+	\item more 
+\end{compactitem}
 
 \section{Background and Related Work}
 \subsection{Performance Models for Configurable Software}
@@ -88,15 +90,15 @@ The rationale is that by exercising feature code, for instance via enabling conf
 %\subsection{Exploring Workload-specific Differences}
 Workload selection can determine the coverage of code regions, but this does not necessarily translate to observable shifts in performance and vice versa. Nonetheless, both metrics, code coverage and performance, in isolation are used to make statements about the quality of a software system. We argue that, even without drawing a connection between both, exploring the impact that the selection of different workloads can have is worthwhile, for instance to select for stable workloads or robust configurations.
 
-In the first part of our contribution, hence, we explore the influence that different workloads can have on performance behavior, as well as code coverage. To better understand the characteristics and observations of the subject systems in question, we first ask the following two research questions:
+In the first part of our contribution, hence, we explore what influence different workloads can have on performance behavior, as well as code coverage. Previous work has already observed notable differences~\cite{alves_sampling_2020,jamishidi_transfer_2017} and exploited these for adapting performance models to new workloads via transfer learning~\cite{jamshidi_transfer_gp_2017,jamshidi_learning_2018}. To provide a clearer picture for the performance of the subject systems in question, we first ask the following research question:
 
 \RQ{1.1}{How similar are spectra of configuration performance across workloads?}
 
+In this vein, the selection of a workload can influence code coverage. Hence, similarly to \RQref{1.1}, we quantify this effect by answering the following research question:
+
 \RQ{1.2}{How similar is code coverage of configurations across workloads?}
 
-As previous work has already demonstrate workload-specific differences in performance spectra (performance distribution of a set of configurations)~\cite{alves_sampling_2020}, we first revisit this aspect and study how workload differences influence the distribution of both performance (\RQref{1.1}) and code coverage (\RQref{1.2}).
-
-Given the presence of workload-specific differences in both code coverage and performance of a configurable software system, we subsequently explore whether such differences could be attributed to workloads as a common factor of variation. The rationale is that an existing correlation between differences in both dependent variables could allow for using code coverage as a proxy/indicator for differences in performance. To this end, we ask the following research question:
+As the overall goal of this paper is to draw a connection between workload-specific performance spectra (\RQref{1.1}) and code coverage spectra (\RQref{1.2}), the question arises, whether the observed variation in code coverage could be used to explain differences in performance. To test the hypothesis, whether such differences could be attributed to workloads as a common factor of variation, the third research question is as follows: 
 
 \RQ{1.3}{Do workload-specific differences in code coverage correspond to workload-specific differences in performance?}
 
@@ -107,53 +109,60 @@ Given the presence of workload-specific differences in both code coverage and pe
 	\label{tab:subject_systems}
 \end{table*}
 
+The following subsection outlines our experiment setup and methodology. The results to the first three research questions are presented in the following subsections~\ref{sec:performance_spectra}, \ref{sec:coverage_spectra}, and \ref{sec:performance_coverage_correlation}. The results from \RQref{1.3} will tell us, whether we can use code coverage as a proxy for performance and lay the foundation for comparing not only performance measurements with code coverage, but extend this view to comparing performance models and (option-specific) code coverage~\ref{sec:metric}.
+
 \subsection{Experiment Setup}
 \subsubsection{Subject Systems \& Workloads}
 
-For our study, we have selected seven configurable software systems as illustrated in Table~\ref{tab:subject_systems}. All software systems are implemented in Java. While this limits, among others, the corpus of subject systems to be considered, we decided to use Java for mainly two reasons. Practically, because we can forgo code modifications for instrumentation by using off-line instrumentation (cf.~Section~\ref{sec:profiling}) for code coverage measurement. Strategically, because we can limit the influence of different measurement pipelines. We discuss this decision in more detail in the threats to validity (cf.~Section~\ref{sec:threats}). A full list of our subject systems and characteristics is presented in Table~\ref{tab:subject_systems}.
+For our study, we have selected seven configurable software systems implemented in Java. While this limits, among others, the corpus of subject systems to be considered, we decided to use Java for mainly two reasons. Practically, because we can forgo code modifications for instrumentation by using off-line instrumentation (cf.~Section~\ref{sec:profiling}) for code coverage measurement. Strategically, because we can limit the influence of different measurement pipelines. We discuss this decision in more detail in the threats to validity (cf.~Section~\ref{sec:threats}). A full list of our subject systems and characteristics is presented in Table~\ref{tab:subject_systems}, a more extensive description of the worklaods used can be found at the paper's companion Web site.
 
 \jumper\footnote{\url{https://github.com/Sciss/jump3r/}} is a re-implementation of the LAME audio codec for MP3 in Java. In total, we have selected {\color{red}six} WAVE audio files as a workload to encode to MP3. While the selection of workloads was exploratory, we indcluded audio files with different characteristics, such as sampling rate, number of channels, and length. 
 
 \kanzi\footnote{\url{https://github.com/flanglet/kanzi/}} is a file compression tool. For this subject system, we selected {\color{red}ten} workloads, including, among others, dedicated compression benchmarks (sets of files of different types) as well as binary and text files at different scales: a binary of the Linux kernel, a dump of its repository, XML and CSV data. 
 
-\dconvert\footnote{\url{https://github.com/patrickfav/density-converter/}} ...
+\dconvert\footnote{\url{https://github.com/patrickfav/density-converter/}} is a Java utility to scale images for use in Android apps into different formats and different resolutions. For our experiments, we selected a range of workloads, varying in file type (JPEG, PNG, PSD, and SVG) and size.
 
-\batik ...
+\batik is a Java utility to rasterize vector graphics, for which we selected a range of workloads varying in size.
 
-\jadx ...
+\jadx is a decompiler and deobfuscator for Android applications, for which we selected a range of popular APK packages as workloads, varying in application domain and size.
 
-\htwo ...
-
-\hsqldb is a ...
+\htwo is a relational database which can be integrated into Java applications or serve as a standalone. We opted for the former operating mode and used a selection of application-level benchmarks from the \textsc{OLTPBench}~\cite{difallah_oltp_2013}, a load generator for various databases that allows for testing benchmarks, such as TPC-C. Simialrly, \hsqldb is a relational database that offers the same operating modes. We stressed \hsqldb with the same selection of benchmarks from \textsc{OLTPBench}.
 
 
 \subsubsection{Configuration Sampling}
 For all subject systems, we sampled a set of configurations since exhaustive assessment of the configuration space is infeasible due to combinatorial explosion. We combine several coverage-based sampling strategies and uniform random sampling into an \emph{ensemble} approach: to study the influence of single configuration options, we employ feature-wise and negative feature-wise sampling, where each feature is enabled once, or all except one, respectively. In the same way, pair-wise sampling applies this schema to study influences of two-way interactions between configuration options. Interactions of higher degree can be found accordingly, however, is computationally expensive. Instead, we augment our sample set with a random sample that is at least twice the size of the coverage-based sample subset. To achieve a uniform random sample, we used \emph{distance-based sampling}~\cite{kaltenecker_distance-based_2019}, which ensures uniform coverage of the configuration space. The variability models as well as sample sets can be found at the paper's companion web site.
 
 \subsubsection{Coverage Profiling}\label{sec:profiling}
+To measure code coverage, we opted for the on-the-fly profiler \textsc{JaCoCo}\footnote{jacoco}. Unlike profilers that use source code instrumentation, such as \textsc{Clover}\footnote{clover}, or off-line byte code instrumentation, such as \textsc{Cobertura}\footnote{cobertura}. With on-the-fly instrumentation the executable binary remains unchanged. That is, we avoid altering and re-compiling the source code or injecting instrumentation code post compilation. From a practical perspective, on-the-fly instrumentation is more flexible and easier to accommodate. Nonetheless, either choice is likely to induce significant performance overhead. For this reason, conducted performance measurements and coverage measurements in separate runs.
 
 \subsubsection{Hardware Setup}
-All experiments were conducted on compute clusters with an identical hardware setup, either Intel~Core~i5-8259U CPUs at 2.3~GHz (\jumper, \kanzi, \htwo, and \hsqldb) or Intel~Core~i7-8559U CPUs at 2.7~GHz (\dconvert, \batik, and \jadx) and 32~GB of RAM, respectively. The machines ran a headless Debian 10 installation (kernel version \mbox{4.19.0-14}). To minimize measurement noise, no additional user process were running in the background and no other than necessary packages were installed.
-For all data points, we report the median across five repetitions (except for \hsqldb or \htwo), which has shown to be a good trade-off between variance and measurement effort. The reported coefficient of variation was below {\color{red}10\,\%}\change{Check number}. For the two database systems, we omitted the repetitions as in a pre-study, we found that across all benchmarks the throughput coefficient of variation (standard deviation divided by the arithmetic mean) was consistently below 5\,\%.
+All experiments were conducted on three different compute clusters with an identical hardware setup: either with Intel~Core~i5-8259U CPUs at 2.3~GHz (\jumper, \kanzi, and \hsqldb),  Intel~Core~i7-8559U CPUs at 2.7~GHz (\dconvert, \batik, and \jadx) and 32~GB of RAM, respectively, or Intel~Xeon~E5-2630~v4 CPUs at 2.2~GHz with 256~GB of RAM (\htwo). The first two clusters ran a headless Debian 10 (kernel version \mbox{4.19.0-14}), the latter a {\color{red}LinuxDistribution}. 
 
-\subsection{Performance Spectra}
-For \RQref{1.1}, we ...
-{\color{teal}
-\begin{itemize}
-	\item Rank configurations by performance for each workload
-	\item Compare Kendall's $\tau$ correlation for each pair of workloads
-	\item Graphics: Heatmaps, clustered
-\end{itemize}
-}
+To minimize measurement noise, no additional user process were running in the background and no other than necessary packages were installed.
+For all data points, we report the median across five repetitions (except for \hsqldb or \htwo), which has shown to be a good trade-off between variance and measurement effort. For the two database systems, we omitted the repetitions as in a pre-study, we found that across all benchmarks the throughput coefficient of variation (standard deviation divided by the arithmetic mean) was consistently below 5\,\%.
 
-\subsection{Coverage Set Similarity}
+\subsection{Performance Spectra (RQ\,1.1)}\label{sec:performance_spectra}
+\subsubsection{Operationalization}
+To answer \RQref{1.1}, for each workload, we ranked the configurations of a subject system by their median performance. These rankings allow for comparing whether a configuration performs \emph{well} or \emph{poorly}, regardless of the workload. For instance, if a larger or more complex workload increases all configurations' execution times by a constant factor, the rank of each configuration should remain unaffected in comparison to a smaller or less complex workload.
+We approach the \emph{similarity} of the performance spectra under each workload by computing Kendall's $\tau$ rank correlation~\cite{} between configuration rankings for every pair of two workloads. The resulting matrix of correlation coefficients allows us to assess, which workloads exhibit similar performance spectra ($\tau$ close to 1), dissimilar performance spectra ($\tau$ close to 0), or a complete inversion, such as the best configurations performing worst under another workload ($\tau$ close to -1).
+
+\subsubsection{Results}
+\begin{compactitem}
+	\item Heatmaps and clustered heatmaps
+\end{compactitem}
+
+\subsection{Code Coverage Spectra (RQ\,1.2)}\label{sec:coverage_spectra}
+\subsubsection{Operationalization}
 For \RQref{1.2}, we ...
 \begin{itemize}
 	\item For how many configurations are there workload-specific coverage differences?
 	\item What is the distribution similarity (Jaccard) of lines covered per configuration across all workloads
 \end{itemize}
 
-\subsection{Correlation Analysis}
+\subsubsection{Results}
+
+\subsection{Correlation Analysis (RQ\,1.3)}\label{sec:performance_coverage_correlation}
+\subsubsection{Operationalization}
 For \RQref{1.3}, we ...
 \begin{itemize}
 	\item Compare pairs of workloads $(w_1, w_2)$, do differences in rank of configuration $c$ correspond to 
@@ -165,7 +174,10 @@ For \RQref{1.3}, we ...
 	\item The stronger the correlation, the more differences in code coverage could serve as a proxy for performance differences 
 \end{itemize}
 
+\subsubsection{Results}
 
+\subsection{Discussion}
+\clearpage
 \section{Estimating Representativeness}~\label{sec:metric}
 
 As the main target of our efforts, in the second part of our efforts, we now focus on how workload variability influences performance models. To further see, whether workload-specific coverage differences affect not only the performance of individual configurations (cf.~\RQref{1.1}), but the performance influence of each configuration option (or interaction among them), we ask the following research question:
@@ -190,32 +202,31 @@ We answer the first three research questions with an empirical study in the foll
 \section{Discussion}
 
 \section{Threats to Validity}\label{sec:threats}
-\subsection{Internal Validity}\label{sec:internal_validity}
-\begin{itemize}
+\paragraph{Internal Validity}\label{sec:internal_validity}
+\begin{compactitem}
 	\item dedicated hardware to mitigate measurement noise, 
 	\item five repetitions per data point, 
 	\item database experiments robustness assessed in pre-study,
 	\item separate experiment runs for coverage analysis and performance measurement to avoid profiling averhead (assuming determinism)
 	\item load generator overhead for databases, hence omitted memory consumption and other hardware-related performance indicators 
-\end{itemize}
+\end{compactitem}
 
-\subsection{External Validity}\label{sec:external_validity}
-\begin{itemize}
+\paragraph{External Validity}\label{sec:external_validity}
+\begin{compactitem}
 	\item Java only, but different application domains,
 	\item consistent with observations from related work
-\end{itemize}
+\end{compactitem}
 
-\subsection{Construct Validity}\label{sec:construct_validity}
-\begin{itemize}
+
+\paragraph{Construct Validity}\label{sec:construct_validity}
+\begin{compactitem}
 	\item \textit{off-line instrumentatio}n vs. on-line instrumentation
-	\begin{itemize}
+	\begin{compactitem}
 		\item avoid compiler optimizations or overhead from instrumented source code
 		\item byte code ad-hoc instrumentation could increase overhead in a separate run
 		\item byte-code instrumentation with Jacoco less precise than other techniques since mapping byte code instructions back to Java source code is not always trivial (observed before~\cite{luo_2019_cova})
-	\end{itemize}
+	\end{compactitem}
 	\item Coverage analysis for middle- to low-level languages face instrumentation bias
-\end{itemize}
-
-\cite{difallah_oltp_2013}
+\end{compactitem}
 
 \section{Conclusion}
