@@ -1,14 +1,14 @@
-\documentclass[conference,review]{IEEEtran}
-\IEEEoverridecommandlockouts
-% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 
 \usepackage{blindtext}
 
 \usepackage{listings}
 
+%\usepackage[dvipsnames]{xcolor}
+\usepackage{tabularx}
+
 % general imports
-\usepackage{amsmath,amssymb,amsfonts}
-\usepackage{cite}
+%\usepackage{amsmath,amssymb,amsfonts}
+
 \usepackage{algorithmic}
 \usepackage{graphicx}
 
@@ -19,15 +19,15 @@
 \usepackage{hyperref}
 \hypersetup{
 	colorlinks,
-	linkcolor={PineGreen!90!white},
-	citecolor={MidnightBlue!90!black},
-	urlcolor={PineGreen!80!black}
+	linkcolor={green!90!white},
+	citecolor={blue},
+	urlcolor={green!80!black}
 }
 
 % nice monospace font
-\usepackage{sourcecodepro}
+%\usepackage{sourcecodepro}
 
-\usepackage{enumitem}
+%\usepackage{enumitem}
 
 
 \usepackage{pdfcomment}
@@ -46,8 +46,7 @@
 % configure tables
 \usepackage{booktabs}
 \usepackage{colortbl}
-\usepackage[dvipsnames,table,xcdraw]{xcolor}
-\usepackage{tabularx}
+\usepackage{xcolor}
 
 % table with footnotes
 \usepackage{tablefootnote}
@@ -69,7 +68,7 @@
 
 
 % remove indentioin for new paraghraphs
-\setlength{\parindent}{0cm}
+%\setlength{\parindent}{0cm}
 
 % utility imports
 \usepackage{comment}
@@ -103,9 +102,9 @@
 	{ö}{{\"o}}1
 }
 
-\newcommand{\cova}{\makebox[0pt][l]{\color{Goldenrod!15!white}\rule[-2pt]{1\linewidth}{10pt}}}
-\newcommand{\covb}{\makebox[0pt][l]{\color{Magenta!15!white}\rule[-2pt]{1\linewidth}{10pt}}}
-\newcommand{\covc}{\makebox[0pt][l]{\color{PineGreen!15!white}\rule[-2pt]{1\linewidth}{10pt}}}
+\newcommand{\cova}{\makebox[0pt][l]{\color{red!15!white}\rule[-2pt]{1\linewidth}{9pt}}}
+\newcommand{\covb}{\makebox[0pt][l]{\color{blue!15!white}\rule[-2pt]{1\linewidth}{9pt}}}
+\newcommand{\covc}{\makebox[0pt][l]{\color{yellow!15!white}\rule[-2pt]{1\linewidth}{9pt}}}
 
 
 
@@ -125,7 +124,7 @@
 		\bgroup
 		\def\arraystretch{1.1}%  1 is the default, change whatever you need
 		\begin{tabularx}{\linewidth}{p{0.12\linewidth}|p{0.8\linewidth}}
-			%\rowcolor{PineGreen!10}
+			%\rowcolor{green!10}
 			RQ\,#1 & \textit{#2} \\
 		\end{tabularx}
 		\egroup
@@ -135,7 +134,7 @@
 
 % Custom commands for subject systems
 \usepackage{xspace}
-\newcommand{\sosy}[1]{\textsc{\color{NavyBlue!95!white}#1}\xspace}
+\newcommand{\sosy}[1]{\textsc{\color{magenta}#1}\xspace}
 \newcommand{\jumper}{\sosy{jump3r}}
 \newcommand{\htwo}{\sosy{h2}}
 \newcommand{\hsqldb}{\sosy{hsqlsb}}
@@ -144,3 +143,4 @@
 \newcommand{\dconvert}{\sosy{dconvert}}
 \newcommand{\jadx}{\sosy{jadx}}
 
+\usepackage{paralist}
