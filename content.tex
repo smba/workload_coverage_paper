@@ -105,7 +105,7 @@ The rationale is that by exercising feature code, for instance via enabling conf
 		\label{tab:subject_systems}
 	\end{table*}
 
-	\subsubsection{Configuration Sampling}
+	\subsubsection{Configuration Sampling}\label{sec:sampling}
 	For all subject systems, we sampled a set of configurations since exhaustive assessment of the configuration space is infeasible due to combinatorial explosion. We combine several coverage-based sampling strategies and uniform random sampling into an \emph{ensemble} approach: to study the influence of single configuration options, we employ feature-wise and negative feature-wise sampling, where each feature is enabled once, or all except one, respectively. In the same way, pair-wise sampling applies this schema to study influences of two-way interactions between configuration options. Interactions of higher degree can be found accordingly, however, is computationally expensive. Instead, we augment our sample set with a random sample that is at least twice the size of the coverage-based sample subset. To achieve a uniform random sample, we used \emph{distance-based sampling}~\cite{kaltenecker_distance-based_2019}, which ensures uniform coverage of the configuration space. The variability models as well as sample sets can be found at the paper's companion web site.
 	
 	\subsubsection{Coverage Profiling}\label{sec:profiling}
@@ -119,9 +119,9 @@ The rationale is that by exercising feature code, for instance via enabling conf
 }
 
 \subsection{Performance Distribution Similarity}
-Previous work has illustrated that performance variation can be attributed to differences of varying extent in the workload for the software system in question. While some performance distributions of x264 appear entirely different~\cite{alves_sampling_2020}, for another series of subject systems, the influences of options (or their order) remained mostly stable, while only a few shifted~\cite{jamshidi_transfer_gp_2017,jamishidi_transfer_2017}. Latter similarities between workload-specific performance distributions are key to adapt existing performance models to a new workload. 
+Previous work has illustrated that performance variation can be attributed to differences of varying extent in the workload for the software system in question. While some performance distributions of \textsc{x264} appear entirely different~\cite{alves_sampling_2020}, for another series of subject systems, the influences of options (or their order) remained mostly stable, while only a few shifted~\cite{jamshidi_transfer_gp_2017,jamishidi_transfer_2017}. Latter similarities between workload-specific performance distributions are key to adapt existing performance models to a new workload. 
 
-In a practical setting, the question arises whether and to what extent an existing workload-specific performance model is representative of the performance behavior of different workloads. Depending on the degree of similarity, such a performance mode could be either re-used, transformed at a reasonable cost or must be re-learned entirely, which entails a substantial measurement cost. To provide some context for the feasibility of model reuse or transformation, we ask the following research question: 
+In a practical setting, the question arises whether, and if so, to what extent an existing workload-specific performance model is representative of the performance behavior of different workloads. Depending on the degree of similarity, such a performance model could be either re-used, transformed at a reasonable cost or must be re-learned entirely, which entails a substantial measurement cost. To provide some context for the feasibility of model reuse or transformation, we ask the following research question: 
 
 \RQ{1}{To what extent do performance distributions differ across workloads?}
 
@@ -137,7 +137,10 @@ Otherwise, we explore whether the distributions exhibit any degree of similarity
 	\item dissimilar ($R_\text{Kendall} < 0.6$)
 \end{itemize}
 
-\subsubsection{Results} {\color{red} Heatmaps with Kendall's $\tau$ + Categories count}
+\subsubsection{Results} {\color{red} Heatmaps with Kendall's $\tau$ + Categories count} Figure~\ref{fig:diff_performance_distribution}
+
+\greybox{\textbf{Summary} (\RQref{1}): ...}
+
 
 \subsection{Performance Influence Similarity}
 The above categorization of the differences between workload-specific performance distributions does help understand the degree of workload variability but leaves out the role of software configuration options. From a practical perspective, it is important to ask whether all configurations of a software system are equally likely to be affected by a workload choice or whether the selection of some configuration option increases or decreases this likelihood. If some configuration options show to be more sensitive to workload choices, practitioners can incorporate this knowledge into selecting configurations for regression testing or to adapt existing performance models~\cite{jamshidi_learning_2018}. To provide a clearer picture of the impact of workload variability in the presence of configuration options, we ask the following research question:
@@ -147,24 +150,109 @@ The above categorization of the differences between workload-specific performanc
 \subsubsection{Operationalization}
 We address this research question by learning and comparing performance models from the measurements of our experiments. As performance models effectively estimate the influence the selection of one or more options has on a configuration’s performance, we construct models not to predict unseen configurations, but simply to explain differences observed in the performance distributions. That is, for the construction of our performance models, we deliberately learn based on the entire sample set.
 
-We construct both a linear model using the least-squares method and a non-linear model based on random forests (based on the Python implementation in the sklearn library). For both models, we allow single options and pairwise combinations as our ensemble sampling technique (cf. Section...) covered pairwise interactions and additional configurations selected randomly. This way, we can both ensure that more complex interactions are accounted for and that the observations are not simply memorized by the explanatory performance model. For the linear model, we report and compare all its coefficients rankings. We report rankings rather than the coefficients themselves, to account for possible scaling effects between two distributions. For the random forest, we report and compare its feature importance measures (a measure of how much each feature helps to divide the data). From the comparison of model parameters, we can answer the research question in more detail and assess how many configuration options on average change their influence/importance, and how many configuration options in total change their influence/importance.ct models not to predict unseen configurations, but simply to explain differences observed in the performance distributions. That is, for the construction of our performance models, we deliberately learn based on the entire sample set.
+We construct both a linear model using the least-squares method and a non-linear model based on random forests (based on the Python implementation in the \texttt{sklearn} library). For both models, we allow single options and pairwise combinations as our ensemble sampling technique (cf. Section~\ref{sec:sampling}) covered pairwise interactions and additional configurations selected randomly. This way, we can both ensure that more complex interactions are accounted for and that the observations are not simply memorized by the explanatory performance model. For the linear model, we report and compare all its coefficients rankings. We report rankings rather than the coefficients themselves, to account for possible scaling effects between two distributions. For the random forest, we report and compare its feature importance measures (a measure of how much each feature helps to divide the data). 
 
-\subsubsection{Results} {\color{red} Differences between performance models}
+From the comparison of model parameters, we can answer the research question in more detail and assess how many configuration options on average change their influence/importance, and how many configuration options in total change their influence/importance.ct models not to predict unseen configurations, but simply to explain differences observed in the performance distributions. That is, for the construction of our performance models, we deliberately learn based on the entire sample set.
+
+\subsubsection{Results} {\color{red} Differences between performance models} Figure~\ref{fig:diff_performance_influences}
+
+\begin{figure*}
+	\centering
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		(image)
+		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\batik}
+	\end{subfigure}
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		(image)
+		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\dconvert}
+	\end{subfigure}
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		(image)
+		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\htwo}
+	\end{subfigure}
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		(image)
+		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\jumper}
+	\end{subfigure}
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		(image)
+		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\jadx}
+	\end{subfigure}
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		(image)
+		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\kanzi}
+	\end{subfigure}
+	\caption{Differences in performance influence (linear model) / importance (random forest model)}
+	\label{fig:diff_performance_influences}
+\end{figure*}
+
+ \greybox{\textbf{Summary} (\RQref{2}): ...}
+
+\begin{figure*}
+	\centering
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\batik}
+	\end{subfigure}
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\dconvert}
+	\end{subfigure}
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\htwo}
+	\end{subfigure}
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\jumper}
+	\end{subfigure}
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\jadx}
+	\end{subfigure}
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\kanzi}
+	\end{subfigure}
+	\caption{Relationship between differences in configuration code coverage and differences in relative configuration performance for pairs of workloads.}
+	\label{fig:diff_performance_distribution}
+\end{figure*}
 
 \subsection{Feature Execution and Performance}
 The description of the effects of workload variation so far has only taken into account black-box measurements. To raise the experiment results to practicality, we want to know whether the sensitivity of different configuration options (or interactions) to workload variation manifests itself only in performance-influence differences, or if it can be understood at a finer granularity. To draw parallels with software testing, where we determine which code is actually executed, we now extend our perspective with statement coverage data. The rationale behind this is that performance emerges, among others\footnote{The hardware setup is plausibly a deciding factor for performance behavior as well~\cite{jamishidi_transfer_2017}, but was not varied in this experiment. We discuss this limitation in the threats to validity.}, from configuration and workload choice.
 
-Let us revisit the introductory example from Listing 1, where the code highlighted in red depends on the selection of configuration option DUPLICATE\_CHECK, but, once selected, its influence is proportional to the number of queries to handle. By contrast, the invocation of method insertBulkRows() later on solely depends on the number of queries exceeding the minimum of 50 queries. While both examples consider workload-specific behavior, the execution in the former is depending on configuration option and the latter example is depending on workload properties. 
+Let us revisit the introductory example from Listing~\ref{lst:intro}, where the code highlighted in red depends on the selection of configuration option \texttt{DUPLICATE\_CHECK}, but, once selected, its influence is proportional to the number of queries to handle. By contrast, the invocation of method \texttt{insertBulkRows()} later on solely depends on the number of queries exceeding the minimum of 50 queries. While both examples consider workload-specific behavior, the execution in the former is depending on configuration option and the latter example is depending on workload properties. 
 For practitioners, understanding not only whether, and if so, how configuration options interact with workload choices can be useful for assessing a performance model with regard to representativeness. However, to start translate our findings of performance variation under varying workloads into actionable strategies to improve and aid development, we require insights about where and how workloads and configurations interact. For instance, if a performance model is based on code sections that are only covered under a specific workload, the code’s contribution to performance can not be accounted for. Similarly, if performance-relevant code is covered under a variety of workloads, but each workload stressed this section differently, the performance-influence is likely biased by each individual workload, rendering the performance model unrepresentative. However, from knowing where (for which options) and how (by coverage or different utilization) configurations and workloads can interact can pave an avenue towards actively searching for workloads that increase utilization or maximize coverage.
 
 With the last part of this evaluation we want to shed light on this aspect and explore the relation between the execution of configurable software systems and the observed performance and answer the following research question:
 
 \RQ{3}{To what extent do varying workloads influence both performance behavior and execution footprint?}
 
-\subsubsection{Operationalization}
-To answer the research question, we focus on differences between pairs of workloads at two different levels of granularity. First, we assess for each individual configuration how its performance and code coverage change differ between two workloads $w_1$ and $w_2$. Second, we  
+To approach the research question, we focus on differences between pairs of workloads at two different levels of granularity. First, for each individual configuration $c$, we assess  how its performance and code coverage change differ between two workloads $w_1$ and $w_2$. Second, we compare each option's performance influence and feature code coverage across pairs of workloads. Hence, we split \RQref{3} into two research questions:
 
-Formally, for each triple $(c, w_1, w_2)$ of configuration $c$ of a software system, we compute the relative performance $\hat{\pi}_{w}(c)$ (absolute performance $\pi_{w_i}(c)$ divided by the average performance under workload $w_i$ for both $w_1$ and $w_2$. 
+\RQ{3.1}{To what extent are configuration performance and configuration code coverage influenced by varying workloads?}
+
+\RQ{3.2}{To what extent are option's performance influences and option code coverage influenced by varying workloads?}
+
+\subsubsection{Operationalization (RQ~3.1)} Formally, for each triple $(c, w_1, w_2)$ of configuration $c$ of a software system, we compute the relative performance $\hat{\pi}_{w}(c)$ (absolute performance $\pi_{w_i}(c)$ divided by the average performance under workload $w_i$ for both $w_1$ and $w_2$. 
 
 \begin{equation}
 	\hat{\pi}_{w_i}(c_i) =  \frac{1}{\mid C \mid} \cdot \frac{\pi_{w_i}(c_i)}{\sum_{c\in C} \pi_{w_i}(c)}
@@ -176,9 +264,11 @@ Similarly, for configuration $c$, we compare the sets of covered lines under eac
 \hat{S}_{w_i, c}	 = S_{w_i, c} \setminus \bigcap_{w\in W} S_{w, c}
 \end{equation}
 
-For each tuple $(c, w_1, w_2)$ of a software system, we compute the quotient $\frac{ \min(\hat{\pi}_{w_1}(c),~ \hat{\pi}_{w_2}(c)) }{ \max(\hat{\pi}_{w_1}(c),~\hat{\pi}_{w_2}(c)) } \in \lbrack 0,1\rbrack$ to indicate performance differences and the Jaccard similarity index of both coverage sets $\frac{\mid\hat{S}_{w_1, c}~\cap~ \hat{S}_{w_2, c}\mid}{\mid\hat{S}_{w_1, c}~\cup~\hat{S}_{w_2, c}\mid} \in \lbrack 0,1 \rbrack$.
+For each tuple $(c, w_1, w_2)$ of a software system, we compute the quotient $\frac{ \min(\hat{\pi}_{w_1}(c),~ \hat{\pi}_{w_2}(c)) }{ \max(\hat{\pi}_{w_1}(c),~\hat{\pi}_{w_2}(c)) } \in \lbrack 0,1\rbrack$ to indicate performance differences and the Jaccard set similarity index of both coverage sets $\frac{\mid\hat{S}_{w_1, c}~\cap~ \hat{S}_{w_2, c}\mid}{\mid\hat{S}_{w_1, c}~\cup~\hat{S}_{w_2, c}\mid} \in \lbrack 0,1 \rbrack$. 
 
-\paragraph*{Results} {\color{red} Figure~\ref{fig:diff_config}}
+We report the relationship between both the relative performance quotient and the coverage similarity to see whether, and if so, how both correlate. If a configuration exhibits little to no performance variation, but shows high variation in its code coverage, this indicates that the option-specific code here does not contribute substantially to performance variation. Vice versa, if the performance observations show a high degree of variation while largely similar code is executed, we can infer that, if at all, the code does only contribute to performance variation due to differences in how it is utilized. While the case is unlikely, for configurations that exhibit a linear relationship, we can infer that code coverage variation could serve as a proxy for performance variation. 
+
+\subsubsection{Results} {\color{red} Figure~\ref{fig:diff_config}}
 \begin{figure*}
 	\centering
 	\begin{subfigure}{0.33\textwidth}
@@ -215,8 +305,70 @@ For each tuple $(c, w_1, w_2)$ of a software system, we compute the quotient $\f
 	\label{fig:diff_config}
 \end{figure*}
 
-\subsubsection{Operationalization Across Options}
+\greybox{\textbf{Summary} (\RQref{3.1}): ...}
 
+\subsubsection{Operationalization (RQ~3.2)}
+From the results in Figure~\ref{fig:diff_config}, we see that {\color{red} a clear relationship between performance variation and code coverage variation is the exception.\todo{we'll see}} However, to further investigate the variation in both metrics, we abstract from single configurations to configuration options and relate the performance influences and importances from \RQref{2} with the amount of option-dependent code covered under the respective workloads.
+
+To approximate, which code can be attributed to a single configuration option or interactions among them, we employ a two-step process. First, we obtain a baseline of all code that depends on a configuration option within the scope of our entire benchmark selection. For each workload $w \in W$, we compute the set of code dependent on option $o \in O$, $S_{w, o}$. Let $C_{o}$ be the set of configurations with option $o$ selected, and $C_{\neg o}$ with option $o$ deselected, respectively. To obtain $S_{w, o}$, we follow a strategy similar to spectrum-based feature location~\cite{michelon_spectrum_2021} (cf. Section~\ref{sec:feature_location}) and subtract set of the lines covered under $C_{\neg o}$ from those of $C_{o}$:
+
+\begin{equation}
+	S_{w, o} = S_{w, p} \setminus S_{w, q} \qquad p \in C_{o}, q \in C_{\neg o}
+\end{equation}
+
+While $S_{w, o}$ yields an approximation of option-dependent code for a single workload, we aggregate the approximations for each workload $w \in W$ to obtain the set of lines that depend on a configuration option $o$ and are reachable under at least one workload, $S_{o}$. 
+
+\begin{equation}
+	S_{o} = \bigcup_{w \in W} S_{w, o}
+\end{equation}
+
+While this aggregated set should not be mistaken for a ground truth, it enables us to reason about differences in option-dependent code within the scope of our selected workloads. That is, the expressiveness of this baseline depends on the diversity of the workloads in question. We discuss this limitation in the threats to validity. From the ratio of option-dependent code per workload to option-dependent code across workloads, $\frac{\mid S_{w, o}\mid}{\mid S_{w, o}\mid}$, we can estimate the coverage of option-dependent code. From comparing the sets $S_{w_1, o}$ and $S_{w_2, o}$ for any two workloads $w_1$ and $w_2$, we can estimate a similarity between the option-code coverage.
+
+\subsubsection{Results} ... Figure~\ref{fig:diff_performance_option_coverage}\\
+
+\begin{figure*}
+	\centering
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		(image)
+		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\batik}
+	\end{subfigure}
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		(image)
+		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\dconvert}
+	\end{subfigure}
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		(image)
+		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\htwo}
+	\end{subfigure}
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		(image)
+		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\jumper}
+	\end{subfigure}
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		(image)
+		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\jadx}
+	\end{subfigure}
+	\begin{subfigure}{0.33\textwidth}
+		\centering
+		(image)
+		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\caption{\kanzi}
+	\end{subfigure}
+	\caption{Differences in performance influence/importance vs differences in option code coverage}
+	\label{fig:diff_performance_option_coverage}
+\end{figure*}
+
+\greybox{\textbf{Summary} (\RQref{3.2}):}
 
 \section{Discussion}
 
@@ -238,6 +390,7 @@ For each tuple $(c, w_1, w_2)$ of a software system, we compute the quotient $\f
 \begin{compactitem}
 	\item Java only, but different application domains,
 	\item consistent with observations from related work
+	\item hardware variability
 \end{compactitem}
 
 \paragraph{Construct Validity}\label{sec:construct_validity}
@@ -248,7 +401,7 @@ For each tuple $(c, w_1, w_2)$ of a software system, we compute the quotient $\f
 		\item byte code ad-hoc instrumentation could increase overhead in a separate run
 		\item byte-code instrumentation with Jacoco less precise than other techniques since mapping byte code instructions back to Java source code is not always trivial (observed before~\cite{luo_2019_cova})
 	\end{compactitem}
-	\item Coverage analysis for middle- to low-level languages face instrumentation bias
+	\item Coverage analysis based on superimposition of workload-specific coverage, depends on diversity of worklaods studied
 \end{compactitem}
 
 \section{Conclusion}

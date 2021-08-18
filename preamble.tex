@@ -6,7 +6,7 @@
 \usepackage{pifont}
 \newcommand{\xmark}{\ding{55}}
 
-%\usepackage[dvipsnames]{xcolor}
+\usepackage{xcolor}
 \usepackage{tabularx}
 
 % general imports
@@ -51,16 +51,17 @@
 % configure tables
 \usepackage{booktabs}
 \usepackage{colortbl}
-\usepackage{xcolor}
 
 % table with footnotes
 \usepackage{tablefootnote}
+
+
 
 % fancy box for research questions, result summaries etc.
 \usepackage[framemethod=TikZ]{mdframed}
 \newcommand{\greybox}[1]{
 	\begin{mdframed}[
-		backgroundcolor=Black!10,
+		backgroundcolor=black!10,
 		linewidth=0.0pt,
 		innerleftmargin=5pt,
 		innertopmargin=5pt,
@@ -122,6 +123,9 @@
 \newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
 \newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
 
+
+% color
+\definecolor{indigo(dye)}{rgb}{0.0, 0.25, 0.42}
 % Custom commands for research questions
 \newcommand{\RQ}[2]{
 	\hypertarget{rq:#1}{
@@ -129,7 +133,8 @@
 		\bgroup
 		\def\arraystretch{1.1}%  1 is the default, change whatever you need
 		\begin{tabularx}{\linewidth}{p{0.12\linewidth}|p{0.75\linewidth}}
-			\rowcolor{blue!10}
+			\rowcolor{
+				white!10}
 			\textbf{RQ\,#1} & \textit{#2} \\
 		\end{tabularx}
 		\egroup
