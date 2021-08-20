@@ -4,25 +4,33 @@ Most software systems can be customized via configuration options to meet user d
 All too often, software performance bugs can be linked to configuration options~\cite{han_empirical_2016}. 
 The relationship of configuration choices and their influence on non-functional properties has been extensively studied in recent years. Most work focuses on the prediction of non-functional properties\footnote{In this paper, we use the terms \textit{non-functional properties} and \textit{performance} interchangably, although the latter term is more restricive. In the context of this work a performance model describes any model that predicts a non-functional property.}, such as execution time or memory utilization, for arbitrary configurations~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso} or on finding configurations that are near-optimal with regard to a non-functional property~\cite{nairUsingBadLearners2017,nairFlash18,ohFindingNearoptimalConfigurations2017}. 
 The backbone of performance estimation is a model that maps a given configuration to the estimated performance value. 
-In general, performance prediction models are only useful to practitioners if predictions hold for a large number of application scenarios.
+%In general, performance prediction models are only useful to practitioners if predictions hold for a large number of application scenarios.
 
 %\subsection*{Performance models can be workload-biased}
-Learning performance models for software performance usually relies on a training set of configuration-specific performance measurements. 
+{\color{olive}\todo{kürzen}
+Learning performance models usually relies on a training set of configuration-specific performance measurements. 
 Typically, established approaches employ only a single workload (e.g., a benchmark or test suite) to measure performance, which usually aims at emulating a specific real-world application scenario. 
 However, as the collected measurements represent only the one application scenario, the resulting performance model can  estimate performance for this single scenario reliably. 
 The choice of a single workload can introduce bias as the predictive model is only as useful as the underlying workload resembles a wide range of use cases in the real world. 
 \citeauthor{alves_sampling_2020} illustrate this fact with an analysis of the video encoder \textsc{x264} under different workloads~\cite{alves_sampling_2020}. 
 For two different workloads, they observed vastly different performance distributions across a large set of configurations.
-While this particular observation can be an outlier, in general, one cannot assume that performance behavior under a single workload is generalizable, and therefore consistent in every real-world setting.
+While this particular observation might be the exception, in general, one cannot assume that performance behavior under a single workload is generalizable, and therefore consistent in every real-world setting.
 In this vein, a recent exploratory study by \citeauthor{jamishidi_transfer_2017}~\cite{jamishidi_transfer_2017} illustrates that performance models of a configurable software system often exhibit differences in estimated performance influences when learned in different environments, including different versions, hardware setups, and workloads.
 Performance  influences across different environments remain largely congruent and differences only affect small numbers of configuration options, such that differences can be learned efficiently via transfer learning~\cite{jamshidi_transfer_gp_2017,jamshidi_learning_2018}. 
 Nonetheless, under a single workload, we are left with performance models whose estimations are potentially inaccurate for different environments. A specific workload might miss some lines of code and, hence, it is impossible to get performance information about such code regions.
+}
 
 %\subsection*{Towards Estimating Representativeness}
 
+{
+	\todo{MOtivation, konkretres Problem: Repräsentativität wenig untersicht}
+\color{green}
 Given not one, but a set of performance models based on different workloads, the question arises: Which performance model of the set is most general, whose estimations are more likely to \emph{represent} real-world scenarios? 
 To assess which model's estimations to trust most, we require information about whether and how different workloads interact with the software system under test. 
+}
 
+{\color{red}
+	\todo{Beschreibung von Listing 1 (code abhängig von OPtion sowie von Option und Workload), spiegelt sich ebenfalls in den Performance-Einflüssen wieder, daher: Workload matters}
 Take as an example the method in Listing~\ref{lst:intro} from an imaginary database system. It receives as an argument an array of strings, each a row to insert. The method exhibits two configuration options, of whose selection some code sections depend: if \texttt{DUPLICATE\_CHECK} is enabled, the passed array is checked for duplicates via a separate method invocation (lines 2--4), and if \texttt{AUTOCOMMIT} is enabled, each insertion is treated as a single transaction (lines 10--12). The latter section, however, not only depends on the selection of a configuration option, but also on the number of rows to insert. If the workload (here, the number of rows) is large enough, the individual insertion per row (line 9) is replaced by another insertion method (line 6). This example illustrates, how the execution of a program could depend on both configuration decisions (lines 2--4) and workloads (lines 5--9), or interactions between them (lines 10--12).
 
 \begin{figure}
@@ -37,21 +45,25 @@ Take as an example the method in Listing~\ref{lst:intro} from an imaginary datab
 	\caption{Illustrative example (left) with workload-dependent performance influences of configuration options \texttt{DUPLICATE\_CHECK} and \texttt{AUTOCOMMIT} (right).}
 	\label{fig:intro}
 \end{figure}
-\todo{Einbauen}
 
 
 To now representatively assess the method's performance, one would require not only observations under a set of sample configurations, but also under different workloads to cover and measure performance for workload-dependent code. If dependent code, such as the interaction between \texttt{AUTOCOMMIT} and the workload size is missed, the estimation of an option's performance influence becomes unrepresentative and, thus, the performance model unreliable.
+}
 
 %\subsection*{Approach, Results \& Contribution}
+{\color{blue}
+	\todo{Haupt-Vorgehen und konkrete Ergebnisse}
 In this paper, we explore how the selection of a workload can influence performance models how prone these are to be distorted. To this end, we extend our perspective from pure black-box measurements~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso} with knowledge about the code executed. Specifically, we enrich performance measurements from different configurations under varying workloads with corresponding easy-to-compute code coverage data. 
 We conduct an empirical study of seven configurable software systems to explore how the selection of workloads can influence both performance and code coverage, and possibly distort performance models (cf. Section~\ref{sec:study}). {\color{teal}We found that \ldots.} 
-Based on our findings, we explore correlations between code coverage and differences in performance influence (Section~\ref{sec:metric}). {\color{teal}	We found that \ldots. We propose to use code coverage as a \ldots and devise a novel method to interpret performance model with regard to code coverage in order to estimate their representativeness.}
+Based on our findings, we explore correlations between code coverage and differences in performance influence (Section~\ref{sec:metric}). 	We found that \ldots. We propose to use code coverage as a \ldots and devise a novel method to interpret performance model with regard to code coverage in order to estimate their representativeness.
+}
 
 In summary, we offer the following contributions:
-\begin{compactitem}
+\begin{itemize}
+
+	\item An empirical study of X configurable software systems with a total number of Y configurations and Z workloads.
 	\item A companion Web site\footnote{\url{https://github.com/icse-submitter123/submission}} providing supplementary material including performance measurements, code coverage data, and additional visualizations.
-	\item more 
-\end{compactitem}
+\end{itemize}
 
 \section{Background and Related Work}
 \subsection{Performance Prediction Modeling}
@@ -138,7 +150,7 @@ Otherwise, we explore whether the distributions exhibit any degree of similarity
 	{dissimilar}  & $p < 0.05$ and $\tau < 0.6$ \\
 \end{tabular}
 
-\paragraph*{Results} {\color{blue} Heatmaps with Kendall's $\tau$ + Categories count Figure~\ref{fig:diff_performance_distribution}}\\
+\paragraph*{Results} {\color{blue} Heatmaps with Kendall's $\tau$ + Categories count Figure~\ref{fig:diff_performance_distribution}}
 
 \greybox{\textbf{Summary} (\RQref{1}): ...}
 

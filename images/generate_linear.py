@@ -13,7 +13,7 @@ axes[1].plot(y2)
 axes[0].axvline(50, linestyle=':', color='black', linewidth=1)
 axes[1].axvline(50, linestyle=':', color='black', linewidth=1)
 
-axes[0].set_title('$DUPLICATE_CHECK$')
+axes[0].set_title('DUPLICATE_CHECK')
 axes[0].set_facecolor('#ffd9d9')
 
 
