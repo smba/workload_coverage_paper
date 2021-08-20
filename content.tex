@@ -32,11 +32,9 @@ Take as an example the method in Listing~\ref{lst:intro} from an imaginary datab
 
 \end{subfigure}
 	\begin{subfigure}[l]{0.35\linewidth}
-		%\includegraphics[width=1\linewidth]{images/linear}
-		%\includegraphics[width=1\linewidth]{images/linear}
-		%\includegraphics[width=1\linewidth]{images/linear}
+		\includegraphics[width=1\linewidth]{images/influences.pdf}
 	\end{subfigure}
-	\caption{Illustrative example (left) with workload-dependent performance influences (right)}
+	\caption{Illustrative example (left) with workload-dependent performance influences of configuration options \texttt{DUPLICATE\_CHECK} and \texttt{AUTOCOMMIT} (right).}
 	\label{fig:intro}
 \end{figure}
 \todo{Einbauen}
@@ -157,7 +155,7 @@ Many different machine techniques have been used to obtain performance models am
 
 From the comparison of model parameters, we can answer the research question in detail and assess (1) how many configuration options, on average, change their influence/importance, and (2) how many configuration options, in total, change their influence/importance.
 
-\subsubsection{Results} {\color{blue} Differences between performance models Figure~\ref{fig:diff_performance_influences}}\\
+\paragraph*{Results} {\color{blue} Differences between performance models Figure~\ref{fig:diff_performance_influences}}\\
 
 \begin{figure*}
 	\centering
@@ -390,15 +388,15 @@ While this aggregated set should not be mistaken for a ground truth, it enables 
 
 \paragraph*{Internal Validity}\label{sec:internal_validity}
 Threats to internal validity include measurement noise which may distort our classification into categories in Section~\ref{sec:rq1} and model construction for Section~\ref{sec:rq2}. We mitigate this threat by repeating each experiment five times and reporting the median as a robust measure. For \htwo, we confirmed a negligible measurement variation in a separate pre-study.
-Another potential threat is that the coverage analysis with \mbox{\textsc{JaCoCo}} entails a noticable instrumentation overhead that can distort performance observations. To mitigate this threat, we separated the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario, but only introduced negligible variation and overhead.
+Another potential threat is that the coverage analysis with \mbox{\textsc{JaCoCo}} entails a noticable instrumentation overhead that can distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario, but only introduced negligible variation and overhead.
 
 \paragraph*{External Validity}\label{sec:external_validity}
-A threat to external validity is the selection of subject systems all written in Java. While our motivation for this selection is primarily practical in nature (cf. Section~\ref{sec:setup}), we mitigate this threat by selecting subject systems from variety of domains (cf.~Table~\ref{tab:subject_systems}). Nonetheless, we cannot claim that our results hold for other domains or programming languages. 
+The selection of subject systems all written in Java poses a threat to external validity. While our motivation for this selection is primarily practical in nature (cf. Section~\ref{sec:setup}), we mitigate this threat by selecting subject systems from variety of domains (cf.~Table~\ref{tab:subject_systems}). Nonetheless, we cannot claim that our results hold for other domains or programming languages. 
 
 In our experiments, we also did not vary the hardware setup for a subject system, which plausibly influences performance as well~\cite{ding_bayesian_2020}, but is beyond the scope of this work. 
 
 \paragraph{Construct Validity}\label{sec:construct_validity}
-The profiler \textsc{JaCoCo} instruments Java byte code instructions rather than statements, which leads to some minor imprecision when mapping back covered instructions to the original statements is. Transitively, this also affects the precision of our feature location technqiue (cf. Section~\ref{sec:rq3}). This drawback, however, is not limited to this particular profiler, but applies to most profilers operating on byte code. 
+The profiler \textsc{JaCoCo} instruments Java byte code instructions rather than statements, which leads to some minor imprecision when mapping back covered instructions to the original statements. Transitively, this also affects the precision of our feature location technqiue (cf. Section~\ref{sec:rq3}). This drawback, however, is not limited to this particular profiler, but applies to most profilers operating on byte code. 
 The superimposition in our feature location technique is sound, but, by design, incomplete as no set of workloads is guaranteed to cover all feature code. We selected a variety of different workloads, yet our study is of exploratory nature.
 
 

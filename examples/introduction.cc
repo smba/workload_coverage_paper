@@ -4,14 +4,14 @@ public void insertRows(String[] rows) {
 %\cova%			Arrays.asList(array)
 %\cova%		).toArray(new String[0]);
 %\cova%	}
-%\covc%	if (rows.length() > 50) {
-%\covc%		this.insertBulkRows(rows);
-%\covc%	} else {
-%\covc%		for (String row: rows) {
-%\covc%			this.insertRow(row);
+	if (rows.length() > 50) {
+		this.insertBulkRows(rows);
+	} else {
+		for (String row: rows) {
+			this.insertRow(row);
 %\covb%			if (Configuration.AUTOCOMMIT) {
 %\covb%				this.commit();
 %\covb%			}	
-%\covc%		}
-%\covc%	}
+		}
+	}
 }

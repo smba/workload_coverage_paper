@@ -62,11 +62,11 @@
 \usepackage[framemethod=TikZ]{mdframed}
 \newcommand{\greybox}[1]{
 	\begin{mdframed}[
-		backgroundcolor=orange!10,
-		linewidth=0.0pt,
+		backgroundcolor=orange!0,
+		linewidth=0.2pt,
 		innerleftmargin=5pt,
 		innertopmargin=5pt,
-		roundcorner=0pt,
+		roundcorner=2.5pt,
 		]
 		%\noindent
 		#1
@@ -136,8 +136,8 @@
 		\def\arraystretch{1.3}%  1 is the default, change whatever you need
 		\begin{tabularx}{\linewidth}{p{0.12\linewidth}|p{0.75\linewidth}}
 			\rowcolor{
-				orange!10}
-			\textbf{RQ\,#1} & #2 \\
+				orange!0}
+			\textbf{RQ\,#1} & \textit{#2} \\
 		\end{tabularx}
 		\egroup
 	}
