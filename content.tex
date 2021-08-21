@@ -7,7 +7,7 @@ The backbone of performance estimation is a model that maps a given configuratio
 %In general, performance prediction models are only useful to practitioners if predictions hold for a large number of application scenarios.
 
 %\subsection*{Performance models can be workload-biased}
-{\color{olive}\todo{kürzen}
+
 Learning performance models usually relies on a training set of configuration-specific performance measurements. 
 Typically, established approaches employ only a single workload (e.g., a benchmark or test suite) to measure performance, which usually aims at emulating a specific real-world application scenario. 
 However, as the collected measurements represent only the one application scenario, the resulting performance model can  estimate performance for this single scenario reliably. 
@@ -18,21 +18,16 @@ While this particular observation might be the exception, in general, one cannot
 In this vein, a recent exploratory study by \citeauthor{jamishidi_transfer_2017}~\cite{jamishidi_transfer_2017} illustrates that performance models of a configurable software system often exhibit differences in estimated performance influences when learned in different environments, including different versions, hardware setups, and workloads.
 Performance  influences across different environments remain largely congruent and differences only affect small numbers of configuration options, such that differences can be learned efficiently via transfer learning~\cite{jamshidi_transfer_gp_2017,jamshidi_learning_2018}. 
 Nonetheless, under a single workload, we are left with performance models whose estimations are potentially inaccurate for different environments. A specific workload might miss some lines of code and, hence, it is impossible to get performance information about such code regions.
-}
+
 
 %\subsection*{Towards Estimating Representativeness}
 
-{
-	\todo{MOtivation, konkretres Problem: Repräsentativität wenig untersicht}
-\color{green}
 Given not one, but a set of performance models based on different workloads, the question arises: Which performance model of the set is most general, whose estimations are more likely to \emph{represent} real-world scenarios? 
 To assess which model's estimations to trust most, we require information about whether and how different workloads interact with the software system under test. 
-}
 
-{\color{red}
-	\todo{Beschreibung von Listing 1 (code abhängig von OPtion sowie von Option und Workload), spiegelt sich ebenfalls in den Performance-Einflüssen wieder, daher: Workload matters}
-Take as an example the method in Listing~\ref{lst:intro} from an imaginary database system. It receives as an argument an array of strings, each a row to insert. The method exhibits two configuration options, of whose selection some code sections depend: if \texttt{DUPLICATE\_CHECK} is enabled, the passed array is checked for duplicates via a separate method invocation (lines 2--4), and if \texttt{AUTOCOMMIT} is enabled, each insertion is treated as a single transaction (lines 10--12). The latter section, however, not only depends on the selection of a configuration option, but also on the number of rows to insert. If the workload (here, the number of rows) is large enough, the individual insertion per row (line 9) is replaced by another insertion method (line 6). This example illustrates, how the execution of a program could depend on both configuration decisions (lines 2--4) and workloads (lines 5--9), or interactions between them (lines 10--12).
 
+Take as an example the method \texttt{insertRows} in Listing~\ref{lst:intro} from an imaginary database system. It receives as an argument an array of strings, each a row to insert. The method’s execution is influenced by two configuration options, \texttt{DUPLICATE\_CHECK} and  \texttt{AUTOCOMMIT}. If \texttt{DUPLICATE\_CHECK} is enabled, the passed array of insertion statements is checked for duplicates by  inserting all array items into a \texttt{HashSet} (\colorbox{duplicatecheck}{lines 2--6}).
+If \texttt{AUTOCOMMIT} is enabled, each insertion is treated as a single transaction (\colorbox{autocommit}{lines 12–14}), wheres the method \texttt{commit} might otherwise be called  after  all rows have been inserted.
 \begin{figure}
 \begin{subfigure}[l]{0.63\linewidth}
 	
@@ -45,25 +40,21 @@ Take as an example the method in Listing~\ref{lst:intro} from an imaginary datab
 	\caption{Illustrative example (left) with workload-dependent performance influences of configuration options \texttt{DUPLICATE\_CHECK} and \texttt{AUTOCOMMIT} (right).}
 	\label{fig:intro}
 \end{figure}
+Besides, the execution of \texttt{insertRows} also depends on its workload,  the array of insertion statements. If the array size exceeds 50 (line~50), by design all insertions are handled by another method \texttt{insertBulkRows}. Consequently, the code section depending on option \texttt{AUTOCOMMIT} also depends on the workload size as it is skipped for arrays with more than 50 items. 
+To now model the performance of any execution of the method \texttt{insertRows}, we consider the influence contributed by the configuration options, the workload, and the interactions between both. If we assume that each insertion takes a constant amount of time, we expect the method execution time to be proportional to the number of insertion statements. For the individual configuration options, however, the workload size can distort this conception. We illustrate this facet in Figure~\ref{fig:intro}, where the performance influence of both configuration options is shown as a function of the number of insertions. Here, the influence of option \texttt{AUTOCOMMIT} becomes negligible for workloads with more than 50 insertion statements. That is, any configuration  with this option enabled will behave differently depending on the workload. At large, a performance model for this database system learned with a workload of either less or more than 50 insertions cannot generalize to the respective other scenario.
+	
+In this paper, we shed light on whether and how workloads as a factor of variation influence the performance behavior of configurable software systems. We extend our perspective from pure black-box performance measurements under different configurations~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso} with knowledge about the code executed. Specifically, we enrich performance measurements under different workloads and configurations with white-box statement coverage data. This allows us to draw a broader picture of multi-factor influences on software performance and paves an avenue to provide pointers for practitioners to select workloads that best represent the performance behavior of a software system and account for performance variation caused by workloads.	
 
-
-To now representatively assess the method's performance, one would require not only observations under a set of sample configurations, but also under different workloads to cover and measure performance for workload-dependent code. If dependent code, such as the interaction between \texttt{AUTOCOMMIT} and the workload size is missed, the estimation of an option's performance influence becomes unrepresentative and, thus, the performance model unreliable.
-}
-
-%\subsection*{Approach, Results \& Contribution}
-{\color{blue}
-	\todo{Haupt-Vorgehen und konkrete Ergebnisse}
-In this paper, we explore how the selection of a workload can influence performance models how prone these are to be distorted. To this end, we extend our perspective from pure black-box measurements~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso} with knowledge about the code executed. Specifically, we enrich performance measurements from different configurations under varying workloads with corresponding easy-to-compute code coverage data. 
-We conduct an empirical study of seven configurable software systems to explore how the selection of workloads can influence both performance and code coverage, and possibly distort performance models (cf. Section~\ref{sec:study}). {\color{teal}We found that \ldots.} 
-Based on our findings, we explore correlations between code coverage and differences in performance influence (Section~\ref{sec:metric}). 	We found that \ldots. We propose to use code coverage as a \ldots and devise a novel method to interpret performance model with regard to code coverage in order to estimate their representativeness.
-}
-
+{\color{red}In an empirical study of X configurations and Y workloads across Z configurable software systems, we found that \ldots 
+	
 In summary, we offer the following contributions:
 \begin{itemize}
 
-	\item An empirical study of X configurable software systems with a total number of Y configurations and Z workloads.
+	\item An empirical study of the performance behavior of X configurations, Y workloads across Z configurable software systems.
 	\item A companion Web site\footnote{\url{https://github.com/icse-submitter123/submission}} providing supplementary material including performance measurements, code coverage data, and additional visualizations.
+	\item ...
 \end{itemize}
+}
 
 \section{Background and Related Work}
 \subsection{Performance Prediction Modeling}
@@ -125,7 +116,6 @@ The rationale is that by exercising feature code, for instance via enabling conf
 	
 	\paragraph*{Hardware Setup}
 	All experiments were conducted on three different compute clusters and each subject system was exclusively run on a single cluster. All machines in a compute cluster had the identical hardware setup: either with Intel~Core~i5-8259U CPUs at 2.3~GHz (\jumper and \kanzi),  Intel~Core~i7-8559U CPUs at 2.7~GHz (\dconvert, \batik, and \jadx) and 32~GB of RAM, respectively, or Intel~Xeon~E5-2630~v4 CPUs at 2.2~GHz with 256~GB of RAM (\htwo). All clusters ran a headless Debian 10 installation, the first two with kernel version \mbox{\texttt{4.19.0-14}}, the latter with version \mbox{\texttt{4.19.0-17}}. 
-	
 	To minimize measurement noise, no additional user processes were running in the background and no other than necessary packages were installed.
 	For all data points, we report the median across five repetitions (except for \htwo), which has shown to be a good trade-off between variance and measurement effort. For \htwo, we omitted the repetitions as in a pre-study since we found that across all benchmarks the throughput coefficient of variation (standard deviation divided by the arithmetic mean) was consistently below~5\,\%. 
 }
@@ -399,17 +389,20 @@ While this aggregated set should not be mistaken for a ground truth, it enables 
 \section{Threats to Validity}\label{sec:threats}
 
 \paragraph*{Internal Validity}\label{sec:internal_validity}
-Threats to internal validity include measurement noise which may distort our classification into categories in Section~\ref{sec:rq1} and model construction for Section~\ref{sec:rq2}. We mitigate this threat by repeating each experiment five times and reporting the median as a robust measure. For \htwo, we confirmed a negligible measurement variation in a separate pre-study.
+Threats to \emph{internal validity} include measurement noise which may distort our classification into categories in Section~\ref{sec:rq1} and model construction for Section~\ref{sec:rq2}. We mitigate this threat by repeating each experiment five times and reporting the median as a robust measure. For \htwo, we confirmed a negligible measurement variation in a separate pre-study.
 Another potential threat is that the coverage analysis with \mbox{\textsc{JaCoCo}} entails a noticable instrumentation overhead that can distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario, but only introduced negligible variation and overhead.
 
 \paragraph*{External Validity}\label{sec:external_validity}
-The selection of subject systems all written in Java poses a threat to external validity. While our motivation for this selection is primarily practical in nature (cf. Section~\ref{sec:setup}), we mitigate this threat by selecting subject systems from variety of domains (cf.~Table~\ref{tab:subject_systems}). Nonetheless, we cannot claim that our results hold for other domains or programming languages. 
-
+The selection of subject systems all written in Java poses a threat to \emph{external validity}. While our motivation for this selection is primarily practical in nature (cf. Section~\ref{sec:setup}), we mitigate this threat by selecting subject systems from variety of domains (cf.~Table~\ref{tab:subject_systems}). Nonetheless, we cannot claim that our results hold for other domains or programming languages. 
 In our experiments, we also did not vary the hardware setup for a subject system, which plausibly influences performance as well~\cite{ding_bayesian_2020}, but is beyond the scope of this work. 
 
 \paragraph{Construct Validity}\label{sec:construct_validity}
-The profiler \textsc{JaCoCo} instruments Java byte code instructions rather than statements, which leads to some minor imprecision when mapping back covered instructions to the original statements. Transitively, this also affects the precision of our feature location technqiue (cf. Section~\ref{sec:rq3}). This drawback, however, is not limited to this particular profiler, but applies to most profilers operating on byte code. 
+Regarding \emph{construct validity}, the profiler \textsc{JaCoCo} instruments Java byte code instructions rather than statements, which leads to some minor imprecision when mapping back covered instructions to the original statements. Transitively, this also affects the precision of our feature location technqiue (cf. Section~\ref{sec:rq3}). This drawback, however, is not limited to this particular profiler, but applies to most profilers operating on byte code. 
 The superimposition in our feature location technique is sound, but, by design, incomplete as no set of workloads is guaranteed to cover all feature code. We selected a variety of different workloads, yet our study is of exploratory nature.
 
-
 \section{Conclusion}
+Software performance emerges from a multitude of factors, of which configuration options have been widely studied and used for learning performance models. As workloads are, so far, an overlooked factor when learning performance models, we study the influence that workloads as an orthogonal factor, individually and in conjunction with configuration options, contribute to configurable software systems. In an empirical study of X configurations and Y workloads, we explore both how varying workloads affect the performance behavior and execution across Z software systems. 
+
+{\color{red} We found that \ldots. From our results \ldots.}
+
+In further work, we will incorporate further factors of variation, such as hardware variability, but also the evolution of configurable software systems, into our analysis, providing a more holistic picture of performance variation and ultimately enable selecting representative workloads for learning robust and generalizable performance models. 
