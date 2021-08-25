@@ -16,13 +16,16 @@ to identify performance shifts as the workload bias was averaged
 out~\cite{liao_2020_using_emse}.
 
 
-%subsection*{Practical Relevance }
-Recent work on varying workloads for configurable software systems~\cite{alves_sampling_2020,jamishidi_transfer_2017} has, to some extent, illustrated the influence that varying the workload for learning performance models can elicit: \citeauthor{alves_sampling_2020} show that for two different workloads of the video trancoder x264 the performance observed performance of a set of configurations (henceforth called \emph{performance distribution}) can differ substantially~\cite{alves_sampling_2020}. \citeauthor{jamishidi_transfer_2017} explore the similarity of performance influences of configuration options under different workloads~\cite{jamishidi_transfer_2017,jamshidi_transfer_gp_2017} and exploit similarities to adopt workload-specific performance models to other workloads using transfer learning~\cite{jamshidi_learning_2018}. Both cases, dissimilar performance distributions as well as performance influence similarities over different workloads are plausible. Yet, to the best of our knowledge, there is no systematic study of if and how workload choices can influence configuration-specific performance behavior. That is, one cannot state whether existing performance modeling approaches are \emph{representative} of real-world behavior. Moreover, the practicality of the proposed transfer learning technique~\cite{jamshidi_transfer_gp_2017} depends on how susceptible the performance influence of configuration options is to workload variation.
+While both configuration-dependent performance and performance under varying workloads have been studied in isolation, to the best of our knowledge, we are the first to systematically explore the intersection of both factors of variation. As configuration-dependent performance are learned under under one workload, the question arises whether such performance models can generalize to different workloads. To some degree, with transfer learning it is possible to adapt existing models and learn workload-specific differences~\cite{jamishidi_transfer_2017,jamshidi_learning_2018,jamshidi_transfer_gp_2017}. Yet, we do not have a clear picture of how prevalent and severe workload-specific differences in configuration-dependent performance are and how they emerge. For instance, if workloads merely determine how option-dependent code is utilized, performance models that consider this dependency as input factors might be more representative. If workloads, however, condition the execution of option-specific code, one can derive more representative performance models from selecting workloads that increase overall code coverage.
 
+%subsection*{Practical Relevance }
+\begin{comment}
+Recent work on varying workloads for configurable software systems~\cite{alves_sampling_2020,jamishidi_transfer_2017} has, to some extent, illustrated the influence that varying the workload for learning performance models can elicit: \citeauthor{alves_sampling_2020} show that for two different workloads of the video trancoder x264 the performance observed performance of a set of configurations (henceforth called \emph{performance distribution}) can differ substantially~\cite{alves_sampling_2020}. \citeauthor{jamishidi_transfer_2017} explore the similarity of performance influences of configuration options under different workloads~\cite{jamishidi_transfer_2017,jamshidi_transfer_gp_2017} and exploit similarities to adopt workload-specific performance models to other workloads using transfer learning~\cite{jamshidi_learning_2018}. Both cases, dissimilar performance distributions as well as performance influence similarities over different workloads are plausible. Yet, to the best of our knowledge, there is no systematic study of if and how workload choices can influence configuration-specific performance behavior. That is, one cannot state whether existing performance modeling approaches are \emph{representative} of real-world behavior. Moreover, the practicality of the proposed transfer learning technique~\cite{jamshidi_transfer_gp_2017} depends on how susceptible the performance influence of configuration options is to workload variation.
+\end{comment}
 %\subsection*{What we do}
 In absence of a systematic study that sheds light on if and how configuration options and workload choices interact with regard to performance, we address this isssue in this paper. We conducted an empirical study of X configurations and Y workloads across six configurable software systems to provide a broader picture of the interaction of configurations and workloads when learning performance models. Aside from studying the sole effects of workload variation on performance behavior and performance model influences, we assess the quality of such effects. To this end, we enrich our performance observations with corresponding statement coverage data to understand workload variation at a finer grain and see whether workload-specific effects can be attributed to specific code segments or rather depend on workload-specific code utilization.
 
-{\color{blue}Our results show that… This indicates that… In summary, we contribute an empirical study of X configurations and Y workloads across Z configurable software systems as well as a companion website\footnote{\url{paper Web site}} with supplementary material including performance and coverage measurements, experiment workloads and configurations, as well as additional visualizations left out due to space limitations.}
+{\color{blue}Our results show that… This indicates that… In summary, we contribute an empirical study of X configurations and Y workloads across Z configurable software systems as well as a companion website\footnote{\url{https://github.com/anonyms-2021/submission-448/}} with supplementary material including performance and coverage measurements, experiment workloads and configurations, as well as additional visualizations left out due to space limitations.}
 
 
 %\clearpage
@@ -150,20 +153,20 @@ Many different machine techniques have been used to obtain performance models, a
 
 From the comparison of model parameters, we can answer the research question in detail and assess (1) how many configuration options and interactions, on average, change their influence/importance, and (2) how many configuration options, in total, change their influence/importance.
 
-\paragraph*{Results} {\color{blue} Differences between performance models Figure~\ref{fig:diff_performance_influences}}\\
+\paragraph*{Results} {\color{blue} Differences between performance models Figure~\ref{fig:diff_performance_similarity}}\\
 
 \begin{table}
 	\caption{Categorization of performance distribution similarity of workload pairs}
-	\begin{tabular}{lrrrr}
+	\begin{tabular}{p{1.7cm}rrrr}
 		\toprule
 		\textbf{Software System} & similar & LT & MT & dissimilar\\
 		\midrule
-		\jumper & 1 & 1 & 1& \cellcolor{nicegreen!18}3 (38\,\%)\\
-		\kanzi & 1 & 2 & \cellcolor{nicegreen!18}3 (24\,\%) & 2\\
-		\dconvert & 1 & 2 & \cellcolor{nicegreen!18}3 (24\,\%) & 2\\
-		\htwo & 1 & \cellcolor{nicegreen!18}3 (24\,\%) & \cellcolor{nicegreen!18}3 (24\,\%) & 2\\
-		\batik & 1 & 2 & \cellcolor{nicegreen!18}3 (24\,\%) & 2\\
-		\jadx  & \cellcolor{nicegreen!18}13 (24\,\%) & 2 & 0 & 2\\
+		\jumper & 0 (0\,\%)& 7 (46.6\,\%) & \cellcolor{nicegreen!20}8 (53.3\,\%)& 0 (0\,\%)\\
+		\kanzi & 0 (0\,\%)& \cellcolor{nicegreen!20}28 (77.8\,\%)& 4 (11.1\,\%) & 4 (11.1\,\%)\\
+		\dconvert & 0 (0\,\%)& 29 (43.9\,\%) & 0 (0\,\%) & \cellcolor{nicegreen!20}37 (56.0\,\%)\\
+		\htwo & 0 (0\,\%)& 11 (39.3\,\%) & 0 (0\,\%) & \cellcolor{nicegreen!20}17 (60.7\,\%)\\
+		\batik & 0 (0\,\%)& \cellcolor{nicegreen!20}28 (50.9\,\%) & 8 (14.5\,\%) & 19 (34.5\,\%)\\
+		\jadx  & 0 (0\,\%)& \cellcolor{nicegreen!20}120 (100\,\%) & 0 (0\,\%) & 0 (0\,\%)\\
 		\bottomrule
 	\end{tabular}
 	\label{tab:categorization}
@@ -173,81 +176,41 @@ From the comparison of model parameters, we can answer the research question in 
 	\centering
 	\begin{subfigure}{0.33\textwidth}
 		\centering
-		(image)
-		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\includegraphics[width=\linewidth]{images/rq1/kendall_batik.pdf}
 		\caption{\batik}
 	\end{subfigure}
 	\begin{subfigure}{0.33\textwidth}
 		\centering
-		(image)
-		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\includegraphics[width=\linewidth]{images/rq1/kendall_dconvert.pdf}
 		\caption{\dconvert}
 	\end{subfigure}
 	\begin{subfigure}{0.33\textwidth}
 		\centering
-		(image)
-		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\includegraphics[width=\linewidth]{images/rq1/kendall_h2.pdf}
 		\caption{\htwo}
 	\end{subfigure}
 	\begin{subfigure}{0.33\textwidth}
 		\centering
-		(image)
-		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\includegraphics[width=\linewidth]{images/rq1/kendall_jump3r.pdf}
 		\caption{\jumper}
 	\end{subfigure}
 	\begin{subfigure}{0.33\textwidth}
 		\centering
-		(image)
-		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\includegraphics[width=\linewidth]{images/rq1/kendall_jadx.pdf}
 		\caption{\jadx}
 	\end{subfigure}
 	\begin{subfigure}{0.33\textwidth}
 		\centering
-		(image)
-		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
+		\includegraphics[width=\linewidth]{images/rq1/kendall_kanzi.pdf}
 		\caption{\kanzi}
 	\end{subfigure}
 	\caption{Differences in performance influence (linear model) / importance (random forest model)}
-	\label{fig:diff_performance_influences}
+	\label{fig:diff_performance_similarity}
 \end{figure*}
 
  \greybox{\textbf{Summary} (\RQref{2}) ...}
 
-\begin{figure*}
-	\centering
-	\begin{subfigure}{0.33\textwidth}
-		\centering
-		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
-		\caption{\batik}
-	\end{subfigure}
-	\begin{subfigure}{0.33\textwidth}
-		\centering
-		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
-		\caption{\dconvert}
-	\end{subfigure}
-	\begin{subfigure}{0.33\textwidth}
-		\centering
-		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
-		\caption{\htwo}
-	\end{subfigure}
-	\begin{subfigure}{0.33\textwidth}
-		\centering
-		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
-		\caption{\jumper}
-	\end{subfigure}
-	\begin{subfigure}{0.33\textwidth}
-		\centering
-		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
-		\caption{\jadx}
-	\end{subfigure}
-	\begin{subfigure}{0.33\textwidth}
-		\centering
-		%\includegraphics[width=\linewidth]{images/mochup_heatmap.png}
-		\caption{\kanzi}
-	\end{subfigure}
-	\caption{Relationship of  configuration code coverage and configuration performance between pairs of workloads.}
-	\label{fig:diff_performance_distribution}
-\end{figure*}
+
 
 \subsection{Feature Execution and Performance}\label{sec:rq3}
 The description of the effects of workload variation so far has taken only black-box measurements into account. To raise the experiment results to practicality, we want to know whether the sensitivity of different configuration options (or interactions) to workload variation manifests itself only in performance differences, or if it can be understood at a finer granularity, at code usage. To draw parallels with software testing, where we determine which code is actually executed, we now extend our perspective on the problem with statement coverage data. 

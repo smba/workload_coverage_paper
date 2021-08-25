@@ -1,15 +1,9 @@
 \begin{abstract}
+Software performance depends often on a variety of factors including configuration choices and workloads. Such properties can be modeled using performance models learned from a sample set of observations. Existing work on performance modeling studies performance either under varying configurations or, especially in practical performance testing, under varying workloads. The interaction of both factors and its influence on performance, however, has not been studied so far.
 
-Non-functional properties such as software performance depend often on a variety of factors including software configuration choices and workloads.  
-Such properties can be modeled using performance models learned from a sample set of observations. While varying workloads is common in practical performance testing, existing work on performance modeling, however, only \emph{systematically} studies the influence of \emph{either} configurations \emph{or} workloads on performance. 
+Understanding which factors, either configurability and workload choice in isolation or their interaction, dominate the performance variation, can help to determine whether performance models are generalizable in practice. Simpler effects of workloads, such as scaling due to workload size, can be accounted for by transfer learning on existing models. Yet, to consistently incorporate both factors of variation into performance modeling, we require deeper insights into whether different workloads either stress option-dependent code segments differently or actually condition the execution of option-specific code. From such knowledge, one can derive actionable strategies to more representative performance modeling by increasing code coverage or use performance models aware of workload characteristics.
 
-For configuration-dependent performance modeling, the effect of varying the workload can be accounted for by transfer learning only if the workload-specific performance behavior is similar to some extent. 
-Based on the similarity existing performance models can be reused or transformed, but have to be learned again from scratch if the performance behavior under a new workload is dissimilar.
-So far, the underlying question of how consistent performance of a configurable software system is over different workloads, has not been studied. 
-Thus, it remains unclear, if and to what extent configuration-dependent performance models are \emph{representative} of behavior under different workloads.
-
-On this behalf, we address this issue and conduct a \emph{systematic} empirical study of a multitude of configurations and workloads across a selection of six configurable software systems. 
-We enrich our black-box observations with statement coverage data to assess if and how configuration choices and workloads interact and shape software performance. 
+On this behalf, we conduct a \textit{systematic} empirical study of a multitude of configurations and workloads across a selection of six configurable software systems. We enrich our black-box observations with statement coverage data to assess if and how configuration choices and workloads interact and shape software performance. We found that.
 {\color{blue}We found that … . Our results indicate...}
 
 \end{abstract}
