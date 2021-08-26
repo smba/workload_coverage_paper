@@ -2,28 +2,22 @@
 \section{Introduction}
 \subsection*{Motivation}
 Most software systems can be customized via configuration options to meet user demands. The selection of configuration options can enable desired functionality (features) or tweak non-functional aspects of a software system, such as improving performance or energy consumption. 
-All too often, software performance bugs can be linked to configuration options~\cite{han_empirical_2016}. 
-The relationship of configuration choices and their influence on non-functional properties has been extensively studied in recent years. Most work focuses on the prediction of non-functional properties\footnote{In this paper, we use the terms \textit{non-functional properties} and \textit{performance} interchangably, although the latter term is more restricive. In the context of this work a performance model describes any model that predicts a non-functional property.}, such as execution time or memory utilization, for arbitrary configurations~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso}, or on finding configurations that are near-optimal with regard to a non-functional property~\cite{nairUsingBadLearners2017,nairFlash18,ohFindingNearoptimalConfigurations2017}. 
+The relationship of configuration choices and their influence on performance has been extensively studied in recent years.
 The backbone of performance estimation is a model that maps a given configuration to the estimated performance value. 
-
 Learning performance models usually relies on a training set of configuration-specific performance measurements. 
-To measure performance, established approaches~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso} employ only a single workload (e.g., a benchmark or test suite), which usually aims at emulating a specific real-world application scenario.
+To measure performance, established approaches~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso} usually employ only a single workload (e.g., a benchmark or test suite), which aims at emulating a specific real-world application scenario.
+
 Conversely, for performance and load testing in practice, workloads are a widely considered and called for factor of variation~\cite{ceesay2020,papadopoulos2021}.
-In the domain of cloud computing applications~\cite{papadopoulos2021} and data-intense applications~\cite{ceesay2020}, methodological principles emphasize the importance of using representative workloads or testing against a set of workloads that reflect the system under test and account for workload-specific behavior. Methods for finding such representative workloads, among other based on observed usage patterns, are known under the umbrella term \emph{workload characterization}~\cite{calzarossa2016} and are widely used alongside mixes of different workloads in practice~\cite{jiang2015survey}. To illustrate the relevance and effectiveness of varying workloads for performance assessment, consider the following example by \citeauthor{liao_2020_using_emse}: For two different versions of a software system,
-they learn performance models based on disjoint sets of workloads.
-From the comparison of both performance models, they were able
-to identify performance shifts as the workload bias was averaged
-out~\cite{liao_2020_using_emse}.
+In the domain of cloud computing applications~\cite{papadopoulos2021} and data-intense applications~\cite{ceesay2020}, methodological principles emphasize the importance of using representative workloads or testing against a set of workloads that reflect the system under test and account for workload-specific behavior. Methods for finding such representative workloads, among other based on observed usage patterns, are known under the umbrella term \emph{workload characterization}~\cite{calzarossa2016} and are widely used alongside mixes of different workloads in practice~\cite{jiang2015survey}. 
+%To illustrate the relevance and effectiveness of varying workloads for performance assessment, consider the following example by \citeauthor{liao_2020_using_emse}: For two different versions of a software system,they learn performance models based on disjoint sets of workloads.
+%From the comparison of both performance models, they were able
+%to identify performance shifts as the workload bias was averaged
+%out~\cite{liao_2020_using_emse}.
 
 
-While both configuration-dependent performance and performance under varying workloads have been studied in isolation, to the best of our knowledge, we are the first to systematically explore the intersection of both factors of variation. As configuration-dependent performance are learned under under one workload, the question arises whether such performance models can generalize to different workloads. To some degree, with transfer learning it is possible to adapt existing models and learn workload-specific differences~\cite{jamishidi_transfer_2017,jamshidi_learning_2018,jamshidi_transfer_gp_2017}. Yet, we do not have a clear picture of how prevalent and severe workload-specific differences in configuration-dependent performance are and how they emerge. For instance, if workloads merely determine how option-dependent code is utilized, performance models that consider this dependency as input factors might be more representative. If workloads, however, condition the execution of option-specific code, one can derive more representative performance models from selecting workloads that increase overall code coverage.
+Both configuration-dependent performance and performance under varying workloads have been studied mostly in isolation. While there are some attempts to gain insights on their combination for specific application scenarios~\cite{alves_sampling_2020} and under limited variability~\cite{liao_2020_using_emse}, to the best of our knowledge, we are the first to systematically explore the intersection of both factors of variation. We aim at providing a clear picture of how prevalent and severe workload-specific differences in configuration-dependent performance are and how they emerge. For instance, if workloads merely determine how option-dependent code is utilized, performance models that consider this dependency as input factors might be more representative. If workloads, however, condition the execution of option-specific source code, one can derive more representative performance models from selecting workloads that increase overall code coverage, similar to test coverage.
 
-%subsection*{Practical Relevance }
-\begin{comment}
-Recent work on varying workloads for configurable software systems~\cite{alves_sampling_2020,jamishidi_transfer_2017} has, to some extent, illustrated the influence that varying the workload for learning performance models can elicit: \citeauthor{alves_sampling_2020} show that for two different workloads of the video trancoder x264 the performance observed performance of a set of configurations (henceforth called \emph{performance distribution}) can differ substantially~\cite{alves_sampling_2020}. \citeauthor{jamishidi_transfer_2017} explore the similarity of performance influences of configuration options under different workloads~\cite{jamishidi_transfer_2017,jamshidi_transfer_gp_2017} and exploit similarities to adopt workload-specific performance models to other workloads using transfer learning~\cite{jamshidi_learning_2018}. Both cases, dissimilar performance distributions as well as performance influence similarities over different workloads are plausible. Yet, to the best of our knowledge, there is no systematic study of if and how workload choices can influence configuration-specific performance behavior. That is, one cannot state whether existing performance modeling approaches are \emph{representative} of real-world behavior. Moreover, the practicality of the proposed transfer learning technique~\cite{jamshidi_transfer_gp_2017} depends on how susceptible the performance influence of configuration options is to workload variation.
-\end{comment}
-%\subsection*{What we do}
-In absence of a systematic study that sheds light on if and how configuration options and workload choices interact with regard to performance, we address this isssue in this paper. We conducted an empirical study of X configurations and Y workloads across six configurable software systems to provide a broader picture of the interaction of configurations and workloads when learning performance models. Aside from studying the sole effects of workload variation on performance behavior and performance model influences, we assess the quality of such effects. To this end, we enrich our performance observations with corresponding statement coverage data to understand workload variation at a finer grain and see whether workload-specific effects can be attributed to specific code segments or rather depend on workload-specific code utilization.
+In absence of a systematic study that sheds light on whether and how configuration options and workload choices interact with regard to performance, we address this isssue in this paper. We conducted an empirical study of X configurations and Y workloads across six configurable software systems to provide a broader picture of the interaction of configurations and workloads when learning performance models and estimating a configuration's performance (i.e., response time). Aside from studying the sole effects of workload variation on performance behavior and performance model influences, we assess the quality of such effects. To this end, we enrich our performance observations with corresponding statement coverage data to understand workload variation at a finer grain and see whether workload-specific effects can be attributed to specific code segments or rather depend on workload-specific code utilization.
 
 {\color{blue}Our results show that… This indicates that… In summary, we contribute an empirical study of X configurations and Y workloads across Z configurable software systems as well as a companion website\footnote{\url{https://github.com/anonyms-2021/submission-448/}} with supplementary material including performance and coverage measurements, experiment workloads and configurations, as well as additional visualizations left out due to space limitations.}
 
@@ -124,7 +118,7 @@ Depending on the degree of similarity, such a performance model could be either 
 \RQ{1}{To what extent do performance distributions over configurations differ across workloads?}
 
 \paragraph*{Operationalization}
-We address this research question by comparing workload-specific performance distributions obtained from our experiments (cf. Section~\ref{sec:study}). To this end, we investigate whether any two distributions are identical, can be transformed into each other (e.g., by scaling or shifting), or are not related in any way. As no single-valued metric can reliably describe the above properties, we employ an aggregate of multiple metrics: First, to assess whether two distributions are identical, we use the paired-sample \emph{Wilcoxon signed-rank test}. If we cannot reject the null hypothesis ($H_0$) that the distributions come from the same same distribution (at significance level $\alpha=0.95$), we do not consider any further metric. 
+We address this research question by comparing workload-specific performance distributions obtained from our experiments (cf. Section~\ref{sec:study}). To this end, we investigate whether any two distributions are identical, can be transformed into each other (e.g., by scaling or shifting), or are not related in any way. As no single-valued metric can reliably describe the above properties, we employ an aggregate of multiple metrics: \sout{First, to assess whether two distributions are identical, we use the paired-sample \emph{Wilcoxon signed-rank test}. If we cannot reject the null hypothesis ($H_0$) that the distributions come from the same same distribution (at significance level $\alpha=0.95$), we do not consider any further metric. }\todo{remove}
 Otherwise, we explore whether the distributions exhibit any degree of similarity (i.e., whether they can be transformed into each other). If the distributions can be transformed using linear transformation, such as scaling and shifting, we expect a high linear correlation, which we measure by Pearson’s correlation coefficient (\emph{Pearson's~r}). As an additional metric, we use Kendall’s rank correlation coefficient (\emph{Kendall's~$\tau$}) to test for further possible transformations. As the rank correlation usually subsumes linear correlation, a low linear but high rank correlation indicates that only a non-linear transformation is possible. In the case where rank correlation does not indicate a relationship, we consider the distributions dissimilar. From these three metrics, we classify the pairs of workload-specific distributions into four different categories:
 \vspace{1mm}
 
@@ -136,24 +130,8 @@ Otherwise, we explore whether the distributions exhibit any degree of similarity
 	{dissimilar}  & (otherwise) \\%$p < 0.05$ and $\tau < 0.6$ \\
 \end{tabular}
 
-\paragraph*{Results} {\color{blue} Heatmaps with Kendall's $\tau$ + Categories count Figure~\ref{fig:diff_performance_distribution}}  and Table~\ref{tab:categorization}\\
+\paragraph*{Results} {\color{blue} Heatmaps with Kendall's $\tau$ + Categories count Figure~\ref{fig:diff_performance_similarity}}  and Table~\ref{tab:categorization}\\
 
-\greybox{\textbf{Summary} (\RQref{1}): \ldots}
-
-
-\subsection{Performance Influence Similarity}\label{sec:rq2}
-Our categorization of the differences between workload-specific performance distributions does help understand the degree of workload variability but leaves out the role of software configuration options. From a practical perspective, it is important to ask whether all configurations of a software system are equally likely to be affected by a workload choice or whether the selection of some configuration option increases or decreases this likelihood. If some configuration options show to be more sensitive to workload choices, practitioners can incorporate this knowledge into selecting configurations for regression testing or to adapt existing performance models~\cite{jamshidi_learning_2018}. To provide a clearer picture of the influence of workload variability in the presence of configuration options, we ask the following research question:
-
-\RQ{2}{To what extent do influences of individual options (and pairwise interactions) depend on the workload choice?}
-
-\paragraph*{Operationalization}
-We address this research question by learning and comparing performance models from the measurements of our experiments. As performance models effectively estimate the performance influence of one or more options on a configuration, we construct models not to predict unseen configurations but simply to explain differences observed in the performance distributions. So, for the construction of our performance models, we deliberately learn performance models using the entire sample set. To correct for multicollinearity~\cite{Daoud_2017}, for the training step we exclude all mandatory configuration options. In addition, for each group of mutually exclusive configuration options, we discard one randomly selected group member.
-
-Many different machine techniques have been used to obtain performance models, among others, based on linear regression~\cite{perLasso,siegmundPerformanceinfluenceModelsHighly2015} and classification-and-regression-trees~\cite{sarkarCostEfficientSamplingPerformance,guo_2018_data}. In this vein, we construct both a simple linear model using the least-squares method and a non-linear model based on random forests (both based on the Python implementation in the \texttt{sklearn} library). For both models, we allow single options and pairwise combinations, since our ensemble sampling technique (cf. Section~\ref{sec:sampling}) covered pairwise interactions and additional configurations selected randomly. This way, we can both ensure that, to some degree, higher-order interactions are considered and that the observations are not simply memorized by the explanatory performance model. For the linear model, we report and compare all its coefficients rankings. We report rankings rather than the coefficients themselves, to account for possible scaling effects between two distributions. For the random forest, we report and compare its feature importance measures, a measure of how much each feature (i.e., configuration option) helps to divide the data. 
-
-From the comparison of model parameters, we can answer the research question in detail and assess (1) how many configuration options and interactions, on average, change their influence/importance, and (2) how many configuration options, in total, change their influence/importance.
-
-\paragraph*{Results} {\color{blue} Differences between performance models Figure~\ref{fig:diff_performance_similarity}}\\
 
 \begin{table}
 	\caption{Categorization of performance distribution similarity of workload pairs (highest category count highlighted)}
@@ -207,6 +185,31 @@ From the comparison of model parameters, we can answer the research question in 
 	\caption{Similarity matrix (Kendall's $\tau$) for performance distributions of different pairs of workloads.}
 	\label{fig:diff_performance_similarity}
 \end{figure*}
+
+\greybox{\textbf{Summary} (\RQref{1}): \ldots}
+
+
+\subsection{Performance Influence Similarity}\label{sec:rq2}
+Our categorization of the differences between workload-specific performance distributions does help understand the degree of workload variability but leaves out the role of software configuration options. From a practical perspective, it is important to ask whether all configurations of a software system are equally likely to be affected by a workload choice or whether the selection of some configuration option increases or decreases this likelihood. If some configuration options show to be more sensitive to workload choices, practitioners can incorporate this knowledge into selecting configurations for regression testing or to adapt existing performance models~\cite{jamshidi_learning_2018}. To provide a clearer picture of the influence of workload variability in the presence of configuration options, we ask the following research question:
+
+\RQ{2}{To what extent do influences of individual options (and pairwise interactions) depend on the workload choice?}
+
+\paragraph*{Operationalization}
+We address this research question by learning and comparing performance models from the measurements of our experiments. As performance models effectively estimate the performance influence of one or more options on a configuration, we construct models not to predict unseen configurations but simply to explain differences observed in the performance distributions. So, for the construction of our performance models, we deliberately learn performance models using the entire sample set. 
+{\color{orange}To correct for multicollinearity~\cite{Daoud_2017}, for the training step we exclude all mandatory configuration options. In addition, for each group of mutually exclusive configuration options, we discard one randomly selected group member.\todo{add more steps}}
+
+Many different machine techniques have been used to obtain performance models, among others, based on linear regression~\cite{perLasso,siegmundPerformanceinfluenceModelsHighly2015} and classification-and-regression-trees~\cite{sarkarCostEfficientSamplingPerformance,guo_2018_data}. In this vein, we construct both a simple linear model using the least-squares method and a non-linear model based on random forests (both based on the Python implementation in the \texttt{sklearn} library). For both models, we allow single options and pairwise combinations, since our ensemble sampling technique (cf. Section~\ref{sec:sampling}) covered pairwise interactions and additional configurations selected randomly. This way, we can both ensure that, to some degree, higher-order interactions are considered and that the observations are not simply memorized by the explanatory performance model. {\color{orange}\todo{adapt to new graphics}For the linear model, we report and compare all its coefficients rankings. We report rankings rather than the coefficients themselves, to account for possible scaling effects between two distributions. For the random forest, we report and compare its feature importance measures, a measure of how much each feature (i.e., configuration option) helps to divide the data. 
+
+From the comparison of model parameters, we can answer the research question in detail and assess (1) how many configuration options and interactions, on average, change their influence/importance, and (2) how many configuration options, in total, change their influence/importance.}
+
+\paragraph*{Results} {\color{blue} Differences between performance models Figure~\ref{fig:model_similarity}}\\
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/rq2/performance_influence_variability.pdf}
+	
+	\caption{\color{orange}caption this}
+	\label{fig:model_similarity}
+\end{figure}
 
  \greybox{\textbf{Summary} (\RQref{2}) ...}
 
@@ -309,7 +312,6 @@ While $S_{w, o}$ yields an approximation of option-dependent code for a single w
 	S_{o} = \bigcup_{w \in W} S_{w, o}
 \end{equation}
 
-\todo{maybe code example based on 1}
 While this aggregated set should not be mistaken for a ground truth, it enables us to reason about differences in option-dependent code within the scope of our selected workloads. That is, the expressiveness of this baseline depends on the diversity of the workloads in question. We discuss this limitation in Section~\ref{sec:threats}. From the ratio of option-dependent code per workload to option-dependent code across workloads, $\mid S_{w_1, o}\mid/~{\mid S_{w_2, o}\mid}$, we can estimate the coverage of option-dependent code. From comparing the sets $S_{w_1, o}$ and $S_{w_2, o}$ for any two workloads $w_1$ and $w_2$, we can estimate a similarity between the option-code coverage.
 
 \paragraph*{Results}{\color{blue} ... Figure~\ref{fig:diff_performance_option_coverage}}\\
