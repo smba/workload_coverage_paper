@@ -118,33 +118,36 @@ Depending on the degree of similarity, such a performance model could be either 
 \RQ{1}{To what extent do performance distributions over configurations differ across workloads?}
 
 \paragraph*{Operationalization}
-We address this research question by comparing workload-specific performance distributions obtained from our experiments (cf. Section~\ref{sec:study}). To this end, we investigate whether any two distributions are identical, can be transformed into each other (e.g., by scaling or shifting), or are not related in any way. As no single-valued metric can reliably describe the above properties, we employ an aggregate of multiple metrics: \sout{First, to assess whether two distributions are identical, we use the paired-sample \emph{Wilcoxon signed-rank test}. If we cannot reject the null hypothesis ($H_0$) that the distributions come from the same same distribution (at significance level $\alpha=0.95$), we do not consider any further metric. }\todo{remove}
-Otherwise, we explore whether the distributions exhibit any degree of similarity (i.e., whether they can be transformed into each other). If the distributions can be transformed using linear transformation, such as scaling and shifting, we expect a high linear correlation, which we measure by Pearson’s correlation coefficient (\emph{Pearson's~r}). As an additional metric, we use Kendall’s rank correlation coefficient (\emph{Kendall's~$\tau$}) to test for further possible transformations. As the rank correlation usually subsumes linear correlation, a low linear but high rank correlation indicates that only a non-linear transformation is possible. In the case where rank correlation does not indicate a relationship, we consider the distributions dissimilar. From these three metrics, we classify the pairs of workload-specific distributions into four different categories:
+We address this research question by comparing workload-specific performance distributions obtained from our experiments (cf. Section~\ref{sec:study}). To this end, we investigate whether any two distributions can be transformed into each other (e.g., by scaling or shifting), or are not related in any way. As no single-valued metric can reliably describe the above properties, we employ an aggregate of multiple metrics: 
+%\sout{First, to assess whether two distributions are identical, we use the paired-sample \emph{Wilcoxon signed-rank test}. If we cannot reject the null hypothesis ($H_0$) that the distributions come from the same same distribution (at significance level $\alpha=0.95$), we do not consider any further metric. }\todo{remove}
+%Otherwise, we explore whether the distributions exhibit any degree of similarity (i.e., whether they can be transformed into each other). 
+If the distributions can be transformed using linear transformation, such as scaling and shifting, we expect a high linear correlation, which we measure by Pearson’s correlation coefficient (\emph{Pearson's~r}). As an additional metric, we use Kendall’s rank correlation coefficient (\emph{Kendall's~$\tau$}) to test for further possible transformations. As the rank correlation usually subsumes linear correlation, a low linear but high rank correlation indicates that only a non-linear transformation is possible. In the case where rank correlation does not indicate a relationship, we consider the distributions dissimilar. From these three metrics, we classify the pairs of workload-specific distributions into four different categories:
 \vspace{1mm}
 
-\begin{tabular}{p{3.9cm}l}
+\begin{tabular}{p{4.4cm}l}
 	 \textbf{Category} & \textbf{Criteria} \\
-	{similar} & $p \geq 0.05$ \\
-	{linearly transformable} & $p < 0.05$ and $r \geq 0.6$ \\
-	{monotonically transformable} & $p < 0.05$, $r < 0.6$, and $\tau \geq 0.6$ \\
+	{linearly transformable (LT)} & $r \geq 0.6$ \\
+	{monotonically transformable (MT)} & $r < 0.6$, and $\tau \geq 0.6$ \\
 	{dissimilar}  & (otherwise) \\%$p < 0.05$ and $\tau < 0.6$ \\
 \end{tabular}
 
-\paragraph*{Results} {\color{blue} Heatmaps with Kendall's $\tau$ + Categories count Figure~\ref{fig:diff_performance_similarity}}  and Table~\ref{tab:categorization}\\
+\paragraph*{Results} {\color{blue} 
+We found that the performance distribution similarity characteristics of the six configurable software systems varied widely. We illustrate the categorization results in Table~\ref{tab:categorization}. For half of the software systems (\kanzi, \batik, and \jadx), in the majority of workload pairs, the resulting performance distributions could be transformed using a linear transformation. For \jumper, about more than half of the workload pairs could be accounted for by a monotonic transformation. For \dconvert and \htwo, the majority of workload comparisons resulted in dissimilar performance distributions, however a substantial amount was linearly transformable. For\jumper and \jadx, we found no case of non-transformable performance distributions, whereas the remaining four exhibited dissimlar performance distributions under, at least, one workload. For \jadx, all performance distributions were linearly transformable.
 
+In Figure~\ref{fig:diff_performance_similarity}, we provide a more detailed breakdown of which workloads resulted in performance distributions dissimilar to other ones, where we show the correlation matrix (Kendall's $\tau$) for each pair of workload. Notable for \dconvert is the behavior for SVG workloads (and one JPG workload), which resulted in distributions dissimilar to the remaining workloads. For \htwo, the workloads \texttt{ycsb-2400} and \texttt{tpcc-8} are dissimilar to all other workloads, including their counterparts with a lower scalefactor (600 and 2, respectively).}
 
 \begin{table}
 	\caption{Categorization of performance distribution similarity of workload pairs (highest category count highlighted)}
-	\begin{tabular}{p{1.7cm}rrrr}
+	\begin{tabular}{p{2.4cm}rrr}
 		\toprule
-		\textbf{Software System} & similar & LT & MT & dissimilar\\
+		\textbf{Software System} & \textbf{LT} & \textbf{MT} & \textbf{dissimilar}\\
 		\midrule
-		\jumper & 0 (0\,\%)& 7 (46.6\,\%) & \cellcolor{nicegreen!20}8 (53.3\,\%)& 0 (0\,\%)\\
-		\kanzi & 0 (0\,\%)& \cellcolor{nicegreen!20}28 (77.8\,\%)& 4 (11.1\,\%) & 4 (11.1\,\%)\\
-		\dconvert & 0 (0\,\%)& 29 (43.9\,\%) & 0 (0\,\%) & \cellcolor{nicegreen!20}37 (56.0\,\%)\\
-		\htwo & 0 (0\,\%)& 11 (39.3\,\%) & 0 (0\,\%) & \cellcolor{nicegreen!20}17 (60.7\,\%)\\
-		\batik & 0 (0\,\%)& \cellcolor{nicegreen!20}28 (50.9\,\%) & 8 (14.5\,\%) & 19 (34.5\,\%)\\
-		\jadx  & 0 (0\,\%)& \cellcolor{nicegreen!20}120 (100\,\%) & 0 (0\,\%) & 0 (0\,\%)\\
+		\jumper &  7 (46.6\,\%) & \cellcolor{nicegreen!20}8 (53.3\,\%)& 0 (0\,\%)\\
+		\kanzi &  \cellcolor{nicegreen!20}28 (77.8\,\%)& 4 (11.1\,\%) & 4 (11.1\,\%)\\
+		\dconvert &  29 (43.9\,\%) & 0 (0\,\%) & \cellcolor{nicegreen!20}37 (56.0\,\%)\\
+		\htwo &  11 (39.3\,\%) & 0 (0\,\%) & \cellcolor{nicegreen!20}17 (60.7\,\%)\\
+		\batik &  \cellcolor{nicegreen!20}28 (50.9\,\%) & 8 (14.5\,\%) & 19 (34.5\,\%)\\
+		\jadx  &  \cellcolor{nicegreen!20}120 (100\,\%) & 0 (0\,\%) & 0 (0\,\%)\\
 		\bottomrule
 	\end{tabular}
 	\label{tab:categorization}
@@ -186,7 +189,7 @@ Otherwise, we explore whether the distributions exhibit any degree of similarity
 	\label{fig:diff_performance_similarity}
 \end{figure*}
 
-\greybox{\textbf{Summary} (\RQref{1}): \ldots}
+\greybox{\textbf{Summary} (\RQref{1}): {\color{blue} Not all software systems exhibit the same degree of workload-specific performance distribution similariy. For \dconvert, SVG workloads show distinct behavior, and for \htwo, more complex workloads are more likely to be dissimilar.}}
 
 
 \subsection{Performance Influence Similarity}\label{sec:rq2}
