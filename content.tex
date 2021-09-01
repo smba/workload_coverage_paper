@@ -19,13 +19,20 @@ To illustrate, how both factors may interact, consider the introductory example 
 
 %In absence of a systematic study that sheds light on whether and how configuration options and workload choices interact with regard to performance, we address this isssue in this paper. 
 We have conducted an empirical study of 29\,014 configurations and 55 workloads across 6 configurable software systems to provide a broad picture of the interaction of configuration and workload when learning performance models and estimating a configuration's performance (i.e., response time). Aside from studying the sole effects of workload variation on performance behavior and performance model influences, we explore \emph{how} both factors interact. To this end, we enrich performance observations with corresponding statement coverage data to understand workload variation at a finer grain. This way, we reveal whether workload-specific effects can be attributed to specific code segments or rather depend on workload-specific code usage.
-\todo{results}
 
-{\color{blue}In summary, we contribute 
+{\color{blue}
+Our findings suggest that the workload-specific
+execution of covered option-specific code segments plays a substantial role in how workloads interact with configurations and is most likely accountable for workload-specific performance variation. We conclude that identifying performance-relevant workload characteristics and incorporating them as independent variables is
+a promising avenue towards obtaining generalizable and representative performance models.
+
+To summarize, we make the following contributions: 
 	
 \begin{itemize}
-	\item an empirical study of 29\,014 configurations and 55 workloads across 6 configurable software systems of whether and how the interaction of workloads with configuration options influences performance, and
-	\item a companion website\footnote{\url{https://github.com/anonyms-2021/submission-448/}} with supplementary material including performance and coverage measurements, experiment workloads and configurations, as well as additional visualizations left out due to space limitations.
+	\item An empirical study of 29\,014 configurations and 55 workloads across 6 configurable software systems of whether and how the interaction of workloads with configuration options influences performance;
+	
+	\item An evaluation combining insights from observations of workload-specific differences of configurations, individual configuration options' influence on performance, and workload-specific coverage differences of option-specific code segments;
+
+	\item A companion Web site\footnote{\url{https://github.com/anonyms-2021/submission-448/}} with supplementary material including performance and coverage measurements, experiment workloads and configurations, as well as additional visualizations left out due to space limitations.
 	
 \end{itemize}
 }
@@ -85,12 +92,12 @@ The rationale is that by exercising feature code, for instance via enabling conf
 
 
 \section{Empirical Study}~\label{sec:study}
-We have conducted an empirical study of a multitude of configurations and workloads for six configurable software systems. In the following, we describe the general experiment setup and study design as well as research questions and results.
+We have conducted an empirical study of a multitude of configurations and workloads for six configurable software systems. In the following, we describe the general experiment setup and study design as well as research questions and results. {\color{blue}We make all performance measurement data, configurations, workloads, and learned performance models available on this paper's companion Web site.}\todo{Coverage data raw or available at other third party platform than github?}
 
 \subsection{Experiment Setup}\label{sec:setup}
 \paragraph*{Subject Systems and Workloads}
 For our study, we have selected six configurable software systems implemented in Java. We decided to use Java for mainly two reasons: (1) practically, because we can forgo code modifications for instrumentation by using off-line instrumentation (cf.~Section~\ref{sec:profiling}) for code coverage measurement, and (2) strategically, because Java is one of the most widely used programming languages. We discuss this decision in more detail in the Section~\ref{sec:threats}. 
-The full list of our subject systems and characteristics is presented in Table~\ref{tab:subject_systems}. Due to space limitations, we provide a more extensive description of the used workloads at the paper's companion Web site.
+The full list of our subject systems and characteristics is presented in Table~\ref{tab:subject_systems}. Due to space limitations, we provide a more extensive description of the used workloads at the paper's companion Web site. {\color{blue} While we have measured more than one performance metric for all configurable software systems (except for \htwo), in the following we focus on response time and throughput to keep our analysis comparable. All measurements are available at the paper's companion Web site.}
 	
 \jumper is a re-implementation of the LAME audio codec for MP3 in Java. In total, we have selected six WAVE audio files as a workload to encode to MP3. To diversify the selection of workloads, we indcluded audio files with different characteristics (sampling rate, number of channels, length etc.). 
 \kanzi is a file compression tool. For this subject system, we selected nine workloads, including, among others, dedicated compression benchmarks (sets of files of different types) as well as binary and text files at different scales: a binary of the Linux kernel, a dump of its repository, XML and CSV data. 
@@ -221,9 +228,8 @@ To correct for multicollinearity~\cite{Daoud_2017} and to ensure that the obtain
 Many different machine techniques have been used to obtain performance models, among others, based on linear regression~\cite{perLasso,siegmundPerformanceinfluenceModelsHighly2015,dorn2020}. For the purpose of answering \RQref{2}, we learn a prediction model using multiple linear regression (least-squares method). We limit the set of independent variables to individual options rather than higher-order interactions to be consistent with the feature location used for \RQref{3.2} where we determine option-specific, but not interaction-specific code segments
 %{\color{orange}The overall number of actually influential configuration options and interactions is, by definition, relatively low~\cite{saltelli}}.
 
-From the comparison of the performance model coefficients, we can answer \RQref{2} in detail and assess (1) how many configuration options, on average, change their influence, and (2) how many configuration options, in total, change their influence. For any pair of workload-specific performance models, we divide the performance model coefficients by the respective mean performance to make the model influences comparable across workloads. Henceforth, we will refer to these coefficients as \textit{relative performance influences.} {\color{blue!60!black}Since these relative performance influences have been divided by the population mean, we report these without any unit.}
+From the comparison of the performance model coefficients, we can answer \RQref{2} in detail and assess (1) how many configuration options, on average, change their influence, and (2) how many configuration options, in total, change their influence. For any pair of workload-specific performance models, we divide the performance model coefficients by the respective mean performance to make the model influences comparable across workloads. Henceforth, we will refer to these coefficients as \textit{relative performance influences.} Since these relative performance influences have been divided by the population mean, we report these without any unit.
 
-\todo{replace tables with graphic}
 \begin{table}
 	\centering
 	\caption{Absolute number of configuration options whose relative performance influence changed by at least by threshold $t$ under at least one workload configuration.}
@@ -389,7 +395,7 @@ While this aggregated set is not a ground truth, it enables us to reason about d
 
 \paragraph*{Results}
 In Figure~\ref{fig:diff_performance_option_coverage}, we show, for all combinations of two workloads, the relationship between the similarity in option-specific code coverage on the x-axis and the difference between the option's relative performance influence (from the performance models obtained for \RQref{2}). Alongside the scatter plots for each software system, we provide histograms of the marginal distributions of both dimensions. 
-{\color{red}
+{\color{blue}
 Notably, for \batik, \dconvert and \jumper, we observe both high and low similarity among workload-specific coverage of option-code. For \htwo and \jadx, most workloads appear to cover disjoint parts of the option-specific code, whereas for \kanzi, most workloads show high similarity in the coverage of option-specific code. 
 Regarding performance influence variation, \dconvert and \jadx show a clear picture. For \dconvert, variation is completely independent from option-code coverage for \dconvert. For \jadx, most performance influence variation occurs when no similar code is executed. In the light of the results from \RQref{2}, where only few options for\jadx are influential and exhibit notable variation, the majority of perormance influence variation is accounted for by these options. A trend similar to \jadx can be seen for \jumper, although it is less pronounced as the performance influence differences for a code coverage similarity of 1 are still substantial. 
 The same trenda s for \jadx, but in the opposite direction, can be seen for \htwo and \batik, where performance influence variation is highest for higher option-code coverage similarities. We cannot draw a clear picture for \kanzi, where we observe little variation in option-specific code coverage.
@@ -397,9 +403,9 @@ The same trenda s for \jadx, but in the opposite direction, can be seen for \htw
 {The results for \dconvert and \jadx are the most extreme cases that we observe. For \jadx, we can infer that option-code of the influential options is either executed or not, depending on the workload since most substantial variation is present for workload pairs that share no option-specific code coverage. For \dconvert, on the other hand, at various levels of option-code coverage similarity of pairs of workloads, we observe performance influence variation. That is, the latter is likely dominated by \textit{how} the feature code is executed.}\\
 }
 \greybox{\textbf{Summary} (\RQref{3.2}):
-{\color{blue!50!black}
-	\color{red}Across the six software systems, we observe a wide variety of workload-specific effects on performance influences and option-specific code coverage. Depending on the workload, software system, and configuration option, option-code coverage (as in the case of \jadx) or option-code utilization (as in the case of \kanzi) may explain workload-specific performance variation.
-}}
+
+	\color{blue}Across the six software systems, we observe a wide variety of workload-specific effects on performance influences and option-specific code coverage. Depending on the workload, software system, and configuration option, option-code coverage (as in the case of \jadx) or option-code utilization (as in the case of \kanzi) may explain workload-specific performance variation.
+}
 
 \begin{figure*}
 
@@ -439,42 +445,51 @@ The same trenda s for \jadx, but in the opposite direction, can be seen for \htw
 
 
 
-{\color{blue!50!black}
+{\color{blue}
 \section{Discussion}
-\todo{summary}
-\subsection{Workload-aware Performance Models}
-From RQ3, we can infer that it is more decisive for performance \textit{how} the software system is executed and not necessarily \textit{what} code. Since we have made this observation for option-specific code (RQ3.1), but also for configuration-specific code (3.2), it is plausible that the workload-specific influence on how the software system is executed accounts for workload-specific performance variation. That is, in order to make performance models generalizable to varying workloads, they must incorporate workload-specific characteristics from which the workload-specific execution emerges. 
-Our introductory example from Figure~\ref{fig:intro} illustrates this facet: The number of insertions passed to the method directly determines how often the method commit is executed. From our selection of workloads, a rather trivial example is that, in general, larger workloads (by file size), resulted in higher execution times. A non-trivial example from our experiments is that, for the database system \htwo, the performance distributions for the workload \texttt{TPC-C} were dissimilar under two different scalefactors (i.e., could not easily be transformed). 
-That is, varying workload characteristics and incorporating these as independent variables into performance models can be a promising strategy to pursue in order to obtain representative and generalizable performance models. 
+The results from our evaluation make a case for incorporating workload characteristics as independent variables into the analysis of performance of configurable software systems. We discuss this facet in detail in the following and set the results into the context of transfer learning for performance models and give an outlook on methodologies to capture workload-specific performance variation.
 
-\subsection{Workload-specific Execution}
-In our experiments we use statement coverage to describe \emph{what} code is executed, but cannot make statements about \emph{how} the software system is executed, and can only infer that variation in the latter most likely accounts for workload-specific performance variation. Aside from incorporating workload characteristics as features in a workload-aware performance model, performance measurement at finer granularity, such as method or statement level, is a methodology that---in retrospect---might better have fitted our analysis. Work closest to such a methodology is the white-box profiling approach by \citeauthor{weber_white_2021}~\cite{weber_white_2021}. They use fine-grained profilers to assess at method-level, which factors, either configuration options or application context (e.g., method arguments), account for a method's performance. In the light of our findings from \RQref{3.1}, we believe that fine-grained performance measurements are a worthwhile strategy to obtain performance measurements at fine enough granularity to identify code sections whose performance is influenced by the workload.
+\subsection{Workload-aware Performance Models}
+In \RQref{3}, we observed that, with the exception of \jadx, the workload-specific code usage is the most plausible cause for workload-specific variation of configuration options’ performance influence. Thus, we conclude that it is more decisive for the performance of a software system in general, \emph{how} different workloads use covered code, and not necessarily,{what} code is actually covered. Our results confirm the prevalence of interactions between workload and configuration options as illustrated in our introductory example in Figure~\ref{fig:intro}. While this particular example, and the majority of cases in this study are rather trivial as they scale with the workload size (for instance, the number of transactions or the file size), the fact that we also found configuration options only becoming influential at all under a specific workload (\kanzi and \dconvert), highlights that one cannot assume such trivial behavior in every case. 
+
+To make these findings useful in practice, it is key to understand which \emph{qualitative} (e.g., file type or transaction type) and \emph{quantitative} (e.g., file size or number query length) workload properties interact with different configuration options and how. In the field of performance testing, assessing workload characteristics is already an established practice with the goal to select for workloads that are representative of usage patterns in production. Our results provide an empirical motivation to expand the use of \emph{workload characterization} as an engineering practice~\cite{calzarossa2016} to systematically test the sensitivity of configuration options to workload characteristics. To obtain representative performance models, they need to reflect the performance variation---be it trivial or non-trivial---that different workloads can introduce.
 
 \subsection{Implications for Transfer Learning}
-The results from \RQref{1} and \RQref{2} illustrate that, even among a small number of configurable software systems, the configuration-specific performance behavior across workloads as well as the number of option-specific performance influences affected by the workload can vary widely. The substantial amount of dissimilar performance distributions is potentially challenging for transfer learning approaches adapting workload-specific performance models to new workloads. Approaches like the work by ~\citeauthor{jamshidi_learning_2018} exploit similarities between workload-specific performance distributions~\cite{jamshidi_learning_2018}, such as the option influences on performance shifted by a constant term or scaled by a factor proportional to workload size (cf. Figure ~\ref{fig:intro}). While these examples represent relatively simple scenarios that are easily accountable to affine transformations, and more complex non-linear relationships could be learned, we argue that it is not evident that transfer learning is an economical or feasible option to handle differences in workload-specific performance behavior in every case. Given the prevalence of different degree sof variation (cf. Table~\ref{tab:categorization}), one cannot assume that a configurable software system and workload pair provides exploitable similarities, and learning a new workload-specific performance model or workload-aware performance model from scratch may be the better choice.
+The results from \RQref{1} and \RQref{2} illustrate that, even among a small number of configurable software systems, the configuration-specific performance behavior across workloads as well as the number of option-specific performance influences affected by the workload can vary widely. The substantial number of performance distributions classified as dissimilar is potentially challenging for transfer learning approaches that aim at adapting workload-specific performance models to new
+workloads. 
+
+Approaches like the work by \citeauthor{jamshidi_learning_2018} exploit similarities between workload-specific performance distributions~\cite{jamshidi_learning_2018}, such as scenarios in which the option influences are shifted by a constant term or scaled by a factor proportional to workload size (cf. Figure ~\ref{fig:intro}). While these are relatively simple scenarios that are accountable to affine transformations, and more complex non-linear relationships could be learned, our results do not suggest that transfer learning is an economical or feasible option to handle differences in workload-specific performance behavior in
+every case. Given the prevalence of different degrees of variation (cf. Table~\ref{tab:categorization}), one cannot assume that a configurable software system
+and workload pair provides exploitable similarities, and learning a new workload-specific performance model or workload-aware performance model from scratch may be the better choice in the long run.
+
+\subsection{Capturing Workload-specific Performance Variation}
+In our experiments we used statement coverage as a proxy metric to describe\emph{what} option-specific code is executed, but cannot make statements about \emph{how} a workload exercised the covered. We can only infer that variation in the latter most likely accounts for workload-specific performance variation. Aside from incorporating workload characteristics as features in a workload-aware performance model, performance measurement at finer granularity, such as method or statement level, is a methodology that might be beneficial have fitted our analysis. Work closest to such a methodology is the white-box profiling approach by \citeauthor{weber_white_2021}~\cite{weber_white_2021}. They use a fine-grained profiler to assess at method level which factors, either configuration options or application context (e.g., method arguments), account for a method's performance. 
+
+In the light of our findings from \RQref{3}, we believe that fine-grained performance measurements are a worthwhile strategy to identify code sections whose performance is influenced by the workload.
 
 }\section{Threats to Validity}\label{sec:threats}
 
 \paragraph*{Internal Validity}\label{sec:internal_validity}
 Threats to \emph{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate this threat by repeating each experiment five times and reporting the median as a robust measure. For \htwo, we confirmed a negligible measurement variation in a separate pre-study.
 Another potential threat is that the coverage analysis with \mbox{\textsc{JaCoCo}} entails a noticable instrumentation overhead, which may can distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario, but thus introduced only negligible variation and overhead.
+
 \paragraph*{External Validity}\label{sec:external_validity}
 The selection of subject systems all written in Java poses a threat to \emph{external validity}. While our motivation for this selection is primarily practical in nature (cf. Section~\ref{sec:setup}), we mitigate this threat by selecting subject systems from a large variety of application domains (cf.~Table~\ref{tab:subject_systems}). Nonetheless, one cannot necessarily conclude that our results hold for other domains and programming languages. 
-\paragraph{Construct Validity}\label{sec:construct_validity}
+
+\paragraph*{Construct Validity}\label{sec:construct_validity}
 The profiler \textsc{JaCoCo} instruments Java byte code instructions rather than statements, which leads to some minor imprecision when mapping covered instructions back to the original statements. Transitively, this also affects the precision of our feature location (cf. Section~\ref{sec:rq3}). This drawback, however, is not limited to this particular profiler, but applies to most profilers operating on byte code. 
 Superimposition in our feature location technique is sound, but, by design, incomplete, since no set of workloads is guaranteed to cover all feature code. We selected a variety of different workloads as a counter measure, yet our study is of exploratory nature. 
 
-{\color{blue!50!black}
+{\color{blue}
 \section{Conclusion}
 Software performance emerges from a multitude of factors. Configuration options have been widely studied as a key factor and used for learning performance models.  When learning configuration-dependent performance models, workloads as an orthogonal factor have so far been overlooked---most approaches rely on performance observations from a single workload. This raises the question of how generalizable existing models to other workloads. 
 Understanding to what extent configuration and workload---individually and combined---are responsible for the performance variation a software system is key to evaluate whether one can transfer existing performance models are to new workloads, or has to learn performance models from scratch for new workloads.
 
 In an empirical study of 29\,014 configurations and 55 workloads, we explore both how varying the workload affects the performance behavior and execution across 6 configurable software systems. Specifically, we investigate (1) whether the workload and configuration interact and in conjunction influence performance and, if so, (2) how this interaction takes place.
 We enrich our black-box performance observations with statement coverage data to understand performance variation, and especially the corresponding execution, at a fine granularity.
+Our findings suggest that the workload-specific execution of covered option-specific code segments plays a substantial role in how workloads interact with configurations and is most likely accountable for workload-specific performance variation. 
+We conclude that identifying performance-relevant workload characteristics and incorporating them as independent variables is a promising avenue towards obtaining generalizable and representative performance models.
+We found that the workload can have a wide variety of effects on configuration-specific performance, which may challenge the feasibility of existing transfer learning approaches for performance models. In essence, one cannot assume that an existing  worklaod-specific performance model is easily transferable to a new workload with little effort. While transfer learning can capture the majority of workload-specific differences in performance influences, we conclude that, at large, workload-aware performance models may be a better choice.
 
-Our findings suggest that the execution of option-specific code segments plays no substantial role in how workloads interact with configurations. However, variation in the execution of code is most likely accountable for workload-specific performance variation. We conclude that identifying performance-relevant workload characteristics and incorporating them as independent variables is a promising avenue towards obtaining generalizable and representative performance models.
-
-We found that the workload can have a wide variety of effects on configuration-specific performance. Non-monotonic effects can challenge the feasibility of existing transfer learning approaches for performance models. In essence, one cannot assume that an existing  worklaod-specific performance model is easily transferable to a new workload with little effort.
-
-In further work, we will incorporate further factors of variation, such as hardware variability, but also the evolution of configurable software systems, into our analysis.%. and ultimately enable selecting representative workloads for learning robust and generalizable performance models.
+In further work, we will incorporate workload characteristics as well as further factors of variation, such as hardware variability and the evolution of configurable software systems, into our analysis.
 }
