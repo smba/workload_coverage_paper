@@ -133,8 +133,7 @@ Depending on the degree of similarity, such a performance model could be either 
 \RQ{1}{To what extent does performance behavior vary across workloads?}
 
 \paragraph*{Operationalization}
-We address this research question by comparing workload-specific performance distributions obtained from our experiments (cf. Section~\ref{sec:study}). To this end, we investigate whether any two distributions obtained from two different workloads can be transformed into each other, or are not related in any way. As no single-valued metric can reliably describe the above properties, we employ an aggregate of multiple metrics: 
-
+We address this research question by comparing workload-specific performance distributions obtained from our experiments (cf. Section~\ref{sec:study}). To this end, we investigate whether any two distributions obtained from two different workloads can be transformed into each other, or are not related in any way. As no single-valued metric can reliably describe the above properties, we employ an aggregate of multiple metrics: \todo{maybe reference norberts paper on attributed feature models?}
 If the distributions can be transformed using linear transformation, such as scaling and shifting, we expect a high linear correlation, which we measure by Pearson’s correlation coefficient (\emph{Pearson's~r}). As an additional metric, we use Kendall’s rank correlation coefficient (\emph{Kendall's~$\tau$}) to test for further possible transformations. As rank correlation usually subsumes linear correlation, a low linear but high rank correlation indicates that only a non-linear transformation is possible. In the case where rank correlation does not indicate a relationship, we consider the distributions dissimilar. From these three metrics, we classify the pairs of workload-specific distributions into three different categories:
 \vspace{1mm}
 
@@ -430,7 +429,6 @@ The selection of subject systems all written in Java poses a threat to \emph{ext
 The profiler \textsc{JaCoCo} instruments Java byte code instructions rather than statements, which leads to some minor imprecision when mapping covered instructions back to the original statements. Transitively, this also affects the precision of our feature location (cf. Section~\ref{sec:rq3}). This drawback, however, is not limited to this particular profiler but applies to most profilers operating on byte code. 
 Superimposition in our feature location technique is sound, but, by design, incomplete, since no set of workloads is guaranteed to cover all feature code. We selected a variety of different workloads as a countermeasure, yet our study is exploratory. 
 
-{\color{blue}
 \section{Conclusion}
 Software performance emerges from a multitude of factors. Configuration options have been widely studied as a key factor and used for learning performance models.  When learning configuration-dependent performance models, workloads as an orthogonal factor have so far been overlooked---most approaches rely on performance observations using a single workload. This raises the question of how generalizable existing models are to other workloads. 
 Understanding to what extent configuration and workload---individually and combined---are responsible for the performance variation of a software system is key to evaluate whether one can transfer existing performance models to new workloads, or has to learn performance models from scratch for new workloads.
@@ -442,5 +440,3 @@ We conclude that identifying performance-relevant workload characteristics and i
 The wide variety of workload-specific effects on performance that we observe can challenge the feasibility of existing transfer learning approaches for performance models. In essence, one cannot assume that an existing  workload-specific performance model is easily transferable to a new workload with little effort. While transfer learning can capture the majority of workload-specific differences in performance influences, we conclude that, at large, workload-aware performance models may be a better choice.
 
 In further work, we will incorporate workload characteristics as well as further factors of variation, such as hardware variability and the evolution of configurable software systems, into our analysis.
-
-}

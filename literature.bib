@@ -25,7 +25,7 @@
 
 
 % ICSM became ICSME somewhen...
-@String{ICMS = "Proceedings of the International Conference on Software Maintenance (ICSM)"}
+@String{ICSM = "Proceedings of the International Conference on Software Maintenance (ICSM)"}
 @String{ICSME = "Proceedings of the International Conference on Software Maintenance and Evolution (ICSME)"}
 
 @String{ICPE = "Proceedings of the ACM/SPEC International Conference on Performance Engineering (ICPE)"}
@@ -504,10 +504,11 @@
 	Siegmund, Norbert},
 	booktitle =     FSE,
 	pages =         {61-71},
-	publisher =     {{ACM Press}},
+	publisher =     ACM,
 	title =         {{Finding Near-Optimal Configurations in Product Lines
 	by Random Sampling}},
 	year =          {2017},
+	doi={10.1145/3106237.3106273}
 }
 
 @inproceedings{cityIdentifying2014,
@@ -1071,44 +1072,24 @@
 
 
 @INPROCEEDINGS{velez_comprex_2021,
-
 	author={Miguel Velez and Pooyan Jamshidi and Norbert Siegmund and Sven Apel and Christian Kästner},
-
 	booktitle=ICSE, 
-
 	title={White-Box Analysis over Machine Learning: Modeling Performance of Configurable Systems}, 
-
 	year={2021},
-
-	volume={},
-
-	number={},
-
-	pages={},
-
-	doi={},
-	publisher = ACM
+	pages={1072--1084},
+	doi={10.1109/ICSE43902.2021.00100},
+	publisher = IEEE
 }
 
-
 @INPROCEEDINGS{weber_white_2021,
-
+		year={2021},
+	title={White-Box Performance-Influence Models: A Profiling and Learning Approach},
 	author={Max Weber and Sven Apel and Norbert Siegmund},
+	journal=ICSE,
 
-	booktitle=ICSE, 
-
-	title={White-Box Performance-Influence Models}, 
-
-	year={2021},
-
-	volume={},
-
-	number={},
-
-	pages={},
-
-	doi={},
-	publisher = ACM
+	pages={1059--1071},
+	publisher=IEEE,
+	doi={10.1109/ICSE43902.2021.00099}
 }
 
 @inproceedings{shu_adversarial_2020,
@@ -1135,7 +1116,7 @@
 	institution = "University of Chicago",
 	year        = "2020",
 	number      = "13",
-	month       = "December",
+	month       = dec,
 }
 
 
@@ -1145,6 +1126,7 @@
 	author = {Wong, W E and Li, J},
 	year = {2005},
 	pages = {8},
+	doi={10.1109/APSEC.2005.39},
 }
 
 @inproceedings{wilde_early_1996,
@@ -1172,20 +1154,11 @@
 
 @INPROCEEDINGS{agrawal_fault_1995,
 
-	author={Agrawal, H. and Horgan, J.R. and London, S. and Wong, W.E.},
-
-	booktitle=ISSRE 
-
+	author={Agrawal, Hiralal and Horgan, Joseph R. and London, Saul and Wong, W. Eric},
+	booktitle=ISSRE,
 	title={Fault localization using execution slices and dataflow tests}, 
-
 	year={1995},
-
-	volume={},
-
-	number={},
-
-	pages={143-151},
-
+	pages={143--151},
 	doi={10.1109/ISSRE.1995.497652}
 }
 
@@ -1201,7 +1174,8 @@
 	title = {Reducing {Code} {Navigation} {Effort} with {Differential} {Code} {Coverage}},
 	author = {Sherwood, Kaitlin Duck and Murphy, Gail C.},
 	institution = {Department of Computer Science, University of British Columbia},
-	year        = {2008}
+	year        = {2008},
+	number={14}
 	
 }
 
@@ -1211,9 +1185,9 @@
 	journal = {Journal of Software Maintenance: Research and Practice},
 	volume = {7},
 	number = {1},
-	pages = {49-62},
+	pages = {49--62},
 	doi = {10.1002/smr.4360070105},
-	year = {1995}
+	year = {1995},
 }
 
 @inproceedings{perfAL,
@@ -1272,8 +1246,6 @@
 	doi = {10.1145/3324884.3416620},
 	booktitle = ASE,
 	pages = {684--696},
-
-	series = {ASE '20}
 }
 
 @article{laaber_emse_2021,
@@ -1299,12 +1271,13 @@
 }
 
 @INPROCEEDINGS{henardCombining2015,
-	author      = {C. {Henard} and M. {Papadakis} and M. {Harman} and Y. {Le Traon}},
+	author      = {Christopher {Henard} and Mike {Papadakis} and Mark {Harman} and Yves {Le Traon}},
 	booktitle   = ICSE,
 	title       = {{Combining Multi-Objective Search and Constraint Solving for Configuring Large Software Product Lines}},
 	year        = {2015},
-	volume      = {1},
 	pages       = {517-528},
+	publisher=IEEE,
+	doi={10.1109/icse.2015.69}
 }
 
 @inproceedings{splat_kim_2013,
@@ -1324,8 +1297,7 @@
 	title       = {{Spectrum-Based Feature Localization: A Case Study using ArgoUML}},
 	year        = {2021},
 	publisher = {ACM}
-	pages       = {},
-	intype = {to appear}
+	pages       = {to appear},
 }
 
 @inproceedings{rubin_feature_2013,
@@ -1352,34 +1324,23 @@
 }
 
 @inproceedings{sulir_annotation_2015,
-
 	author={Sulír, Matúš and Porubän, Jaroslav},
-
 	booktitle=ISCI, 
-
 	title={{Semi-automatic concern annotation using differential code coverage}},
 	year={2015},
-	pages={258-262},
-
+	pages={258--262},
 	doi={10.1109/Informatics.2015.7377843}}
 
 @ARTICLE{wong_faultloc_2016,
 
 	author={Wong, W. Eric and Gao, Ruizhi and Li, Yihao and Abreu, Rui and Wotawa, Franz},
-
 	journal=TSE, 
-
 	title={A Survey on Software Fault Localization}, 
-
 	publisher=IEEE,
 	year={2016},
-
 	volume={42},
-
 	number={8},
-
-	pages={707-740},
-
+	pages={707--740},
 	doi={10.1109/TSE.2016.2521368}}
 
 @article{perez_framing_2016,
@@ -1388,7 +1349,8 @@
 	journal={Journal of Software: Evolution and Process},
 	year={2016},
 	volume={28},
-	pages={840 - 862}
+	pages={840--862},
+	doi={10.1002/smr.1799}
 }
 
 @INPROCEEDINGS{castro_pangolin_2019,
