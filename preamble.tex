@@ -11,6 +11,11 @@
 % layout and formatting
 \usepackage{microtype}
 
+% for emergencies
+%\usepackage[subtle]{savetrees}
+
+\usepackage{paralist}
+
 \usepackage{subcaption}
 
 % configure hyperlinks 
@@ -45,11 +50,11 @@
 \usepackage[framemethod=TikZ]{mdframed}
 \newcommand{\greybox}[1]{
 	\begin{mdframed}[
-		backgroundcolor=orange!0,
+		backgroundcolor=black!3,
 		linewidth=0.2pt,
 		innerleftmargin=5pt,
 		innertopmargin=5pt,
-		roundcorner=2.5pt,
+		roundcorner=1pt,
 		]
 		%\noindent
 		#1
@@ -85,13 +90,15 @@
 	{ö}{{\"o}}1
 }
 
-\newcommand{\cova}{\makebox[0pt][l]{\color{red!15!white}\rule[-2pt]{0.92\textwidth}{8pt}}}
-\newcommand{\covb}{\makebox[0pt][l]{\color{blue!15!white}\rule[-2pt]{0.92\textwidth}{8pt}}}
-\newcommand{\covc}{\makebox[0pt][l]{\color{yellow!15!white}\rule[-2pt]{0.92\textwidth}{8pt}}}
 
-\definecolor{duplicatecheck}{HTML}{ffd9d9}
-\definecolor{autocommit}{HTML}{d9d9ff}
+\definecolor{duplicatecheck}{HTML}{ffd3b1}
+\definecolor{autocommit}{HTML}{b1c5ff}
 \definecolor{nicegreen}{HTML}{79c900}
+
+
+\newcommand{\cova}{\makebox[0pt][l]{\color{duplicatecheck}\rule[-2pt]{0.92\textwidth}{8pt}}}
+\newcommand{\covb}{\makebox[0pt][l]{\color{autocommit}\rule[-2pt]{0.92\textwidth}{8pt}}}
+\newcommand{\covc}{\makebox[0pt][l]{\color{yellow!15!white}\rule[-2pt]{0.92\textwidth}{8pt}}}
 
 % color
 % Custom commands for research questions
@@ -102,7 +109,7 @@
 		\def\arraystretch{1.3}%  1 is the default, change whatever you need
 		\begin{tabularx}{\linewidth}{p{0.12\linewidth}|p{0.75\linewidth}}
 			\rowcolor{
-				orange!0}
+				black!0}
 			$RQ_{#1}$ & \textit{#2} \\
 		\end{tabularx}
 		\egroup
@@ -114,7 +121,7 @@
 
 % Custom commands for subject systems
 \usepackage{xspace}
-\newcommand{\sosy}[1]{\textsc{\color{green!0!black}#1}\xspace}
+\newcommand{\sosy}[1]{\textsc{\color{red!50!black}#1}\xspace}
 \newcommand{\jumper}{\sosy{jump3r}}
 \newcommand{\htwo}{\sosy{h2}}
 \newcommand{\hsqldb}{\sosy{hsqlsb}}

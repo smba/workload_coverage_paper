@@ -14,11 +14,11 @@ axes[0].axvline(50, linestyle=':', color='black', linewidth=1)
 axes[1].axvline(50, linestyle=':', color='black', linewidth=1)
 
 axes[0].set_title('DUPLICATE_CHECK')
-axes[0].set_facecolor('#ffd9d9')
+axes[0].set_facecolor('#ffd3b1')
 
 
 axes[1].set_title('AUTOCOMMIT')
-axes[1].set_facecolor('#d9d9ff')
+axes[1].set_facecolor('#b1c5ff')
 
 plt.xlabel('number of insertions')
 fig.text(-0.13, 0.5, 'performance influence in milliseconds', va='center', rotation='vertical')

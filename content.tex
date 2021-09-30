@@ -26,14 +26,13 @@ a promising avenue towards obtaining generalizable and representative performanc
 
 To summarize, we make the following contributions: 
 	
-\begin{itemize}
+\begin{compactitem}
 	\item An empirical study of 29\,014 configurations and 55 workloads across 6 configurable software systems of whether and how the interaction of workloads with configuration options influences performance;
 	
 	\item An evaluation combining insights from observations of workload-specific differences of configurations, individual configuration options' influence on performance, and workload-specific coverage differences of option-specific code segments;
 
 	\item A companion Web site\footnote{\url{https://github.com/anonyms-2021/submission-448/}} with supplementary material including performance and coverage measurements, experiment workloads and configurations, as well as additional visualizations left out due to space limitations.
-	
-\end{itemize}
+\end{compactitem}
 
 \section{Background and Related Work}
 
@@ -317,7 +316,7 @@ In this vein, we show the \textit{average} number of configuration options whose
 \end{figure*}
 
 \vspace{1em}
-\greybox{\textbf{Summary} (\RQref{2}) Most workload-specific variation affects influential configuration options, while some workloads let some options become influential. For most software systems, less than 50\,\% of configuration options' influence changed substantially depending on the workload. For systems with a high variation in performance behavior across workloads (cf.~\RQref{1}), only a few configuration options' influence depends on the workload.}
+\greybox{\textbf{Summary} (\RQref{2}): Most workload-specific variation affects influential configuration options, while some workloads let some options become influential. For most software systems, less than 50\,\% of configuration options' influence changed substantially depending on the workload. For systems with a high variation in performance behavior across workloads (cf.~\RQref{1}), only a few configuration options' influence depends on the workload.}
 
 
 \subsection{Code Coverage and Performance}\label{sec:rq3}
@@ -363,12 +362,11 @@ For \jumper, although less pronounced, we see a similar trend. The performance i
 {The results for \dconvert and \jadx are the most extreme cases that we observe. For \jadx, we can infer that option code of the influential options is either executed or not, depending on the workload since most substantial variation is present for workload pairs that share no option code coverage. For \dconvert, on the other hand, at various levels of option-code similarity, we observe performance influence variation. That is, the latter is likely dominated by \textit{how} the option code is executed.\\
 
 \greybox{\textbf{Summary} (\RQref{3}):
-
-	Across the six software systems, we observe a wide variety of workload-specific effects on performance influences and option code coverage. Depending on the workload, software system and configuration option, option-code coverage (as in the case of \jadx) or option-code utilization (as in the case of \kanzi) can explain workload-specific performance variation. Both scenarios, \emph{option code coverage} making options influential and \emph{code utilization} accounting for workload-specific performance differences, are prevalent and can occur simultaneously.
+Across the six software systems, we observe a wide variety of workload-specific effects on performance influences and option code coverage. Depending on the workload, software system and configuration option, option-code coverage (as in the case of \jadx) or option-code utilization (as in the case of \kanzi) can explain workload-specific performance variation. Both scenarios, \emph{option code coverage} making options influential and \emph{code utilization} accounting for workload-specific performance differences, are prevalent and can occur simultaneously.
 }
 
 \begin{figure*}
-
+	\centering
 	\begin{subfigure}{0.33\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{images/rq3.2/batik_rq3.2.pdf}
@@ -424,14 +422,14 @@ In the light of our findings from \RQref{3}, we believe that fine-grained perfor
 
 \section{Threats to Validity}\label{sec:threats}
 
-\paragraph*{Internal Validity}\label{sec:internal_validity}
+%\paragraph*{Internal Validity}\label{sec:internal_validity}
 Threats to \emph{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate this threat by repeating each experiment five times and reporting the median as a robust measure. For \htwo, we confirmed a negligible measurement variation in a separate pre-study.
 Another potential threat is that the coverage analysis with \mbox{\textsc{JaCoCo}} entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario but thus introduced only negligible variation and overhead.
 
-\paragraph*{External Validity}\label{sec:external_validity}
+%\paragraph*{External Validity}\label{sec:external_validity}
 The selection of subject systems all written in Java poses a threat to \emph{external validity}. While our motivation for this selection is primarily practical (cf. Section~\ref{sec:setup}), we mitigate this threat by selecting subject systems from a variety of application domains (cf.~Table~\ref{tab:subject_systems}). Nonetheless, one cannot necessarily conclude that our results hold for other domains and programming languages. 
 
-\paragraph*{Construct Validity}\label{sec:construct_validity}
+%\paragraph*{Construct Validity}\label{sec:construct_validity}
 Regarding \emph{construct validity}, the profiler \textsc{JaCoCo} instruments Java byte code instructions rather than statements, which leads to some minor imprecision when mapping covered instructions back to the original statements. Transitively, this also affects the precision of our feature location (cf. Section~\ref{sec:rq3}). This drawback, however, is not limited to this particular profiler but applies to most profilers operating on byte code. 
 Superimposition in our feature location technique is sound, but, by design, incomplete, since no set of workloads is guaranteed to cover all feature code. We selected a variety of different workloads as a countermeasure, yet our study is exploratory. 
 
