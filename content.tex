@@ -1,6 +1,7 @@
 %\clearpage
 \section{Introduction}
-%\subsection*{Motivation}
+\input{sections/introduction.tex}
+\begin{comment}
 Most software systems can be customized via configuration options to meet user demands. The selection of configuration options can enable desired functionality (features) or tweak non-functional aspects of a software system, such as improving performance or energy consumption. 
 The relationship of configuration choices and their influence on performance has been extensively studied in literature.
 The backbone of performance estimation is a model that maps a given configuration to the estimated performance value. 
@@ -29,17 +30,19 @@ To summarize, we make the following contributions:
 
 	\item A companion Web site\footnote{\url{https://github.com/anonyms-2021/submission-448/}} with supplementary material including performance and coverage measurements, experiment workloads and configurations, as well as additional visualizations left out due to space limitations.
 \end{compactitem}
-
+\end{comment}
+\clearpage
 \section{Background and Related Work}
 
 \begin{figure}
-	\begin{subfigure}[l]{0.63\linewidth}
-		\lstinputlisting[escapechar=\%,label=lst:intro]{examples/introduction.cc}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}[l]{0.35\linewidth}
-		\includegraphics[width=1\linewidth]{images/influences.pdf}
-	\end{subfigure}
+	%\begin{subfigure}[l]{0.63\linewidth}
+	%	\lstinputlisting[escapechar=\%,label=lst:intro]{examples/introduction.cc}
+	%\end{subfigure}
+	%\hfill
+	%\begin{subfigure}[l]{0.35\linewidth}
+	%	\includegraphics[width=1\linewidth]{images/influences.pdf}
+	%\end{subfigure}
+	\color{red}(add meaningful graphic here)
 	\caption{Illustrative example (left) with workload-dependent performance influences of configuration options \texttt{DUPLICATE\_CHECK} and \texttt{AUTOCOMMIT} (right).}
 	\label{fig:intro}
 \end{figure}
