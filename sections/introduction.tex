@@ -1,0 +1,23 @@
+
+\paragraph{Context}
+Most software systems today can be customized via configuration options to meet user demands. The selection of configuration options can enable desired functionality or tweak non-functional aspects of a software system, such as improving performance or energy consumption. The relationship of configuration choices and their influence on performance has been extensively studied in literature. The backbone of performance estimation are prediction models that map a given configuration to the estimated performance value. Learning performance models relies on a training set of configuration-specific performance measurements~~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso}. For established approaches, however, such observations usually only employ a single workload which aims at emulating a specific real-world application scenario.
+
+\paragraph{Motivation}
+The choice of the workload (i.e., input fed to the software system) is known to influence the performance of (configurable) software systems in different ways. Besides trivial interactions, such as performance scaling with the complexity or size of a workload, the choice of workload can result in more pronounced performance idiosyncrasies: For instance, \citeauthor{alves_sampling_2020} have shown that the video transcoder x264 exhibits different performance distributions depending on the video source file~\cite{alves_sampling_2020} and X have demonstrated this for stream processing applications. That is, we can infer that (even when accounting for scaling) a performance model will generalize to arbitrary workloads and make meaningful or usable estimations if the workload is changed. 
+
+To overcome this limitation, in literature two different directions have been pursued, either adapting an existing model specifically  to a changed environment or considering the input fed to a software system as a further dimension of the prediction model. 
+
+The former direction uses transfer learning techniques, where, given an existing performance model, in a separate step only the difference to a new environment is learned. Such a transfer function, thus, encodes which configuration options’ influence on performance is sensitive to workload variation, more specifically the differences between the source and target workloads. While transfer learning is an effective strategy that is not limited to varying workloads [Jamshidi], but can also be applied to different versions~\cite{martin_transfer_2021}, or hardware setups~\cite{}, its  limitation is that the transfer function is specific to a difference in environment.
+
+By contrast, a “generalization” of transfer functions is to consider the input fed to a software system as a further dimension for modeling performance. Here,  a workload can be characterized by properties that – individually or in conjunction with software configuration options – influence performance. This has shown to be effective for instance by \citeauthor{koc_satune_2021} for program verification and enables the tuning of configurations depending on the workload~\cite{koc_satune_2021}. The main shortcoming of such a generalist strategy, however, is that it a) requires a characterization of the workload (variability model), which is highly application-specific and b) such characteristics are not always trivial to find.
+
+\paragraph{Problem}To take a middle course between exhaustive workload characterization and learning specific transfer knowledge, we argue its key for practitioners to understand for a software system,
+
+\begin{compactitem}
+	\item Which configuration options are sensitive to different workloads (fuzzing), again this remains a bottomless pit
+	\item What drives a configuration options sensitivity to different workloads and
+	\begin{compactitem}
+		\item Example 1: If a workload conditioned the execution of some option-specific functionality, simple coverage analysis could be a first indicator on whether that option is influential or not (qualitative sensitivity)
+		\item Example 2: On the other hand, if the execution of option-specific code is not conditioned by the workload, but the workload determines how it is executed, more complex analyses are required to identify meaningful workload characteristics.  
+	\end{compactitem}
+\end{compactitem}
