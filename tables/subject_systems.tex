@@ -1,41 +1,21 @@
-\begin{tabularx}{\textwidth}{lllrrr|XXXX}
+\begin{tabularx}{\linewidth}{lllrrr}
 		\toprule
-		\multicolumn{6}{c}{\textbf{Subject System Characteristics}} & \multicolumn{4}{c}{\textbf{Non-Functional Properties}} \\
+		\multicolumn{6}{c}{\textbf{Subject System Characteristics}} \\
 		\midrule
-		Software System &  Application Type & Revision & \#\,Options & \#\,Configurations & \#\,Workloads & RT & CR & TP & MU \\
+		Software System &  Application Type & Revision & \#\,O & \#\,C & \#\,W  \\
 		\midrule
-		\jumper & Audio Encoder & 1.0.4 & 36 & 4\,227 & 6 & \checkmark & \checkmark &  & \checkmark  \\
+		\jumper & Audio Encoder & 1.0.4 & 36 & 4\,227 & 6   \\
 		
-		\kanzi & File Compressor & 1.8 & 29 & 4\,112 & 9 & \checkmark & \checkmark &  & \checkmark  \\
+		\kanzi & File Compressor & 1.8 & 29 & 4\,112 & 9 \\
 			
-		\dconvert & Image Scaling & 1.0.0-alpha7 & 23 & 6\,764 & 12 & \checkmark  &  &  & \checkmark  \\
+		\dconvert & Image Scaling & 1.0.0-alpha7 & 23 & 6\,764 & 12  \\
 				
-		\htwo & Embedded Database & 1.4.200 & 17 & 1\,993  & 8 &   &  & \checkmark &  \\
+		\htwo & Embedded Database & 1.4.200 & 17 & 1\,993  & 8  \\
 		
-		\batik & SVG Rasterizer & 1.14 & 20 & 1\,919 &  11 & \checkmark &   &  & \checkmark  \\
+		\batik & SVG Rasterizer & 1.14 & 20 & 1\,919 &  11  \\
 		
-		\jadx & Java Decompiler & 1.2.0 & 20 & 9\,999 & 9 & \checkmark &  &  & \checkmark  \\
-			
-		%\textsc{hsqldb} & Embedded Database & 2.4.1 & - & - & 8  &  &  & \xmark &  \\
-		
-		%\rowcolor{Dandelion!20}	
-		%--- micro-\textsc{hsqldb} & Embedded Database & 2.4.1 & - & - & 34  &  &  & $\surd$ &  \\
+		\jadx & Java Decompiler & 1.2.0 & 20 & 9\,999 & 9  \\
+\bottomrule
 
-		%\midrule
-		%\rowcolor{Black!10}	
-		%$\mu$-\textsc{hsqldb} & Embedded Database & 2.4.1 & - & - & 34  &  &  & $\surd$ &  \\
-		
-		%\rowcolor{Black!10}	
-		%$\mu$-\textsc{h2} & Embedded Database & 1.4.200 & - & -  & 34 &   &  & $\surd$ &  \\
-		
-		%\midrule		
-		%\rowcolor{Black!10}
-		%\textsc{Apache Daffodil} & DFDL Converter & 3.1.0 & - & - & -  & $\surd$ &  &   & %$\surd$ \\
-		
-		
-		\bottomrule
-	\end{tabularx}
-	
-	{\vspace{2mm}
-	{\footnotesize Abbreviations:$\quad$RT: \textit{Response Time}, CR: \textit{Compression Ratio}, TP: \textit{Throughput}, MU: \textit{Memory Usage}}}
-	\vspace{0.1cm}
+\end{tabularx}
+{\textit{\#\,O: No. of options, \#\,C: No. of configurations, \#\,W: No of. workloads}}

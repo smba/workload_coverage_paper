@@ -111,13 +111,13 @@ For \jumper, we selected WAVE audio files that, among others, vary in the sampli
 \jadx is a decompiler and deobfuscator for Android applications, for which we selected a range of popular APK packages as workloads, varying in application domain and size.
 \htwo is a relational database that can be integrated into Java applications or used as a standalone database. We used a selection of application-level benchmarks from the \textsc{OLTPBench}~\cite{difallah_oltp_2013}, a load generator for databases that allows for testing benchmarks, such as \textsc{TPC-C}. Overall, the selection of the workloads was driven by diversity to make use of different functionality of a subject system and by size to probe for scaling and utilization factors.
 \end{comment}
-\begin{table*}[ht!]
+\begin{table}[ht!]
 	\footnotesize
 		\centering
 		\caption{Subject system characteristics}
 		\input{tables/subject_systems.tex}
 		\label{tab:subject_systems}
-	\end{table*}
+	\end{table}
 
 \paragraph*{Configuration Sampling}\label{sec:sampling}
 For each subject system, we sampled a set of configurations. Exhaustive coverage of the configuration space is infeasible due to combinatorial explosion~\cite{henardCombining2015}. We combine several coverage-based sampling strategies and uniform random sampling into an \emph{ensemble} approach: To study the influence of single configuration options, we employ option-wise and negative option-wise sampling~\cite{siegmundPerformanceinfluenceModelsHighly2015}, where each option is enabled once, or all except one, respectively. In the same way, pair-wise sampling applies this schema to study influences of two-way interactions between configuration options. Interactions of higher degree can be found accordingly, which, however, is computationally prohibitively expensive~\cite{henardCombining2015}. Instead, we augment our sample set with a random sample that is, at least, twice the size of the coverage-based sample. To achieve a uniform random sample, we used \emph{distance-based sampling}~\cite{kaltenecker_distance-based_2019}. The variability models, as well as sample sets, can be found on the paper's companion Web site.
@@ -154,9 +154,7 @@ If the distributions can be transformed using linear transformation, such as sca
 \end{tabular}
 
 \paragraph*{Results}
-We found that the performance behavior of the six configurable software systems varied widely. We illustrate the results in Table~\ref{tab:categorization}. For half of the software systems (\kanzi, \batik, and \jadx), in the majority of workload pairs, the resulting performance distributions could be transformed using a linear transformation. For \jumper, more than half of the workload pairs are accountable to monotonic transformation. For \dconvert and \htwo, the majority of workload comparisons resulted in dissimilar performance distributions, however, a substantial amount was linearly transformable. For \jumper and \jadx, we found no case of non-transformable performance distributions, whereas the other four software systems exhibited dissimlar performance distributions under, at least, one workload. For \jadx, all performance distributions were linearly transformable.
-
-In Figure~\ref{fig:diff_performance_similarity}, we provide a more detailed breakdown of which workloads resulted in performance distributions dissimilar to other ones in terms of a correlation matrix (Kendall's $\tau$) for each pair of workloads. Notable for \dconvert is the behavior for SVG workloads (and one JPG workload), which resulted in distributions dissimilar to the remaining workloads. For \htwo, the workloads \texttt{ycsb-2400} and \texttt{tpcc-8} are dissimilar to all other workloads, including their counterparts with a lower scalefactor (600 and 2, respectively).
+\ldots
 
 \begin{table}
 	\footnotesize
@@ -217,7 +215,8 @@ In Figure~\ref{fig:diff_performance_similarity}, we provide a more detailed brea
 	\label{fig:diff_performance_similarity}
 \end{figure*}
 \vspace{1em}
-\greybox{\textbf{Summary} (\RQref{1}): Not all software systems' performance behavior changes similarly across workloads. For \dconvert, performance behavior under SVG workloads is different to most other workloads, and for \htwo, performance behavior under workloads with higher scale factors is more likely to be dissimilar to behavior under other workloads.}
+
+\greybox{\textbf{Summary} (\RQref{1}): \ldots}
 
 
 \subsection{Performance Model Similarity}\label{sec:rq2}
@@ -271,11 +270,14 @@ From the comparison of the performance model coefficients, we can answer \RQref{
 	\label{tab:average_changes}
 \end{table}
 
-\paragraph*{Results} 
+
+\paragraph*{Results} \ldots
+\begin{comment}
 We show the distribution of the relative performance model coefficients in the box plots in Figure~\ref{fig:feature_influence_actross_workloads}. We see that, for all software systems, only a small number of configuration options influences performance. While for most configuration options, we observe substantial workload-specific variation if they are influential options. Notably though, for \dconvert (option \texttt{png}) and \kanzi (e.g., option \texttt{BWT}), we see that otherwise non-influential options become influential. Moreover, for \batik, \dconvert, and \kanzi, we observe a large number of outliers, which indicates that for these software systems, some options' performance influence can be quite workload-specific.
 To further quantify the cases of such volatile configuration options, we break down the numbers of how many configuration options changed in Tables~\ref{tab:total_changes} and~\ref{tab:average_changes}. In Table~\ref{tab:average_changes}, we present the total number of configuration options whose relative performance influence was different in, at least, one comparison of workload-specific performance models. In place of a fixed absolute difference threshold, we report the number of configurations at five different thresholds. For \jumper and \kanzi, more than half of the configuration options' influences changed, at least, by $0.2$, whereas, for the remaining software systems, less than half of the options were affected.
 
 In this vein, we show the \textit{average} number of configuration options whose influence changed, at least, by $t$ in Table~\ref{tab:average_changes}. We see that, across all software systems and thresholds, the average number of configuration options is consistently and substantially lower than the total number of configuration options from Table~\ref{tab:total_changes}. This indicates that not for all workload pair comparisons the same number of configuration options has changed their influence. Notable is that, for the systems for which we have observed a large share of dissimilar performance distributions in \RQref{1}, \dconvert, and \htwo, only a few configuration options appear to be influenced by the choice of workloads.
+\end{comment}
 
 \begin{figure*}
 	\begin{minipage}{0.33\textwidth}
@@ -320,7 +322,7 @@ In this vein, we show the \textit{average} number of configuration options whose
 \end{figure*}
 
 \vspace{1em}
-\greybox{\textbf{Summary} (\RQref{2}): Most workload-specific variation affects influential configuration options, while some workloads let some options become influential. For most software systems, less than 50\,\% of configuration options' influence changed substantially depending on the workload. For systems with a high variation in performance behavior across workloads (cf.~\RQref{1}), only a few configuration options' influence depends on the workload.}
+\greybox{\textbf{Summary} (\RQref{2}): \ldots}
 
 
 \subsection{Code Coverage and Performance}\label{sec:rq3}
@@ -358,15 +360,9 @@ For each option and pair of workloads, in the following, we relate the differenc
 
 
 \paragraph*{Results}
-In Figure~\ref{fig:diff_performance_option_coverage}, we show the relationship between the similarity in option code coverage on the x-axis and the difference between the option's relative performance influence. Alongside the scatter plots for each software system, we provide histograms of the marginal distributions of both dimensions in separately. 
-For \batik, \dconvert, and \jumper, we observe both high and low similarity of option code coverage. For \htwo and \jadx, most workloads appear to cover disjoint parts of the option code, whereas for \kanzi, most workloads show high similarity of option code. 
-For performance influence, \dconvert and \jadx show a clear picture: For \dconvert, the variation of performance influences is completely independent of the variation of coverage. For \jadx, most performance influence variation occurs when no similar code is executed. In the light of the results from \RQref{2}, where only a few options for \jadx are influential and exhibit notable variation, the majority of performance influence variation is accounted for by these options. 
-For \jumper, although less pronounced, we see a similar trend. The performance influence differences for a code coverage similarity of 1 are still substantial. 
-\htwo and \batik show a trend in the opposite direction as the cases of \jadx and \jumper, where performance influence variation is highest for higher option-code coverage similarities. We cannot draw a clear picture for \kanzi, where we observe little variation in option code coverage.
-{The results for \dconvert and \jadx are the most extreme cases that we observe. For \jadx, we can infer that option code of the influential options is either executed or not, depending on the workload since most substantial variation is present for workload pairs that share no option code coverage. For \dconvert, on the other hand, at various levels of option-code similarity, we observe performance influence variation. That is, the latter is likely dominated by \textit{how} the option code is executed.\\
+{\color{red}\ldots}
 
-\greybox{\textbf{Summary} (\RQref{3}):
-Across the six software systems, we observe a wide variety of workload-specific effects on performance influences and option code coverage. Depending on the workload, software system and configuration option, option-code coverage (as in the case of \jadx) or option-code utilization (as in the case of \kanzi) can explain workload-specific performance variation. Both scenarios, \emph{option code coverage} making options influential and \emph{code utilization} accounting for workload-specific performance differences, are prevalent and can occur simultaneously.
+\greybox{\textbf{Summary} (\RQref{3}):\ldots
 }
 
 \begin{figure*}
@@ -405,7 +401,8 @@ Across the six software systems, we observe a wide variety of workload-specific 
 	\label{fig:diff_performance_option_coverage}
 \end{figure*}
 
-\section{Discussion}
+\section{Discussion \& Lessons Learned} 
+\begin{comment}
 The results from our evaluation make a case for incorporating workload characteristics as independent variables into the analysis of the performance of configurable software systems. We discuss this facet in detail in the following and set the results into the context of transfer learning for performance models and give an outlook on methodologies to capture workload-specific performance variation.
 
 \subsection{Workload-aware Performance Models}
@@ -423,21 +420,24 @@ and workload pair provides easily expliotable similarities. That is, learning a 
 \subsection{Capturing Workload-specific Performance Variation}
 In our experiments, we used statement coverage as a proxy metric to describe \emph{what} option-specific code is executed, but cannot make statements about \emph{how} a workload exercised the covered code. We can infer only that variation in the latter most likely accounts for workload-specific performance variation. Aside from incorporating workload characteristics as features in a workload-aware performance model, performance measurement at a finer granularity, such as method or statement level, is a methodology that might be beneficial to our analysis. Work closest to such a methodology is the white-box profiling approach by \citeauthor{weber_white_2021}~\cite{weber_white_2021}. They use a fine-grained profiler to assess at method level which factors, either configuration options or application context (e.g., method arguments), account for a method's performance. 
 In the light of our findings from \RQref{3}, we believe that fine-grained performance measurements are a worthwhile strategy to identify code sections whose performance is influenced by the workload and options in concert.
+\end{comment}
 
 \section{Threats to Validity}\label{sec:threats}
 
-%\paragraph*{Internal Validity}\label{sec:internal_validity}
+\subsection{Internal Validity}\label{sec:internal_validity}
 Threats to \emph{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate this threat by repeating each experiment five times and reporting the median as a robust measure. For \htwo, we confirmed a negligible measurement variation in a separate pre-study.
 Another potential threat is that the coverage analysis with \mbox{\textsc{JaCoCo}} entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario but thus introduced only negligible variation and overhead.
 
-%\paragraph*{External Validity}\label{sec:external_validity}
+\subsection{External Validity}\label{sec:external_validity}
 The selection of subject systems all written in Java poses a threat to \emph{external validity}. While our motivation for this selection is primarily practical (cf. Section~\ref{sec:setup}), we mitigate this threat by selecting subject systems from a variety of application domains (cf.~Table~\ref{tab:subject_systems}). Nonetheless, one cannot necessarily conclude that our results hold for other domains and programming languages. 
 
-%\paragraph*{Construct Validity}\label{sec:construct_validity}
+\subsection{Construct Validity}\label{sec:construct_validity}
 Regarding \emph{construct validity}, the profiler \textsc{JaCoCo} instruments Java byte code instructions rather than statements, which leads to some minor imprecision when mapping covered instructions back to the original statements. Transitively, this also affects the precision of our feature location (cf. Section~\ref{sec:rq3}). This drawback, however, is not limited to this particular profiler but applies to most profilers operating on byte code. 
 Superimposition in our feature location technique is sound, but, by design, incomplete, since no set of workloads is guaranteed to cover all feature code. We selected a variety of different workloads as a countermeasure, yet our study is exploratory. 
 
 \section{Conclusion}
+\begin{comment}
+
 Software performance emerges from a multitude of factors. Configuration options have been widely studied as a key factor and used for learning performance models.  When learning configuration-dependent performance models, workloads as an orthogonal factor have so far been overlooked---most approaches rely on performance observations using a single workload. This raises the question of how generalizable existing models are to other workloads. 
 Understanding to what extent configuration and workload---individually and combined---are responsible for the performance variation of a software system is key to evaluate whether one can transfer existing performance models to new workloads, or has to learn performance models from scratch for new workloads.
 
@@ -448,3 +448,4 @@ We conclude that identifying performance-relevant workload characteristics and i
 The wide variety of workload-specific effects on performance that we observe can challenge the feasibility of existing transfer learning approaches for performance models. In essence, one cannot assume that an existing  workload-specific performance model is easily transferable to a new workload with little effort. While transfer learning can capture the majority of workload-specific differences in performance influences, we conclude that, at large, workload-aware performance models may be a better choice.
 
 In further work, we will incorporate workload characteristics as well as further factors of variation, such as hardware variability and the evolution of configurable software systems, into our analysis.
+\end{comment}
