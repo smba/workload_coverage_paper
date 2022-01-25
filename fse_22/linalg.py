@@ -144,6 +144,6 @@ for system in systems:
         
         plt.title('{}_{}_kendall.eps'.format(system, kpi))
         plt.show()
-        #plt.savefig('{}_{}_kendall.eps'.format(system, kpi), bbox_inches='tight')
-        #plt.clf()
+        plt.savefig('grafix/{}_{}_kendall.eps'.format(system, kpi), bbox_inches='tight')
+        plt.clf()
         
