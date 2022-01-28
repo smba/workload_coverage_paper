@@ -111,7 +111,7 @@
 		\def\arraystretch{1.3}%  1 is the default, change whatever you need
 		\begin{tabularx}{\linewidth}{p{0.12\linewidth}|p{0.75\linewidth}}
 			\rowcolor{
-				black!0}
+				brown!10}
 			$RQ_{#1}$ & \textit{#2} \\
 		\end{tabularx}
 		\egroup
@@ -123,7 +123,7 @@
 
 % Custom commands for subject systems
 \usepackage{xspace}
-\newcommand{\sosy}[1]{\textsf{\color{indigo!78!white}#1}\xspace}
+\newcommand{\sosy}[1]{\textsf{\color{indigo!78!black}#1}\xspace}
 \newcommand{\jumper}{\sosy{jump3r}}
 \newcommand{\htwo}{\sosy{h2}}
 \newcommand{\hsqldb}{\sosy{hsqlsb}}
@@ -131,3 +131,13 @@
 \newcommand{\batik}{\sosy{batik}}
 \newcommand{\dconvert}{\sosy{dconvert}}
 \newcommand{\jadx}{\sosy{jadx}}
+
+\definecolor{cs-color-raw}{HTML}{ffa822}
+\definecolor{lt-color-raw}{HTML}{134e6f}
+\definecolor{xmt-color-raw}{HTML}{ff6150}
+\definecolor{nmt-color-raw}{HTML}{1ac0c6}
+
+\colorlet{cs-color}{cs-color-raw!28!white}
+\colorlet{lt-color}{lt-color-raw!28!white}
+\colorlet{xmt-color}{xmt-color-raw!28!white}
+\colorlet{nmt-color}{nmt-color-raw!28!white}
