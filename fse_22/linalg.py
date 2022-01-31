@@ -60,6 +60,14 @@ for system in systems:
             #print(lm.coef_)
             coefs = {c: lm.coef_[0][i] for i, c in enumerate(X.columns)}
             
+            if system == 'h2':
+                plt.figure(figsize=(4,2))
+                sns.histplot(df[kpi].values.reshape(-1, 1), bins=75)
+                plt.xlabel('Throughput (transactions/sec.)')
+                plt.ylabel('Frequency')
+                plt.title(w)
+                plt.savefig('h2_{}.eps'.format(w), bbox_inches='tight')
+            
             coefficients.append(coefs)
             
         # get worklaod with GREATEST absolute influence
