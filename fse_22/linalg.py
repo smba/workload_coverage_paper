@@ -9,6 +9,7 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from pycosa.util import remove_multicollinearity, get_vif
+from pycosa.plotting import mirrored_histogram
 import scipy.cluster.hierarchy as spc
 
 import networkx as nx
@@ -17,6 +18,16 @@ import math
 import numpy as np
 
 from matplotlib import gridspec
+
+import sys
+
+
+data = pd.read_csv('datax/h2_measurements.csv')
+da = data[data['workload'] == 'tpcc-2']['throughput']
+db = data[data['workload'] == 'tpcc-8']['throughput']
+
+mirrored_histogram(db, da, 'scale factor 8', 'scale factor 2', bandwith=0.02, figsize=(6, 2), export_name='h2_motivation.eps', xlabel='Transactions / Sec.')
+sys.exit()
 
 def outlier_treatment(datacolumn):
     sorted(datacolumn)
@@ -34,6 +45,7 @@ systems = {
     'jadx': ['time', 'max-resident-size'],
     'dconvert': ['time', 'max-resident-size'],    
 }
+
 
 # CONSTANTS
 STDEV_THRESHOLD = 0.05
