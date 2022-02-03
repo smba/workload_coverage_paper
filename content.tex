@@ -90,8 +90,6 @@ To take a middle path and change the our point of view to a grey-box perspective
 
 The remainder of this paper is organized as follows. In the following Section 3, we present our case study and methodology. Section 4 presents the study results Section 5 presents our results on categorizing types of input sensitivity. We discuss implications for industry and research in Section 6, review related in Section 7 and summarize our findings in Section 8.
 
-
-\clearpage
 \section{Study Design}~\label{sec:study}
 We have conducted an empirical study of a multitude of configurations and workloads for six configurable software systems. In the following, we describe the general experiment setup and study design as well as research questions and results. We make all performance measurement data, configurations, workloads, and learned performance models available on this paper's companion Web site.
 
@@ -115,11 +113,14 @@ Our categorization of the differences between workload-specific performance dist
 \RQ{2}{To what extent can influences of individual configuration options depend on the workload?}
 
 \subsubsection{Possible Causes of Input Sensitivity}
-To start to translate our findings of performance variation under varying workloads from \RQref{1} and \RQref{2} into actionable strategies, we require insights about how the workload interacts with configuration options. At code level, we outline two possible scenarios: First, option-specific is only covered under a specific workload, so that we can observe its only influence under that workload. This is the case for configuration option \texttt{AUTOCOMMIT} in the introductory example from Figure~\ref{fig:intro}. Note that, while this particular option's influence scales with the workload size, the aforementioned dependency would also remain if this option's influence was constant instead. Second, the option's influence is determined by how the code of the option is executed. That is, it is covered regardless of the workload, but its effect depends on workload characteristics such as for option \texttt{AUTOCOMMIT} in Figure~\ref{fig:intro}.
+To start to translate our findings of performance variation under varying workloads from \RQref{1} and \RQref{2} into actionable strategies, we require insights about how the workload interacts with configuration options. At code level, we outline two possible scenarios: First, option-specific is only covered under a specific workload, so that we can observe its only influence under that workload. 
+
+\begin{comment}
+This is the case for configuration option \texttt{AUTOCOMMIT} in the introductory example from Figure~\ref{fig:intro}. Note that, while this particular option's influence scales with the workload size, the aforementioned dependency would also remain if this option's influence was constant instead. Second, the option's influence is determined by how the code of the option is executed. That is, it is covered regardless of the workload, but its effect depends on workload characteristics such as for option \texttt{AUTOCOMMIT} in Figure~\ref{fig:intro}.
 Depending on the scenario and software system, knowledge of where (for which options) and how (by option-code \textit{coverage} or option-code \textit{usage}) configurations and workloads interact can help to choose the right tool when modeling performance for configurable software systems under varying workloads: In the case of option \texttt{DUPLICATE\_CHECK}, it is easier to learn whether and how the option influence scales with the workload size, whereas, for \texttt{AUTOCOMMIT}, without knowledge about the code base, it is challenging to identify the more complex relationship.
 
 In the last part of this evaluation, we shed light on this aspect and explore the relationship between the execution of configurable software systems and the observed performance and answer the following research question:
-
+\end{comment}
 \RQ{3}{To what extent do influences of configuration options on performance and option-specific code coverage depend on the workload?}
 
 \subsection{Methodology}
@@ -203,24 +204,30 @@ The selection of subject systems all written in Java poses a threat to \emph{ext
 Regarding \emph{construct validity}, the profiler \textsc{JaCoCo} instruments Java byte code instructions rather than statements, which leads to some minor imprecision when mapping covered instructions back to the original statements. Transitively, this also affects the precision of our feature location (cf. Section~\ref{sec:rq3}). This drawback, however, is not limited to this particular profiler but applies to most profilers operating on byte code. 
 Superimposition in our feature location technique is sound, but, by design, incomplete, since no set of workloads is guaranteed to cover all feature code. We selected a variety of different workloads as a countermeasure, yet our study is exploratory. 
 
-%\clearpage
+\clearpage
 \section{Study Results}
-\subsection{Input Sensitivity of Performance Distributions}\label{sec:rq1}
-\paragraph*{Operationalization}
-We address this research question by comparing workload-specific performance distributions obtained from our experiments (cf. Section~\ref{sec:study}). To this end, we investigate whether any two distributions obtained from two different workloads can be transformed into each other, or are not related in any way. As no single-valued metric can reliably describe the above properties, we employ an aggregate of multiple metrics: 
-If the distributions can be transformed using linear transformation, such as scaling and shifting, we expect a high linear correlation, which we measure by Pearson’s correlation coefficient (\emph{Pearson's~r}). As an additional metric, we use Kendall’s rank correlation coefficient (\emph{Kendall's~$\tau$}) to test for further possible transformations. As rank correlation usually subsumes linear correlation, a low linear but high rank correlation indicates that only a non-linear transformation is possible. In the case where rank correlation does not indicate a relationship, we consider the distributions dissimilar. From these three metrics, we classify the pairs of workload-specific distributions into three different categories.
+\subsection{Comparing Performance Distributions}\label{sec:rq1}
+\subsubsection{Operationalization}
+We approach \RQref{1} by pairwisely comparing the performance distributions from different workloads (cf. the comparison in Figure~\ref{fig:h2_intro}) and investigate whether any two distributions are similar or, if not, can be transformed into each other. For the latter case, we are specifically interested in what type of transformation is necessary as this determines \textit{how} complex a workload interacts with configuration options. We categorize each pair of workloads with respect to the following aspects: 
 
-{\color{purple}Note that we use the absolute value of both correlation coefficients (denoted by $r^*$ and $\tau^*$), respectively since we are testing for the type of relationship, but not the direction of correlation.\todo{add evans rule for interpretation and motivation}}
+\begin{compactenum}
+	\item \textbf{Similarity}: As a sanity check, we first ask whether two performance distributions are equal. Such distributions are ususally multi-modal and/or long-tailed~\cite{curtsinger_stabilizer_2013,maricq2018taming}, which fails to meet the requirements for existing parametric siginificance tests. Instead, we employ the Wilcoxon signed-rank test~\cite{lovric_international_2010} to assess whether varying the workload affects configuration performance. If we can reject the null hypothesis $H_0$ at significance level $\alpha~=~0.95$, we consider the distributions dissimilar. In addition, to account for account for overpowering due high and different sample sizes (cf.~Table~\ref{tab:subject_systems}), we report effect sizes to asses whether the effect attributed to varying the workload is negligible or not. We use Vargha and Delaney's $A$ measure~\cite{vargha_delaney_2000} and their proposed threshold of {\color{red}$A \geq 0.7$}, indicating a large effect.
+	
+	\item \textbf{Linear Correlation}: If both performance distirbutions shifted by a constant value or scaled by a constant factor. To test for this case, we compute for each pair of distributions Pearson's $r$ correlation coefficient. To discard the sign of relationship, we use the absolute value, henceforth $r^*$ and follow {\color{red}Someone's rule} for interpretation, where $\color{red}r^* >0.6$ indicates a strong linear relationship, one can employ a linear transformation. 
+	\item \textbf{Monotonous Correlation}: Similarly to the previous aspect and last, we test whether there exists a monotonous relationship between the two performance distributions. We use Kendall's $\tau$~\cite{kendall1938new} rank correlation coefficient and follow {\color{red}Evan's} rule for interpretation, where $\color{red}\tau > 0.7$ indicates a strong monotonous relationship.
+\end{compactenum}
+
+{\color{black} Based on these three tests and metrics, we composed four categories, which each pair of performance distributions can be categorized into. If we cannot reject $H_0$, we consider them identical and as similar distributions (\textsf{\colorbox{cs-color}{SD}}). If both distributions exhibit a strong linear relationship, we classify them as linearly transformable (\textsf{\colorbox{lt-color}{LT}}). If we observe a strong monotonous, but not a linear relationship, we classify such pairs as exclusively monotonously transformable into a separate category (\textsf{\colorbox{xmt-color}{XMT}}). Last, if the comparison yields no monotonous relationship, we can only transform them using non-monotonous methods (\textsf{\colorbox{nmt-color}{NMT}}). We summarize the category criteria as well as the category counts in Table~\ref{tab:categorization}. 
 
 \begin{table}[h!]
 	\footnotesize
 	\caption{Categorization and category counts of configuration-specific performance distributions across workload pairs}
 	\centering
-\begin{tabular*}{\linewidth}{lp{4.5cm}p{3cm}}	
+\begin{tabular*}{\linewidth}{lp{4.4cm}p{3cm}}	
 	\toprule
 	 \textbf{Abbrev.} & \textbf{Category} & \textbf{Criteria}\\
 	 \midrule
-	 \cellcolor{cs-color}\textsf{CS} &{Similar under constant shift} & $p < 0.05$ for KS test\\
+	 \cellcolor{cs-color}\textsf{SD} & {Similar distributions} & {$H_0$ not rejected} \\
 	 \cellcolor{lt-color}\textsf{LT} & {Linear transformation} & $r^* \geq 0.6$ \\
 	\cellcolor{xmt-color}\textsf{XMT} & {Non-linear, but monotonous transformation} & $r^* < 0.6 $ and $ \tau^* \geq 0.6$ \\
 	\cellcolor{nmt-color}\textsf{NMT} & {Non-monotonous transformation}  & (otherwise) \\%$p < 0.05$ and $\tau < 0.6$ \\
@@ -228,7 +235,7 @@ If the distributions can be transformed using linear transformation, such as sca
 \end{tabular*}\\
 \begin{tabular}{lrrrrrrrr}	
 	\toprule
-	\textbf{Subject System} & \multicolumn{2}{c}{\textbf{\textsf{CS} Pairs}} & \multicolumn{2}{c}{\textbf{\textsf{LT} Pairs}} & \multicolumn{2}{c}{\textbf{\textsf{XMT} Pairs}} & \multicolumn{2}{c}{\textbf{\textsf{NMT} Pairs}}\\
+	\textbf{Subject System} & \multicolumn{2}{c}{\textbf{\textsf{SD} Pairs}} & \multicolumn{2}{c}{\textbf{\textsf{LT} Pairs}} & \multicolumn{2}{c}{\textbf{\textsf{XMT} Pairs}} & \multicolumn{2}{c}{\textbf{\textsf{NMT} Pairs}}\\
 	 & \textit{abs.} & \textit{rel.} & \textit{abs.} &\textit{ rel.} & \textit{abs.} & \textit{rel.}& \textit{abs.} & \textit{rel.}\\
 	\midrule
 	\jumper & 1 & 42\,\% & 1 & 42\,\% & 1 & 42\,\% & 1 & 42\,\%\\
@@ -242,9 +249,20 @@ If the distributions can be transformed using linear transformation, such as sca
 \label{tab:categorization}
 \end{table}
 
+\subsubsection{Results}
+{\color{black!40!white}\blindtext}
+\vspace{2mm}
 \greybox{\textbf{Summary} (\RQref{1}): \ldots}
 
 \subsection{Input Sensitivity of Options}\label{sec:rq2}
+
+\subsubsection{Operationalization}
+{\color{black!40!white}\blindtext}
+\subsubsection{Results}
+{\color{black!40!white}\blindtext}
+\vspace{2mm}
+\greybox{\textbf{Summary} (\RQref{2}): \ldots}
+
 
 \begin{comment}
 We address this research question by learning and comparing performance models from the measurements of our experiments~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso}. As a performance model effectively estimates the influence of individual configuration options on performance, we construct models not to predict unseen configurations but simply to explain differences observed in the performance distributions. So, for the construction of our performance models, we deliberately learn performance models using the entire sample set. 
@@ -294,7 +312,7 @@ From the comparison of the performance model coefficients, we can answer \RQref{
 \end{table}
 \end{comment}
 
-\greybox{\textbf{Summary} (\RQref{2}): \ldots}
+
 
 %\clearpage
 \section{Exploring Categories of Sensitivity}

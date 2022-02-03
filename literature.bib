@@ -1547,12 +1547,81 @@
 	note = {To appear},
 }
 
-@ARTICLE{martin_transfer_2021,
-	author={Martin, Hugo and Acher, Mathieu and Lesoil, Luc and Jezequel, Jean Marc and Khelladi, Djamel Eddine and Pereira, Juliana Alves},
-	journal=TSE, 
-	title={Transfer Learning Across Variants and Versions: The Case of Linux Kernel Size}, 
-	year={2021},
-	volume={},
-	number={},
-	pages={1-1},
+@ARTICLE{martin_transfer_2021,
+
+	author={Martin, Hugo and Acher, Mathieu and Lesoil, Luc and Jezequel, Jean Marc and Khelladi, Djamel Eddine and Pereira, Juliana Alves},
+
+	journal=TSE, 
+
+	title={Transfer Learning Across Variants and Versions: The Case of Linux Kernel Size}, 
+
+	year={2021},
+
+	volume={},
+
+	number={},
+
+	pages={1-1},
+
 	doi={10.1109/TSE.2021.3116768}}
+
+@inproceedings{maricq2018taming,
+	title={Taming performance variability},
+	author={Maricq, Aleksander and Duplyakin, Dmitry and Jimenez, Ivo and Maltzahn, Carlos and Stutsman, Ryan and Ricci, Robert},
+	booktitle={13th USENIX Symposium on Operating Systems Design and Implementation (OSDI 18)},
+	pages={409--425},
+	year={2018}
+}
+
+@article{10.1145/2490301.2451141,
+	author = {Curtsinger, Charlie and Berger, Emery D.},
+	title = {STABILIZER: Statistically Sound Performance Evaluation},
+	year = {2013},
+	issue_date = {March 2013},
+	publisher = {Association for Computing Machinery},
+	address = {New York, NY, USA},
+	volume = {41},
+	number = {1},
+	issn = {0163-5964},
+	url = {https://doi.org/10.1145/2490301.2451141},
+	doi = {10.1145/2490301.2451141},
+	abstract = {Researchers and software developers require effective performance evaluation. Researchers must evaluate optimizations or measure overhead. Software developers use automatic performance regression tests to discover when changes improve or degrade performance. The standard methodology is to compare execution times before and after applying changes.Unfortunately, modern architectural features make this approach unsound. Statistically sound evaluation requires multiple samples to test whether one can or cannot (with high confidence) reject the null hypothesis that results are the same before and after. However, caches and branch predictors make performance dependent on machine-specific parameters and the exact layout of code, stack frames, and heap objects. A single binary constitutes just one sample from the space of program layouts, regardless of the number of runs. Since compiler optimizations and code changes also alter layout, it is currently impossible to distinguish the impact of an optimization from that of its layout effects.This paper presents Stabilizer, a system that enables the use of the powerful statistical techniques required for sound performance evaluation on modern architectures. Stabilizer forces executions to sample the space of memory configurations by repeatedly re-randomizing layouts of code, stack, and heap objects at runtime. Stabilizer thus makes it possible to control for layout effects. Re-randomization also ensures that layout effects follow a Gaussian distribution, enabling the use of statistical tests like ANOVA. We demonstrate Stabilizer's efficiency (&lt;7% median overhead) and its effectiveness by evaluating the impact of LLVM's optimizations on the SPEC CPU2006 benchmark suite. We find that, while -O2 has a significant impact relative to -O1, the performance impact of -O3 over -O2 optimizations is indistinguishable from random noise.},
+	journal = {SIGARCH Comput. Archit. News},
+	month = {mar},
+	pages = {219–228},
+	numpages = {10},
+	keywords = {measurement bias, performance evaluation, randomization}
+}
+
+@inproceedings{curtsinger_stabilizer_2013,
+	author = {Curtsinger, Charlie and Berger, Emery D.},
+	title = {STABILIZER: Statistically Sound Performance Evaluation},
+	year = {2013},
+	publisher = ACM,
+	doi = {10.1145/2451116.2451141},
+	booktitle = {Proceedings of the Eighteenth International Conference on Architectural Support for Programming Languages and Operating Systems},
+	pages = {219–228},
+	series = {ASPLOS '13}
+}
+
+@article{vargha_delaney_2000,
+	ISSN = {10769986, 19351054},
+	author = {András Vargha and Harold D. Delaney},
+	journal = {Journal of Educational and Behavioral Statistics},
+	number = {2},
+	pages = {101--132},
+	publisher = {[American Educational Research Association, Sage Publications, Inc., American Statistical Association]},
+	title = {A Critique and Improvement of the "CL" Common Language Effect Size Statistics of McGraw and Wong},
+	volume = {25},
+	year = {2000}
+}
+
+@book{lovric_international_2010,
+	edition = {1st Edition.},
+	title = {International {Encyclopedia} of {Statistical} {Science}},
+	isbn = {3-642-04916-8},
+	publisher = {Springer},
+	author = {Lovric, Miodrag},
+	month = dec,
+	year = {2010}
+}

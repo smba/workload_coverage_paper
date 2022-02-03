@@ -11,11 +11,14 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from pycosa.util import remove_multicollinearity, get_vif
 from pycosa.plotting import mirrored_histogram
 import scipy.cluster.hierarchy as spc
-
+from matplotlib.collections import PathCollection
+from matplotlib.lines import Line2D
+from matplotlib.colors import ListedColormap
 import networkx as nx
 import logging
 import math
 import numpy as np
+import matplotlib.cm as cm
 
 from matplotlib import gridspec
 
@@ -26,8 +29,8 @@ data = pd.read_csv('datax/h2_measurements.csv')
 da = data[data['workload'] == 'tpcc-2']['throughput']
 db = data[data['workload'] == 'tpcc-8']['throughput']
 
-mirrored_histogram(db, da, 'scale factor 8', 'scale factor 2', bandwith=0.02, figsize=(6, 2), export_name='h2_motivation.eps', xlabel='Transactions / Sec.')
-sys.exit()
+#mirrored_histogram(db, da, 'scale factor 8', 'scale factor 2', bandwith=0.02, figsize=(6, 2), export_name='h2_motivation.eps', xlabel='Transactions / Sec.')
+#sys.exit()
 
 def outlier_treatment(datacolumn):
     sorted(datacolumn)
@@ -55,6 +58,7 @@ for system in systems:
 
     for kpi in systems[system]:
         coefficients = []
+        swarm_coefficients = []
         workloads = []
         for w, df in data.groupby('workload'):
             workloads.append(w)
@@ -71,16 +75,16 @@ for system in systems:
             lm.fit(X, y)
             #print(lm.coef_)
             coefs = {c: lm.coef_[0][i] for i, c in enumerate(X.columns)}
-            
-            if system == 'h2':
-                plt.figure(figsize=(4,2))
-                sns.histplot(df[kpi].values.reshape(-1, 1), bins=75)
-                plt.xlabel('Throughput (transactions/sec.)')
-                plt.ylabel('Frequency')
-                plt.title(w)
-                plt.savefig('h2_{}.eps'.format(w), bbox_inches='tight')
-            
             coefficients.append(coefs)
+            
+            for option, coefficient in coefs.items():
+                swarm_coefficients.append(
+                    {
+                        'workload': w,
+                        'option': option,
+                        'influence': coefficient
+                    }    
+                )
             
         # get worklaod with GREATEST absolute influence
         options = coefficients[0].keys()
@@ -105,8 +109,58 @@ for system in systems:
                 
         pivot = dict(sorted(means.items(), key=lambda item: item[1], reverse=True))
 
-        option_order = pivot.keys()
+        option_order = reversed(pivot.keys())
         
+        swarm_coefficients = pd.DataFrame(swarm_coefficients)
+        workloads = swarm_coefficients.workload.unique()
+
+        cmap = plt.get_cmap('hsv')
+        colors = list([cmap(1.*i/len(workloads)) for i in range(len(workloads))])
+        colors = [list(c) for c in colors]
+        #for i in range(len(colors)):
+        #    colors[i][3] = 1.0
+        
+        
+        fig = plt.figure(figsize=(4.5, 4.5))
+        for j, o in enumerate(option_order):
+            plt.axhline(j, linewidth=0.3, alpha=0.5,color='black', linestyle=':')
+            #influences = np.random.laplace(0,3,size=len(workloads))
+            
+            influences = swarm_coefficients[swarm_coefficients['option'] == o].sort_values(by='workload')['influence'].values
+            
+            # diverse enough -> show full color spectrum
+            if True:
+                
+                median = np.median(influences)
+                std = np.std(influences)
+                
+                n_std = 2
+                indices = np.where( (influences < median - n_std*std) | (influences > median + n_std*std) )[0]
+                #print(indices)
+                colors_new = [[0.1,0.1,0.1,0.1] for i in range(len(colors))]
+                for i in indices:
+                    colors_new[i] = colors[i]
+            plt.scatter(influences, [o for i in range(len(workloads))], color=colors_new, s=22, marker='D')
+        plt.axvline(0, linewidth=0.4, alpha=0.5,color='black')
+        #plt.savefig('grafik.pdf', bbox_inches='tight')
+        #plt.clf()
+        plt.title('{} -- {}'.format(system, kpi))
+        plt.xlabel('Relative Performance Influence')
+        
+        legend_elements = []
+        
+        for i, w in enumerate(workloads):
+            legend_elements.append(
+                Line2D([0], [0], marker='D', color='w', label=w,
+                          markerfacecolor=colors[i], markersize=5))
+        fig.legend(handles=legend_elements, loc='lower center',ncol=3,bbox_to_anchor=(0.5, -0.3))
+        
+        #fig.subplots_adjust(bottom=0.25)
+        plt.show()
+        
+        
+        
+        '''
         fig, ax = plt.subplots(nrows=1, ncols=2, sharex='col', sharey=True,
                                gridspec_kw={'width_ratios': [3, 0.7]},
                                figsize=(9, 6))
@@ -131,7 +185,8 @@ for system in systems:
         #ax[2].set_xlim(0, len(workloads))
         
         plt.show()
-    
+        '''
+'''
 # Correlation Analysis
 for system in systems:
     data = pd.read_csv('datax/{}_measurements.csv'.format(system))
@@ -166,4 +221,4 @@ for system in systems:
         plt.show()
         plt.savefig('grafix/{}_{}_kendall.eps'.format(system, kpi), bbox_inches='tight')
         plt.clf()
-        
+'''       

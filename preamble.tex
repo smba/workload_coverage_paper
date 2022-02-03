@@ -46,16 +46,16 @@
 % configure tables
 \usepackage{booktabs}
 \usepackage{colortbl}
-
+\usepackage{blindtext}
 % fancy box for research questions, result summaries etc.
 \usepackage[framemethod=TikZ]{mdframed}
 \newcommand{\greybox}[1]{
 	\begin{mdframed}[
-		backgroundcolor=indigo!15,
-		linewidth=0.0pt,
+		backgroundcolor=white!15,
+		linewidth=0.5pt,
 		innerleftmargin=5pt,
 		innertopmargin=5pt,
-		roundcorner=3pt,
+		roundcorner=1pt,
 		]
 		%\noindent
 		#1
@@ -75,6 +75,7 @@
 		#1
 	\end{mdframed}
 }
+\renewcommand\labelitemi{---}
 
 \lstset{framesep=2pt}
 \lstset{
