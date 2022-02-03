@@ -36,7 +36,7 @@ To summarize, we make the following contributions:
 \section{Background and Motivation}
 \subsection{Performance Prediction Models}~\label{sec:perfmodels}
 Configurable software systems are an umbrella term for any kind of software system that exhibits configuration options to customize functionality. 
-While the primary purpose of configuration options is to select categorical and tune functionality, each configuration choice may also have implications on non-functional properties --- be it intentional or unintentional. Finding configurations with optimal performance~\cite{nairUsingBadLearners2017,nairFlash18,ohFindingNearoptimalConfigurations2017} and estimating the performance for arbitrary configurations of the configuration space is an established line of research~\cite{siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso}. 
+While the primary purpose of configuration options is often to select and tune functionality, each configuration choice may also have implications on non-functional properties --- be it intentional or unintentional. Finding configurations with optimal performance~\cite{nairUsingBadLearners2017,nairFlash18,ohFindingNearoptimalConfigurations2017} and estimating the performance for arbitrary configurations of the configuration space is an established line of research~\cite{siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso}. 
 Machine-learning techniques have been used to learn \emph{performance models} that approximate non-functional properties, such as execution time or memory usage, as a function of software configurations $c \in C$, formally $\Pi: C \rightarrow \mathbb{R}$.
 
 Performance models can be obtained using a variety of machine-learning techniques, including probabilistic programming~\cite{dorn2020}, multiple linear regression~\cite{siegmundPerformanceinfluenceModelsHighly2015}, classification and regression trees~\cite{sarkarCostEfficientSamplingPerformance,guo_2018_data}, Fourier learning~\cite{fourier_learning_2015,perLasso}, and deep neural networks~\cite{haDeepPerf2019,perfAL}.
@@ -45,17 +45,17 @@ Most approaches share the perspective of treating a configurable software system
 
 \subsection{Varying Workloads}
 \subsubsection{Whats is a workload?}
-For the following, we conceive a workload as any form of \textit{input fed to a software system for processing}. By nature, the workload of a software system is application-specific, such as a set of queries and transactions fed to a database system, a set of raw image files for video encoding or an arbitrary file for data compression etc. Each workload $w \in W$, similarly to configurable software systems, exhibits characteristics (or dimensions) that can be used to describe and quantify its properties.
+For the following, we conceive a workload as any form of \textit{input fed to a software system for processing}. By nature, the workload of a software system is application-specific, such as a set of queries and transactions fed to a database system, a set of raw image files for video encoding, or an arbitrary file for data compression etc. Each workload $w \in W$, similarly to configurable software systems, exhibits characteristics (or dimensions) that can be used to describe and quantify its properties.
 
 \subsubsection{Workload Characterization}\label{sec:workload-characterization}
 In performance engineering, workload characterization is a well-defined and widely employed task~\cite{} in order to reason about the performance of a software system and systematically assess software quality across a diverse set of workloads. 
-It is common practice to select a workload that is reflective of the software system in question~\cite{ceesay2020,papadopoulos2021}. This can be achieved by constructing workloads, among others, from usage patterns~\cite{calzarossa2016}, or by increasing the workload coverage by using a mix of different workloads rather than a single one~\cite{jiang2015survey}.
+It is common practice to select a workload that is reflective of the software system in question~\cite{ceesay2020,papadopoulos2021}. This can be achieved by constructing workloads, among others, from usage patterns~\cite{calzarossa2016}, or by increasing the workload coverage by using a mix of different workloads rather than a single one~\cite{jiang2015survey}.\todo{hier könnte noch mehr hin... siehe analytical models oder CPU vs. memory bound workloads. man könnte auch noch etwas zu community benchmarks schreiben, wie SPEC, TPC, etc.}
 
 %However, one cannot guarantee that it yields the complete set of characteristics and therefor knowledge of the domain of possible workloads. Some characteristics can be non-trivial in that they might not be documented or known to developer, or only become relevant for performance under a specific configuration of a software system. Thus, from workload characterization, at best, one can assume an approximation of the workload domain model.
 
 
 \subsection{Input Sensitivity Limits Generalizability}\label{sec:generalizability}
-A major threat to the practicality of approaches outlined in Section~\ref{sec:perfmodels} lies in their use of only a \textit{single} workload. When training a performance prediction model, the training observations vary configurations but not the workload processed by the software system, which can limit the model’s generalizability to different workloads. While the configuration-specific behavior might be congruent across some workload, i.e, the best-performing configuration for one workload is also the best-performing for another one, we cannot rely on such assumptions in practice, where different workloads can result in completely different configuration-specific performance behavior~\cite{alves_sampling_2020}.
+A major threat to the practicality of approaches outlined in Section~\ref{sec:perfmodels} lies in their use of only a \textit{single} workload. A model is trained on performance data gained by of varying configurations while keeping the workload the same. Clearly, this can limit the model’s generalizability to different workloads. While the configuration-specific behavior might be congruent across some workload, i.e, the best-performing configuration for one workload may also be the best-performing for another one, we cannot rely on such assumptions in practice, where different workloads can result in entirely different configuration-specific performance behavior~\cite{alves_sampling_2020}.
 
 Revisiting an observation by \citeauthor{alves_sampling_2020}, the following example illustrates that even seemingly small differences in the composition of a workload can induce performance behavior that is hard to anticipate: We tested the performance (throughput: transactions per second) of a number of configurations for the database system \htwo across two different workloads. Both workloads are a parameterization of the database benchmark \textsf{TPC-C}, consisting of a fixed-ratio mix of transactions (inserts, updates, selects) for a specific database schema. The only difference was varying the scale factor, which controls for the number of warehouses modeled in the schema. The resulting performance distributions for both experiments are illustrated in Figure~\ref{fig:h2_intro}.
 
@@ -66,29 +66,25 @@ Revisiting an observation by \citeauthor{alves_sampling_2020}, the following exa
 	\label{fig:h2_intro}
 \end{figure}
 
-While one might first expect that a more complex workload results in lower throughput, this is correct, but does not hold for all configurations. We see that the median throughput indeed decreases when increasing the scale factor, however the \emph{shape} and the \emph{spread} of the performance distribution is affected as well. The majority of configurations’ performance scales with the workload, some do not and even achieve better throughput. Thus, if configurations’ performance is affected in such non-trivial ways, varying the workload affects the performance influence that different configuration options exhibit. 
+While one might first expect that a more complex workload results in lower throughput, this is correct, but does not hold for all configurations. We see that the median throughput indeed decreases when increasing the scale factor, however the \emph{shape} and the \emph{spread} of the performance distribution is affected as well, which cannot be expect when all configurations scale evenly. The majority of configurations’ performance scales with the workload, some do not and even few achieve improved throughput. Thus, if configurations’ performance is affected in such non-trivial ways, varying the workload affects the performance influence that different configuration options exhibit. 
 
-Some aspects of this \emph{input sensitivity} has been observed and documented before in literature~\cite{liao_2020_using_emse,alves_sampling_2020,jamishidi_transfer_2017} and raise questions, such as: Which options are input sensitive? What workload characteristics affect an option’s performance-influence? Can we estimate which options are input-sensitive?
+Some aspects of this \emph{input sensitivity} has been observed and documented before in the literature~\cite{liao_2020_using_emse,alves_sampling_2020,jamishidi_transfer_2017} and raise questions, such as: Which options are input sensitive? What workload characteristics affect an option’s performance-influence? Can we estimate which options are input-sensitive? We set out to answer these questions in this paper.
 	
 \subsection{Strategies for Handling Varying Workloads}
-To some aspects of the three questions from Section~\ref{sec:generalizability}, research and industry practices can provide answers. 
+Research and industry practices can provide answers to some aspects of the three questions from Section~\ref{sec:generalizability}.
 
 \subsubsection{Workload-aware Performance Modeling}\label{sec:workload-aware}
 Extending on workload characterization (cf. Section~\ref{sec:workload-characterization}), a strategy that embraces workload diversity is to incorporate workload characteristics into the problem space of a performance prediction model. Here, performance is modeled as a function of both the configuration options exhibited by the software system as well as the workload characteristics, formally $\Pi: C \times W \rightarrow \mathbb{R}$.
-The combined problem space enables learning performance models that generalize to arbitrary workloads since we can screen for performance-relevant combinations of options and workload characteristics. Such a strategy, like workload characterization is highly application-specific, but has been successfully applied to different domains, such as program verification~\cite{koc_satune_2021}. However, its main disadvantages are twofold: The inflated and more complex problem space implies substantially more observations to screen for identifying performance-relevant options, characteristics, and combinations thereof. In addition, previous work on exploring the differences across workload-specific performance found that only few configuration options are input sensitive~\cite{jamishidi_transfer_2017}, which exacerbates the problem of finding the meaningful, but sparse predictors.
+The combined problem space enables learning performance models that generalize to workloads that exhibit characteristics denoted by $W$ since we can screen for performance-relevant combinations of options and workload characteristics. Although this strategy is highly application-specific, it has been successfully applied to different domains, such as program verification~\cite{koc_satune_2021} and {\color{red}\cite{}}\todo{references}. However, its main disadvantages are twofold: The inflated and more complex problem space implies substantially more observations to screen for identifying performance-relevant options, characteristics, and combinations thereof. In addition, previous work on exploring the differences across workload-specific performance found that only few configuration options are input sensitive~\cite{jamishidi_transfer_2017}, which exacerbates the problem of finding the meaningful, but sparse predictors.
 
 \subsubsection{Transfer Learning for Performance Models}\label{sec:transfer}
-Another strategy that builds upon the fact that, across different workloads, only few configuration options are in fact input sensitive~\cite{jamishidi_transfer_2017}, is to train and then adapt a performance prediction model. Contrary to a generalizable workload-aware model, transfer learning strategies focus on approximating a transfer function that, without characterizing the workload, encodes the information of which configuration options are sensitive to differences between a source and target pair of workloads. Training a workload-specific model and adapting it on occasion provides an effective means to reuse performance models, which is not limited to workloads~\cite{jamshidi_learning_2018}, but has successfully been applied to different hardware setups~\cite{ding_bayesian_2020} and across versions~\cite{martin_transfer_2021}. 
+Another strategy that builds upon the fact that, across different workloads, only few configuration options are in fact input sensitive~\cite{jamishidi_transfer_2017}, is to train a model on a standard workload and then adapt it to different workloads. Contrary to a generalizable workload-aware model, transfer learning strategies focus on approximating a transfer function that, without characterizing the workload, encodes the information of which configuration options are sensitive to differences between a source and target pair of workloads. Training a workload-specific model and adapting it on occasion provides an effective means to reuse performance models, which is not limited to workloads~\cite{jamshidi_learning_2018}, but has successfully been applied to different hardware setups~\cite{ding_bayesian_2020} and across versions~\cite{martin_transfer_2021}. 
 
 
 \subsection{Research Goal}
-The workload-aware from Sections~\ref{sec:workload-aware} models conceive performance from a black-box perspective, which only attributes performance variation to configuration options and workload characteristics. Similarly, the transfer learning approaches from Section ~\ref{sec:transfer} quantify certain options’ sensitivity to workload differences.
-Since traditional performance models lack generalizability due to input sensitivity, we argue that, instead of employing such dedidated strategies as stated above,  an existing model would largely benefit from an \emph{assessment of which constituent configuration options are input sensitive, and due to which type of interaction}. 
-By knowing which configuration option is input-sensitive in what way, one could subsequently a) choose to identify relevant performance characteristics for input-sensitive options or b) focus transfer learning to the sensitivity of such options.
+{\color{red} Neu machen}
 
-To take a middle path and change the our point of view to a grey-box perspective, in this paper, we ask \emph{how far we can differentiate different types of input sensitivity} using lightweight techniques that are easy to employ and forego the cost of both exhaustive screening and learning transfer functions for a multitude of different workloads?\\
-
-The remainder of this paper is organized as follows. In the following Section 3, we present our case study and methodology. Section 4 presents the study results Section 5 presents our results on categorizing types of input sensitivity. We discuss implications for industry and research in Section 6, review related in Section 7 and summarize our findings in Section 8.
+The remainder of this paper is organized as follows. In the following Section~\ref{sec:study}, we present our case study and methodology. Section~\ref{sec:results} presents the study results, Section~\ref{sec:categories} presents our findings on categorizing types of input sensitivity. We discuss implications for industry and research in Section~\ref{sec:discussion}, review related in Section~\ref{sec:related} and summarize our findings in Section~\ref{sec:conclusion}.
 
 \section{Study Design}~\label{sec:study}
 We have conducted an empirical study of a multitude of configurations and workloads for six configurable software systems. In the following, we describe the general experiment setup and study design as well as research questions and results. We make all performance measurement data, configurations, workloads, and learned performance models available on this paper's companion Web site.
@@ -115,22 +111,17 @@ Our categorization of the differences between workload-specific performance dist
 \subsubsection{Possible Causes of Input Sensitivity}
 To start to translate our findings of performance variation under varying workloads from \RQref{1} and \RQref{2} into actionable strategies, we require insights about how the workload interacts with configuration options. At code level, we outline two possible scenarios: First, option-specific is only covered under a specific workload, so that we can observe its only influence under that workload. 
 
-\begin{comment}
-This is the case for configuration option \texttt{AUTOCOMMIT} in the introductory example from Figure~\ref{fig:intro}. Note that, while this particular option's influence scales with the workload size, the aforementioned dependency would also remain if this option's influence was constant instead. Second, the option's influence is determined by how the code of the option is executed. That is, it is covered regardless of the workload, but its effect depends on workload characteristics such as for option \texttt{AUTOCOMMIT} in Figure~\ref{fig:intro}.
-Depending on the scenario and software system, knowledge of where (for which options) and how (by option-code \textit{coverage} or option-code \textit{usage}) configurations and workloads interact can help to choose the right tool when modeling performance for configurable software systems under varying workloads: In the case of option \texttt{DUPLICATE\_CHECK}, it is easier to learn whether and how the option influence scales with the workload size, whereas, for \texttt{AUTOCOMMIT}, without knowledge about the code base, it is challenging to identify the more complex relationship.
-
-In the last part of this evaluation, we shed light on this aspect and explore the relationship between the execution of configurable software systems and the observed performance and answer the following research question:
-\end{comment}
 \RQ{3}{To what extent do influences of configuration options on performance and option-specific code coverage depend on the workload?}
 
 \subsection{Methodology}
 \subsubsection{Overview}
 
-\begin{figure}[ht]
+\begin{figure*}
 	study setup
+	\vspace{6cm}
 	\caption{Step-wise overview of our experiment setup.}
 	\label{fig:overview}
-\end{figure}
+\end{figure*}
 
 \subsubsection{Quantifying Input Sensitivity}
 {\color{red} Linear Regression as Sensitivity Analysis}
@@ -204,8 +195,7 @@ The selection of subject systems all written in Java poses a threat to \emph{ext
 Regarding \emph{construct validity}, the profiler \textsc{JaCoCo} instruments Java byte code instructions rather than statements, which leads to some minor imprecision when mapping covered instructions back to the original statements. Transitively, this also affects the precision of our feature location (cf. Section~\ref{sec:rq3}). This drawback, however, is not limited to this particular profiler but applies to most profilers operating on byte code. 
 Superimposition in our feature location technique is sound, but, by design, incomplete, since no set of workloads is guaranteed to cover all feature code. We selected a variety of different workloads as a countermeasure, yet our study is exploratory. 
 
-\clearpage
-\section{Study Results}
+\section{Study Results}~\label{sec:results}
 \subsection{Comparing Performance Distributions}\label{sec:rq1}
 \subsubsection{Operationalization}
 We approach \RQref{1} by pairwisely comparing the performance distributions from different workloads (cf. the comparison in Figure~\ref{fig:h2_intro}) and investigate whether any two distributions are similar or, if not, can be transformed into each other. For the latter case, we are specifically interested in what type of transformation is necessary as this determines \textit{how} complex a workload interacts with configuration options. We categorize each pair of workloads with respect to the following aspects: 
@@ -315,7 +305,7 @@ From the comparison of the performance model coefficients, we can answer \RQref{
 
 
 %\clearpage
-\section{Exploring Categories of Sensitivity}
+\section{Exploring Categories of Sensitivity}\label{sec:categories}
 
 \subsection{Hypotheses}
 
@@ -342,8 +332,7 @@ For each option and pair of workloads, in the following, we relate the differenc
 \greybox{\textbf{Summary} (\RQref{3}):\ldots
 }
 
-\clearpage
-\section{Discussion} 
+\section{Discussion}\label{sec:discussion}
 \subsection{Implications for Practitioners}
 
 \begin{equation}
@@ -354,7 +343,7 @@ For each option and pair of workloads, in the following, we relate the differenc
 
 \subsection{Implications for Researchers}
 \subsection{Future Work}
-\section{Related Work}
+\section{Related Work}\label{sec:related}
 \paragraph*{Feature Location}\label{sec:feature_location}
 The problem of determining which code implements which functionality in a software system is known as \emph{feature location}~\cite{rubin_feature_2013}. Most feature location approaches either employ static or dynamic program analysis to infer a mapping between features and code. As for static analyses, variables that encode configuration options are tainted and, from tracing dataflow and controlflow, one can infer code sections tainted by such variables~\cite{velez_2020_configcrusher_jase,lillack_2018_lotrack_tse,luo_2019_cova}.
 While static analyses can yield precise results, scalability is often limited by the exploration of all possible execution paths. To mitigate this shortcoming, dynamic taint analysis taints variables similarly to the static approaches, but only follows one execution path~\cite{bell_phosphor_2014,velez_comprex_2021,splat_kim_2013}. From few executions of different configurations, one can extract feature-specific code. 
@@ -368,6 +357,6 @@ The benefit of using more than one specific workload for performance models is i
 \citeauthor{jamishidi_transfer_2017} observe that performance influences across different environments remain largely congruent and differences only affect small numbers of configuration options. Workload-specific differences can be learned efficiently via transfer learning~\cite{jamishidi_transfer_2017,jamshidi_transfer_gp_2017,ding_bayesian_2020}, where an existing workload-specific performance model is adapted to a new workload by explicitly learning a transfer function. \citeauthor{jamshidi_learning_2018} exploit similarities in performance behavior across workloads to guide the configuration sampling process an efficiently learn transfer functions~\cite{jamshidi_learning_2018}. {\color{purple} For software verification tools, \citeauthor{koc_satune_2021} incorporate program characteristics (e.g., the number of loops) as features orthogonal to configuration options into the problem space for performance modeling.}
 
 
-\section{Conclusion}
+\section{Summary}\label{sec:conclusion}
 
 
