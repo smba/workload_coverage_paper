@@ -70,7 +70,7 @@ While one might first expect that a more complex workload results in lower throu
 
 Some aspects of this \emph{input sensitivity} has been observed and documented before in the literature~\cite{liao_2020_using_emse,alves_sampling_2020,jamishidi_transfer_2017} and raise questions, such as: Which options are input sensitive? What workload characteristics affect an option’s performance-influence? Can we estimate which options are input-sensitive? We set out to answer these questions in this paper.
 	
-\subsection{Strategies for Handling Varying Workloads}
+\subsection{Strategies for Handling Varying Workloads} ~\label{sec:strategies}
 Research and industry practices can provide answers to some aspects of the three questions from Section~\ref{sec:generalizability}.
 
 \subsubsection{Workload-aware Performance Modeling}\label{sec:workload-aware}
@@ -90,23 +90,19 @@ The remainder of this paper is organized as follows. In the following Section~\r
 We have conducted an empirical study of a multitude of configurations and workloads for six configurable software systems. In the following, we describe the general experiment setup and study design as well as research questions and results. We make all performance measurement data, configurations, workloads, and learned performance models available on this paper's companion Web site.
 
 \subsection{Research Questions}
+The first two research questions shed light on the input sensitivity of the performance behavior of the studied software systems. We first take a look at systems as a whole~(\RQref{1}) with regard to a large set of configurations and, subsequently, consider individual configuration options~(\RQref{2}). Extending on the results of \RQref{2}, we explore possible driving factors and indicators for workload-specific performance variation~(\RQref{3}).
 
+\subsubsection{Performance Behavior Across Workloads}
+It is well known that performance variation can arise from differences in the workload~\cite{benchmarking_book}. In a practical setting, the question arises whether, and if so, to what extent an existing workload-specific performance model is representative of the performance behavior of other workloads as well. 
+That is, can a model estimating performance of different configurations be reused for the same software system, but learned under a different workload? Depending on the degree of similarity of the performance behavior across workloads, we can obtain a clearer picture of the prevalence of input sensitivity and to what degree the strategies outlined in  Section~\ref{sec:strategies} might be applicable.
+To provide some context for the feasibility of model reuse or transformation, we formulate the following research question: 
 
+\RQ{1}{To what extent does \textit{performance behavior} vary across workloads?}
 
-\subsubsection{Performance Distributions Across Workloads}
-It is well known that performance variation can arise from differences in the workload~\cite{benchmarking_book}. 
-This has been observed as well for software systems in the presence of configuration options, such as for the video encoder x264~\cite{alves_sampling_2020}. \citeauthor{alves_sampling_2020} show that, under two different workloads, the configuration-specific performance behavior of x264 varies widely. 
+\subsubsection{Option Influence Across Workloads}
+At large, performance behavior is the resulting effect arising from multiple configuration options’ and combinations’ respective influences. To further understand, which configuration options are driving performance variation in general, and are input sensitive in particular, we want to obtain a clearer picture. To this end, we ask the following research question:
 
-In a practical setting, the question arises whether, and if so, to what extent an existing workload-specific performance model is representative of the performance behavior of other workloads as well. 
-That is, can a model estimating performance of different configurations be reused for the same software system, but learned under a different workload?
-Depending on the degree of similarity, such a performance model could be either (1) re-used, (2) transformed at a reasonable cost, or (3) must be re-learned entirely, which entails a substantial measurement cost. To provide some context for the feasibility of model reuse or transformation, we formulate the following research question: 
-
-\RQ{1}{To what extent can performance behavior vary across workloads?}
-
-\subsubsection{Input Sensitivity of Configuration Options}
-Our categorization of the differences between workload-specific performance distributions does help understand the degree of workload-dependent performance variation, but leaves out the role of configuration options. From a practical perspective, it is important to ask whether all configurations of a software system are equally likely to be affected by a workload choice or whether the selection of some configuration option increases or decreases this likelihood. If some configuration options show to be more sensitive to workload choices, practitioners can incorporate this knowledge into selecting configurations for regression testing or to adapt existing performance models~\cite{jamshidi_learning_2018}. To provide a clearer picture of the influence of workload variability in the presence of configuration options, we ask the following research question:
-
-\RQ{2}{To what extent can influences of individual configuration options depend on the workload?}
+\RQ{2}{To what extent do \textit{influences of individual configuration options} depend on the workload?}
 
 \subsubsection{Possible Causes of Input Sensitivity}
 To start to translate our findings of performance variation under varying workloads from \RQref{1} and \RQref{2} into actionable strategies, we require insights about how the workload interacts with configuration options. At code level, we outline two possible scenarios: First, option-specific is only covered under a specific workload, so that we can observe its only influence under that workload. 
@@ -116,30 +112,9 @@ To start to translate our findings of performance variation under varying worklo
 \subsection{Methodology}
 \subsubsection{Overview}
 
-\begin{figure*}
-	study setup
-	\vspace{6cm}
-	\caption{Step-wise overview of our experiment setup.}
-	\label{fig:overview}
-\end{figure*}
-
-\subsubsection{Quantifying Input Sensitivity}
-{\color{red} Linear Regression as Sensitivity Analysis}
-
-\subsubsection{Feature Location}
-To reason about option-specific code, we require a mapping of configuration options to code. First, we obtain a baseline of \textit{all} option code within the scope of our entire workload selection. For each workload $w \in W$, we compute the set of code lines that depend on option $o \in O$. Let $C_{o}$ be the set of configurations with option $o$ selected, and $C_{\neg o}$ with option $o$ deselected. To obtain $S_{w, o}$, we follow a strategy similar to \textit{spectrum-based feature location}~\cite{michelon_spectrum_2021} and subtract the set of the code lines covered under $C_{\neg o}$ from those of $C_{o}$:
-
-\begin{equation}%\todo{example from Figure~\ref{fig:intro}}
-	S_{w, o} = \bigcup_{p \in C_{o}} S_{w}(p) ~ \setminus ~ \bigcup_{q \in C_{\neg o}} S_{w}(q)
-\end{equation}
-
-While $S_{w, o}$ yields an approximation of option-dependent code for a single workload, we then aggregate the approximations for each workload $w\in W$ to obtain the set of lines that depend on a configuration option $o$ and are executed in, at least, one workload,~$S_{o}$: 
-
-\begin{equation}
-	S_{o} = \bigcup_{w \in W} S_{w, o}
-\end{equation}
-
-While this aggregated set is not a ground truth, it enables us to reason about differences in option-dependent code within the scope of our selected workloads. That is, the expressiveness of this baseline depends on the diversity of the workloads in question. We discuss this limitation in Section~\ref{sec:construct_validity}. From the ratio of option-specific code per workload to option-specific code across workloads, $\mid S_{w_1, o}\mid/~{\mid S_{w_2, o}\mid}$, we can estimate the coverage of option-dependent code. By comparing the sets $S_{w_1, o}$ and $S_{w_2, o}$ for any two workloads $w_1$ and $w_2$, we can estimate similarity between the option-code coverage via the Jaccard set similarity index. 
+\begin{compactenum}
+	\item 
+\end{compactenum}
 
 \subsection{Experiment Setup}\label{sec:setup}
 \subsubsection{Subject Systems}
@@ -162,16 +137,6 @@ Due to space limitations, we provide a more extensive description of the used wo
 
 For \jumper, we selected WAVE audio files that, among others, vary in the sampling rate, number of channels, and file size. For \kanzi, we selected dedicated compression benchmark corpora (sets of files of different types) into our selection and further included files of different types at different scales, among others, a binary of the linux kernel and CSV data. For \dconvert, we selected files that reflect the application’s documented input formats (JPEG, PNG, PSD, and SVG) and vary in file size. For \batik, we selected a range of SVG file varying in size. For \jadx, we selected a number popular of Android applications (APK packages) ranging from social media to games and utility applications. For \htwo, we used a selection of application-level benchmarks from \textsc{OLTPBench}~\cite{difallah_oltp_2013}, a load generator for databases that allows for using a variety of performance testing benchmarks, such as \texttt{TPC-C}. 
 
-
-\begin{comment}
-\jumper is a re-implementation of the LAME audio codec for MP3 in Java. In total, we have selected six WAVE audio files as a workload to encode to MP3. To diversify the selection of workloads, we indcluded audio files with different characteristics (sampling rate, number of channels, length, etc.). 
-\kanzi is a file compression tool. For this subject system, we selected nine workloads, including, among others, dedicated compression benchmarks (sets of files of different types) as well as binary and text files at different scales: a binary of the Linux kernel, a dump of its repository, XML and CSV data. 
-\dconvert is a Java utility to scale images for use in Android apps into different formats and different resolutions. For our experiments, we selected a range of workloads, varying in file type (JPEG, PNG, PSD, and SVG) and size.
-\batik is a Java utility to rasterize vector graphics, for which we selected a range of workloads varying in size.
-\jadx is a decompiler and deobfuscator for Android applications, for which we selected a range of popular APK packages as workloads, varying in application domain and size.
-\htwo is a relational database that can be integrated into Java applications or used as a standalone database. We used a selection of application-level benchmarks from the \textsc{OLTPBench}~\cite{difallah_oltp_2013}, a load generator for databases that allows for testing benchmarks, such as \textsc{TPC-C}. Overall, the selection of the workloads was driven by diversity to make use of different functionality of a subject system and by size to probe for scaling and utilization factors.
-\end{comment}
-
 \subsubsection{Configuration Sampling}\label{sec:sampling}
 For each subject system, we sampled a set of configurations. Exhaustive coverage of the configuration space is infeasible due to combinatorial explosion~\cite{henardCombining2015}. We combine several coverage-based sampling strategies and uniform random sampling into an \emph{ensemble} approach: 
 To study the influence of single configuration options, we employ option-wise and negative option-wise sampling~\cite{siegmundPerformanceinfluenceModelsHighly2015}, where each option is enabled once, or all except one, respectively. In the same way, pair-wise sampling applies this schema to study influences of two-way interactions between configuration options. Interactions of higher degree can be found accordingly, which, however, is computationally prohibitively expensive~\cite{henardCombining2015}. Instead, we augment our sample set with a random sample that is, at least, twice the size of the coverage-based sample. To achieve a uniform random sample, we used \emph{distance-based sampling}~\cite{kaltenecker_distance-based_2019}. The variability models, as well as sample sets, can be found on the paper's companion Web site.
@@ -182,18 +147,6 @@ To measure code coverage, we use the on-the-fly profiler \textsc{JaCoCo}. Unlike
 \subsubsection{Hardware Setup}
 All experiments were conducted on three different compute clusters and each subject system was exclusively run on a single cluster. All machines in a compute cluster had the identical hardware setup: either with Intel~Core~i5-8259U CPUs at 2.3~GHz (\jumper and \kanzi),  Intel~Core~i7-8559U CPUs at 2.7~GHz (\dconvert, \batik, and \jadx) and 32~GB of RAM, respectively, or Intel~Xeon~E5-2630~v4 CPUs at 2.2~GHz with 256~GB of RAM (\htwo). All clusters ran a headless Debian 10 installation, the first two with kernel version \mbox{\texttt{4.19.0-14}}, the latter with version \mbox{\texttt{4.19.0-17}}. 
 To minimize measurement noise, no additional user processes were running in the background, and no other than necessary packages were installed.	For all data points, we report the median across five repetitions (except for \htwo), which has shown to be a good trade-off between variance and measurement effort. For \htwo, we omitted the repetitions as in a pre-study, running on the identical cluster setup, we found that across all benchmarks the throughput coefficient of variation (standard deviation divided by the arithmetic mean) was consistently below~5\,\%.
-
-\subsection{Threats to Validity}
-\subsubsection{Internal Validity}\label{sec:internal_validity}
-Threats to \emph{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate this threat by repeating each experiment five times and reporting the median as a robust measure. For \htwo, we confirmed a negligible measurement variation in a separate pre-study.
-Another potential threat is that the coverage analysis with \mbox{\textsc{JaCoCo}} entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario but thus introduced only negligible variation and overhead.
-
-\subsubsection{External Validity}\label{sec:external_validity}
-The selection of subject systems all written in Java poses a threat to \emph{external validity}. While our motivation for this selection is primarily practical (cf. Section~\ref{sec:setup}), we mitigate this threat by selecting subject systems from a variety of application domains (cf.~Table~\ref{tab:subject_systems}). Nonetheless, one cannot necessarily conclude that our results hold for other domains and programming languages. 
-
-\subsubsection{Construct Validity}\label{sec:construct_validity}
-Regarding \emph{construct validity}, the profiler \textsc{JaCoCo} instruments Java byte code instructions rather than statements, which leads to some minor imprecision when mapping covered instructions back to the original statements. Transitively, this also affects the precision of our feature location (cf. Section~\ref{sec:rq3}). This drawback, however, is not limited to this particular profiler but applies to most profilers operating on byte code. 
-Superimposition in our feature location technique is sound, but, by design, incomplete, since no set of workloads is guaranteed to cover all feature code. We selected a variety of different workloads as a countermeasure, yet our study is exploratory. 
 
 \section{Study Results}~\label{sec:results}
 \subsection{Comparing Performance Distributions}\label{sec:rq1}
@@ -239,7 +192,7 @@ We approach \RQref{1} by pairwisely comparing the performance distributions from
 \label{tab:categorization}
 \end{table}
 
-\subsubsection{Results}
+\subsubsection{Results}  Results are summarized in the lower part of  Table~\ref{tab:categorization}
 {\color{black!40!white}\blindtext}
 \vspace{2mm}
 \greybox{\textbf{Summary} (\RQref{1}): \ldots}
@@ -247,8 +200,41 @@ We approach \RQref{1} by pairwisely comparing the performance distributions from
 \subsection{Input Sensitivity of Options}\label{sec:rq2}
 
 \subsubsection{Operationalization}
+{\color{red} Linear Regression as Sensitivity Analysis}
 {\color{black!40!white}\blindtext}
 \subsubsection{Results}
+Results are summarized in Figure~\ref{fig:results_influence}
+\begin{figure*}
+	\centering
+	\begin{subfigure}{0.49\textwidth}
+		\includegraphics[width=\linewidth]{fse_22/jump3r_rq2.pdf}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fse_22/kanzi_rq2.pdf}
+	\end{subfigure}
+
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fse_22/dconvert_rq2.pdf}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fse_22/h2_rq2.pdf}
+	\end{subfigure}
+
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{fse_22/batik_rq2.pdf}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fse_22/jadx_rq2.pdf}
+	\end{subfigure}
+\caption{Relative performance influences (\textit{standardized regression coefficients}) for all configuration options across all workloads. Each black diamond ($\vardiamondsuit$) depicts a workload-specific performance influence. We highlight for each configuration option the effects with the highest \colorbox{red!20}{positive} and \colorbox{green!20}{negative} value. The line between the minimum and maximum performance influences denotes the overall range.}
+\label{fig:results_influence}
+\end{figure*}
+
 {\color{black!40!white}\blindtext}
 \vspace{2mm}
 \greybox{\textbf{Summary} (\RQref{2}): \ldots}
@@ -304,19 +290,15 @@ From the comparison of the performance model coefficients, we can answer \RQref{
 
 
 
-%\clearpage
+\clearpage
 \section{Exploring Categories of Sensitivity}\label{sec:categories}
 
 \subsection{Hypotheses}
 
+
+
 \subsection{Code Coverage and Performance}\label{sec:rq3}
 So far, we have only studied how different workloads can shape the overall performance and how they can affect the performance influence of configuration options. In addition, we want to know how the observed variation emerges from  varying the workload. To understand workload effects at a finer granularity, we travel back to the level of code and extend our perspective on the problem with statement coverage data. 
-
-\begin{comment}
-The introductory example from Figure~\ref{fig:intro} illustrates two cases of how the configuration and the workload can interact at the code level. \colorbox{duplicatecheck}{Lines 2--6} depend on the selection of configuration option \texttt{DUPLICATE\_CHECK}. If selected, its influence is proportional to the number of queries to handle. 
-By contrast, the execution of \colorbox{autocommit}{Lines 12--14} for option \texttt{AUTOCOMMIT} later on primarily depends on the number of queries exceeding the minimum of 50 queries. The execution in the former case depends on the configuration option and the latter example depends---primarily---on workload properties. 
-\end{comment}
-
 
 \paragraph*{Operationalization}
 To approach this research question, we relate two types of variation for pairs of workloads. On the one hand, we compare the relative performance influences of an option. That is, we compute the absolute difference between the relative performance influences. On the other hand, we determine how much option-specific code (code segments that implement or regulate a functionality related to the configuration option) is covered under both workloads. That is, we ask how similar both workloads cover option-specific code. If the same part of option-specific code is executed under both workloads but we observe variation in the performance influence, this suggests that both workloads utilize the same code differently.
@@ -325,6 +307,20 @@ To approach this research question, we relate two types of variation for pairs o
 
 For each option and pair of workloads, in the following, we relate the difference in performance influence (performance influence variation) with the Jaccard similarity for option code (code coverage variation) for all pairs of workloads.
 
+\subsubsection{Feature Location}
+To reason about option-specific code, we require a mapping of configuration options to code. First, we obtain a baseline of \textit{all} option code within the scope of our entire workload selection. For each workload $w \in W$, we compute the set of code lines that depend on option $o \in O$. Let $C_{o}$ be the set of configurations with option $o$ selected, and $C_{\neg o}$ with option $o$ deselected. To obtain $S_{w, o}$, we follow a strategy similar to \textit{spectrum-based feature location}~\cite{michelon_spectrum_2021} and subtract the set of the code lines covered under $C_{\neg o}$ from those of $C_{o}$:
+
+\begin{equation}%\todo{example from Figure~\ref{fig:intro}}
+	S_{w, o} = \bigcup_{p \in C_{o}} S_{w}(p) ~ \setminus ~ \bigcup_{q \in C_{\neg o}} S_{w}(q)
+\end{equation}
+
+While $S_{w, o}$ yields an approximation of option-dependent code for a single workload, we then aggregate the approximations for each workload $w\in W$ to obtain the set of lines that depend on a configuration option $o$ and are executed in, at least, one workload,~$S_{o}$: 
+
+\begin{equation}
+	S_{o} = \bigcup_{w \in W} S_{w, o}
+\end{equation}
+
+While this aggregated set is not a ground truth, it enables us to reason about differences in option-dependent code within the scope of our selected workloads. That is, the expressiveness of this baseline depends on the diversity of the workloads in question. We discuss this limitation in Section~\ref{sec:construct_validity}. From the ratio of option-specific code per workload to option-specific code across workloads, $\mid S_{w_1, o}\mid/~{\mid S_{w_2, o}\mid}$, we can estimate the coverage of option-dependent code. By comparing the sets $S_{w_1, o}$ and $S_{w_2, o}$ for any two workloads $w_1$ and $w_2$, we can estimate similarity between the option-code coverage via the Jaccard set similarity index. We review further techniques for feature location in Section~\ref{sec:related}.
 
 \paragraph*{Results}
 {\color{red}\ldots}
@@ -333,6 +329,19 @@ For each option and pair of workloads, in the following, we relate the differenc
 }
 
 \section{Discussion}\label{sec:discussion}
+
+\subsection{Threats to Validity}
+\subsubsection{Internal Validity}\label{sec:internal_validity}
+Threats to \emph{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate this threat by repeating each experiment five times and reporting the median as a robust measure. For \htwo, we confirmed a negligible measurement variation in a separate pre-study.
+Another potential threat is that the coverage analysis with \mbox{\textsc{JaCoCo}} entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario but thus introduced only negligible variation and overhead.
+
+\subsubsection{External Validity}\label{sec:external_validity}
+The selection of subject systems all written in Java poses a threat to \emph{external validity}. While our motivation for this selection is primarily practical (cf. Section~\ref{sec:setup}), we mitigate this threat by selecting subject systems from a variety of application domains (cf.~Table~\ref{tab:subject_systems}). Nonetheless, one cannot necessarily conclude that our results hold for other domains and programming languages. 
+
+\subsubsection{Construct Validity}\label{sec:construct_validity}
+Regarding \emph{construct validity}, the profiler \textsc{JaCoCo} instruments Java byte code instructions rather than statements, which leads to some minor imprecision when mapping covered instructions back to the original statements. Transitively, this also affects the precision of our feature location (cf. Section~\ref{sec:rq3}). This drawback, however, is not limited to this particular profiler but applies to most profilers operating on byte code. 
+Superimposition in our feature location technique is sound, but, by design, incomplete, since no set of workloads is guaranteed to cover all feature code. We selected a variety of different workloads as a countermeasure, yet our study is exploratory. 
+
 \subsection{Implications for Practitioners}
 
 \begin{equation}

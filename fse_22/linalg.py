@@ -110,8 +110,31 @@ for system in systems:
         pivot = dict(sorted(means.items(), key=lambda item: item[1], reverse=True))
 
         option_order = reversed(pivot.keys())
-        
+        option_order = [o for o in option_order]
         swarm_coefficients = pd.DataFrame(swarm_coefficients)
+        
+        if kpi in ['time', 'throughput']:
+            plt.figure(figsize=(8,4.5))
+            plt.grid(axis='y')
+            sns.stripplot(y="option", x="influence", data=swarm_coefficients, size=5,  order=option_order, marker='d', color='0.0')
+            #sns.boxplot(y="option", x="influence", data=swarm_coefficients, order=option_order, color='green', linewidth=0.8, boxprops={'alpha':0.7})
+            plt.axvline(0, color='black', linestyle='-', linewidth=0.5)
+            for i, o in enumerate(option_order):
+                plt.axhline(o, color='black', linewidth=0.4, alpha=0.25)
+                mi = swarm_coefficients[swarm_coefficients['option'] == o]['influence'].min()
+                ma = swarm_coefficients[swarm_coefficients['option'] == o]['influence'].max()
+                print(o, mi, ma)
+                plt.plot([mi, ma], [o, o], color='black',linewidth=1.4)
+                if mi < 0:
+                    plt.barh([o], [mi], color='green', alpha=0.3)
+                if ma > 0:
+                    plt.barh([o], [ma], color='red', alpha=0.3)
+            plt.title('{} ({}; {} workloads)'.format(system, kpi, len(workloads)),fontweight='bold')
+            plt.xlabel('Relative Performance Influence')
+            plt.ylabel('')
+            plt.draw()
+            plt.savefig('{}_rq2.pdf'.format(system), bbox_inches='tight')
+        '''
         workloads = swarm_coefficients.workload.unique()
 
         cmap = plt.get_cmap('hsv')
@@ -157,7 +180,7 @@ for system in systems:
         
         #fig.subplots_adjust(bottom=0.25)
         plt.show()
-        
+        '''
         
         
         '''
