@@ -13,7 +13,9 @@
 \usepackage{microtype}
 
 % for emergencies
-%\usepackage[subtle]{savetrees}
+% suble = develpent
+% moderate = serious
+\usepackage[subtle]{savetrees}
 
 \usepackage{paralist}
 
@@ -51,7 +53,7 @@
 \usepackage[framemethod=TikZ]{mdframed}
 \newcommand{\greybox}[1]{
 	\begin{mdframed}[
-		backgroundcolor=white!15,
+		backgroundcolor=cyan!25,
 		linewidth=0.5pt,
 		innerleftmargin=5pt,
 		innertopmargin=5pt,
@@ -124,10 +126,10 @@
 		\vspace{0.5em}
 		\bgroup
 		\def\arraystretch{1.3}%  1 is the default, change whatever you need
-		\begin{tabularx}{\linewidth}{p{0.12\linewidth}|p{0.75\linewidth}}
-			\rowcolor{
-				brown!20}
-			$RQ_{#1}$ & #2 \\
+		\begin{tabularx}{\linewidth}{p{0.12\linewidth}?p{0.75\linewidth}}
+			%\rowcolor{
+			%	white!20}
+			$RQ_{#1}$ & \textit{#2} \\
 		\end{tabularx}
 		\egroup
 	}
@@ -154,5 +156,10 @@
 
 \colorlet{cs-color}{cs-color-raw!28!white}
 \colorlet{lt-color}{lt-color-raw!28!white}
-\colorlet{xmt-color}{xmt-color-raw!28!white}
+\colorlet{xmt-color}{xmt-color-raw!45!white}
 \colorlet{nmt-color}{nmt-color-raw!28!white}
+
+
+% thicc line
+\usepackage{array}
+\newcolumntype{?}{!{\vrule width 1pt}}

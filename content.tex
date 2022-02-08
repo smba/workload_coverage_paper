@@ -110,7 +110,7 @@ To start to translate our findings of performance variation under varying worklo
 \RQ{3}{To what extent do influences of configuration options on performance and option-specific code coverage depend on the workload?}
 
 \subsection{Methodology}
-\subsubsection{Overview}
+\subsubsection{Overview}\todo{low prio, but maybe neccessary?}
 
 \begin{compactenum}
 	\item 
@@ -149,28 +149,30 @@ All experiments were conducted on three different compute clusters and each subj
 To minimize measurement noise, no additional user processes were running in the background, and no other than necessary packages were installed.	For all data points, we report the median across five repetitions (except for \htwo), which has shown to be a good trade-off between variance and measurement effort. For \htwo, we omitted the repetitions as in a pre-study, running on the identical cluster setup, we found that across all benchmarks the throughput coefficient of variation (standard deviation divided by the arithmetic mean) was consistently below~5\,\%.
 
 \section{Study Results}~\label{sec:results}
+~
 \subsection{Comparing Performance Distributions}\label{sec:rq1}
 \subsubsection{Operationalization}
 We approach \RQref{1} by pairwisely comparing the performance distributions from different workloads (cf. the comparison in Figure~\ref{fig:h2_intro}) and investigate whether any two distributions are similar or, if not, can be transformed into each other. For the latter case, we are specifically interested in what type of transformation is necessary as this determines \textit{how} complex a workload interacts with configuration options. We categorize each pair of workloads with respect to the following aspects: 
 
 \begin{compactenum}
-	\item \textbf{Similarity}: As a sanity check, we first ask whether two performance distributions are equal. Such distributions are ususally multi-modal and/or long-tailed~\cite{curtsinger_stabilizer_2013,maricq2018taming}, which fails to meet the requirements for existing parametric siginificance tests. Instead, we employ the Wilcoxon signed-rank test~\cite{lovric_international_2010} to assess whether varying the workload affects configuration performance. If we can reject the null hypothesis $H_0$ at significance level $\alpha~=~0.95$, we consider the distributions dissimilar. In addition, to account for account for overpowering due high and different sample sizes (cf.~Table~\ref{tab:subject_systems}), we report effect sizes to asses whether the effect attributed to varying the workload is negligible or not. We use Vargha and Delaney's $A$ measure~\cite{vargha_delaney_2000} and their proposed threshold of {\color{red}$A \geq 0.7$}, indicating a large effect.
+	\item \textbf{Similarity}: To test whether varying the workload has any effect at all, we employ statistical tests. Since performance distributions are often multi-modal or long-tailed~\cite{curtsinger_stabilizer_2013,maricq2018taming}, they fail to meet the requirements for parametric methods. 
+	Thus, we resort to a non-parametric approach and employ the Wilcoxon signed-rank test~\cite{lovric_international_2010} to assess whether varying the workload affects configuration performance. If we can reject the null hypothesis $H_0$ at significance level $\alpha~=~0.95$, we consider the distributions dissimilar. In addition, to account for account for overpowering due high and different sample sizes (cf.~Table~\ref{tab:subject_systems}), we report effect sizes to asses whether the effect attributed to varying the workload is negligible or not. We use Cliff's $\delta$ measure~\cite{Cliff1993DominanceSO} to identify non-negliglible differences ($\vert \delta \vert > 0.147$) following the guidelines for interpretation from \citeauthor{romano2006exploring}.~\cite{romano2006exploring}.
 	
-	\item \textbf{Linear Correlation}: If both performance distirbutions shifted by a constant value or scaled by a constant factor. To test for this case, we compute for each pair of distributions Pearson's $r$ correlation coefficient. To discard the sign of relationship, we use the absolute value, henceforth $r^*$ and follow {\color{red}Someone's rule} for interpretation, where $\color{red}r^* >0.6$ indicates a strong linear relationship, one can employ a linear transformation. 
-	\item \textbf{Monotonous Correlation}: Similarly to the previous aspect and last, we test whether there exists a monotonous relationship between the two performance distributions. We use Kendall's $\tau$~\cite{kendall1938new} rank correlation coefficient and follow {\color{red}Evan's} rule for interpretation, where $\color{red}\tau > 0.7$ indicates a strong monotonous relationship.
+	\item \textbf{Linear Correlation}: If both performance distirbutions shifted by a constant value or scaled by a constant factor. To test for this case, we compute for each pair of distributions Pearson's $r$ correlation coefficient. To discard the sign of relationship, we use the absolute value and consider $\vert r\vert >0.6$ indicates a strong linear relationship. 
+	\item \textbf{Monotonous Correlation}: Similarly to the previous aspect and last, we test whether there exists a monotonous relationship between the two performance distributions. We use Kendall's $\tau$~\cite{kendall1938new} rank correlation coefficient and consider $\vert\tau\vert > 0.6$ a strong monotonous relationship.
 \end{compactenum}
 
 {\color{black} Based on these three tests and metrics, we composed four categories, which each pair of performance distributions can be categorized into. If we cannot reject $H_0$, we consider them identical and as similar distributions (\textsf{\colorbox{cs-color}{SD}}). If both distributions exhibit a strong linear relationship, we classify them as linearly transformable (\textsf{\colorbox{lt-color}{LT}}). If we observe a strong monotonous, but not a linear relationship, we classify such pairs as exclusively monotonously transformable into a separate category (\textsf{\colorbox{xmt-color}{XMT}}). Last, if the comparison yields no monotonous relationship, we can only transform them using non-monotonous methods (\textsf{\colorbox{nmt-color}{NMT}}). We summarize the category criteria as well as the category counts in Table~\ref{tab:categorization}. 
 
 \begin{table}[h!]
 	\footnotesize
-	\caption{Categorization and category counts of configuration-specific performance distributions across workload pairs}
+	\caption{Relationship between pairs of workload-specific performance distributions. The top table describes four disjoint classes of relationships and their respectice criteria; the bottom table presents the frequency of each class for each software system studied.}
 	\centering
 \begin{tabular*}{\linewidth}{lp{4.4cm}p{3cm}}	
 	\toprule
 	 \textbf{Abbrev.} & \textbf{Category} & \textbf{Criteria}\\
 	 \midrule
-	 \cellcolor{cs-color}\textsf{SD} & {Similar distributions} & {$H_0$ not rejected} \\
+	 \cellcolor{cs-color}\textsf{SD} & {Similar distributions} & {$H_0$ not rejected} and $\delta > 0.147$ \\
 	 \cellcolor{lt-color}\textsf{LT} & {Linear transformation} & $r^* \geq 0.6$ \\
 	\cellcolor{xmt-color}\textsf{XMT} & {Non-linear, but monotonous transformation} & $r^* < 0.6 $ and $ \tau^* \geq 0.6$ \\
 	\cellcolor{nmt-color}\textsf{NMT} & {Non-monotonous transformation}  & (otherwise) \\%$p < 0.05$ and $\tau < 0.6$ \\
@@ -178,32 +180,81 @@ We approach \RQref{1} by pairwisely comparing the performance distributions from
 \end{tabular*}\\
 \begin{tabular}{lrrrrrrrr}	
 	\toprule
-	\textbf{Subject System} & \multicolumn{2}{c}{\textbf{\textsf{SD} Pairs}} & \multicolumn{2}{c}{\textbf{\textsf{LT} Pairs}} & \multicolumn{2}{c}{\textbf{\textsf{XMT} Pairs}} & \multicolumn{2}{c}{\textbf{\textsf{NMT} Pairs}}\\
+	\textbf{Subject System} & \multicolumn{2}{c}{\textbf{\cellcolor{cs-color}\textsf{SD} Pairs}} & \multicolumn{2}{c}{\textbf{\cellcolor{lt-color}\textsf{LT} Pairs}} & \multicolumn{2}{c}{\textbf{\cellcolor{xmt-color}\textsf{XMT} Pairs}} & \multicolumn{2}{c}{\textbf{\cellcolor{nmt-color}\textsf{NMT} Pairs}}\\
 	 & \textit{abs.} & \textit{rel.} & \textit{abs.} &\textit{ rel.} & \textit{abs.} & \textit{rel.}& \textit{abs.} & \textit{rel.}\\
 	\midrule
-	\jumper & 1 & 42\,\% & 1 & 42\,\% & 1 & 42\,\% & 1 & 42\,\%\\
-	\kanzi & 1 & 42\,\% & 1 & 42\,\% & 1 & 42\,\% & 1 & 42\,\%\\
-	\dconvert & 1 & 42\,\% & 1 & 42\,\% & 1 & 42\,\% & 1 & 42\,\%\\
-	\htwo & 1 & 42\,\% & 1 & 42\,\% & 1 & 42\,\% & 1 & 42\,\%\\
-	\batik & 1 & 42\,\% & 1 & 42\,\% & 1 & 42\,\% & 1 & 42\,\%\\
-	\jadx & 1 & 42.5\,\% & 1 & 42.9\,\% & \cellcolor{olive!25!white}1 & \cellcolor{indigo!18!white}90.1\,\% & 1 & 42\,\%\\
+	
+	\jumper & 
+	0 & 0\,\% & 
+	\cellcolor{lt-color!100!white}15 & \cellcolor{lt-color!100!white}100.0\,\% & 
+	0 & 0\,\% & 
+	0 & 0\,\%\\
+	
+	\kanzi & 
+	0 & 0\,\% & 
+	\cellcolor{lt-color!78!white}28 & \cellcolor{lt-color!78!white}77.8\,\% & 
+	\cellcolor{xmt-color!11!white}	4& \cellcolor{xmt-color!11!white}11.1\,\% & 
+	\cellcolor{nmt-color!11!white}4 & \cellcolor{nmt-color!11!white}11.1\,\%\\
+	
+	\dconvert & 
+	0 & 0\,\% & 
+	\cellcolor{lt-color!43!white}29 & \cellcolor{lt-color!43!white}43.9\,\% & 
+	0 & 0\,\% & 
+	\cellcolor{nmt-color!56!white}37 & \cellcolor{nmt-color!56!white}56.1\,\%\\
+	
+	\htwo & 
+	0& 0\,\% & 
+	\cellcolor{lt-color!47!white}13 & \cellcolor{lt-color!47!white}46.4\,\% & 
+	0 & 0\,\% & 
+	\cellcolor{nmt-color!53!white}15 & \cellcolor{nmt-color!53!white}53.6\,\%\\
+	
+	\batik & 
+	0 & 0\,\% & 
+	\cellcolor{lt-color!50!white}28 & \cellcolor{lt-color!50!white}50.9\,\% & 
+	\cellcolor{xmt-color!14!white}8 & \cellcolor{xmt-color!14!white}14.6\,\% & 
+	\cellcolor{nmt-color!34!white}19 & \cellcolor{nmt-color!34!white}34.6\,\%\\
+	
+	\jadx & 
+	0 & 0\,\% & 
+	\cellcolor{lt-color!100!white}120 & \cellcolor{lt-color!100!white}100.0\,\% & 
+	0 & 0\,\% & 
+	0 & 0\,\%\\
+	
 	\bottomrule
 \end{tabular}
 \label{tab:categorization}
 \end{table}
 
-\subsubsection{Results}  Results are summarized in the lower part of  Table~\ref{tab:categorization}
-{\color{black!40!white}\blindtext}
+\subsubsection{Results}
+We summarize the results of our classification in the bottom part of Table~\ref{tab:categorization}. For all of the six software systems, varying the workloads had an effect on the performance distribution. All software systems, at least, in part, exhibit performance distributions that can be transformed into one another using an affine transformation, such shifting by a constant value or scaling by a constant factor. In particular, for \jumper and \jadx, we did only observe such behavior. This finding corresponds to experimental insights~\citeauthor{jamishidi_transfer_2017}, who encoded differences between performance distributions using linear functions. For four software systems, we observed a more diverse classification. For kanzi and batik, a few performance distributions require transformations that are non-linear, but still monotonous. For the remaining \dconvert and \htwo, the majority of performance distribution pairs exhibit a degree of diversity, so that we cannot identify a monotonous relationship. In total, four out of the six software systems exhibit some degree of \emph{non-monotonous} relationships.
 \vspace{2mm}
-\greybox{\textbf{Summary} (\RQref{1}): \ldots}
+\greybox{\textbf{Summary} (\RQref{1}): The subject systems' performance distributions exhibit different types of relationships, \textit{mostly linear}, but, to a substantial part, also \textit{non-monotonous transformations}.}
 
 \subsection{Input Sensitivity of Options}\label{sec:rq2}
 
 \subsubsection{Operationalization}
-{\color{red} Linear Regression as Sensitivity Analysis}
-{\color{black!40!white}\blindtext}
+To address \RQref{2}, we need to determine the configuration options’ influence on performance and assess the variation thereof across workloads. 
+
+\paragraph*{Explanatory Model}
+We achieve this by learning models resembling the performance prediction models from Section~\ref{sec:perfmodels}, yet with a slightly twisted purpose: Instead of predicting unseen configurations’ performance, we intend to attribute performance variation to different configuration options. Here, we deliberately consider the \textit{entire} sample set for training. 
+To reason about performance influences, we require the explanatory model to be interpretable. We reenact the class of linear models for performance learning~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,perLasso} and construct a model using multiple linear regression with each configuration as a predictor or independent variable. We limit the set of independent variables to individual options rather than to include higher-order interactions to be consistent with the feature location used for \RQref{3} where we determine option-specific, yet not interaction-specific code segments.
+
+\paragraph*{Standardization}
+To facilitate the comparison of regression coefficients across workloads, we follow the practice in machine learning and standardize our dependent variable by subtracting the population’s mean performance and divide the result by the respective standard deviation~\cite{}\todo{reference}. Henceforth, we will refer to these standardized regression coefficients as \textit{relative performance influences}. A beneficial side effect of this standardization step is that the observed variation of regression coefficients for each configuration option cannot be attributed to shifting or scaling effects (affine transformation, class \colorbox{lt-color}{\textsf{LT}} in Table~\ref{tab:categorization}) as we applied such transformation by standardizing the performance values.. Thus, with this approach we can directly target the non-linear or explicitly non-monotonous effect that workloads exercise on performance.
+
+\paragraph*{Handling Multicollinearity}A problem faced when learning linear models from training samples, where some features are correlated is multicollinearity~\cite{Daoud_2017}. This can, for instance, arise from groups of mutually exclusive configuration options and result in distorted regression coefficients although the model's prediction accuracy remains unaffected. To mitigate this problem and, in particular, to ensure that the obtained performance influences remain interpretable, we drop several configuration options from the sample set, which has shown to be an effective practice~\cite{dorn2020}. For the training step, we exclude all mandatory configuration options since these by definition cannot contribute to performance variation. In addition, for each group of mutually exclusive configuration options, we discard one randomly selected group member. \\
+
+From the comparison of the relative performance influences, we can answer \RQref{2} in detail and assess how many configurations are sensitive to varying the workload, what characteristic traits describe the performance influences, and whether we can identify patterns.
 \subsubsection{Results}
-Results are summarized in Figure~\ref{fig:results_influence}
+We illustrate the results of training the explanatory performance models for each subject system in Figure~\ref{fig:results_influence}. Each row shows the distribution of the relative performance influence of a configuration option across the set of tested workloads. For this visualization, we made some tweaks to highlight a few characteristics: First, we show each regression coefficient as an individual black diamond. Second,  to visualize the range of obtained coefficients, the minimum and maximum ones are connected via a black line. Third, the positive and negative coefficients with their respective greatest absolute value determine the color-coded bars to highlight if a coefficient flips its sign by varying the workload. Last, we decided to use this visualization over box plots (or related ones, such as violin plots) since these would hide this level of detail and are more useful for larger data sets.
+
+We can describe the distribution of coefficients by their characteristics including their \textit{range of spread} (distance between minimum and maximum), their \textit{clustering}, and whether they contribute \textit{consistently positive} or \textit{negative} influences. With regard to Table 2, we see that  \jadx exhibits fairly consistent distributions, where only the influential options’ influences show a substantial range. While \jumper, scored similarly for \RQref{1}, we can observe the first configuration options behaving inconsistently: For options \textsf{JointStereo}, \textsf{MidStereo}, and \textsf{SwapBytes} the coefficient can switch signs, or in the case of \textsf{Mono} can distinctly vary in magnitude. For \batik, we observe for the majority of configuration options a wide range and a sign-flip for the option \textsf{pdf}. While we see a wide range and sign-flipping for \dconvert as well, it also  shows another distinct case: The influence of options \textsf{round}, \textsf{png}, and \textsf{floor} is influential only under certain workloads and can also flip sign (except for \textsf{png}). For the last two systems, \kanzi and \htwo which exhibit the greatest share of non-monotonous differences between performance distributions, we find all of the above described characteristics: sign-flipping for options \textsf{Huffmann}, \textsf{RLT} (both \kanzi), and \textsf{MVSTORE} (\htwo); influential option only under some workloads: \textsf{BWT} (\kanzi), \textsf{DEFRAG\_ALWAYS} and \textsf{COMPRESS} (both \htwo); or a wide range: \textsf{TPAQX} (\kanzi) and \textsf{MVSTORE} (\htwo).
+
+\paragraph*{Possible Patterns}
+\begin{compactitem}
+	\item are these patterns?
+\end{compactitem}
+
 \begin{figure*}
 	\centering
 	\begin{subfigure}{0.49\textwidth}
@@ -235,7 +286,6 @@ Results are summarized in Figure~\ref{fig:results_influence}
 \label{fig:results_influence}
 \end{figure*}
 
-{\color{black!40!white}\blindtext}
 \vspace{2mm}
 \greybox{\textbf{Summary} (\RQref{2}): \ldots}
 
@@ -288,15 +338,7 @@ From the comparison of the performance model coefficients, we can answer \RQref{
 \end{table}
 \end{comment}
 
-
-
-\clearpage
 \section{Exploring Categories of Sensitivity}\label{sec:categories}
-
-\subsection{Hypotheses}
-
-
-
 \subsection{Code Coverage and Performance}\label{sec:rq3}
 So far, we have only studied how different workloads can shape the overall performance and how they can affect the performance influence of configuration options. In addition, we want to know how the observed variation emerges from  varying the workload. To understand workload effects at a finer granularity, we travel back to the level of code and extend our perspective on the problem with statement coverage data. 
 
@@ -351,6 +393,9 @@ Superimposition in our feature location technique is sound, but, by design, inco
 \end{equation}
 
 \subsection{Implications for Researchers}
+
+\subsubsection{Is non-monotonicity a problem?}
+
 \subsection{Future Work}
 \section{Related Work}\label{sec:related}
 \paragraph*{Feature Location}\label{sec:feature_location}
