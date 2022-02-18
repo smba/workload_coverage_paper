@@ -59,6 +59,7 @@ STDEV_THRESHOLD = 0.05
 for system in systems:
     data = pd.read_csv('datax/{}_measurements.csv'.format(system))
 
+    all_coefficients = []
     for kpi in systems[system]:
         coefficients = []
         swarm_coefficients = []
@@ -85,10 +86,13 @@ for system in systems:
                     {
                         'workload': w,
                         'option': option,
-                        'influence': coefficient
+                        'influence': coefficient,
+                        'kpi': kpi
                     }    
                 )
             
+        all_coefficients += swarm_coefficients
+    
         # get worklaod with GREATEST absolute influence
         options = coefficients[0].keys()
         ginis = {}
@@ -102,7 +106,8 @@ for system in systems:
             means[opt] = np.median(influences)
             covs[opt] = np.std(influences) 
 
-                
+            
+        
         pivot = dict(sorted(means.items(), key=lambda item: item[1], reverse=True))
 
         option_order = reversed(pivot.keys())
@@ -130,6 +135,8 @@ for system in systems:
             plt.ylabel('')
             plt.draw()
             plt.savefig('{}_rq2.pdf'.format(system), bbox_inches='tight')
+            
+    pd.DataFrame(all_coefficients).to_csv('models/{}_model.csv'.format(system), index=False)
             #plt.show()
 '''
 # build elastic model
