@@ -64,7 +64,8 @@ Revisiting an observation by \citeauthor{alves_sampling_2020}~\cite{alves_sampli
 	\caption{Performance distributions of the database system \htwo run the \textsf{TPC-C} benchmark at different scale factors.}
 	\label{fig:h2_intro}
 \end{figure}
-While one might first expect that a more complex workload results in lower throughput, this is indeed the case, but does not hold for all configurations. {\color{purple}\todo{mehr auf den Punkt}We see that the median throughput indeed decreases when increasing the scale factor, however the \emph{shape} and the \emph{spread} of the performance distribution is affected as well, which cannot be expected when all configurations scale evenly. The majority of configurations' performance scales with the workload, but some do not and even few achieve improved throughput. Thus, if configurations’ performance is affected in such non-trivial ways, varying the workload affects the performance influence that different configuration options exhibit.}
+While one might first expect that a more complex workload results in lower throughput, this is indeed the case, but does not hold for all configurations. The median throughput decreases for the larger scale factor, yet the shape and spread of the distribution are entirely different. Most notably, the maximum throughput for the greater scale factor is higher than for the smaller scale factor, indicating that some configurations indeed do not follow the general trend. This illustrates that the effect of varying the workload for some configurations can not be captured by a linear transformation (constant shift or scaling).
+
 
 Some aspects of this \emph{input sensitivity} have been observed and documented before in the literature~\cite{liao_2020_using_emse,alves_sampling_2020,jamishidi_transfer_2017} and raise questions, such as: Which options are input sensitive? What are the driving factors for input sensitivity? Can we estimate which options are input-sensitive? We set out to answer these questions in this paper.
 
@@ -74,10 +75,10 @@ To some aspects of the said questions, different approaches have been proposed t
 
 \paragraph{Workload-aware Performance Modeling}\label{sec:workload-aware}
 Extending on workload characterization, a strategy that embraces workload diversity is to incorporate workload characteristics into the problem space of a performance prediction model. Here, performance is modeled as a function of both the configuration options exhibited by the software system as well as the workload characteristics, formally $\Pi: C \times W \rightarrow \mathbb{R}$.
-The combined problem space enables learning performance models that generalize to workloads that exhibit characteristics denoted by $W$ since we can screen for performance-relevant combinations of options and workload characteristics. Although this strategy is highly application-specific, it has been successfully applied to different domains, such as program verification~\cite{koc_satune_2021}. However, its main disadvantages are twofold: {\color{purple}\todo{Unser Ansatz weniger komplex?}The inflated and more complex problem space implies substantially more observations to screen for identifying performance-relevant options, characteristics, and combinations thereof.} {\color{violet}\todo{mehr erklaeren}In addition, previous work on exploring the differences across workload-specific performance found that only few configuration options are input sensitive~\cite{jamishidi_transfer_2017}, which exacerbates the problem of finding the meaningful, but sparse predictors.}
+The combined problem space enables learning performance models that generalize to workloads that exhibit characteristics denoted by $W$ since we can screen for performance-relevant combinations of options and workload characteristics. Although this strategy is highly application-specific, it has been successfully applied to different domains, such as program verification~\cite{koc_satune_2021}. However, its main disadvantages are twofold: The combined problem space (configuration and workload dimension) requires substantially more observations to screen for identifying performance-relevant options, characteristics, and combinations thereof. In addition, previous work  found that that only few configuration options are input sensitive~\cite{jamishidi_transfer_2017} when varying the workload. That is, the problem of identifying meaningful, but sparse predictors is exacerbated since one must not only identify performance-relevant configuration options, but also input sensitive ones.
 
 \paragraph{Transfer Learning for Performance Models}\label{sec:transfer}
-Another strategy that builds on the fact that, across different workloads, only few configuration options are in fact input sensitive~\cite{jamishidi_transfer_2017}. Here one first trains a model on a standard workload and, subsequently, adapts it to different workloads. Contrary to a generalizable workload-aware model, transfer learning strategies focus on approximating a transfer function that, without characterizing the workload, encodes the information of which configuration options are sensitive to differences between a source and target pair of workloads. Training a workload-specific model and adapting it on occasion provides an effective means to reuse performance models, which is not limited to workloads~\cite{jamshidi_learning_2018}, but has successfully been applied to different hardware setups~\cite{ding_bayesian_2020,valov_transferring_performance_2017} and across versions~\cite{martin_transfer_2021}.\todo{limitierungen} \\
+Another strategy that builds on the fact that, across different workloads, only few configuration options are in fact input sensitive~\cite{jamishidi_transfer_2017}. Here one first trains a model on a standard workload and, subsequently, adapts it to different workloads. Contrary to a generalizable workload-aware model, transfer learning strategies focus on approximating a transfer function that, without characterizing the workload, encodes the information of which configuration options are sensitive to differences between a source and target pair of workloads. Training a workload-specific model and adapting it on occasion provides an effective means to reuse performance models, which is not limited to workloads~\cite{jamshidi_learning_2018}, but has successfully been applied to different hardware setups~\cite{ding_bayesian_2020,valov_transferring_performance_2017} and across versions~\cite{martin_transfer_2021}. The main shortcoming of transfer learning approaches is that they do not generalize to arbitrary workloads, since a transfer function is tailored to a specific target workload. Here, one trades off generalizability and measurement cost as learning a transfer function requires substantially fewer training samples.\\
 
 While both directions are effective means to handle input sensitivity, to the best of our knowledge, there is no systematic assessment of the factors that drive the interaction between configuration options and workloads with regard to performance. Understanding scenarios that are associated with or even cause incongruent performance influences across workloads can help practitioners to employ established analysis techniques more effectively and can motivate researchers to devise analysis techniques dedicated to such scenarios.
 
@@ -106,9 +107,10 @@ The first two research questions describe the performance behavior of our subjec
 
 \subsection{Experiment Setup}\label{sec:setup}
 \paragraph{Subject Systems}
-For our study, we select six configurable software systems implemented in Java. We decided to use Java for mainly two reasons: (1) practically, because we can forgo code modifications for instrumentation by using off-line instrumentation (cf.~Section~\ref{sec:profiling}) for code coverage measurement, and (2) strategically, because Java is one of the most widely used programming languages. We discuss this decision in more detail in Section~\ref{sec:threats}. 
-{\color{purple}\todo{Kann weg, evtl etwas allgemeiner halten}\jumper is a re-implementation of the LAME audio codec for MP3 in Java. \kanzi is a command-line file compression tool. \dconvert is a Java utility to scale images for use in Android apps into different formats and different resolutions. \batik is a Java utility to rasterize vector graphics. \jadx is a decompiler and deobfuscator for Android applications.} The full list of our subject systems and characteristics is presented in Table~\ref{tab:subject_systems}. 
-For all software systems, we have measured more than one performance metric, except for \htwo, where we measured throughput only. We focus on response time and throughput to keep our analysis and results comparable.
+For our study, we select six configurable software systems implemented in Java. We decided to use Java for mainly two reasons: (1) practically, because we can forgo code modifications for instrumentation by using off-line instrumentation (cf.~Section~\ref{sec:profiling}) for code coverage measurement, and (2) strategically, because Java is one of the most widely used programming languages. We discuss this decision in more detail in Section~\ref{sec:external_validity}. 
+All subject systems operate by processing a domain-specific input fed to them
+%{\color{purple}\todo{Kann weg, evtl etwas allgemeiner halten}\jumper is a re-implementation of the LAME audio codec for MP3 in Java. \kanzi is a command-line file compression tool. \dconvert is a Java utility to scale images for use in Android apps into different formats and different resolutions. \batik is a Java utility to rasterize vector graphics. \jadx is a decompiler and deobfuscator for Android applications.} The full list of our subject systems and characteristics is presented in Table~\ref{tab:subject_systems}. 
+For all software systems, we have measured more than one performance metric (response time and peak amount of memory held by a process), except for \htwo, where we measured throughput only. We focus on response time and throughput to keep our analysis and results comparable.
 
 \begin{table}[h]
 	\footnotesize
@@ -119,11 +121,46 @@ For all software systems, we have measured more than one performance metric, exc
 \end{table}
 
 \paragraph{Workload Selection}
-We aim at covering a variety of workload characteristics to make use of different functionality of a subject system. 
-For the selection of workloads, we considered general characteristics (e.g., workload size to probe for scaling and utilization factors) and domains-specific characteristics that reflect the specific application domain (e.g., different valid input file types).
-Due to space limitations, we provide here only an overview. A more extensive description of the used workloads is available at the paper's companion Web site.
+We aim at covering a variety of workload characteristics to make use of different functionality of a subject system. For the selection of workloads, we considered general characteristics (e.g., workload size to probe for scaling and utilization factors) and domains-specific characteristics that reflect the specific application domain (e.g., different valid input file types). {\color{green!70!black}As relevant workload characteristics are not always explicitly known, we cannot guarantee that our selection covers all functionality.}
+Due to space limitations, we provide here only an overview in Table~\ref{tab:workloads}. The workloads along with a more extensive description is available at the companion Web site. 
 
-{\color{purple}\todo{move to Tabelle}For \jumper, we selected WAVE audio files that, among others, vary in the sampling rate, number of channels, and file size. For \kanzi, we selected dedicated compression benchmark corpora (sets of files of different types) into our selection and further included files of different types at different scales, among others, a binary of the linux kernel and CSV data. For \dconvert, we selected files that reflect the application’s documented input formats (JPEG, PNG, PSD, and SVG) and vary in file size. For \batik, we selected a range of SVG file varying in size. For \jadx, we selected a number popular of Android applications (APK packages) ranging from social media to games and utility applications. For \htwo, we used a selection of application-level benchmarks from \textsc{OLTPBench}~\cite{difallah_oltp_2013}, a load generator for databases that allows for using a variety of performance testing benchmarks, such as \texttt{TPC-C}.}
+%{\color{purple}\todo{move to Tabelle}For \jumper, we selected WAVE audio files that, among others, vary in the sampling rate, number of channels, and file size. For \kanzi, we selected dedicated compression benchmark corpora (sets of files of different types) into our selection and further included files of different types at different scales, among others, a binary of the linux kernel and CSV data. For \dconvert, we selected files that reflect the application’s documented input formats (JPEG, PNG, PSD, and SVG) and vary in file size. For \batik, we selected a range of SVG file varying in size. For \jadx, we selected a number popular of Android applications (APK packages) ranging from social media to games and utility applications. For \htwo, we used a selection of application-level benchmarks from \textsc{OLTPBench}~\cite{difallah_oltp_2013}, a load generator for databases that allows for using a variety of performance testing benchmarks, such as \texttt{TPC-C}.}
+
+\begin{table}
+	\footnotesize
+	\centering
+	\caption{Overview of the workloads used for our six subject systems.}
+	\begin{tabular}{lp{6cm}}
+		\toprule
+		\textbf{Software System} & \textbf{Workload Description} \\
+		\midrule
+		
+		%\rowcolor{black!5!white}
+		\jumper & Different WAVE audio files varying in sampling rate, the number of channels, and length. \\
+		
+		%\rowcolor{black!10!white}
+		\midrule
+		\kanzi  & Common file compression benchmarks, including the Canterbury corpus (mixed file types), and single-type files. \\
+		
+		%\rowcolor{black!5!white}
+		\midrule
+		\dconvert  & Graphic and project files varying in size and file type (JPEG, PNG, PSD, SVG) \\
+		
+		%\rowcolor{black!10!white}
+		\midrule
+		\htwo & Standardized OLTP benchmarks (TPC-H, SmallBank, Yahoo! Cloud Serving Benchmark, and Voter) at two different scale factors from \textsf{OLTPBench}~\cite{difallah_oltp_2013}. \\
+		
+		%\rowcolor{black!5!white}
+		\midrule
+		\batik  & Different SVG vector graphic files varying in size. \\
+		
+		%\rowcolor{black!10!white}
+		\midrule
+		\jadx  & APK packages of popular Android applications varying in size and application type (utilities, games etc.). \\
+		\bottomrule
+	\end{tabular}
+\label{tab:workloads}
+\end{table}
 
 \paragraph{Configuration Sampling}\label{sec:sampling}\todo{how did we handle numeric configuration options??}
 For each subject system, we sampled a set of configurations. As exhaustive coverage of the configuration space is infeasible due to combinatorial explosion~\cite{henardCombining2015}, we combine several coverage-based sampling strategies and uniform random sampling into an \emph{ensemble} approach: 
@@ -256,9 +293,9 @@ We can describe the distribution of coefficients by their characteristics includ
 \begin{table}
 	\centering
 	\footnotesize
-	\begin{tabular}{llp{3.5cm}} % h2 batik jadx
+	\begin{tabular}{p{1cm}p{1.5cm}p{4.6cm}} % h2 batik jadx
 		\toprule
-		\textbf{Category} & \textbf{Subject System} & \textbf{Options} \\
+		\textbf{Category} & \textbf{Softw. System} & \textbf{Options} \\
 		\midrule
 		Conditional Influence & \jumper & \textsf{Mono, MidSideStereo, Stereo, JointStereo}\\
 		\cmidrule{2-3}
@@ -271,6 +308,16 @@ We can describe the distribution of coefficients by their characteristics includ
 		 & \batik & \\
 		\midrule
 		Influence Flip & \jumper & \textsf{Mono, MidSideStereo, Stereo, JointStereo}\\
+		\cmidrule{2-3}
+		& \kanzi & \\
+		\cmidrule{2-3}
+		& \dconvert & \\
+		\cmidrule{2-3}
+		& \htwo & \\
+		\cmidrule{2-3}
+		& \batik & \\
+		\midrule
+		High Spread & \jumper & \textsf{Mono, MidSideStereo, Stereo, JointStereo}\\
 		\cmidrule{2-3}
 		& \kanzi & \\
 		\cmidrule{2-3}
@@ -336,7 +383,7 @@ From the comparison of the performance model coefficients, we can answer \RQref{
 \end{comment}
 
 \section{Exploring Categories of Sensitivity}\label{sec:categories}
-\subsection{Code Coverage and Performance}\label{sec:rq3}
+\subsection{Code Coverage and Performance ($RQ_3$)}\label{sec:rq3}
 So far, we have only studied how different workloads can shape the overall performance and how they can affect the performance influence of configuration options. In addition, we want to know how the observed variation emerges from  varying the workload. To understand workload effects at a finer granularity, we travel back to the level of code and extend our perspective on the problem with statement coverage data. 
 
 \paragraph*{Operationalization}
