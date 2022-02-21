@@ -36,7 +36,7 @@ To summarize, we make the following contributions:
 \section{Background and Problem Statement}
 \subsection{Performance Prediction Models}~\label{sec:perfmodels}
 Configurable software systems are an umbrella term for any kind of software system that exhibits configuration options to customize functionality. While the primary purpose of configuration options is to select and tune functionality, each configuration choice may also have implications on non-functional properties---be it intentional or unintentional. 
-There are different approaches to capture the relationship between configuration options and performance indicators, most basically either analytical or empirical in nature. All share the objective to approximate non-functional properties, such as execution time or memory usage, as a function of software configurations  $c \in C$, formally $\Pi: C \rightarrow \mathbb{R}$. 
+There are different approaches to capture the relationship between configuration options and performance indicators, most basically either \textit{analytical} or \textit{empirical} in nature. All share the objective to approximate non-functional properties, such as execution time or memory usage, as a function of software configurations  $c \in C$, formally $\Pi: C \rightarrow \mathbb{R}$. 
 
 Analytic models incorporate existing knowledge about the operations of a software system, comparable to estimating an algorithm’s complexity~\cite{analytic_model_2000,analytic_model_2011}. Here, one deliberately includes or excludes configuration options as predictors and selects a model structure following the current understanding of the software system. While it avoids ambiguity in terms of feature selection and explainability, analytic approaches do not guarantee to cover unanticipated idiosyncrasies or interactions between configuration options.
 
@@ -205,7 +205,7 @@ We answer \RQref{1} by pairwisely comparing the performance distributions from d
 	\cellcolor{nmt-color}\textsf{NMT} & {Non-monotonous transformation}  & (otherwise) \\%$p < 0.05$ and $\tau < 0.6$ \\
 	\bottomrule
 \end{tabular*}
-\label{tab:categorization_counts}
+\label{tab:categorization}
 \end{table}
 
 \begin{table}
@@ -255,7 +255,7 @@ We answer \RQref{1} by pairwisely comparing the performance distributions from d
 	
 	\bottomrule
 	\end{tabular}
-	\label{tab:categorization}
+	\label{tab:categorization_counts}
 \end{table}
 
 \subsubsection{Results}
@@ -280,20 +280,20 @@ To facilitate the comparison of regression coefficients across workloads, we fol
 
 From the comparison of the relative performance influences, we can answer \RQref{2} in detail and assess how many configurations are sensitive to varying the workload, what characteristic traits describe the performance influences, and whether we can identify patterns.
 \subsubsection{Results}
-We illustrate the results of training the explanatory performance models for each subject system in Figure~\ref{fig:results_influence}. Each row shows the distribution of the relative performance influence of a configuration option across the set of tested workloads. For this visualization, we made some tweaks to highlight a few characteristics: First, we show each regression coefficient as an individual black diamond. Second,  to visualize the range of obtained coefficients, the minimum and maximum ones are connected via a black line. Third, the positive and negative coefficients with their respective greatest absolute value determine the color-coded bars to highlight if a coefficient flips its sign by varying the workload. Last, we decided to use this visualization over box plots (or related ones, such as violin plots) since these would hide this level of detail and are more useful for larger data sets.
-
+We illustrate the results of training the explanatory performance models for each subject system in Figure~\ref{fig:results_influence}. Each row shows the distribution of the relative performance influence of a configuration option across the set of tested workloads. For this visualization, we made some tweaks to highlight a few characteristics: First, we show each regression coefficient as an individual black rug (vertical line). Second, we highlight the greatest positive and smallest minimum influence in red and green, respectively to illustrate both the range of influences and possible sign-flips. 
+{\color{green!50!black}We decided to use this visualization over box plots (or related ones, such as violin plots) because such distribution-based plots hide this level of detail and are more useful for larger data sets.}\\
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{images/out.png}
 	\caption{Relative performance influences (\textit{standardized regression coefficients}) for all configuration options across all workloads. Each black bar depicts a workload-specific performance influence. For each configuration option, we highlight the range of observed influences.}
 	\label{fig:results_influence}
 \end{figure}
+We have identified three characteristic (but non-exclusive) traits, by which we can describe the distributions of regression coefficients: First, and most broadly, some distributions spread over a wide range, while others are concentrated around a single value. Second, some distributions exhibit both positive and negative coefficients, while others remain consistently positive or negative. Last, for some distributions the majority of coefficients is negligible, but for few workloads we observe options having an influence. These criteria, the spread or concentration, sign-flipping, and options becoming influential only on occasions, allow us to group each configuration option into a specific category, as presented in Table~\ref{tab:option_classification}. We omitted all configuration options with low spread and a regression coefficient close to zero, as these describe non-influential configuration options that are not interacting with the workload either. 
 
-We can describe the distribution of coefficients by their characteristics including their \textit{range of spread} (distance between minimum and maximum), their \textit{clustering}, and whether they contribute \textit{consistently positive} or \textit{negative} influences. With regard to Table 2, we see that  \jadx exhibits fairly consistent distributions, where only the influential options’ influences show a substantial range. While \jumper, scored similarly for \RQref{1}, we can observe the first configuration options behaving inconsistently: For options \textsf{JointStereo}, \textsf{MidStereo}, and \textsf{SwapBytes} the coefficient can switch signs, or in the case of \textsf{Mono} can distinctly vary in magnitude. For \batik, we observe for the majority of configuration options a wide range and a sign-flip for the option \textsf{pdf}. While we see a wide range and sign-flipping for \dconvert as well, it also  shows another distinct case: The influence of options \textsf{round}, \textsf{png}, and \textsf{floor} is influential only under certain workloads and can also flip sign (except for \textsf{png}). For the last two systems, \kanzi and \htwo which exhibit the greatest share of non-monotonous differences between performance distributions, we find all of the above described characteristics: sign-flipping for options \textsf{Huffmann}, \textsf{RLT} (both \kanzi), and \textsf{MVSTORE} (\htwo); influential option only under some workloads: \textsf{BWT} (\kanzi), \textsf{DEFRAG\_ALWAYS} and \textsf{COMPRESS} (both \htwo); or a wide range: \textsf{TPAQX} (\kanzi) and \textsf{MVSTORE} (\htwo).
-
-\begin{table}
+\begin{table}[ht!]
 	\centering
 	\footnotesize
+	\caption{Classification of relative performance influence distributions with respect to \textit{spread}, \textit{sign flips}, and \textit{conditional influence.}}
 	\begin{tabular}{p{1cm}p{1.5cm}p{4.6cm}} % h2 batik jadx
 		\toprule
 		\textbf{Category} & \textbf{Softw. System} & \textbf{Options} \\
@@ -329,60 +329,13 @@ We can describe the distribution of coefficients by their characteristics includ
 		& \batik & \\
 		\bottomrule
 	\end{tabular}	
+\label{tab:option_classification}
 \end{table}
 
 \vspace{2mm}
-\greybox{\textbf{Summary} (\RQref{2}): \ldots}
+\greybox{\textbf{Summary} (\RQref{2}): }
 
-
-\begin{comment}
-We address this research question by learning and comparing performance models from the measurements of our experiments~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso}. As a performance model effectively estimates the influence of individual configuration options on performance, we construct models not to predict unseen configurations but simply to explain differences observed in the performance distributions. So, for the construction of our performance models, we deliberately learn performance models using the entire sample set. 
-To correct for multicollinearity~\cite{Daoud_2017} and to ensure that the obtained performance influences are interpretable, we drop several configuration options from the sample set, which has shown to be an effective practice~\cite{dorn2020}. For the training step, we exclude all mandatory configuration options since these by definition cannot contribute to performance variation. In addition, for each group of mutually exclusive configuration options, we discard one randomly selected group member.
-
-Many different machine learning techniques have been used to obtain performance models, among others, based on linear regression~\cite{perLasso,siegmundPerformanceinfluenceModelsHighly2015,dorn2020}. To answer \RQref{2}, we learn a prediction model using multiple linear regression (least-squares method). We limit the set of independent variables to individual options rather than higher-order interactions to be consistent with the feature location used for \RQref{3} where we determine option-specific, but not interaction-specific code segments.
-
-From the comparison of the performance model coefficients, we can answer \RQref{2} in detail and assess (1) how many configuration options, on average, change their influence, and (2) how many configuration options, in total, change their influence. For any pair of workload-specific performance models, we divide the performance model coefficients by the respective mean performance to make the model influences comparable across workloads. Henceforth, we will refer to these coefficients as \textit{relative performance influences.} Since these relative performance influences have been divided by the population mean, we report these without any unit.
-\end{comment}
-\begin{comment}
-\begin{table}
-	\footnotesize
-	\centering
-	\caption{Absolute number of configuration options whose relative performance influence changed by at least by threshold $t$ under, at least, one workload configuration.}
-	\begin{tabular}{lr|rrrrr}
-		\toprule
-		& &  \multicolumn{5}{c}{\textbf{Difference threshold $t$}} \\
-		\textbf{Software System} & \textbf{\#\,Opt.} & 0.01 &  0.05 &  0.1 &  0.2 &  0.5 \\
-		\midrule
-		\dconvert & 23 &    14 &    12 &    7 &    6 &    1 \\
-		\jumper & 36 &   30 &    29 &   29 &   25 &    9 \\
-		\batik &  20 &  10 &     7 &    6 &    6 &    5 \\
-		\kanzi & 29 &   26 &    26 &   25 &   20 &    9 \\
-		\jadx & 20 &   19 &     9 &    5 &    4 &    2 \\
-		\htwo & 17 &   16 &     5 &    3 &    1 &    0 \\
-		\bottomrule
-	\end{tabular}
-	\label{tab:total_changes}
-\end{table}
-\begin{table}
-	\centering\footnotesize
-	\caption{Average number of configuration options whose relative performance influence changed by, at least, by threshold $t$ across all workload combinations.}
-	\begin{tabular}{lr|rrrrr}
-		\toprule
-		& & \multicolumn{5}{c}{\textbf{Difference threshold $t$}} \\
-		\textbf{Software System} & \textbf{\#\,Opt.} & 0.01 &  0.05 &  0.1 &  0.2 &  0.5 \\
-		\midrule
-		\dconvert & 23 &  8.89 &  5.29 &  3.55 &  1.65 & 0.09 \\
-		\jumper & 36 & 24.73 & 19.87 & 16.27 & 11.40 & 4.33 \\
-		\batik & 20 &  7.22 &  4.47 &  3.62 &  2.95 & 1.18 \\
-		\kanzi & 29 & 23.61 & 15.83 & 10.33 &  6.33 & 2.56 \\
-		\jadx & 20 & 10.32 &  4.28 &  2.51 &  1.38 & 0.33 \\
-		\htwo & 17 & 7.39 &  2.43 &  1.04 &  0.43 & 0.00 \\
-		\bottomrule
-	\end{tabular}
-	\label{tab:average_changes}
-\end{table}
-\end{comment}
-
+\clearpage
 \section{Exploring Categories of Sensitivity}\label{sec:categories}
 \subsection{Code Coverage and Performance ($RQ_3$)}\label{sec:rq3}
 So far, we have only studied how different workloads can shape the overall performance and how they can affect the performance influence of configuration options. In addition, we want to know how the observed variation emerges from  varying the workload. To understand workload effects at a finer granularity, we travel back to the level of code and extend our perspective on the problem with statement coverage data. 
