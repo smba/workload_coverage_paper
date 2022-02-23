@@ -274,7 +274,7 @@ We achieve this by learning models resembling the performance prediction models 
 To reason about performance influences, we require the explanatory model to be interpretable. We reenact the class of linear models for performance learning~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,perLasso} and construct a model using multiple linear regression with each configuration as a predictor or independent variable. We limit the set of independent variables to individual options rather than to include higher-order interactions to be consistent with the feature location used for \RQref{3} where we determine option-specific, yet not interaction-specific code segments.
 
 \paragraph*{Standardization}
-To facilitate the comparison of regression coefficients across workloads, we follow the practice in machine learning and standardize our dependent variable by subtracting the population’s mean performance and divide the result by the respective standard deviation. Henceforth, we will refer to these standardized regression coefficients as \textit{relative performance influences}. A beneficial side effect of this standardization step is that the observed variation of regression coefficients for each configuration option cannot be attributed to shifting or scaling effects (affine transformation, class \colorbox{lt-color}{\textsf{LT}} in Table~\ref{tab:categorization}) as we applied such transformation by standardizing the performance values.. Thus, with this approach we can directly target the non-linear or explicitly non-monotonous effect that workloads exercise on performance.
+To facilitate the comparison of regression coefficients across workloads, we follow the practice in machine learning and standardize our dependent variable by subtracting the population’s mean performance and divide the result by the respective standard deviation. Henceforth, we will refer to these standardized regression coefficients as \textit{relative performance influences}. A beneficial side effect of this standardization step is that the observed variation of regression coefficients for each configuration option cannot be attributed to shifting or scaling effects (affine transformation, class \colorbox{lt-color}{\textsf{LT}} in Table~\ref{tab:categorization}) as we applied such transformation by standardizing the performance values. Thus, with this approach we can directly target the non-linear or explicitly non-monotonous effect that workloads exercise on performance.
 
 \paragraph*{Handling Multicollinearity}A problem faced when learning linear models from training samples, where some features are correlated is multicollinearity~\cite{Daoud_2017}. This can, for instance, arise from groups of mutually exclusive configuration options and result in distorted regression coefficients although the model's prediction accuracy remains unaffected. To mitigate this problem and, in particular, to ensure that the obtained performance influences remain interpretable, we drop several configuration options from the sample set, which has shown to be an effective practice~\cite{dorn2020}. For the training step, we exclude all mandatory configuration options since these by definition cannot contribute to performance variation. In addition, for each group of mutually exclusive configuration options, we discard one randomly selected group member. \\
 
@@ -294,48 +294,48 @@ We have identified three characteristic (but non-exclusive) traits, by which we 
 	\centering
 	\footnotesize
 	\caption{Classification of relative performance influence distributions with respect to \textit{spread}, \textit{sign flips}, and \textit{conditional influence.}}
-	\begin{tabular}{p{1cm}p{1.5cm}p{4.6cm}} % h2 batik jadx
+	\begin{tabular}{lp{1.5cm}rp{4.3cm}} % h2 batik jadx
 		\toprule
-		\textbf{Category} & \textbf{Softw. System} & \textbf{Options} \\
+		\textbf{Category} & \textbf{Softw. System} & \textbf{\#} & \textbf{Options} \\
 		\midrule
-		Conditional Influence & \jumper & \textsf{Mono, MidSideStereo, Stereo, JointStereo}\\
-		\cmidrule{2-3}
-		 & \kanzi & \\
-		 \cmidrule{2-3}
-		 & \dconvert & \\
-		 \cmidrule{2-3}
-		 & \htwo & \\
-		 \cmidrule{2-3}
-		 & \batik & \\
+		\multirow{5}{*}{\parbox{1.3cm}{Conditional Influence}} & \jumper & 3 & \textsf{Mono, MidSideStereo, JointStereo}\\
+		\cmidrule{2-4}
+		 & \kanzi & 4 & \textsf{BWT, skip, TPAQ, TPAQX} \\
+		 \cmidrule{2-4}
+		 & \dconvert & 7 & \textsf{floor, png, round, threads, web, ios, win} \\
+		 \cmidrule{2-4}
+		 & \htwo & 2 & \textsf{DEFRAG\_ALWAYS, COMPRESS} \\
+		 \cmidrule{2-4}
+		 & \batik & 3 & \textsf{onload, tiff, png}\\
 		\midrule
-		Influence Flip & \jumper & \textsf{Mono, MidSideStereo, Stereo, JointStereo}\\
-		\cmidrule{2-3}
-		& \kanzi & \\
-		\cmidrule{2-3}
-		& \dconvert & \\
-		\cmidrule{2-3}
-		& \htwo & \\
-		\cmidrule{2-3}
-		& \batik & \\
+		
+		\multirow{5}{*}{\parbox{1.3cm}{Sign Flipping}} & \kanzi & 2 & \textsf{Huffman, RLT} \\
+		\cmidrule{2-4}
+		& \dconvert & 3 & \textsf{threads, androidIncludeLdpiTvdpi, floor} \\
+		\cmidrule{2-4}
+		& \htwo & 1 & \textsf{MVSTORE}\\
+		\cmidrule{2-4}
+		& \batik & 1 & \textsf{pdf}\\
 		\midrule
-		High Spread & \jumper & \textsf{Mono, MidSideStereo, Stereo, JointStereo}\\
-		\cmidrule{2-3}
-		& \kanzi & \\
-		\cmidrule{2-3}
-		& \dconvert & \\
-		\cmidrule{2-3}
-		& \htwo & \\
-		\cmidrule{2-3}
-		& \batik & \\
+		
+		\multirow{5}{*}{\parbox{1.3cm}{High Spread}} & \kanzi & 1 & \textsf{TPAQX}\\
+		\cmidrule{2-4}
+		& \dconvert & 6 & \textsf{androidIncludeLdpiTvdpi, gif, win, ios, threads, web} \\
+		\cmidrule{2-4}
+		& \htwo & 3 & \textsf{\mbox{RECOMPILE\_ALWAYS, MVSTORE}, \mbox{COMPRESS}} \\
+		\cmidrule{2-4}
+		& \batik & 4 & \textsf{resolution, png, pdf, validate}\\
+		\cmidrule{2-4}
+		& \jadx & 2 & \textsf{no-res, no-src}\\
 		\bottomrule
 	\end{tabular}	
 \label{tab:option_classification}
 \end{table}
+With two exceptions, we see that all software systems have configuration options, for which, at least, one of the three characteristic traits apply. For \jumper, we only found conditional influences for three options, whereas for \jadx, we observed only three options with high spread of relative performance influences. As these differences arise from varying the workload, we conclude that input sensitivity of a configuration option can manifest in different ways, as shown by the three characteristics. Of particular interest for further analysis are the first two categories, where the influence can be conditioned by the choice of workload or be beneficial or detrimental to performance.
 
 \vspace{2mm}
-\greybox{\textbf{Summary} (\RQref{2}): }
+\greybox{\textbf{Summary} (\RQref{2}): Input sensitivity can manifest in different ways, including in high spread across workloads and conditional influence or sign flipping depending the workload.}
 
-\clearpage
 \section{Exploring Categories of Sensitivity}\label{sec:categories}
 \subsection{Code Coverage and Performance ($RQ_3$)}\label{sec:rq3}
 So far, we have only studied how different workloads can shape the overall performance and how they can affect the performance influence of configuration options. In addition, we want to know how the observed variation emerges from  varying the workload. To understand workload effects at a finer granularity, we travel back to the level of code and extend our perspective on the problem with statement coverage data. 
@@ -408,5 +408,5 @@ The benefit of using more than one specific workload for performance models is i
 
 \citeauthor{jamishidi_transfer_2017} observe that performance influences across different environments remain largely congruent and differences only affect small numbers of configuration options. Workload-specific differences can be learned efficiently via transfer learning~\cite{jamishidi_transfer_2017,jamshidi_transfer_gp_2017,ding_bayesian_2020}, where an existing workload-specific performance model is adapted to a new workload by explicitly learning a transfer function. \citeauthor{jamshidi_learning_2018} exploit similarities in performance behavior across workloads to guide the configuration sampling process an efficiently learn transfer functions~\cite{jamshidi_learning_2018}. {\color{purple} For software verification tools, \citeauthor{koc_satune_2021} incorporate program characteristics (e.g., the number of loops) as features orthogonal to configuration options into the problem space for performance modeling.}
 
-\section{Summary}\label{sec:conclusion}
+%\section{Summary}\label{sec:conclusion}
 
