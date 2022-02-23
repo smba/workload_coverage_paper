@@ -279,7 +279,7 @@ To facilitate the comparison of regression coefficients across workloads, we fol
 \paragraph*{Handling Multicollinearity}A problem faced when learning linear models from training samples, where some features are correlated is multicollinearity~\cite{Daoud_2017}. This can, for instance, arise from groups of mutually exclusive configuration options and result in distorted regression coefficients although the model's prediction accuracy remains unaffected. To mitigate this problem and, in particular, to ensure that the obtained performance influences remain interpretable, we drop several configuration options from the sample set, which has shown to be an effective practice~\cite{dorn2020}. For the training step, we exclude all mandatory configuration options since these by definition cannot contribute to performance variation. In addition, for each group of mutually exclusive configuration options, we discard one randomly selected group member. \\
 
 From the comparison of the relative performance influences, we can answer \RQref{2} in detail and assess how many configurations are sensitive to varying the workload, what characteristic traits describe the performance influences, and whether we can identify patterns.
-\subsubsection{Results}
+\subsubsection{Results}\label{sec:results2}
 We illustrate the results of training the explanatory performance models for each subject system in Figure~\ref{fig:results_influence}. Each row shows the distribution of the relative performance influence of a configuration option across the set of tested workloads. For this visualization, we made some tweaks to highlight a few characteristics: First, we show each regression coefficient as an individual black rug (vertical line). Second, we highlight the greatest positive and smallest minimum influence in red and green, respectively to illustrate both the range of influences and possible sign-flips. 
 {\color{green!50!black}We decided to use this visualization over box plots (or related ones, such as violin plots) because such distribution-based plots hide this level of detail and are more useful for larger data sets.}\\
 \begin{figure}
@@ -338,16 +338,12 @@ With two exceptions, we see that all software systems have configuration options
 
 \section{Exploring Categories of Sensitivity}\label{sec:categories}
 \subsection{Code Coverage and Performance ($RQ_3$)}\label{sec:rq3}
-So far, we have only studied how different workloads can shape the overall performance and how they can affect the performance influence of configuration options. In addition, we want to know how the observed variation emerges from  varying the workload. To understand workload effects at a finer granularity, we travel back to the level of code and extend our perspective on the problem with statement coverage data. 
+From the findings of the previous research questions, we have learned that input sensitivity of configuration options is specific to certain configuration options and can be diverse in the observed characteristics. With regard to the characteristic traits from~\RQref{2}, we conjecture that workload-specific sign flipping or conditional influences are driving factors for non-monotonicity across entire performance distributions (cf.~\RQref{1}). From these findings, the question arises what causes these different flavors of input sensitivity. For a practical setting, one might, in addition, ask whether it is possible to identify input-sensitive configuration options without an assessment resembling our case study.
+To shed light on possible explanations for input sensitivity in general, and, possibly, different shades (cf.~\RQref{2}), we switch to the code level and correlate the performance influences inferred for each configuration option with code coverage information. Specifically, we ask if code sections that are option-specific (feature code) are executed in the same way across different workloads. If code coverage analysis, at least, in part can help identify input-sensitive configuration options it could serve as a cheap-to-compute proxy. Moreover, code coverage analysis can help us further narrow down whether workloads condition the execution of specific code, or, more broadly, whether code utilization (how is code executed with regard to frequency of method calls etc.).
 
-\paragraph*{Operationalization}
-To approach this research question, we relate two types of variation for pairs of workloads. On the one hand, we compare the relative performance influences of an option. That is, we compute the absolute difference between the relative performance influences. On the other hand, we determine how much option-specific code (code segments that implement or regulate a functionality related to the configuration option) is covered under both workloads. That is, we ask how similar both workloads cover option-specific code. If the same part of option-specific code is executed under both workloads but we observe variation in the performance influence, this suggests that both workloads utilize the same code differently.
+Extending on our code coverage experiments, we use the information as follows. Given the code sections that implement functionality related to a configuration option or are influenced by the selection thereof, we can ask, how much (what portion) of this code is covered under different workloads. In absence of a ground truth for feature location, we resort to an explorative approach outlined in the next paragraph.
 
-
-
-For each option and pair of workloads, in the following, we relate the difference in performance influence (performance influence variation) with the Jaccard similarity for option code (code coverage variation) for all pairs of workloads.
-
-\subsubsection{Feature Location}
+\subsection{Feature Location}
 To reason about option-specific code, we require a mapping of configuration options to code. First, we obtain a baseline of \textit{all} option code within the scope of our entire workload selection. For each workload $w \in W$, we compute the set of code lines that depend on option $o \in O$. Let $C_{o}$ be the set of configurations with option $o$ selected, and $C_{\neg o}$ with option $o$ deselected. To obtain $S_{w, o}$, we follow a strategy similar to \textit{spectrum-based feature location}~\cite{michelon_spectrum_2021} and subtract the set of the code lines covered under $C_{\neg o}$ from those of $C_{o}$:
 
 \begin{equation}%\todo{example from Figure~\ref{fig:intro}}
@@ -360,14 +356,22 @@ While $S_{w, o}$ yields an approximation of option-dependent code for a single w
 	S_{o} = \bigcup_{w \in W} S_{w, o}
 \end{equation}
 
-While this aggregated set is not a ground truth, it enables us to reason about differences in option-dependent code within the scope of our selected workloads. That is, the expressiveness of this baseline depends on the diversity of the workloads in question. We discuss this limitation in Section~\ref{sec:construct_validity}. From the ratio of option-specific code per workload to option-specific code across workloads, $\mid S_{w_1, o}\mid/~{\mid S_{w_2, o}\mid}$, we can estimate the coverage of option-dependent code. By comparing the sets $S_{w_1, o}$ and $S_{w_2, o}$ for any two workloads $w_1$ and $w_2$, we can estimate similarity between the option-code coverage via the Jaccard set similarity index. We review further techniques for feature location in Section~\ref{sec:related}.
+While this aggregated set is not a ground truth, it enables us to reason about differences in option-dependent code within the scope of our selected workloads. That is, the expressiveness of this baseline depends on the diversity of the workloads in question. We discuss this limitation in Section~\ref{sec:construct_validity}. From the ratio of option-specific code per workload to option-specific code across workloads, $\mid S_{w_1, o}\mid/~{\mid S_{w_2, o}\mid}$, we can estimate the coverage of option-dependent code. We review further techniques for feature location in Section~\ref{sec:related}.
 
-\paragraph*{Results}
-{\color{red}\ldots}
+\subsection{Clustering Execution Footprints}
+From the a) the information about which code sections are specific to a configuration option and b) how much of these sections is actually covered under different workloads, we can compare the workload-specific execution footprint for each option. By comparing the sets $S_{w_1, o}$ and $S_{w_2, o}$ for any two workloads $w_1$ and $w_2$, we can estimate similarity between the option-code coverage via the Jaccard set similarity index. A Jaccard similariy of zero implies that there is no overlap in the lines covered under each workload, whereas a Jaccard similarity of 1 implies that the exact same code was covered. Based on this pairwise similarity metric $sim_o(w_1, w_2)$, we can compute a distance $d_o(w_1, w_2) = 1 - sim(w_1, w_2)$ and cluster all workload-specific execution profiles. We use agglomerative hierarchical clustering with full linkage to construct dendrograms. Finally, we compare a) the clustering of workload-specific execution profiles for each option with b) the distribution of relative performance influences for the respective option. As a recap, the distribution of performance influences refers to individual rows in Figure~\ref{fig:results_influence}. In essence, we ask whether variation in the observed distribution of relative performance influences correspond to similarities or differences in what, or what portions of option-specific code are executed. Of special interest in this regard are the patterns identified in Section~\ref{sec:results2} and the exhibiting configuration options from Table~\ref{tab:option_classification}.
 
+\subsection{Results}
+We found that...
+
+\subsubsection{Sign Flipping}
+\subsubsection{Conditional Influences}
+\subsubsection{High Spread}
+\subsubsection{Further Remarks}
 \greybox{\textbf{Summary} (\RQref{3}):\ldots
 }
 
+\clearpage
 \section{Discussion}\label{sec:discussion}
 
 \subsection{Threats to Validity}
