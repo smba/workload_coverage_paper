@@ -68,7 +68,7 @@ While one might first expect that a more complex workload results in lower throu
 
 
 Some aspects of this \emph{input sensitivity} have been observed and documented before in the literature~\cite{liao_2020_using_emse,alves_sampling_2020,jamishidi_transfer_2017} and raise questions, such as: Which options are input sensitive? What are the driving factors for input sensitivity? Can we estimate which options are input-sensitive? We set out to answer these questions in this paper.
-
+\todo{mention that we have multi-modal and long-tailed distreibutions}
 	
 \subsection{Workloads and Performance Prediction} ~\label{sec:strategies}
 To some aspects of the said questions, different approaches have been proposed to tackle the problem of input sensitivity.
@@ -101,7 +101,7 @@ At large, performance behavior is the resulting effect arising from multiple con
 \RQ{2}{To what extent do \textit{influences of individual configuration options} depend on the workload?}
 
 \paragraph{Causes of Input Sensitivity}
-The first two research questions describe the performance behavior of our subject systems: Based on the results of related work, we expect configuration options to be, at least, to some extent input sensitive. To contextualize our findings, we switch our perspective to the code level. The goal is to understand the relationship between input sensitivity (i.e., variation in the performance influence of configuration options) and the execution of the subject system under varying workloads. We hypothesize that executions under different workloads also exhibit variation with respect to what code sections are executed and how this code is used. Using code coverage analysis---an easy to understand and widely employed techniqu---we are interested in how far one could infer or explain performance influence variation just based on code. 
+The first two research questions describe the performance behavior of our subject systems: Based on the results of related work, we expect configuration options to be, at least, to some extent input sensitive. To contextualize our findings, we switch our perspective to the code level. The goal is to understand the relationship between input sensitivity (i.e., variation in the performance influence of configuration options) and the execution of the subject system under varying workloads. We hypothesize that executions under different workloads also exhibit variation with respect to what code sections are executed and how this code is used. Using code coverage analysis---an easy to understand and widely employed technique---we are interested in how far one could infer or explain performance influence variation just based on code. 
 
 \RQ{3}{Does the variation in configuration options' performance influence across workloads correlate with differences in the respective execution footprint?}
 
@@ -109,8 +109,7 @@ The first two research questions describe the performance behavior of our subjec
 \paragraph{Subject Systems}
 For our study, we select six configurable software systems implemented in Java. We decided to use Java for mainly two reasons: (1) practically, because we can forgo code modifications for instrumentation by using off-line instrumentation (cf.~Section~\ref{sec:profiling}) for code coverage measurement, and (2) strategically, because Java is one of the most widely used programming languages. We discuss this decision in more detail in Section~\ref{sec:external_validity}. 
 All subject systems operate by processing a domain-specific input fed to them
-%{\color{purple}\todo{Kann weg, evtl etwas allgemeiner halten}\jumper is a re-implementation of the LAME audio codec for MP3 in Java. \kanzi is a command-line file compression tool. \dconvert is a Java utility to scale images for use in Android apps into different formats and different resolutions. \batik is a Java utility to rasterize vector graphics. \jadx is a decompiler and deobfuscator for Android applications.} The full list of our subject systems and characteristics is presented in Table~\ref{tab:subject_systems}. 
-For all software systems, we have measured more than one performance metric (response time and peak amount of memory held by a process), except for \htwo, where we measured throughput only. We focus on response time and throughput to keep our analysis and results comparable.
+For all software systems, except for \htwo, we report performance as the execution time. For \htwo, we report throughput instead. 
 
 \begin{table}[h]
 	\footnotesize
@@ -129,7 +128,7 @@ Due to space limitations, we provide here only an overview in Table~\ref{tab:wor
 \begin{table}
 	\footnotesize
 	\centering
-	\caption{Overview of the workloads used for our six subject systems.}
+	\caption{Overview of workloads used for our subject systems.}
 	\begin{tabular}{lp{6cm}}
 		\toprule
 		\textbf{Software System} & \textbf{Workload Description} \\
@@ -165,14 +164,15 @@ Due to space limitations, we provide here only an overview in Table~\ref{tab:wor
 \paragraph{Configuration Sampling}\label{sec:sampling}
 All subject systems (except \htwo) exhibit both categorical (binary) and numerical configuration options. 
 For each subject system, we sampled a set of configurations. As exhaustive coverage of the configuration space is infeasible due to combinatorial explosion~\cite{henardCombining2015}, for binary configuration options, we combine several coverage-based sampling strategies and uniform random sampling into an \emph{ensemble} approach: 
-To study the influence of single configuration options, we employ option-wise and negative option-wise sampling~\cite{siegmundPerformanceinfluenceModelsHighly2015}, where each option is enabled once (i.e., in, at least, one configuration), or all except one, respectively. In addition, we used pairwise sampling to study the influences of two-way interactions between configuration options. Interactions of higher degree can be found accordingly, which, however, is computationally prohibitively expensive~\cite{henardCombining2015}. Instead, we augment our sample set with a random sample that is, at least, twice the size of the coverage-based sample. To achieve a uniform random sample, we used \emph{distance-based sampling}~\cite{kaltenecker_distance-based_2019}. Numeric configuration options have been varied across, at least, two levels to account for their effect. All variability models and sample sets can be found on the companion Web site.
+To study the influence of single configuration options, we employ option-wise and negative option-wise sampling~\cite{siegmundPerformanceinfluenceModelsHighly2015}, where each option is enabled once (i.e., in, at least, one configuration), or all except one, respectively. In addition, we used pairwise sampling, where two-way combinations of configuration options are systematically selected. Interactions of higher degree could be found accordingly, however, it is computationally prohibitively expensive~\cite{henardCombining2015}. 
+Last, we augment our sample set with a random sample that is, at least, twice the size of the coverage-based sample. To achieve a uniform random sample, we used \emph{distance-based sampling}~\cite{kaltenecker_distance-based_2019}. Numeric configuration options have been varied across, at least, two levels to account for their effect. All variability models and sample sets can be found on the companion Web site.
 	
 \paragraph{Coverage Profiling}\label{sec:profiling}
 To measure code coverage, we use the on-the-fly profiler \textsc{JaCoCo}. Unlike profilers that use source code instrumentation, on-the-fly instrumentation does not alter the executable binary. From a practical perspective, on-the-fly instrumentation is more flexible and easier to accommodate. Nonetheless, either choice introduces some performance overhead. To avoid this overhead for our performance measurements, we conducted our coverage analysis in a separate run, for which no performance data was collected. 	
 	
 \paragraph{Hardware Setup}
 All experiments were conducted on three different compute clusters, with each subject system was exclusively run on a single cluster. All machines in a compute cluster had the identical hardware setup: either with Intel~Core~i5-8259U CPUs at 2.3~GHz (\jumper and \kanzi),  Intel~Core~i7-8559U CPUs at 2.7~GHz (\dconvert, \batik, and \jadx) and 32~GB of RAM, respectively, or Intel~Xeon~E5-2630~v4 CPUs at 2.2~GHz with 256~GB of RAM (\htwo). All clusters ran a headless Debian 10 installation, the first two with kernel version \mbox{\texttt{4.19.0-14}}, the latter with version \mbox{\texttt{4.19.0-17}}. 
-To minimize measurement noise, no additional user processes were running in the background, and no other than necessary packages were installed.	For all data points, we report the median across five repetitions (except for \htwo), which has shown to be a good trade-off between variance and measurement effort. For \htwo, we omitted the repetitions as, in a pre-study, running on the identical cluster setup, we found that across all benchmarks the coefficient of variation (standard deviation divided by the arithmetic mean) of the throughput was consistently below~5\,\%.
+To minimize measurement noise, we used a controlled environment, where no additional user processes were running in the background, and no other than necessary packages were installed.	For all data points, we report the median across five repetitions (except for \htwo), which has shown to be a good trade-off between variance and measurement effort. For \htwo, we omitted the repetitions as, in a pre-study, running on the identical cluster setup, we found that across all benchmarks the coefficient of variation (standard deviation divided by the arithmetic mean) of the throughput was consistently below~5\,\%.
 
 \section{Study Results}~\label{sec:results}
 ~
@@ -182,7 +182,7 @@ We answer \RQref{1} by pairwisely comparing the performance distributions from d
 
 \begin{compactenum}
 	\item \textbf{Similarity}: To test whether varying the workload has any effect at all, we employ statistical tests. Since performance distributions are often multi-modal or long-tailed~\cite{curtsinger_stabilizer_2013,maricq2018taming}, they fail to meet the requirements for parametric methods. 
-	Thus, we resort to a non-parametric approach: We use the Wilcoxon signed-rank test~\cite{lovric_international_2010} to assess whether varying the workload affects configuration performance. If we can reject the null hypothesis $H_0$ at significance level $\alpha~=~0.95$, we consider the distributions dissimilar. In addition, to account for account for overpowering due high and different sample sizes (cf.~Table~\ref{tab:subject_systems}), we report effect sizes to asses whether the effect attributed to varying the workload is negligible or not. We use Cliff's $\delta$ measure~\cite{Cliff1993DominanceSO} to identify non-negliglible differences ($\vert \delta \vert > 0.147$) following the guidelines for interpretation from \citeauthor{romano2006exploring}.~\cite{romano2006exploring}.
+	Thus, we resort to a non-parametric approach: We use the Wilcoxon signed-rank test~\cite{lovric_international_2010} to assess whether varying the workload affects configuration performance. If we can reject the null hypothesis $H_0$ at significance level $\alpha~=~0.95$, we consider the distributions dissimilar. In addition, to account for account for overpowering due high and different sample sizes (cf.~Table~\ref{tab:subject_systems}), we report effect sizes to asses whether the effect attributed to varying the workload is negligible or not. We use Cliff's $\delta$~\cite{Cliff1993DominanceSO} to identify non-negliglible differences ($\vert \delta \vert > 0.147$) following the guidelines for interpretation from \citeauthor{romano2006exploring}.~\cite{romano2006exploring}.
 	
 	\item \textbf{Linear Correlation}: To test whether both performance distributions are shifted by a constant value or scaled by a constant factor, we compute for each pair of distributions Pearson's correlation coefficient $r$. To discard the sign of relationship, we use the absolute value and consider $\vert r\vert >0.6$ indicates a strong linear relationship. 
 	
@@ -259,7 +259,10 @@ We answer \RQref{1} by pairwisely comparing the performance distributions from d
 \end{table}
 
 \subsubsection{Results}
-We summarize the results of our classification in Table~\ref{tab:categorization_counts}. For all of the six software systems, varying the workloads has an effect on the performance distribution. All software systems, at least, in part, exhibit performance distributions that can be transformed into one another using an linear (also called \textit{affine}) transformation, such shifting by a constant value or scaling by a constant factor. In particular, for \jumper and \jadx, we did  observe only such behavior. This finding corresponds to experimental insights~\citeauthor{jamishidi_transfer_2017}, who encoded differences between performance distributions using linear functions. For four software systems, we obtained a more diverse picture. For \kanzi and \batik, a few performance distributions require transformations that are non-linear, but still monotonous. For \dconvert and \htwo, the majority of performance distribution pairs cannot be described by a monotonous relationship. In total, four out of the six software systems exhibit \emph{non-monotonous} relationships across, at least, one workload.
+We summarize the results of our classification in Table~\ref{tab:categorization_counts}. For all of the six software systems, varying the workloads has a noticable effect on the performance distribution. All software systems, at least, in part, exhibit performance distributions which can be transformed into one another using an linear  transformation, such shifting by a constant value or scaling by a constant factor. In particular, for \jumper and \jadx, we did  observe only such behavior. This finding corresponds to experimental insights~\citeauthor{jamishidi_transfer_2017}, who encoded differences between performance distributions using linear functions. For four software systems, we obtained a more diverse picture: For \kanzi and \batik, a few performance distributions require transformations that are non-linear, but still monotonous. For \dconvert and \htwo, the majority of performance distribution pairs cannot be described by a monotonous relationship. In total, four out of the six software systems exhibit \emph{non-monotonous} relationships across, at least, one workload.
+
+The observed range of relationship types across six software systems had no type prevail across all software systems. The large number of linear relationships suggests that varying the workload does not pose a general obstacle to learning or adapting performance models However, the presence of non-monotonous relationships besides other ones emphasizes that (a) there exist indeed cases where adapting performance models across workloads is challenging. That is, adressing and handling non-monotinicity require more information about what factors (workload characteristics and configuration options) are driving workload-dependent effects.
+
 \vspace{2mm}
 \greybox{\textbf{Summary} (\RQref{1}): Varying the workload causes a substantial amount of variation among performance distributions. Across workloads, we observed \textit{mostly linear}, but to a large extent, also \textit{non-monotonous} differences.
 }
@@ -274,14 +277,14 @@ We achieve this by learning models resembling the performance prediction models 
 To reason about performance influences, we require the explanatory model to be interpretable. We reenact the class of linear models for performance learning~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,perLasso} and construct a model using multiple linear regression with each configuration as a predictor or independent variable. We limit the set of independent variables to individual options rather than to include higher-order interactions to be consistent with the feature location used for \RQref{3} where we determine option-specific, yet not interaction-specific code segments.
 
 \paragraph*{Standardization}
-To facilitate the comparison of regression coefficients across workloads, we follow the practice in machine learning and standardize our dependent variable by subtracting the population’s mean performance and divide the result by the respective standard deviation. Henceforth, we will refer to these standardized regression coefficients as \textit{relative performance influences}. A beneficial side effect of this standardization step is that the observed variation of regression coefficients for each configuration option cannot be attributed to shifting or scaling effects (affine transformation, class \colorbox{lt-color}{\textsf{LT}} in Table~\ref{tab:categorization}) as we applied such transformation by standardizing the performance values. Thus, with this approach we can directly target the non-linear or explicitly non-monotonous effect that workloads exercise on performance.
+To facilitate the comparison of regression coefficients across workloads, we follow the practice in machine learning and standardize our dependent variable by subtracting the population’s mean performance and divide the result by the respective standard deviation. Henceforth, we refer to these standardized regression coefficients as \textit{relative performance influences}. A beneficial side effect of this standardization step is that the observed variation of regression coefficients for each configuration option cannot be attributed to shifting or scaling effects (affine transformation, class \colorbox{lt-color}{\textsf{LT}} in Table~\ref{tab:categorization}) as we applied such transformation by standardizing the performance values. Thus, with this approach we can directly target the non-linear or explicitly non-monotonous effect that workloads exercise on performance.
 
 \paragraph*{Handling Multicollinearity}A problem faced when learning linear models from training samples, where some features are correlated is multicollinearity~\cite{Daoud_2017}. This can, for instance, arise from groups of mutually exclusive configuration options and result in distorted regression coefficients although the model's prediction accuracy remains unaffected. To mitigate this problem and, in particular, to ensure that the obtained performance influences remain interpretable, we drop several configuration options from the sample set, which has shown to be an effective practice~\cite{dorn2020}. For the training step, we exclude all mandatory configuration options since these by definition cannot contribute to performance variation. In addition, for each group of mutually exclusive configuration options, we discard one randomly selected group member. \\
 
 From the comparison of the relative performance influences, we can answer \RQref{2} in detail and assess how many configurations are sensitive to varying the workload, what characteristic traits describe the performance influences, and whether we can identify patterns.
 \subsubsection{Results}\label{sec:results2}
 We illustrate the results of training the explanatory performance models for each subject system in Figure~\ref{fig:results_influence}. Each row shows the distribution of the relative performance influence of a configuration option across the set of tested workloads. For this visualization, we made some tweaks to highlight a few characteristics: First, we show each regression coefficient as an individual black rug (vertical line). Second, we highlight the greatest positive and smallest minimum influence in red and green, respectively to illustrate both the range of influences and possible sign-flips. 
-{\color{green!50!black}We decided to use this visualization over box plots (or related ones, such as violin plots) because such distribution-based plots hide this level of detail and are more useful for larger data sets.}\\
+
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{images/out.pdf}
@@ -332,6 +335,8 @@ We have identified three characteristic (but non-exclusive) traits, by which we 
 \label{tab:option_classification}
 \end{table}
 With two exceptions, we see that all software systems have configuration options, for which, at least, one of the three characteristic traits apply. For \jumper, we only found conditional influences for three options, whereas for \jadx, we observed only three options with high spread of relative performance influences. As these differences arise from varying the workload, we conclude that input sensitivity of a configuration option can manifest in different ways, as shown by the three characteristics. Of particular interest for further analysis are the first two categories, where the influence can be conditioned by the choice of workload or be beneficial or detrimental to performance.
+
+A more general insight arises from looking into the performance distributions of~\RQref{1} in more detail via explanatory models. While the standardization step mentioned ealier discards scaling and shifting effescts, we see that not all, but few configuration options are sensitive to varying the workload. This illustrates that non-monotonous relationships are driven by specific configuration options being sensitive to the workload rather than a uniform sensitivity.
 
 \vspace{2mm}
 \greybox{\textbf{Summary} (\RQref{2}): Input sensitivity of performance influences when varying the workload can manifest in different ways, including in high spread across workloads and conditional influence or sign flipping depending the workload.}
@@ -460,12 +465,13 @@ The rationale is that by exercising feature code, for instance via enabling conf
 
 
 \paragraph*{Workload-specific Performance}\label{sec:workload_performance}
+\begin{comment}
 {\color{red}
 In performance and load testing, it is a common practice to select a workload that is reflective of the software system in question~\cite{ceesay2020,papadopoulos2021}. This can be achieved by constructing workloads, among others, from usage patterns~\cite{calzarossa2016}, or by increasing the workload coverage by using a mix of different workloads rather than a single one~\cite{jiang2015survey}.
 The benefit of using more than one specific workload for performance models is illustrated by the work of \citeauthor{liao_2020_using_emse}~\cite{liao_2020_using_emse}. For two different versions of a software system, they learn performance models based on disjoint sets of workloads. From the comparison of both performance models, they were able to identify performance shifts as the workload bias was averaged out.
 
 \citeauthor{jamishidi_transfer_2017} observe that performance influences across different environments remain largely congruent and differences only affect small numbers of configuration options. Workload-specific differences can be learned efficiently via transfer learning~\cite{jamishidi_transfer_2017,jamshidi_transfer_gp_2017,ding_bayesian_2020}, where an existing workload-specific performance model is adapted to a new workload by explicitly learning a transfer function. \citeauthor{jamshidi_learning_2018} exploit similarities in performance behavior across workloads to guide the configuration sampling process an efficiently learn transfer functions~\cite{jamshidi_learning_2018}. }
+\end{comment}
 
-
-\section{Summary and Conclusion}\label{sec:conclusion}
+\section{Summary}\label{sec:conclusion}
 
