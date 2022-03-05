@@ -432,11 +432,15 @@ For the other subject systems and remaining configuratiton options, we could not
 }
 
 \section{Discussion}\label{sec:discussion}
+Our empirical study and analysis motivate further research on factors contributing to performance variation and on practices to maintain the robustness of performance prediction efforts. The workload can play a significant role in eliciting option-specific performance behavior and can manifest in different ways. In this section, we summarize the implications learned from our study. The first part is geared towards practitioners and researchers. The second part outlines possible tools to address the performance variation attributed to different driving factors. In the last section, we discuss threats to validity and limitations of our study.
 
-\subsection{Sources of Input Sensitivity}
+\subsection{The Problem of Input Sensitivity}
 
-\subsection{Implications for Research and Practice}
-\subsubsection{Is non-monotonicity a problem?}
+\paragraph{Sparsity and Increased complexity} Extending on the findings of research questions RQ1 and RQ2, we have characterized the problem of input sensitivity: The key is that not all, but only a few of configuration options are susceptible to varying the workload.  In addition, even from our relatively small selection of workloads, we observed differences in performance influence across presumably similar workloads, as the example of h2 (cf. …) illustrates. That is, the challenge that input sensitivity poses to performance modeling is twofold: First, it is key to identify characteristics by which a workload can be described and which are relevant to performance. While workload characterization is a well established practice, one cannot guarantee a complete and exhaustive description of workloads. Second, to account for input sensitivity, we require knowledge of which configuration options have an influence on performance and are susceptible to varying the workload. In essence, configuration-dependent performance modeling in presence of workload faces a more complex and inflated problem space, where characterizing workloads requires knowledge of both the application under test and the workloads in question.
+
+\paragraph{Non-monotonicity} Adding to the increased complexity, we observed a significant number of cases, where varying the workload resulted in non-monotonous relationships, meaning transforming one workload-specific performance distribution to another workload requires a non-monotonous transfer function. Learning non-monotonous relationships, however, is widely considered to be a challenge to machine learning methods [...] that limits the choice of machine learning methods available. 
+
+\paragraph{Limited Representativeness} With the exception of the dedicated approaches described in Section 2.X, approaches that aim at learning and tuning performance of configurable software systems [...] do not consider the workload as a factor contributing to performance and, thus, we can question their overall effectiveness beyond using a single workload. Our results highlight the necessity of a more holistic approach when modeling performance and motivate further research on feature selection and sensitivity analysis: identifying performance-relevant workload characteristics as well as input-sensitive configuration options.
 
 \subsection{Threats to Validity}
 \paragraph{Internal Validity}\label{sec:internal_validity}
@@ -450,11 +454,6 @@ The selection of subject systems all written in Java poses a threat to \emph{ext
 Regarding \emph{construct validity}, the profiler \textsc{JaCoCo} instruments Java byte code instructions rather than statements, which leads to some minor imprecision when mapping covered instructions back to the original statements. Transitively, this also affects the precision of our feature location (cf. Section~\ref{sec:rq3}). This drawback, however, is not limited to this particular profiler but applies to most profilers operating on byte code. 
 Superimposition in our feature location technique is sound, but, by design, incomplete, since no set of workloads is guaranteed to cover all feature code. We selected a variety of different workloads as a countermeasure, yet our study is exploratory. 
 
-\subsection{Future Work}
-\begin{compactitem}
-	\item measure option code utilization
-	\item more software systems and programming languages
-\end{compactitem}
 \section{Related Work}\label{sec:related}
 \paragraph*{Feature Location}\label{sec:feature_location}
 The problem of determining which code implements which functionality in a software system is known as \emph{feature location}~\cite{rubin_feature_2013}. Most feature location approaches either employ static or dynamic program analysis to infer a mapping between features and code. As for static analyses, variables that encode configuration options are tainted and, from tracing dataflow and controlflow, one can infer code sections tainted by such variables~\cite{velez_2020_configcrusher_jase,lillack_2018_lotrack_tse,luo_2019_cova}.
