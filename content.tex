@@ -348,14 +348,19 @@ To shed light on possible explanations for input sensitivity in general, and, po
 Extending on our code coverage experiments, we use the information as follows. Given the code sections that implement functionality related to a configuration option or are influenced by the selection thereof, we can ask, how much (what portion) of this code is covered under different workloads. In absence of a ground truth for feature location, we resort to an explorative approach outlined in the next paragraph.
 
 \subsubsection{Locating Option-specific Code}
-{\color{orange}\todo{Kandidat zum Kürzebn}
+
 To reason about option-specific code, we require a mapping of configuration options to code. 
-The problem of determining which code section implements which functionality in a software system is known as \emph{feature location}~\cite{rubin_feature_2013}. Most feature location approaches either employ static or dynamic program analysis to infer a mapping between features and code. As for static analyses, variables that encode configuration options are tainted and, from tracing dataflow and controlflow, one can infer code sections tainted by such variables~\cite{velez_2020_configcrusher_jase,lillack_2018_lotrack_tse,luo_2019_cova}.
+The problem of determining which code section implements which functionality in a software system is known as \emph{feature location}~\cite{rubin_feature_2013}. 
+
+While there are a number of approaches based on statics~\cite{velez_2020_configcrusher_jase,lillack_2018_lotrack_tse,luo_2019_cova} or dynamic taint analyses~\cite{bell_phosphor_2014,velez_comprex_2021,splat_kim_2013}, we employ a more light-weight,  but also less precise approach is to use code coverage information, such as execution traces.
+\begin{comment}
+{\color{orange}\todo{Kandidat zum Kürzebn}
+Most feature location approaches either employ static or dynamic program analysis to infer a mapping between features and code. As for static analyses, variables that encode configuration options are tainted and, from tracing dataflow and controlflow, one can infer code sections tainted by such variables~\cite{velez_2020_configcrusher_jase,lillack_2018_lotrack_tse,luo_2019_cova}.
 While static analyses can yield precise results, scalability is often limited by the exploration of all possible execution paths. To mitigate this shortcoming, dynamic taint analysis taints variables similarly to the static approaches, but only follows one execution path~\cite{bell_phosphor_2014,velez_comprex_2021,splat_kim_2013}. From few executions of different configurations, one can extract feature-specific code. 
 Aside from program analysis, a more tame, but also less precise approach is to use code coverage information, such as execution traces.}
+\end{comment}
 The rationale is that by exercising feature code, for instance via enabling configuration options or running corresponding tests, its location can be inferred from code coverage differences. Applications of such an approach have been studied not only for feature location~\cite{wong_integrated_2005,sulir_annotation_2015,michelon_spectrum_2021,perez_framing_2016}, but root in program comprehension~\cite{wilde_early_1996,wilde_reconnaissance_1995,sherwood_reducing_nodate,perez_diagnosis_2014,castro_pangolin_2019} and fault localization~\cite{agrawal_fault_1995,wong_faultloc_2016}. 
 }
-
 Specifically, we follow  a strategy akin to  \textit{spectrum-based feature location}~\cite{michelon_spectrum_2021}:
 First, we obtain a baseline of \textit{all} option code within the scope of our entire workload selection. For each workload $w \in W$, we compute the set of code lines that depend on option $o \in O$. Let $C_{o}$ be the set of configurations with option $o$ selected, and $C_{\neg o}$ with option $o$ deselected. To obtain $S_{w, o}$, we subtract the set of the code lines covered under $C_{\neg o}$ from those of $C_{o}$:
 
