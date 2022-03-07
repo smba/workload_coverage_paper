@@ -283,8 +283,8 @@ From the comparison of the relative performance influences, we can answer \RQref
 We illustrate the results of training the explanatory performance models for each subject system in Figure~\ref{fig:results_influence}. Each row shows the distribution of the relative performance influence of a configuration option across the set of tested workloads. For this visualization, we made some tweaks to highlight a few properties: First, we show each regression coefficient as an individual black rug (vertical bar). Second, we highlight the greatest positive influence and smallest minimum influence in red and green, respectively to illustrate both the range of influences and possible opposing influences (i.e., a performance degrading option becomes performance improving or vice versa). 
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{images/out.pdf}
-	\caption{Relative performance influences (\textit{standardized regression coefficients}) for all configuration options across all workloads. Each black bar depicts a workload-specific performance influence. For each configuration option, we highlight the range of observed influences.}
+	\includegraphics[width=\linewidth]{images/out_annotated.pdf}
+	\caption{Relative performance influences (\textit{standardized regression coefficients}) for all configuration options across all workloads. Each black bar depicts a workload-specific performance influence. For each configuration option, we highlight the range of observed influences. }
 	\label{fig:results_influence}
 \end{figure}
 {\color{orange!0!black}
@@ -308,7 +308,7 @@ These criteria, the spread (\circled{1}) or concentration, opposing influences (
 		\textbf{Category} & \textbf{Case Study} & \textbf{\#} & \textbf{Options} \\
 		\midrule
 		
-		\multirow{5}{*}{\parbox{1.3cm}{ \centering High Spread}} & \kanzi & 1 & \textsf{TPAQX}\\
+		\multirow{5}{*}{\parbox{1.3cm}{ \centering \circled{1}\\\vspace{1mm} High Spread}} & \kanzi & 1 & \textsf{TPAQX}\\
 		\cmidrule{2-4}
 		& \dconvert & 6 & \textsf{androidIncludeLdpiTvdpi, gif, win, ios, threads, web} \\
 		\cmidrule{2-4}
@@ -319,7 +319,7 @@ These criteria, the spread (\circled{1}) or concentration, opposing influences (
 		& \jadx & 2 & \textsf{no-res, no-src}\\
 		\midrule
 		
-		\multirow{5}{*}{\parbox{1.3cm}{\centering Opposing Influences}} & \kanzi & 2 & \textsf{Huffman, RLT} \\
+		\multirow{5}{*}{\parbox{1.3cm}{\centering \circled{2}\\\vspace{1mm} Opposing Influences}} & \kanzi & 2 & \textsf{Huffman, RLT} \\
 		\cmidrule{2-4}
 		& \dconvert & 3 & \textsf{threads, androidIncludeLdpiTvdpi, floor} \\
 		\cmidrule{2-4}
@@ -328,7 +328,7 @@ These criteria, the spread (\circled{1}) or concentration, opposing influences (
 		& \batik & 1 & \textsf{pdf}\\
 		\midrule
 		
-		\multirow{5}{*}{\parbox{1.3cm}{\centering Conditional Influences}} & \jumper & 3 & \textsf{Mono, MidSideStereo, JointStereo}\\
+		\multirow{5}{*}{\parbox{1.3cm}{\centering \circled{3}\\\vspace{1mm}Conditional Influences}} & \jumper & 3 & \textsf{Mono, MidSideStereo, JointStereo}\\
 		\cmidrule{2-4}
 		 & \kanzi & 4 & \textsf{BWT, skip, TPAQ, TPAQX} \\
 		 \cmidrule{2-4}
