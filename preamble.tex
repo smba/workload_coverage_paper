@@ -57,11 +57,12 @@
 \usepackage[framemethod=TikZ]{mdframed}
 \newcommand{\greybox}[1]{
 	\begin{mdframed}[
-		backgroundcolor=black!7!white,
-		linewidth=0.3pt,
+		backgroundcolor=orange!0!white,
+		linewidth=0.2pt,
 		innerleftmargin=5pt,
+		innerrightmargin=5pt,
 		innertopmargin=5pt,
-		roundcorner=1pt,
+		roundcorner=2pt,
 		]
 		%\noindent
 		#1
@@ -164,6 +165,12 @@
 \colorlet{nmt-color}{nmt-color-raw!28!white}
 
 
+\usepackage[english]{babel}
+
 % thicc line
 \usepackage{array}
 \newcolumntype{?}{!{\vrule width 1pt}}
+
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=0.7pt] (char) {#1};}}
