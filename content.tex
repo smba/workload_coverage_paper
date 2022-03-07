@@ -289,13 +289,13 @@ We illustrate the results of training the explanatory performance models for eac
 \end{figure}
 {\color{orange!0!black}
 We have identified three characteristic (but non-exclusive) traits, by which we can describe the distributions of regression coefficients: 
-	
-\circled{1} \emph{Spread} of performance influences: Some distributions scatter over a wide range, while others are concentrated around a single value. Consider \htwo, we observe for option \textsf{MVSTORE} a relative performance difference of 200\,\%, meaning that the performance impact of turning on this option can be twice as high depending on the workload. 
+\begin{compactitem}	
+\item[\circled{1}] \emph{Spread} of performance influences: Some distributions scatter over a wide range, while others are concentrated around a single value. Consider \htwo, we observe for option \textsf{MVSTORE} a relative performance difference of 200\,\%, meaning that the performance impact of turning on this option can be twice as high depending on the workload. 
 
-\circled{2} \emph{Opposing influences}: Some distributions exhibit both positive and negative coefficients, while others remain consistently positive or negative. Consider \dconvert, we observe both positive and negative influences for option \textsf{floor} for two workloads, while for the remaining workloads, the option has neglible influence.
+\item[\circled{2}] \emph{Opposing influences}: Some distributions exhibit both positive and negative coefficients, while others remain consistently positive or negative. Consider \dconvert, we observe both positive and negative influences for option \textsf{floor} for two workloads, while for the remaining workloads, the option has neglible influence.
 
-\circled{3} \emph{Conditional influences}: For some distributions the majority of coefficients is negligible, but for few workloads we observe options having an influence. Consider \kanzi, we observe for option \textsf{BWT} we observe a negative influence only for a specific workload, whereas for all others the option has no influence.
-
+\item[\circled{3}] \emph{Conditional influences}: For some distributions the majority of coefficients is negligible, but for few workloads we observe options having an influence. Consider \kanzi, we observe for option \textsf{BWT} we observe a negative influence only for a specific workload, whereas for all others the option has no influence.
+\end{compactitem}
 	
 These criteria, the spread or concentration, opposing influences, and options becoming influential only on occasions, allow us to group each configuration option into a specific category, as presented in Table~\ref{tab:option_classification}. We omitted all configuration options with low spread and a neglible performance influence since these are not interacting with the workload either. 
 }
@@ -307,15 +307,16 @@ These criteria, the spread or concentration, opposing influences, and options be
 		\toprule
 		\textbf{Category} & \textbf{Case Study} & \textbf{\#} & \textbf{Options} \\
 		\midrule
-		\multirow{5}{*}{\parbox{1.3cm}{\centering Conditional Influence}} & \jumper & 3 & \textsf{Mono, MidSideStereo, JointStereo}\\
+		
+		\multirow{5}{*}{\parbox{1.3cm}{ \centering High Spread}} & \kanzi & 1 & \textsf{TPAQX}\\
 		\cmidrule{2-4}
-		 & \kanzi & 4 & \textsf{BWT, skip, TPAQ, TPAQX} \\
-		 \cmidrule{2-4}
-		 & \dconvert & 7 & \textsf{floor, png, round, threads, web, ios, win} \\
-		 \cmidrule{2-4}
-		 & \htwo & 2 & \textsf{DEFRAG\_ALWAYS, COMPRESS} \\
-		 \cmidrule{2-4}
-		 & \batik & 3 & \textsf{onload, tiff, png}\\
+		& \dconvert & 6 & \textsf{androidIncludeLdpiTvdpi, gif, win, ios, threads, web} \\
+		\cmidrule{2-4}
+		& \htwo & 3 & \textsf{\mbox{RECOMPILE\_ALWAYS, MVSTORE}, \mbox{COMPRESS}} \\
+		\cmidrule{2-4}
+		& \batik & 4 & \textsf{resolution, png, pdf, validate}\\
+		\cmidrule{2-4}
+		& \jadx & 2 & \textsf{no-res, no-src}\\
 		\midrule
 		
 		\multirow{5}{*}{\parbox{1.3cm}{\centering Opposing Influences}} & \kanzi & 2 & \textsf{Huffman, RLT} \\
@@ -327,23 +328,22 @@ These criteria, the spread or concentration, opposing influences, and options be
 		& \batik & 1 & \textsf{pdf}\\
 		\midrule
 		
-		\multirow{5}{*}{\parbox{1.3cm}{ \centering High Spread}} & \kanzi & 1 & \textsf{TPAQX}\\
+		\multirow{5}{*}{\parbox{1.3cm}{\centering Conditional Influences}} & \jumper & 3 & \textsf{Mono, MidSideStereo, JointStereo}\\
 		\cmidrule{2-4}
-		& \dconvert & 6 & \textsf{androidIncludeLdpiTvdpi, gif, win, ios, threads, web} \\
-		\cmidrule{2-4}
-		& \htwo & 3 & \textsf{\mbox{RECOMPILE\_ALWAYS, MVSTORE}, \mbox{COMPRESS}} \\
-		\cmidrule{2-4}
-		& \batik & 4 & \textsf{resolution, png, pdf, validate}\\
-		\cmidrule{2-4}
-		& \jadx & 2 & \textsf{no-res, no-src}\\
+		 & \kanzi & 4 & \textsf{BWT, skip, TPAQ, TPAQX} \\
+		 \cmidrule{2-4}
+		 & \dconvert & 7 & \textsf{floor, png, round, threads, web, ios, win} \\
+		 \cmidrule{2-4}
+		 & \htwo & 2 & \textsf{DEFRAG\_ALWAYS, COMPRESS} \\
+		 \cmidrule{2-4}
+		 & \batik & 3 & \textsf{onload, tiff, png}\\
+		 
 		\bottomrule
 	\end{tabular}	
 \label{tab:option_classification}
 \end{table}
 
-{\color{purple!50!violet}
-	With two exceptions, we see that all software systems have configuration options, for which, at least, one of the three characteristic traits apply. For \jumper, we found only conditional influences for three options, whereas for \jadx, we observed only three options with high spread of relative performance influences. As these differences arise from varying the workload, we conclude that input sensitivity of a configuration option can manifest in different ways, as shown by the three characteristics. Of particular interest for further analysis are the first two categories, where the influence can be conditioned by the choice of workload (\circled{2}), or where workload characteristics determine whether the influence is beneficial or detrimental to performance (\circled{3}).
-}
+With two exceptions, we see that all software systems have configuration options, for which, at least, one of the three characteristic traits apply. For \jumper, we found only conditional influences for three options, whereas for \jadx, we observed only three options with high spread of relative performance influences. As these differences arise from varying the workload, we conclude that input sensitivity of a configuration option can manifest in different ways, as shown by the three characteristics. 
 % response to florians commentary?
 \begin{comment}
 \st{A more general insight arises from looking into the performance distributions of RQ1 in more detail via explanatory models. While the standardization step mentioned ealier discards scaling and shifting effects, we see that not all, but few configuration options are sensitive to varying the workload. This illustrates that non-monotonous relationships are driven by specific configuration options being sensitive to the workload rather than a uniform sensitivity.}
