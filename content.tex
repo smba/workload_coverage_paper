@@ -442,12 +442,12 @@ This differentiation provides a more detailed and nuanced picture of input sensi
 Our results suggest that, to improve representativeness, an additional notion of input sensitivity has to be considered. We envision future performance prediction models that indicate sources of input sensitivity, as illustrated in Equation~\ref{eq:cool_model}, to specifically refine the representativeness of options.
 \begin{equation}
 	\Pi(c) = {\color{red!40!black}
-		\underbrace{\beta_1 \cdot c_1 + ~~\ldots}_{\text{\parbox{1.4cm}{\centering Not input-sensitive}}}
+		\underbrace{\beta_1 \cdot c_1 + ~~\ldots}_{\text{\parbox{1.4cm}{\centering(A) Not input-sensitive}}}
 	} + {\color{green!40!black}
-		\underbrace{\beta_2 \cdot c_2 +  ~~\ldots}_{\text{\parbox{2.55cm}{\centering Influence conditioned by option-code coverage}}}
+		\underbrace{\beta_2 \cdot c_2 +  ~~\ldots}_{\text{\parbox{2.55cm}{\centering(B) Sensitive to  option-code coverage}}}
 	} + ~~
 	{\color{blue!50!black}
-		\underbrace{\beta_3 \cdot c_3 + ~~\ldots}_{\text{\parbox{2.5cm}{\centering Influence determined by option-code utilization}}}
+		\underbrace{\beta_3 \cdot c_3 + ~~\ldots}_{\text{\parbox{2.5cm}{\centering(C) Sensitive to option-code utilization}}}
 	}
 	\label{eq:cool_model}
 \end{equation}
