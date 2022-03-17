@@ -12,7 +12,7 @@ In contrast to transfer learning, a more generalist approach is to consider the 
 Not only does this require substantially more measurements, we often lack knowledge of which performance-relevant characteristics best describe workloads.
  
 %\paragraph*{\color{purple}Problem}
-The existing body of research reflects the prevalence and importance of the workload influence on software systems~\cite{khavari_compression_2019,maxiaguine_workload_2004,plotnikov_compilation_2013,ding_compilation_2015,falkner_sat_solvers_2015,satzilla_2008,alves_sampling_2020}. All these works are aware of the workload dimension as a factor of performance variation, yet little is known about the quality and driving factors of the interplay between configuration options and workloads. Our understanding of this cross-factor relationship lacks knowledge of the following aspects:
+The existing body of research reflects the prevalence and importance of the workload influence on software systems~\cite{khavari_compression_2019,maxiaguine_workload_2004,plotnikov_compilation_2013,ding_compilation_2015,falkner_sat_solvers_2015,satzilla_2008,alves_sampling_2020}. All these works are aware of the workload dimension as a factor of performance variation, yet little is known about the quality and driving factors of the \emph{interplay} between configuration options and workloads. Our understanding of this cross-factor relationship lacks knowledge of the following aspects:
 
 \begin{compactitem}
 	\item How different is configuration-specific performance across different workloads? 
@@ -20,15 +20,17 @@ The existing body of research reflects the prevalence and importance of the work
 	\item What are the driving factors of the interplay between configuration options and workloads with regard to performance? 
 \end{compactitem}
 
-To answer these questions, we have conducted a systematic study that sheds light on whether and how configuration options and workload choices interact with regard to performance. 
-Specifically, we apply 29\,347 configurations and 55 workloads across six configurable software systems to obtain a broad picture of the interaction of configuration and workload when learning performance models and estimating a configuration's performance (i.e., response time). Aside from studying the sole effects of workload variation on performance behavior, we explore possible driving factors. To this end, we enrich performance observations with corresponding statement coverage data to understand workload variation at finer granularity.
+To answer these questions, we have conducted a systematic empirical study that sheds light on whether and how configuration options and workload choices interact with regard to performance. 
+Specifically, we analyze 29\,347 configurations and 55 workloads across six configurable software systems to obtain a broad picture of the interaction of configuration and workload when learning performance models and estimating a configuration's performance (i.e., response time). Aside from studying the sole effects of workload variation on performance behavior, we explore possible driving factors. To this end, we enrich performance observations with corresponding statement coverage data to understand workload variation at finer granularity.
 
-Our findings show that varying the workload can influence con\-fi\-gu\-ra\-tion-de\-pen\-dent software performance in many different ways, including non-linear and non-monotonous effects. Our findings suggest that (a) coverage of code sections specific to configuration options as well as (b) how such code sections are utilized are driving factors of input sensitivity. A key insight is that, to maintain and improve performance model representativeness, an additional notion of input sensitivity has to be considered. We argue that the use of code analysis techniques to address input sensitivity when varying the workload and maintain and improve the representativeness of a performance-prediction model.
+Our findings show that varying the workload can influence con\-fi\-gu\-ra\-tion-de\-pen\-dent software performance in different ways, including non-linear and non-monotonous effects. Our findings suggest that (a) coverage of code  specific to configuration options as well as (b) how such code is utilized are driving factors of input sensitivity. A key insight is that, to maintain and improve performance model representativeness, an additional notion of input sensitivity has to be considered. We argue that the use of code analysis techniques to address input sensitivity when varying the workload and maintain and improve the representativeness of a performance-prediction model.
 
 To summarize, we make the following contributions: 
 
 \begin{compactitem}
 	\item An empirical study of 29\,347 configurations and 55 workloads across six configurable software systems on whether interactions of workloads with configuration options affect performance and what factors can drive such interactions;
+	
+	\item A detailed analysis that illustrates that variation in code coverage and code utilization due to varying workloads can affect the influence of configuration options on software performance; 
 	
 	\item A companion Web site\footnote{\url{https://github.com/fse-submission-2022/workload-performance/}} with supplementary material including performance and coverage measurements, experiment workloads and configurations, and an interactive dashboard\footnote{\url{https://workload-performance.herokuapp.com/}} for additional visualizations left out due to space limitations.
 \end{compactitem}
