@@ -138,7 +138,7 @@ Due to space limitations, we provide here only an overview in Table~\ref{tab:wor
 		
 		%\rowcolor{black!10!white}
 		\midrule
-		\htwo & Standardized OLTP benchmarks (TPC-H, SmallBank, Yahoo! Cloud Serving Benchmark, and Voter) at two different scale factors from \textsf{benchbase}~(formerly \textsf{OLTPBench})~\cite{difallah_oltp_2013}. \\
+		\htwo & Standardized OLTP benchmarks (TPC-H, SmallBank, Yahoo! Cloud Serving Benchmark, and Voter) at two different scale factors from \textsf{OLTPBench}~\cite{difallah_oltp_2013}. \\
 		
 		%\rowcolor{black!5!white}
 		\midrule
@@ -460,7 +460,7 @@ As our empirical study aimed at identifying driving factors of input sensitivity
 
 \subsection{Threats to Validity}\label{sec:threats}
 Threats to \emph{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate these threats by repeating each experiment five times and reporting the median as a robust measure in a controlled environment. %For \htwo, we confirmed a negligible measurement variation in a separate pre-study.
-Moreover, the coverage analysis with \mbox{\textsc{JaCoCo}} entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsf{benchbase} framework (formerly \textsf{OLTPBench})~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario with only negligible overhead.
+Moreover, the coverage analysis with \mbox{\textsc{JaCoCo}} entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsf{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario with only negligible overhead.
 
 The selection of subject systems, all written in Java, poses a threat to \emph{external validity}. While our motivation for this selection is primarily practical (cf. Section~\ref{sec:setup}), we mitigate this threat by selecting subject systems from a variety of application domains (cf.~Table~\ref{tab:subject_systems}). Nonetheless, one cannot necessarily conclude that our results hold for other domains and programming languages. 
 
