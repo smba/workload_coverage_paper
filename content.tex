@@ -101,6 +101,7 @@ The first two research questions describe the performance behavior of our subjec
 
 \RQ{3}{Does the variation in configuration options' performance influence across workloads correlate with differences in the respective execution footprint?}
 \subsection{Experiment Setup}\label{sec:setup}
+{\color{cyan}
 \paragraph{Subject Systems}
 For our study, we select six configurable software systems implemented in Java. We decided to use Java because it is is one of the most widely used programming languages. We discuss this decision in more detail in Section~\ref{sec:threats}. 
 All subject systems operate by processing a domain-specific input fed to them
@@ -164,7 +165,7 @@ To measure code coverage, we use the on-the-fly profiler \textsc{JaCoCo}\footnot
 \paragraph{Hardware Setup}
 All experiments were conducted on three different compute clusters, with each subject system was exclusively run on a single cluster. All machines in a compute cluster had the identical hardware setup: either with Intel~Core~i5-8259U CPUs at 2.3~GHz (\jumper and \kanzi),  Intel~Core~i7-8559U CPUs at 2.7~GHz (\dconvert, \batik, and \jadx) and 32~GB of RAM, respectively, or Intel~Xeon~E5-2630~v4 CPUs at 2.2~GHz with 256~GB of RAM (\htwo). All clusters ran a headless Debian 10 installation, the first two with kernel version \mbox{\texttt{4.19.0-14}}, the latter with version \mbox{\texttt{4.19.0-17}}. 
 To minimize measurement noise, we used a controlled environment, where no additional user processes were running in the background, and no other than necessary packages were installed.	For all data points, we report the median across five repetitions (except for \htwo), which has shown to be a good trade-off between variance and measurement effort. For \htwo, we omitted the repetitions as, in a pre-study, running on the identical cluster setup, we found that across all benchmarks the coefficient of variation (standard deviation divided by the arithmetic mean) of the throughput was consistently below~5\,\%.
-
+}
 \section{Study Results}~\label{sec:results}
 \subsection{Comparing Performance Distributions ($RQ_1$)}\label{sec:rq1}
 \subsubsection{Operationalization}
@@ -236,7 +237,44 @@ We answer \RQref{1} by pairwisely comparing the performance distributions from d
 	
 	\jadx & 
 	0 & 0\,\% & 
-	\cellcolor{lt-color!100!white}120 & \cellcolor{lt-color!100!white}100.0\,\% & 
+	\cellcolor{lt-color!0!white}0 & \cellcolor{lt-color!0!white}0.0\,\% & 
+	0 & 0\,\% & 
+	0 & 0\,\%\\
+	
+	\midrule
+	\rowcolor{cyan!20}	\xz & 
+	0 & 0\,\% & 
+	0 & 0\,\% & 
+	0 & 0\,\% & 
+	0 & 0\,\%\\
+	
+	\rowcolor{cyan!20}	\lrzip & 
+	0 & 0\,\% & 
+	0 & 0\,\% & 
+	0 & 0\,\% & 
+	0 & 0\,\%\\
+	
+	\rowcolor{cyan!20}	\flac & 
+	0 & 0\,\% & 
+	0 & 0\,\% & 
+	0 & 0\,\% & 
+	0 & 0\,\%\\
+	
+	\rowcolor{cyan!20}	\vpnine & 
+	0 & 0\,\% & 
+	0 & 0\,\% & 
+	0 & 0\,\% & 
+	0 & 0\,\%\\
+	
+	\rowcolor{cyan!20}	\xzwo & 
+	0 & 0\,\% & 
+	0 & 0\,\% & 
+	0 & 0\,\% & 
+	0 & 0\,\%\\
+	
+	\rowcolor{cyan!20}	\zdrei & 
+	0 & 0\,\% & 
+	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\%\\
 	
@@ -459,10 +497,12 @@ In our empirical study, we have employed feature location techniques and code co
 As our empirical study aimed at identifying driving factors of input sensitivity, methods for assessing code utilization (cf. category {\color{blue!60!black}(C)} in Equation~\ref{eq:cool_model}) remain an open challenge. Existing work on comparing the execution detail at finer granularity, for instance via log differencing~\cite{bao_logdiff_ase_2019}, provide a promising avenue towards obtaining representative performance prediction models.
 
 \subsection{Threats to Validity}\label{sec:threats}
+{\color{cyan}
 Threats to \emph{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate these threats by repeating each experiment five times and reporting the median as a robust measure in a controlled environment. %For \htwo, we confirmed a negligible measurement variation in a separate pre-study.
 Moreover, the coverage analysis with \mbox{\textsc{JaCoCo}} entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsf{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario with only negligible overhead.
 
 The selection of subject systems, all written in Java, poses a threat to \emph{external validity}. While our motivation for this selection is primarily practical (cf. Section~\ref{sec:setup}), we mitigate this threat by selecting subject systems from a variety of application domains (cf.~Table~\ref{tab:subject_systems}). Nonetheless, one cannot necessarily conclude that our results hold for other domains and programming languages. 
+}
 
 \section{Conclusion}\label{sec:conclusion}
 Most modern software systems exhibit configuration options to customize behaviors and meet user demands. Configuration choices, however, can also affect the performance of a software system.
