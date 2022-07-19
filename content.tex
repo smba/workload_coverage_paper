@@ -61,7 +61,7 @@ Revisiting an observation by \citeauthor{alves_sampling_2020}~\cite{alves_sampli
 \begin{figure}
 	\centering
 	\includegraphics[width=0.85\linewidth]{images/h2_motivation.eps}
-	\caption{Performance distributions of the database system \htwo run the \textsf{TPC-C} benchmark at different scale factors.}
+	\caption{\color{red}Performance distributions of the database system \htwo run the \textsf{TPC-C} benchmark at different scale factors.}
 	\label{fig:h2_intro}
 \end{figure}
 While one might first expect that a more complex workload results in lower throughput, this is indeed the case, but does not hold for all configurations. The median throughput decreases for the larger scale factor, yet the shape and spread of the distribution are entirely different. Most notably, the maximum throughput for the greater scale factor is higher than for the smaller scale factor, indicating that some configurations indeed do not follow the general trend. This illustrates that the effect of varying the workload for some configurations cannot be captured by a linear transformation (constant shift or scaling).
@@ -106,6 +106,7 @@ The first two research questions describe the performance behavior of our subjec
 For our study, we select six configurable software systems implemented in Java. We decided to use Java because it is is one of the most widely used programming languages. We discuss this decision in more detail in Section~\ref{sec:threats}. 
 All subject systems operate by processing a domain-specific input fed to them
 For all software systems, except for \htwo, we report performance as the execution time. For \htwo, we report throughput instead. 
+
 \begin{table}
 	\footnotesize
 	\centering
@@ -113,11 +114,14 @@ For all software systems, except for \htwo, we report performance as the executi
 	\input{tables/subject_systems.tex}
 	\label{tab:subject_systems}
 \end{table}
+
 \paragraph{Workload Selection}
 We aim at covering a variety of workload characteristics to make use of different functionality of a subject system. For the selection of workloads, we considered general characteristics (e.g., workload size to probe for scaling and utilization factors) and domains-specific characteristics that reflect the specific application domain (e.g., different valid input file types). As relevant workload characteristics are not always explicitly known, we cannot guarantee that our selection covers all functionality.
 Due to space limitations, we provide here only an overview in Table~\ref{tab:workloads}. The workloads along with a more extensive description is available at the companion Web site. 
 
+
 \begin{table}
+	\color{red}
 	\footnotesize
 	\centering
 	\caption{Overview of workloads used for our subject systems.}
@@ -153,6 +157,7 @@ Due to space limitations, we provide here only an overview in Table~\ref{tab:wor
 \label{tab:workloads}
 \end{table}
 
+
 \paragraph{Configuration Sampling}\label{sec:sampling}
 All subject systems (except \htwo) exhibit both categorical (binary) and numerical configuration options. 
 For each subject system, we sampled a set of configurations. As exhaustive coverage of the configuration space is infeasible due to combinatorial explosion~\cite{henardCombining2015}, for binary configuration options, we combine several coverage-based sampling strategies and uniform random sampling into an \emph{ensemble} approach: 
@@ -171,12 +176,12 @@ To minimize measurement noise, we used a controlled environment, where no additi
 \subsubsection{Operationalization}
 We answer \RQref{1} by pairwisely comparing the performance distributions from different workloads (cf. the comparison in Figure~\ref{fig:h2_intro}) and by determining whether any two distributions are similar or, if not, can be transformed into each other. For the latter case, we are specifically interested in what type of transformation is necessary as this determines \textit{how} complex a workload interacts with configuration options. Specifically, we categorize each pair of workloads with respect to the following aspects: 
 \begin{compactenum}
-	\item \textit{Similarity}: To test whether varying the workload has any effect at all, we employ statistical tests. Since performance distributions are often multi-modal or long-tailed~\cite{curtsinger_stabilizer_2013,maricq2018taming}, they fail to meet the requirements for parametric methods. 
+	\item \textbf{Similarity}: To test whether varying the workload has any effect at all, we employ statistical tests. Since performance distributions are often multi-modal or long-tailed~\cite{curtsinger_stabilizer_2013,maricq2018taming}, they fail to meet the requirements for parametric methods. 
 	Thus, we resort to a non-parametric approach: We use the Wilcoxon signed-rank test~\cite{lovric_international_2010} to assess whether varying the workload affects configuration performance. If we can reject the null hypothesis $H_0$ at significance level $\alpha~=~0.95$, we consider the distributions dissimilar. To account for overpowering due to high and different sample sizes (cf.~Table~\ref{tab:subject_systems}), we report effect sizes to asses whether workload effect is negligible or not. We use Cliff's $\delta$~\cite{Cliff1993DominanceSO} to identify non-negliglible differences ($\vert \delta \vert > 0.147$) following the guidelines for interpretation from \citeauthor{romano2006exploring}.~\cite{romano2006exploring}.
 	
-	\item \textit{Linear Correlation}: To test whether both performance distributions are shifted by a constant value or scaled by a constant factor, we compute for each pair of distributions Pearson's correlation coefficient $r$. To discard the sign of relationship, we use the absolute value and consider $\vert r\vert >0.6$ indicates a strong linear relationship. 
+	\item \textbf{Linear Correlation}: To test whether both performance distributions are shifted by a constant value or scaled by a constant factor, we compute for each pair of distributions Pearson's correlation coefficient $r$. To discard the sign of relationship, we use the absolute value and consider $\vert r\vert >0.6$ indicates a strong linear relationship. 
 	
-	\item \textit{Monotone Correlation}: Finally, we test whether there exists a monotonous relationship between the two performance distributions. We use Kendall's rank correlation coefficient $\tau$~\cite{kendall1938new} and consider $\vert\tau\vert > 0.6$ a strong monotonous relationship.
+	\item \textbf{Monotone Correlation}: Finally, we test whether there exists a monotonous relationship between the two performance distributions. We use Kendall's rank correlation coefficient $\tau$~\cite{kendall1938new} and consider $\vert\tau\vert > 0.6$ a strong monotonous relationship.
 \end{compactenum}
 {\color{black} Based on these three tests and metrics, we composed four categories that each pair of performance distributions can be categorized into. If we cannot reject $H_0$, we consider them identical and as similar distributions (\textsf{\colorbox{cs-color}{SD}}). If both distributions exhibit a strong linear relationship, we classify them as linearly transformable (\textsf{\colorbox{lt-color}{LT}}). If we observe a strong monotonous, but not a linear relationship, we classify such pairs as exclusively monotonously transformable into a separate category (\textsf{\colorbox{xmt-color}{XMT}}). Last, if the comparison yields no monotonous relationship, we can only transform them using non-monotonous methods (\textsf{\colorbox{nmt-color}{NMT}}). We summarize the category criteria as well as the category counts in Table~\ref{tab:categorization}. 
 
@@ -196,6 +201,7 @@ We answer \RQref{1} by pairwisely comparing the performance distributions from d
 \end{tabular*}
 \label{tab:categorization}
 \end{table}
+
 \begin{table}
 	\footnotesize
 	\caption{Frequency of each category (cf. Table~\ref{tab:categorization}) for each software system studied.}
@@ -282,6 +288,7 @@ We answer \RQref{1} by pairwisely comparing the performance distributions from d
 	\end{tabular}
 	\label{tab:categorization_counts}
 \end{table}
+
 \subsubsection{Results}
 We summarize the results of our classification in Table~\ref{tab:categorization_counts}. For all of the six software systems, varying the workloads has a noticable effect on the performance distribution. All software systems, at least, in part, exhibit performance distributions which can be transformed into one another using an linear  transformation, such as shifting by a constant value or scaling by a constant factor. In particular, for \jumper and \jadx, we did  observe only such behavior. This finding corresponds to experimental insights from~\citeauthor{jamishidi_transfer_2017}, who encoded differences between performance distributions using linear functions. For four software systems, we obtained a more diverse picture: For \kanzi and \batik, a few performance distributions require transformations that are non-linear, but still monotonous. For \dconvert and \htwo, the majority of performance distribution pairs cannot be described by a monotonous relationship. In total, four out of the six software systems exhibit \emph{non-monotonous} relationships across, at least, one workload.
 
