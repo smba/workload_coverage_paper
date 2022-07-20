@@ -98,8 +98,8 @@ The first two research questions describe the performance behavior of our subjec
 \RQ{3}{Does the variation in configuration options' performance influence across workloads correlate with differences in the respective execution footprint?}
 \subsection{Experiment Setup}\label{sec:setup}
 {\color{blue}
-\subsubsection{Subject Systems and Workloads}
-We selected twelve configurable software systems for our study. To ensure that our findings are not specific to one domain or ecosystem, the selection comprises an equal mix of Java and C/C++ systems from different application domains. We include systems studied in previous and related work (cf. Table~\ref{tab:subject_systems}) and incorporates further ones with comparable size and configuration complexity. All systems operate by processing a domain-specific input fed to them (henceforth called \textit{workload}). This study treats execution time as the key performance indicator with the exception of \htwo, where we report throughput.
+\subsubsection{Subject System Selection}
+We selected twelve configurable software systems for our study. To ensure that our findings are not specific to one domain or ecosystem, the selection comprises an equal mix of Java and C/C++ systems from different application domains (cf. Table~\ref{tab:subject_systems}). We include systems studied in previous and related work~\cite{velez_2020_configcrusher_jase,weber_white_2021,alves_sampling_2020} and incorporate further ones with comparable size and configuration complexity. All systems operate by processing a domain-specific input fed to them (henceforth called \textit{workload}). This study treats execution time as the key performance indicator with the exception of \htwo, where we report throughput.
 
 \begin{table}
 	\footnotesize
@@ -109,64 +109,42 @@ We selected twelve configurable software systems for our study. To ensure that o
 	\label{tab:subject_systems}
 \end{table}
 
-%\subsubsection{Workload Selection}
-This study relies on a selection of workloads for each domain or software system. Ideally, each set of workloads is diverse enough to be representative of most possible use cases. We selected the workload sets in this spirit, but cannot always guarantee a measurable degree of diversity and representativeness. This is due to the opacity of workloads: Beyond educated guesses, prior to conducting measurements, it is not possible to state which workload characteristics (size, scale, file type etc.) are performance-relevant. We discuss this aspect in the threats to validity.
-}
-\begin{comment}
-\begin{table}
-	\color{red}
-	\footnotesize
-	\centering
-	\caption{Overview of workloads used for our subject systems.}
-	\begin{tabular}{lp{7cm}}
-		\toprule
-		\textbf{System} & \textbf{Workload Description} \\
-		\midrule
-		
-		%\rowcolor{black!5!white}
-		\jumper & Different WAVE audio files varying in sampling rate, the number of channels, and length. \\
-		
-		%\rowcolor{black!10!white}
-		\midrule
-		\kanzi  & Common file compression benchmarks, including the Canterbury corpus (mixed file types), and single-type files. \\
-		
-		%\rowcolor{black!5!white}
-		\midrule
-		\dconvert  & Graphic and project files varying in size and file type (JPEG, PNG, PSD, SVG) \\
-		
-		%\rowcolor{black!10!white}
-		\midrule
-		\htwo & Standardized OLTP benchmarks (TPC-H, SmallBank, Yahoo! Cloud Serving Benchmark, and Voter) at two different scale factors from \textsf{OLTPBench}~\cite{difallah_oltp_2013}. \\
-		
-		%\rowcolor{black!5!white}
-		\midrule
-		\batik  & Different SVG vector graphic files varying in size. \\
-		
-		%\rowcolor{black!10!white}
-		\midrule
-		\jadx  & APK packages of popular Android applications varying in size and application type (utilities, games etc.). \\
-		\bottomrule
-	\end{tabular}
-\label{tab:workloads}
-\end{table}
-\end{comment}
+\subsubsection{Workload Selection}
+This study relies on a selection of workloads for each domain or software system. Ideally, each set of workloads is diverse enough to be representative of most possible use cases. We selected the workload sets in this spirit, but cannot always guarantee a measurable degree of diversity and representativeness. This is due to the opacity of workloads: Beyond educated guesses, prior to conducting measurements, it is not possible to state which workload characteristics (size, scale, file type etc.) are performance-relevant. We discuss this aspect in the threats to validity. Below we outline the twelve case studies along with the workloads tested. 
+%All workloads and resources are made available on the paper’s companion Web site.
 
-{\color{red}
+}
+
+{\color{blue!50!cyan}
 \begin{compactitem}
-	\item Add description of software systems and workloads here
+	\item For the \textit{audio encoders} \jumper and \flac, the measured task was to encode raw WAVE audio signals to MP3 (\jumper) and FLAC format (\flac). We selected a number of different audio files from the Wikimedia Commons collection and aimed at varying the file size/signal length, sampling rate, and number of channels. Both applications share all workloads.
+
+\item For the \textit{video encoders} \xzwo and \vpnine, the measured task was to encode raw video frames (y4m format). We selected a number of files from xiph.org’s “derf collection”, a set of test media for a variety of use cases. The frame files vary in resolution (low/SD up to 4K) and file size. Both applications in this domain were tested with the same workload set. 
+
+\item For the \textit{file compression} tools \kanzi, \xz, and \lrzip, we used a variety of community compression benchmarks that represent different goals, including mixes of files of different types (text, binary, structured data etc.) or single-type files. We augmented this set of workloads with custom data, such as the Hubble Deepfield image and a binary of the Linux kernel. Beyond this set of workloads, for xz and lrzip we added different parameterizations of the UIQ2 benchmark to study the effect of varying file size. 
+
+\item For the \textit{SMT solver} \zdrei, the measured task was to decide the satisfiability (find a solution or counter example) of a range of logical problems expressed in the SMT2 format. We selected the six longest-running problem instances from z3’s performance test suite and augmented it with additional instances from the SMT2-Lib repository to cover different types of logic and increase diversity.
+
+\item For the \textit{SVG rasterizer} \batik, the measured task was to transform a SVG vector graphic into a bitmap. We selected a number of resources from the Wikimedia Commons collection, primarily varying the file size.
+
+\item For the embedded \textit{database} \htwo, we used a selection of four benchmarks (SmallBank, TPC-H, YCSB, Voter) from \textsc{OLTPBench}~\cite{difallah_oltp_2013}, a load generator for databases that allows for using a variety of performance testing benchmarks. For each benchmark, we varied the scale factor, which controls the complexity (number of entities modeled) in each scenario.
+
+\item For the \textit{Java decompiler} \jadx, the measured task was to decompile a number of Android applications in DEX byte code. We selected a number of APK packages from \url{APKMirror.com/} from different domains (social media, games, utility etc.) and of varying size.
+
+\item For the \textit{image scaler} \dconvert, the measured task was to transform resources (image files, Photoshop sketches) at different scales (useful for Android development). We selected files that reflect \dconvert's documented input formats (JPEG, PNG, PSD, and SVG) and vary in file size.
 \end{compactitem}
 }
 \subsubsection{Configuration Sampling}\label{sec:sampling}
 For each subject system, we sampled a set of configurations. As exhaustive coverage of the configuration space is infeasible due to combinatorial explosion~\cite{henardCombining2015}, for binary configuration options, we combine several coverage-based sampling strategies and uniform random sampling into an \emph{ensemble} approach: 
 We employ option-wise and negative option-wise sampling~\cite{siegmundPerformanceinfluenceModelsHighly2015}, where each option is enabled once (i.e., in, at least, one configuration), or all except one, respectively. In addition, we use pairwise sampling, where two-way combinations of configuration options are systematically selected. Interactions of higher degree could be found accordingly, however, it is computationally prohibitively expensive~\cite{henardCombining2015}. 
-Last, we augment our sample set with a random sample that is, at least, the size of the coverage-based sample. To achieve a nearly uniform random sample, we used \emph{distance-based sampling}~\cite{kaltenecker_distance-based_2019}. If a software system exhibited numeric configuration options, we varied them across, at least, two levels to account for their effect. All variability models and sample sets can be found on the companion Web site.
+Last, we augment our sample set with a random sample that is, at least, the size of the coverage-based sample. To achieve a nearly uniform random sample, we used \emph{distance-based sampling}~\cite{kaltenecker_distance-based_2019}. If a software system exhibited numeric configuration options, we varied them across, at least, two levels to account for their effect. %All variability models and sample sets can be found on the companion Web site.
 
 {\color{blue}
 \subsubsection{Coverage Profiling}\label{sec:profiling}
 To assess what lines of code are executed for each combination of workload and software configuration, we used two separate approaches for Java and C/C++. For Java, we used the on-the-fly profiler \textsc{Jacoco}\footnote{\url{https://www.jacoco.org/jacoco/trunk/doc/}} that intercepts byte code running on the JVM at run-time. For C/C++, we added instrumentation code to the software systems using Clang/LLVM to collect coverage information. In both cases, we split the performance measurement and coverage analysis runs to  avoid distortion from the profiling and instrumentation overhead.
 }
 	
-\subsubsection{Hardware Setup}
+\subsubsection{Measurement Setup}
 
 \begin{table}
 	\color{blue}
