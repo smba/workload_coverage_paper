@@ -45,7 +45,7 @@ Empirical performance models can be obtained using a variety of machine-learning
 The set of configurations for training can be sampled from the configuration space using a variety of different sampling techniques~\cite{kaltenecker_interplay_2020}. All sampling strategies aim at yielding a representative sample, either by covering the main effects of configuration options and interactions among them~\cite{siegmundPredictingPerformanceAutomated2012}, or sampling uniformly from the configuration space~\cite{ohFindingNearoptimalConfigurations2017,kaltenecker_distance-based_2019}.
 Most approaches share the perspective of treating a configurable software system as a black-box model at application-level granularity. Recent work has incorporated feature location techniques to guide sampling effort towards relevant configuration options~\cite{velez_2020_configcrusher_jase,velez_comprex_2021} or model non-functional properties at finer granularity~\cite{weber_white_2021}.
 
-{\color{red!70!black}
+{\color{red}
 \subsection{Varying Workloads}\label{sec:varying_workloads}
 %\subsubsection{Whats is a workload?}
 When assessing the performance of a software system, we ask how well a certain \textit{operation} is executed, or, phrased differently, how well an \textit{input fed to the software system} is processed. Such inputs, commonly called workloads, are essential to assessing performance, even detached from the specific context of configurable software systems. By nature, the workload of a software system is application-specific, such as a series of queries and transactions fed to a database system, a set of raw image files for video encoding, or an arbitrary file for data compression etc. Workloads can often be distinguished by characteristics (dimensions) they exhibit, such as their file size in general, or, the  type of data to be compressed (text, binary data) for instance.
@@ -97,7 +97,7 @@ The first two research questions describe the performance behavior of our subjec
 
 \RQ{3}{Does the variation in configuration options' performance influence across workloads correlate with differences in the respective execution footprint?}
 \subsection{Experiment Setup}\label{sec:setup}
-{\color{blue}
+{´
 \subsubsection{Subject System Selection}
 We selected twelve configurable software systems for our study. To ensure that our findings are not specific to one domain or ecosystem, the selection comprises an equal mix of Java and C/C++ systems from different application domains (cf. Table~\ref{tab:subject_systems}). We include systems studied in previous and related work~\cite{velez_2020_configcrusher_jase,weber_white_2021,alves_sampling_2020} and incorporate further ones with comparable size and configuration complexity. All systems operate by processing a domain-specific input fed to them (henceforth called \textit{workload}). This study treats execution time as the key performance indicator with the exception of \htwo, where we report throughput.
 
@@ -139,7 +139,7 @@ For each subject system, we sampled a set of configurations. As exhaustive cover
 We employ option-wise and negative option-wise sampling~\cite{siegmundPerformanceinfluenceModelsHighly2015}, where each option is enabled once (i.e., in, at least, one configuration), or all except one, respectively. In addition, we use pairwise sampling, where two-way combinations of configuration options are systematically selected. Interactions of higher degree could be found accordingly, however, it is computationally prohibitively expensive~\cite{henardCombining2015}. 
 Last, we augment our sample set with a random sample that is, at least, the size of the coverage-based sample. To achieve a nearly uniform random sample, we used \emph{distance-based sampling}~\cite{kaltenecker_distance-based_2019}. If a software system exhibited numeric configuration options, we varied them across, at least, two levels to account for their effect. %All variability models and sample sets can be found on the companion Web site.
 
-{\color{blue}
+{\color{blue!50!cyan}
 \subsubsection{Coverage Profiling}\label{sec:profiling}
 To assess what lines of code are executed for each combination of workload and software configuration, we used two separate approaches for Java and C/C++. For Java, we used the on-the-fly profiler \textsc{Jacoco}\footnote{\url{https://www.jacoco.org/jacoco/trunk/doc/}} that intercepts byte code running on the JVM at run-time. For C/C++, we added instrumentation code to the software systems using Clang/LLVM to collect coverage information. In both cases, we split the performance measurement and coverage analysis runs to  avoid distortion from the profiling and instrumentation overhead.
 }
@@ -147,10 +147,10 @@ To assess what lines of code are executed for each combination of workload and s
 \subsubsection{Measurement Setup}
 
 \begin{table}
-	\color{blue}
+	\color{blue!50!cyan}
 	\footnotesize
 	\centering
-	\caption{\color{blue}Hardware specifications of the compute clusters used.}
+	\caption{\color{blue!50!cyan}Hardware specifications of the compute clusters used.}
 	\label{tab:hardware}
 	\begin{tabular}{llrrlr}
 		\toprule
@@ -163,7 +163,7 @@ To assess what lines of code are executed for each combination of workload and s
 	\end{tabular}
 	
 \end{table}
-{\color{blue}
+{\color{blue!50!cyan}
 All experiments were conducted on three different compute clusters (cf. Table~\ref{tab:hardware}), where all machines within a compute cluster had the identical hardware setup. All clusters ran a headless Debian installation. To minimize measurement noise, we used a controlled environment, where no additional user processes were running in the background, and no other than necessary packages were installed. 
 We ran each subject system exclusively on a single cluster: \htwo on cluster I; \dconvert, \batik and \jadx on cluster II; the remaining systems on cluster III.
 
@@ -312,6 +312,7 @@ To facilitate the comparison of regression coefficients across workloads, we fol
 
 From the comparison of the relative performance influences, we can answer \RQref{2} in detail and assess how many configurations are sensitive to varying the workload, what characteristic traits describe the performance influences, and whether we can identify patterns.
 \subsubsection{Results}\label{sec:results2}
+{\color{red}
 We illustrate the results of training explanatory performance models for each subject system in Figure~\ref{fig:results_influence}. Each row shows the distribution of the relative performance influence of a configuration option across the set of tested workloads. For this visualization, we made some tweaks to highlight a few properties: First, we show each regression coefficient as an individual black rug (vertical bar). Second, we highlight the greatest positive influence and smallest minimum influence in red and green, respectively, to illustrate both the range of influences and possible opposing influences (i.e., a performance degrading option becomes performance improving or vice versa). 
 \begin{figure}
 	\centering
@@ -319,7 +320,7 @@ We illustrate the results of training explanatory performance models for each su
 	\caption{Relative performance influences (\textit{standardized regression coefficients}) for all configuration options across all workloads. Each black bar denotes a workload-specific performance influence. For each configuration option, we highlight the range of observed influences. }
 	\label{fig:results_influence}
 \end{figure}
-{\color{cyan}
+
 We have identified three characteristic (but non-exclusive) traits, by which we can describe the distributions of regression coefficients: 
 \begin{compactitem}	
 \item[\circled{1}] \emph{Spread} of performance influences: Some distributions scatter over a wide range, while others are concentrated around a single value. Consider \htwo, for which we observe a relative performance difference of 200\,\% for option \textsf{MVSTORE}, meaning that the performance influence of turning on this option can be twice as high depending on the workload. 
@@ -330,7 +331,7 @@ We have identified three characteristic (but non-exclusive) traits, by which we 
 \end{compactitem}
 	
 These criteria, the spread (\circled{1}) or concentration, opposing influences (\circled{2}), and options becoming influential only on occasions (\circled{3}), allow us to group each configuration option into a specific category, as presented in Table~\ref{tab:option_classification}. We omitted all configuration options with low spread and a neglible performance influence since these are not interacting with the workload either. 
-}
+
 
 \begin{table}[ht!]
 	\centering
@@ -378,7 +379,8 @@ These criteria, the spread (\circled{1}) or concentration, opposing influences (
 
 With two exceptions, we see that all software systems have configuration options, for which, at least, one of the three characteristic traits apply. For \jumper, we found only conditional influences for three options, whereas for \jadx, we observed only three options with high spread of relative performance influences. As these differences arise from varying the workload, we conclude that input sensitivity of a configuration option can manifest in different ways, as shown by the three characteristics.
 \vspace{1mm}
-\greybox{\textbf{Summary} (\RQref{2}): Configuration options are profoundly input sensitive: We observe high performance variations, non-mo\-no\-to\-nic behavior, conditional influence, and even diametrically opposed influences for a single option.}
+\greybox{\color{red}\textbf{Summary} (\RQref{2}): Configuration options are profoundly input sensitive: We observe high performance variations, non-mo\-no\-to\-nic behavior, conditional influence, and even diametrically opposed influences for a single option.}
+}
 
 %\subsection{Exploring Categories of Sensitivity}
 \subsection{Code Coverage and Performance ($RQ_3$)}\label{sec:rq3}\label{sec:categories}
@@ -463,7 +465,7 @@ We inspected manually the relation of the coverage similarity across workloads p
 		\caption{Configuration option \guillemotleft\textsf{COMPRESS}\guillemotright~ of \htwo}
 		\label{fig:results_rq3_h2}
 	\end{subfigure}
-	\caption{\color{cyan}Distribution of relative performance influences across workloads (left) and cluster dendrogram of workload-specific option-code executions (right).}
+	\caption{\color{red}Distribution of relative performance influences across workloads (left) and cluster dendrogram of workload-specific option-code executions (right).}
 	\label{fig:results_rq3}
 \end{figure}
 
@@ -476,7 +478,7 @@ For the other subject systems and remaining configuration options, we could not 
 \greybox{\textbf{Summary} (\RQref{3}): Varying the workload can condition the execution of option-specific code  (\textit{code coverage}) and cause performance differences. However, there is no single driving factor: \textit{Code utilization} depending on workload characteristics is a likely factor accounting for the majority of performance influence variation.  
 }
 
-{\color{red!70!black}
+{\color{red}
 \section{Discussion}\label{sec:discussion}
 %In this section, we summarize the implications learned from our study and discuss threats to validity and limitations of our study.
 \subsection{The Problem of Input Sensitivity}\label{sec:discusssion_challenge}
@@ -509,13 +511,12 @@ As our empirical study aimed at identifying driving factors of input sensitivity
 }
 \subsection{Threats to Validity}\label{sec:threats}
 {\color{cyan}
-Threats to \emph{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate these threats by repeating each experiment five times and reporting the median as a robust measure in a controlled environment. %For \htwo, we confirmed a negligible measurement variation in a separate pre-study.
-Moreover, the coverage analysis with \mbox{\textsc{JaCoCo}} entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsf{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario with only negligible overhead.
+Threats to \textbf{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate these threats by repeating each experiment five times and reporting the median as a robust measure in a controlled environment. Moreover, the coverage analysis (cf. Section ?) entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of h2, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario with only negligible overhead. 	
 
-The selection of subject systems, all written in Java, poses a threat to \emph{external validity}. While our motivation for this selection is primarily practical (cf. Section~\ref{sec:setup}), we mitigate this threat by selecting subject systems from a variety of application domains (cf.~Table~\ref{tab:subject_systems}). Nonetheless, one cannot necessarily conclude that our results hold for other domains and programming languages. 
+Threats to\textbf{ external validity} include the selection of subject systems and workloads. Regarding the subject systems, we address this issue by selecting software from various application domains as well as two different programming language ecosystems (cf.~Table~\ref{tab:subject_systems}). In lieu of domain knowledge, we cannot select workloads systematically with respect to workload characteristics due to workloads inherent opacity. We address this issue by varying likely relevant characteristics and, to some extent, reusing workloads across subject systems of the same domain. Achieving true representativeness is desirable, yet intractable. As the goal of this selection is to study the presence and quality of workload-option interactions, not their prevalence, we believe this selection does not invalidate our findings. Nonetheless, one cannot necessarily conclude that our results hold for other domains and programming languages.
 }
 
 \section{Conclusion}\label{sec:conclusion}
 Most modern software systems exhibit configuration options to customize behaviors and meet user demands. Configuration choices, however, can also affect the performance of a software system.
-State-of-the-art approaches model configuration-dependent software performance, yet overlook variation due to the workload. Until now, there exists no \textit{systematic} assessment of what is driving the effect that input sensitivity of individual configuration options’ influence on performance. We have conducted an empirical study of 29 347 configurations and 55 workloads across six configurable software systems to characterize the effects that varying the workload can have on configuration-specific performance. We compare performance measurements with code coverage data to identify possible factors that drive input sensitivity. We found that the interactions between options and workloads are driven by workload characteristics conditioning the execution of option-specific code sections as well as determining how option-specific code sections are executed. Our findings highlight the necessity to consider input sensitivity when modeling configuration-dependent performance as varying the workload resulted in a substantial number of non-monotonous relationships, which limits a performance model's representativeness. Code analysis can provide an effective strategy to differentiate between sources of input sensitivity to obtain more representative performance models.
+State-of-the-art approaches model configuration-dependent software performance, yet overlook variation due to the workload. Until now, there exists no \textit{systematic} assessment of what is driving the effect that input sensitivity of individual configuration options’ influence on performance. We have conducted an empirical study of {\color{red}29\,347 configurations and 55 workloads across six} configurable software systems to characterize the effects that varying the workload can have on configuration-specific performance. We compare performance measurements with code coverage data to identify possible factors that drive input sensitivity. We found that the interactions between options and workloads are driven by workload characteristics conditioning the execution of option-specific code sections as well as determining how option-specific code sections are executed. Our findings highlight the necessity to consider input sensitivity when modeling configuration-dependent performance as varying the workload resulted in a substantial number of non-monotonous relationships, which limits a performance model's representativeness. Code analysis can provide an effective strategy to differentiate between sources of input sensitivity to obtain more representative performance models.
 
