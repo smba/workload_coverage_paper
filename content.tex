@@ -45,6 +45,7 @@ Empirical performance models can be obtained using a variety of machine-learning
 The set of configurations for training can be sampled from the configuration space using a variety of different sampling techniques~\cite{kaltenecker_interplay_2020}. All sampling strategies aim at yielding a representative sample, either by covering the main effects of configuration options and interactions among them~\cite{siegmundPredictingPerformanceAutomated2012}, or sampling uniformly from the configuration space~\cite{ohFindingNearoptimalConfigurations2017,kaltenecker_distance-based_2019}.
 Most approaches share the perspective of treating a configurable software system as a black-box model at application-level granularity. Recent work has incorporated feature location techniques to guide sampling effort towards relevant configuration options~\cite{velez_2020_configcrusher_jase,velez_comprex_2021} or model non-functional properties at finer granularity~\cite{weber_white_2021}.
 
+{\color{red!70!black}
 \subsection{Varying Workloads}\label{sec:varying_workloads}
 %\subsubsection{Whats is a workload?}
 When assessing the performance of a software system, we ask how well a certain \textit{operation} is executed, or, phrased differently, how well an \textit{input fed to the software system} is processed. Such inputs, commonly called workloads, are essential to assessing performance, even detached from the specific context of configurable software systems. By nature, the workload of a software system is application-specific, such as a series of queries and transactions fed to a database system, a set of raw image files for video encoding, or an arbitrary file for data compression etc. Workloads can often be distinguished by characteristics (dimensions) they exhibit, such as their file size in general, or, the  type of data to be compressed (text, binary data) for instance.
@@ -58,12 +59,7 @@ While workload characterization and benchmark construction is domain-specific, t
 While the notion of representative workloads is ubiquitous in an industry setting, we face a different situation in research on empirical performance models (cf. Section~\ref{sec:perfmodels}): Most approaches provide accurate performance estimations, yet are based on observations gained by varying configurations while keeping the workload the same. Clearly, this can limit the model's generalizability to different workloads, especially if the training workload poorly represents real-world scenarios. While the configuration-specific behavior might be congruent across different workloads (i.e, a configuration scoring comparably for different workloads), we cannot rely on such assumptions in practice, where different workloads can indeed result in entirely different configuration-specific performance behavior.
 
 Revisiting an observation by \citeauthor{alves_sampling_2020}~\cite{alves_sampling_2020}, the following example illustrates that even seemingly small differences in the composition of a workload can induce performance behavior that is hard to anticipate: We tested the performance (throughput: transactions per second) of a number of configurations for the database system \htwo across two different workloads. Both workloads are instances of the database benchmark \textsf{TPC-C}, consisting of a fixed-ratio mix of transactions (inserts, updates, selects) for a specific database schema. The only difference was varying the scale factor, which controls for the number of warehouses modeled in the schema. The resulting performance distributions are given in Figure~\ref{fig:h2_intro}.
-\begin{figure}
-	\centering
-	\includegraphics[width=0.85\linewidth]{images/h2_motivation.eps}
-	\caption{\color{red}Performance distributions of the database system \htwo run the \textsf{TPC-C} benchmark at different scale factors.}
-	\label{fig:h2_intro}
-\end{figure}
+
 While one might first expect that a more complex workload results in lower throughput, this is indeed the case, but does not hold for all configurations. The median throughput decreases for the larger scale factor, yet the shape and spread of the distribution are entirely different. Most notably, the maximum throughput for the greater scale factor is higher than for the smaller scale factor, indicating that some configurations indeed do not follow the general trend. This illustrates that the effect of varying the workload for some configurations cannot be captured by a linear transformation (constant shift or scaling).
 
 
@@ -80,7 +76,7 @@ The combined problem space enables learning performance models that generalize t
 Another strategy that builds on the fact that, across different workloads, only few configuration options are in fact input sensitive~\cite{jamishidi_transfer_2017}. Here one first trains a model on a standard workload and, subsequently, adapts it to different workloads. Contrary to a generalizable workload-aware model, transfer learning strategies focus on approximating a transfer function that, without characterizing the workload, encodes the information of which configuration options are sensitive to differences between a source and target pair of workloads. Training a workload-specific model and adapting it on occasion provides an effective means to reuse performance models, which is not limited to workloads~\cite{jamshidi_learning_2018}, but has successfully been applied to different hardware setups~\cite{ding_bayesian_2020,valov_transferring_performance_2017} and across versions~\cite{martin_transfer_2021}. The main shortcoming of transfer learning approaches is that they do not generalize to arbitrary workloads, since a transfer function is tailored to a specific target workload. Here, one trades off generalizability and measurement cost as learning a transfer function requires substantially fewer training samples.
 
 While both directions are effective means to handle input sensitivity, to the best of our knowledge, there is no \textit{systematic} assessment of the factors that drive the interaction between configuration options and workloads with regard to performance. Understanding scenarios that are associated with or even cause incongruent performance influences across workloads can help practitioners to employ established analysis techniques more effectively and can motivate researchers to devise analysis techniques dedicated to such scenarios.
-It is well known that p
+}
 \section{Study Design}~\label{sec:study}
 In what follows, we describe the general experiment setup and study design as well as research questions. We make all performance measurement data, configurations, workloads, and learned performance models available on the paper's companion Web site.
 \subsection{Research Questions}
@@ -193,6 +189,7 @@ To assess what lines of code are executed for each combination of workload and s
 All experiments were conducted on three different compute clusters (cf. Table~\ref{tab:hardware}), where all machines within a compute cluster had the identical hardware setup. All clusters ran a headless Debian installation. To minimize measurement noise, we used a controlled environment, where no additional user processes were running in the background, and no other than necessary packages were installed. 
 We ran each subject system exclusively on a single cluster: \htwo on cluster I; \dconvert, \batik and \jadx on cluster II; the remaining systems on cluster III.
 
+
 For all data points, we report the median across five repetitions (except for \htwo), which has shown to be a good trade-off between variance and measurement effort. For \htwo, we omitted the repetitions as, in a pre-study, running on the identical cluster setup, we found that across all benchmarks the coefficient of variation of the throughput was consistently below 5\,\%.
 }
 
@@ -275,37 +272,37 @@ We answer \RQref{1} by pairwisely comparing the performance distributions from d
 	
 	\midrule
 	
-	\rowcolor{cyan!20}	\xz & 
+	\rowcolor{blue!25}	\xz & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\%\\
 	
-	\rowcolor{cyan!20}	\lrzip & 
+	\rowcolor{blue!25}	\lrzip & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\%\\
 	
-	\rowcolor{cyan!20}	\flac & 
+	\rowcolor{blue!25}	\flac & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\%\\
 	
-	\rowcolor{cyan!20}	\vpnine & 
+	\rowcolor{blue!25}	\vpnine & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\%\\
 	
-	\rowcolor{cyan!20}	\xzwo & 
+	\rowcolor{blue!25}	\xzwo & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\%\\
 	
-	\rowcolor{cyan!20}	\zdrei & 
+	\rowcolor{blue!25}	\zdrei & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
@@ -502,6 +499,7 @@ For the other subject systems and remaining configuration options, we could not 
 \greybox{\textbf{Summary} (\RQref{3}): Varying the workload can condition the execution of option-specific code  (\textit{code coverage}) and cause performance differences. However, there is no single driving factor: \textit{Code utilization} depending on workload characteristics is a likely factor accounting for the majority of performance influence variation.  
 }
 
+{\color{red!70!black}
 \section{Discussion}\label{sec:discussion}
 %In this section, we summarize the implications learned from our study and discuss threats to validity and limitations of our study.
 \subsection{The Problem of Input Sensitivity}\label{sec:discusssion_challenge}
@@ -531,7 +529,7 @@ Our results suggest that, to improve representativeness, an additional notion of
 The benefit of such a representation is that developers are now aware that certain influences are prone to workload variations and may need to be re-fitted when the application scenario changes.
 In our empirical study, we have employed feature location techniques and code coverage analysis to identify cases where option-code coverage conditioned the performance influence of individual configuration opinions (cf. {category \color{nicegreen!55!black}(B)} in Equation~\ref{eq:cool_model}). This approach is a first step to classify configuration options and increase overall performance model representativeness. Coverage testing is already an established practice in functional regression testing, so maximizing option-code coverage could be easily adopted to testing in a non-functional context. 
 As our empirical study aimed at identifying driving factors of input sensitivity, methods for assessing code utilization (cf. category {\color{blue!60!black}(C)} in Equation~\ref{eq:cool_model}) remain an open challenge. Existing work on comparing the execution detail at finer granularity, for instance via log differencing~\cite{bao_logdiff_ase_2019}, provide a promising avenue towards obtaining representative performance prediction models.
-
+}
 \subsection{Threats to Validity}\label{sec:threats}
 {\color{cyan}
 Threats to \emph{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate these threats by repeating each experiment five times and reporting the median as a robust measure in a controlled environment. %For \htwo, we confirmed a negligible measurement variation in a separate pre-study.
