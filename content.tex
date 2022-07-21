@@ -97,7 +97,7 @@ The first two research questions describe the performance behavior of our subjec
 
 \RQ{3}{Does the variation in configuration options' performance influence across workloads correlate with differences in the respective execution footprint?}
 \subsection{Experiment Setup}\label{sec:setup}
-{´
+{\color{novelblue}
 \subsubsection{Subject System Selection}
 We selected twelve configurable software systems for our study. To ensure that our findings are not specific to one domain or ecosystem, the selection comprises an equal mix of Java and C/C++ systems from different application domains (cf. Table~\ref{tab:subject_systems}). We include systems studied in previous and related work~\cite{velez_2020_configcrusher_jase,weber_white_2021,alves_sampling_2020} and incorporate further ones with comparable size and configuration complexity. All systems operate by processing a domain-specific input fed to them (henceforth called \textit{workload}). This study treats execution time as the key performance indicator with the exception of \htwo, where we report throughput.
 
@@ -115,7 +115,7 @@ This study relies on a selection of workloads for each domain or software system
 
 }
 
-{\color{blue!50!cyan}
+{\color{novelblue}
 \begin{compactitem}
 	\item For the \textit{audio encoders} \jumper and \flac, the measured task was to encode raw WAVE audio signals to MP3 (\jumper) and FLAC format (\flac). We selected a number of different audio files from the Wikimedia Commons collection and aimed at varying the file size/signal length, sampling rate, and number of channels. Both applications share all workloads.
 
@@ -139,7 +139,7 @@ For each subject system, we sampled a set of configurations. As exhaustive cover
 We employ option-wise and negative option-wise sampling~\cite{siegmundPerformanceinfluenceModelsHighly2015}, where each option is enabled once (i.e., in, at least, one configuration), or all except one, respectively. In addition, we use pairwise sampling, where two-way combinations of configuration options are systematically selected. Interactions of higher degree could be found accordingly, however, it is computationally prohibitively expensive~\cite{henardCombining2015}. 
 Last, we augment our sample set with a random sample that is, at least, the size of the coverage-based sample. To achieve a nearly uniform random sample, we used \emph{distance-based sampling}~\cite{kaltenecker_distance-based_2019}. If a software system exhibited numeric configuration options, we varied them across, at least, two levels to account for their effect. %All variability models and sample sets can be found on the companion Web site.
 
-{\color{blue!50!cyan}
+{\color{novelblue}
 \subsubsection{Coverage Profiling}\label{sec:profiling}
 To assess what lines of code are executed for each combination of workload and software configuration, we used two separate approaches for Java and C/C++. For Java, we used the on-the-fly profiler \textsc{Jacoco}\footnote{\url{https://www.jacoco.org/jacoco/trunk/doc/}} that intercepts byte code running on the JVM at run-time. For C/C++, we added instrumentation code to the software systems using Clang/LLVM to collect coverage information. In both cases, we split the performance measurement and coverage analysis runs to  avoid distortion from the profiling and instrumentation overhead.
 }
@@ -147,10 +147,10 @@ To assess what lines of code are executed for each combination of workload and s
 \subsubsection{Measurement Setup}
 
 \begin{table}
-	\color{blue!50!cyan}
+	\color{novelblue}
 	\footnotesize
 	\centering
-	\caption{\color{blue!50!cyan}Hardware specifications of the compute clusters used.}
+	\caption{\color{novelblue}Hardware specifications of the compute clusters used.}
 	\label{tab:hardware}
 	\begin{tabular}{llrrlr}
 		\toprule
@@ -163,7 +163,7 @@ To assess what lines of code are executed for each combination of workload and s
 	\end{tabular}
 	
 \end{table}
-{\color{blue!50!cyan}
+{\color{novelblue}
 All experiments were conducted on three different compute clusters (cf. Table~\ref{tab:hardware}), where all machines within a compute cluster had the identical hardware setup. All clusters ran a headless Debian installation. To minimize measurement noise, we used a controlled environment, where no additional user processes were running in the background, and no other than necessary packages were installed. 
 We ran each subject system exclusively on a single cluster: \htwo on cluster I; \dconvert, \batik and \jadx on cluster II; the remaining systems on cluster III.
 
@@ -177,7 +177,7 @@ For all data points, we report the median across five repetitions (except for \h
 \subsubsection{Operationalization}
 We answer \RQref{1} by pairwisely comparing the performance distributions from different workloads (cf. the comparison in Figure~\ref{fig:h2_intro}) and by determining whether any two distributions are similar or, if not, can be transformed into each other. For the latter case, we are specifically interested in what type of transformation is necessary as this determines \textit{how} complex a workload interacts with configuration options. Specifically, we categorize each pair of workloads with respect to the following aspects: 
 \begin{compactenum}
-	\item {\color{blue!50!cyan}\textbf{Similarity}: To test whether workload variation has any effect at all, we employ statistical tests. We use the non-parametric Wilcoxon signed-rank test~\cite{lovric_international_2010} because performance distributions are often multi-modal or long-tailed~\cite{curtsinger_stabilizer_2013,maricq2018taming}, failing to meet requirements for parametric methods. We assess whether varying the workload affects configuration-specific performance. If we can reject the null hypothesis $H_0$ at $\alpha=0.95$, we consider the distributions dissimilar. To account for overpowering due to high and different sample sizes (cf. Table~\ref{tab:subject_systems}), we further report effect sizes to weed out negligible effects. Following the interpretation guidelines from \citeauthor{romano2006exploring}. we use Cliff's~$\delta$~\cite{Cliff1993DominanceSO} and a threshold effect size of $\vert\delta > 0.147\vert$.}
+	\item {\color{novelblue}\textbf{Similarity}: To test whether workload variation has any effect at all, we employ statistical tests. We use the non-parametric Wilcoxon signed-rank test~\cite{lovric_international_2010} because performance distributions are often multi-modal or long-tailed~\cite{curtsinger_stabilizer_2013,maricq2018taming}, failing to meet requirements for parametric methods. We assess whether varying the workload affects configuration-specific performance. If we can reject the null hypothesis $H_0$ at $\alpha=0.95$, we consider the distributions dissimilar. To account for overpowering due to high and different sample sizes (cf. Table~\ref{tab:subject_systems}), we further report effect sizes to weed out negligible effects. Following the interpretation guidelines from \citeauthor{romano2006exploring}. we use Cliff's~$\delta$~\cite{Cliff1993DominanceSO} and a threshold effect size of $\vert\delta > 0.147\vert$.}
 	
 	\item \textbf{Linear Correlation}: To test whether both performance distributions are shifted by a constant value or scaled by a constant factor, we compute for each pair of distributions Pearson's correlation coefficient $r$. To discard the sign of relationship, we use the absolute value and consider $\vert r\vert >0.6$ indicates a strong linear relationship. 
 	
@@ -249,37 +249,37 @@ We answer \RQref{1} by pairwisely comparing the performance distributions from d
 	
 	\midrule
 	
-	\rowcolor{blue!25}	\xz & 
+	\rowcolor{novelblue!30}	\xz & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\%\\
 	
-	\rowcolor{blue!25}	\lrzip & 
+	\rowcolor{novelblue!30}	\lrzip & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\%\\
 	
-	\rowcolor{blue!25}	\flac & 
+	\rowcolor{novelblue!30}	\flac & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\%\\
 	
-	\rowcolor{blue!25}	\vpnine & 
+	\rowcolor{novelblue!30}	\vpnine & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\%\\
 	
-	\rowcolor{blue!25}	\xzwo & 
+	\rowcolor{novelblue!30}	\xzwo & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\%\\
 	
-	\rowcolor{blue!25}	\zdrei & 
+	\rowcolor{novelblue!30}	\zdrei & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
@@ -478,6 +478,22 @@ For the other subject systems and remaining configuration options, we could not 
 \greybox{\textbf{Summary} (\RQref{3}): Varying the workload can condition the execution of option-specific code  (\textit{code coverage}) and cause performance differences. However, there is no single driving factor: \textit{Code utilization} depending on workload characteristics is a likely factor accounting for the majority of performance influence variation.  
 }
 
+\clearpage
+{\color{green!40!black}
+\section{Implications (New Discussion)}
+\subsection{Effective Learning}
+\subsection{Workload Composition}
+\subsection{Feature Location}
+{\color{novelblue}
+\subsection{Threats to Validity}\label{sec:threats}
+
+	Threats to \textbf{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate these threats by repeating each experiment five times and reporting the median as a robust measure in a controlled environment. Moreover, the coverage analysis (cf. Section ?) entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of h2, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario with only negligible overhead. 	
+	
+	Threats to\textbf{ external validity} include the selection of subject systems and workloads. To ensure generalizability, we select software systems from various various application domains as well as two different programming language ecosystems (cf.~Table~\ref{tab:subject_systems}). In lieu of domain knowledge, we cannot select workloads systematically with respect to workload characteristics due to workloads inherent opacity. We address this issue by varying likely relevant characteristics and, where possible, reusing workloads across subject systems of the same domain. Achieving true representativeness is desirable, yet intractable. 
+	The goal of this selection is to study the \textit{presence} and quality of workload-option interactions, but not their \textit{prevalence}. Hence, we believe this selection does not invalidate our findings. 
+}
+}
+\clearpage
 {\color{red}
 \section{Discussion}\label{sec:discussion}
 %In this section, we summarize the implications learned from our study and discuss threats to validity and limitations of our study.
@@ -509,13 +525,7 @@ The benefit of such a representation is that developers are now aware that certa
 In our empirical study, we have employed feature location techniques and code coverage analysis to identify cases where option-code coverage conditioned the performance influence of individual configuration opinions (cf. {category \color{nicegreen!55!black}(B)} in Equation~\ref{eq:cool_model}). This approach is a first step to classify configuration options and increase overall performance model representativeness. Coverage testing is already an established practice in functional regression testing, so maximizing option-code coverage could be easily adopted to testing in a non-functional context. 
 As our empirical study aimed at identifying driving factors of input sensitivity, methods for assessing code utilization (cf. category {\color{blue!60!black}(C)} in Equation~\ref{eq:cool_model}) remain an open challenge. Existing work on comparing the execution detail at finer granularity, for instance via log differencing~\cite{bao_logdiff_ase_2019}, provide a promising avenue towards obtaining representative performance prediction models.
 }
-\subsection{Threats to Validity}\label{sec:threats}
-{\color{cyan}
-Threats to \textbf{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate these threats by repeating each experiment five times and reporting the median as a robust measure in a controlled environment. Moreover, the coverage analysis (cf. Section ?) entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of h2, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario with only negligible overhead. 	
 
-Threats to\textbf{ external validity} include the selection of subject systems and workloads. To ensure generalizability, we select software systems from various various application domains as well as two different programming language ecosystems (cf.~Table~\ref{tab:subject_systems}). In lieu of domain knowledge, we cannot select workloads systematically with respect to workload characteristics due to workloads inherent opacity. We address this issue by varying likely relevant characteristics and, where possible, reusing workloads across subject systems of the same domain. Achieving true representativeness is desirable, yet intractable. 
-The goal of this selection is to study the \textit{presence} and quality of workload-option interactions, but not their \textit{prevalence}. Hence, we believe this selection does not invalidate our findings. 
-}
 
 \section{Conclusion}\label{sec:conclusion}
 Most modern software systems exhibit configuration options to customize behaviors and meet user demands. Configuration choices, however, can also affect the performance of a software system.
