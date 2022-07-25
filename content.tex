@@ -117,9 +117,9 @@ This study relies on a selection of workloads for each domain or software system
 
 {\color{novelblue}
 \begin{compactitem}
-	\item For the \textit{audio encoders} \jumper and \flac, the measured task was to encode raw WAVE audio signals to MP3 (\jumper) and FLAC format (\flac). We selected a number of different audio files from the Wikimedia Commons collection and aimed at varying the file size/signal length, sampling rate, and number of channels. Both applications share all workloads.
+	\item For the \textit{audio encoder} \jumper, the measured task was to encode raw WAVE audio signals to MP3 (\jumper). We selected a number of different audio files from the Wikimedia Commons collection and aimed at varying the file size/signal length, sampling rate, and number of channels. Both applications share all workloads.
 
-\item For the \textit{video encoders} \xzwo and \vpnine, the measured task was to encode raw video frames (y4m format). We selected a number of files from xiph.org’s “derf collection”, a set of test media for a variety of use cases. The frame files vary in resolution (low/SD up to 4K) and file size. Both applications in this domain were tested with the same workload set. 
+\item For the \textit{video encoder} \xzwo, the measured task was to encode raw video frames (y4m format). We selected a number of files from xiph.org’s “derf collection”, a set of test media for a variety of use cases. The frame files vary in resolution (low/SD up to 4K) and file size. Both applications in this domain were tested with the same workload set. 
 
 \item For the \textit{file compression} tools \kanzi, \xz, and \lrzip, we used a variety of community compression benchmarks that represent different goals, including mixes of files of different types (text, binary, structured data etc.) or single-type files. We augmented this set of workloads with custom data, such as the Hubble Deepfield image and a binary of the Linux kernel. Beyond this set of workloads, for xz and lrzip we added different parameterizations of the UIQ2 benchmark to study the effect of varying file size. 
 
@@ -243,43 +243,44 @@ We answer \RQref{1} by pairwisely comparing the performance distributions from d
 	
 	\jadx & 
 	0 & 0\,\% & 
-	\cellcolor{lt-color!0!white}0 & \cellcolor{lt-color!0!white}0.0\,\% & 
+	\cellcolor{lt-color!100!white}120 & \cellcolor{lt-color!100!white}100.0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\%\\
+	
+	%\midrule
+	
+		\xz & 
+	0 & 0\,\% & 
+	\cellcolor{lt-color!82!white}64 & \cellcolor{lt-color!82!white}82.0\,\% & 
+	\cellcolor{xmt-color!1!white}1 & \cellcolor{xmt-color!1!white}1.3\,\% & 
+	\cellcolor{nmt-color!16!white}13 & \cellcolor{nmt-color!16!white}16.7\,\%\\
+	
+		\lrzip & 
+	0 & 0\,\% & 
+	\cellcolor{lt-color!73!white}57 & \cellcolor{lt-color!73!white}73.0\,\% & 
+	\cellcolor{xmt-color!16!white}13 & \cellcolor{xmt-color!16!white}16.7\,\% & 
+	\cellcolor{nmt-color!10!white}8 & \cellcolor{nmt-color!10!white}10.3\,\%\\
 	
 	\midrule
+	%\rowcolor{novelblue!30}	\flac & 
+	%%0 & 0\,\% & 
+	%0 & 0\,\% & 
+	%0 & 0\,\% & 
+	%0 & 0\,\%\\
 	
-	\rowcolor{novelblue!30}	\xz & 
+	%\rowcolor{novelblue!30}	\vpnine & 
+	%0 & 0\,\% & 
+	%0 & 0\,\% & 
+	%%0 & 0\,\% & 
+	%0 & 0\,\%\\
+	
+	\rowcolor{green!70!black}	\xzwo & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\%\\
 	
-	\rowcolor{novelblue!30}	\lrzip & 
-	0 & 0\,\% & 
-	0 & 0\,\% & 
-	0 & 0\,\% & 
-	0 & 0\,\%\\
-	
-	\rowcolor{novelblue!30}	\flac & 
-	0 & 0\,\% & 
-	0 & 0\,\% & 
-	0 & 0\,\% & 
-	0 & 0\,\%\\
-	
-	\rowcolor{novelblue!30}	\vpnine & 
-	0 & 0\,\% & 
-	0 & 0\,\% & 
-	0 & 0\,\% & 
-	0 & 0\,\%\\
-	
-	\rowcolor{novelblue!30}	\xzwo & 
-	0 & 0\,\% & 
-	0 & 0\,\% & 
-	0 & 0\,\% & 
-	0 & 0\,\%\\
-	
-	\rowcolor{novelblue!30}	\zdrei & 
+	\rowcolor{green!70!black}	\zdrei & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
 	0 & 0\,\% & 
@@ -291,9 +292,12 @@ We answer \RQref{1} by pairwisely comparing the performance distributions from d
 \end{table}
 
 \subsubsection{Results}
-We summarize the results of our classification in Table~\ref{tab:categorization_counts}. For all of the six software systems, varying the workloads has a noticable effect on the performance distribution. All software systems, at least, in part, exhibit performance distributions which can be transformed into one another using an linear  transformation, such as shifting by a constant value or scaling by a constant factor. In particular, for \jumper and \jadx, we did  observe only such behavior. This finding corresponds to experimental insights from~\citeauthor{jamishidi_transfer_2017}, who encoded differences between performance distributions using linear functions. For four software systems, we obtained a more diverse picture: For \kanzi and \batik, a few performance distributions require transformations that are non-linear, but still monotonous. For \dconvert and \htwo, the majority of performance distribution pairs cannot be described by a monotonous relationship. In total, four out of the six software systems exhibit \emph{non-monotonous} relationships across, at least, one workload.
+We summarize the results of our classification in Table~\ref{tab:categorization_counts}. For all of the six software systems, varying the workloads has a noticable effect on the performance distribution. All software systems, at least, in part, exhibit performance distributions which can be transformed into one another using an linear  transformation, such as shifting by a constant value or scaling by a constant factor. In particular, for \jumper and \jadx, we did  observe only such behavior.
+{\color{green!50!black}
+	This finding corresponds to experimental insights from~\citeauthor{jamishidi_transfer_2017}, who encoded differences between performance distributions using linear functions. For four software systems, we obtained a more diverse picture: For \kanzi and \batik, a few performance distributions require transformations that are non-linear, but still monotonous. For \dconvert and \htwo, the majority of performance distribution pairs cannot be described by a monotonous relationship. In total, four out of the six software systems exhibit \emph{non-monotonous} relationships across, at least, one workload.
 
 The observed range of relationship types across six software systems had no type prevail across all software systems. The large number of linear relationships suggests that varying the workload does not pose a general obstacle to learning or adapting performance models However, the presence of non-monotonous relationships besides other ones emphasizes that (a) there exist indeed cases where adapting performance models across workloads is challenging. That is, adressing and handling non-monotinicity require more information about what factors (workload characteristics and configuration options) are driving workload-dependent effects.
+}
 \vspace{1mm}
 \greybox{\textbf{Summary} (\RQref{1}): Varying the workload causes a substantial amount of variation among performance distributions. Across workloads, we observed \textit{mostly linear}, but to a large extent, also \textit{non-monotonous} differences.
 }
@@ -478,22 +482,30 @@ For the other subject systems and remaining configuration options, we could not 
 \greybox{\textbf{Summary} (\RQref{3}): Varying the workload can condition the execution of option-specific code  (\textit{code coverage}) and cause performance differences. However, there is no single driving factor: \textit{Code utilization} depending on workload characteristics is a likely factor accounting for the majority of performance influence variation.  
 }
 
-\clearpage
-{\color{green!40!black}
-\section{Implications (New Discussion)}
-\subsection{Effective Learning}
-\subsection{Workload Composition}
-\subsection{Feature Location}
+%\clearpage
 {\color{novelblue}
+\section{"So What?"}
+Our experiments shed light on the effects of varying workloads on configuration-specific performance as well as which code sections are executed. We now relate our findings to the strategies and challenges outlined in Section 2, mainly strategies for considering the workload when modeling performance as well as the challenges with representative workloads. The remainder of this section addresses threats to validity.
+
+\subsection{Incorporating Workloads}
+Existing strategies to consider the workload when modeling  performance either include  workload characteristics (scale factor, size, etc.) as independent variables alongside configuration options~\cite{koc_satune_2021} or transfer existing models (learned from a single workload) to another workload. While the first strategy appears straightforward, characterization of the workload is highly domain-specific and requires in-depth understanding of operation measured, which is more suited to analytical performance models~\cite{analytic_model_2000,analytic_model_2011}.  By contrast, the former strategy can---in theory---be facilitated with only an existing model learned from a single workload and relatively  few configuration-specific measurements under a second workload~\cite{martin_transfer_2021}.
+
+\subsubsection{Single-transfer Scenario}
+\subsubsection{Multi-transfer Scenario}
+{\textit{We do...}
+
+\subsection{Workload Composition}
+The creation of a representative workload is a challenge for effective testing for both functional and non-functional properties. While we cannot guarantee that the combination of workloads in our study itself triggers all functionality, we have identified scenarios, where option-specific code coverage corresponds with changes in the  respective option’s influence on performance [cf ...]. 
+
 \subsection{Threats to Validity}\label{sec:threats}
 
-	Threats to \textbf{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate these threats by repeating each experiment five times and reporting the median as a robust measure in a controlled environment. Moreover, the coverage analysis (cf. Section ?) entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of h2, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario with only negligible overhead. 	
+	\subsubsection{Internal Validity} Threats to \textit{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate these threats by repeating each experiment five times and reporting the median as a robust measure in a controlled environment. Moreover, the coverage analysis (cf. Section ?) entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of h2, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario with only negligible overhead. 	
 	
-	Threats to\textbf{ external validity} include the selection of subject systems and workloads. To ensure generalizability, we select software systems from various various application domains as well as two different programming language ecosystems (cf.~Table~\ref{tab:subject_systems}). In lieu of domain knowledge, we cannot select workloads systematically with respect to workload characteristics due to workloads inherent opacity. We address this issue by varying likely relevant characteristics and, where possible, reusing workloads across subject systems of the same domain. Achieving true representativeness is desirable, yet intractable. 
+	\subsubsection{External Validity}Threats to\textit{ external validity} include the selection of subject systems and workloads. To ensure generalizability, we select software systems from various various application domains as well as two different programming language ecosystems (cf.~Table~\ref{tab:subject_systems}). In lieu of domain knowledge, we cannot select workloads systematically with respect to workload characteristics due to workloads inherent opacity. We address this issue by varying likely relevant characteristics and, where possible, reusing workloads across subject systems of the same domain. Achieving true representativeness is desirable, yet intractable. 
 	The goal of this selection is to study the \textit{presence} and quality of workload-option interactions, but not their \textit{prevalence}. Hence, we believe this selection does not invalidate our findings. 
 }
 }
-\clearpage
+\begin{comment}
 {\color{red}
 \section{Discussion}\label{sec:discussion}
 %In this section, we summarize the implications learned from our study and discuss threats to validity and limitations of our study.
@@ -525,7 +537,7 @@ The benefit of such a representation is that developers are now aware that certa
 In our empirical study, we have employed feature location techniques and code coverage analysis to identify cases where option-code coverage conditioned the performance influence of individual configuration opinions (cf. {category \color{nicegreen!55!black}(B)} in Equation~\ref{eq:cool_model}). This approach is a first step to classify configuration options and increase overall performance model representativeness. Coverage testing is already an established practice in functional regression testing, so maximizing option-code coverage could be easily adopted to testing in a non-functional context. 
 As our empirical study aimed at identifying driving factors of input sensitivity, methods for assessing code utilization (cf. category {\color{blue!60!black}(C)} in Equation~\ref{eq:cool_model}) remain an open challenge. Existing work on comparing the execution detail at finer granularity, for instance via log differencing~\cite{bao_logdiff_ase_2019}, provide a promising avenue towards obtaining representative performance prediction models.
 }
-
+\end{comment}
 
 \section{Conclusion}\label{sec:conclusion}
 Most modern software systems exhibit configuration options to customize behaviors and meet user demands. Configuration choices, however, can also affect the performance of a software system.
