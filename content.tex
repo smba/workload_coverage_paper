@@ -76,13 +76,13 @@ The first two research questions describe the performance behavior of our subjec
 \subsubsection{Subject System Selection}
 We selected twelve configurable software systems for our study. To ensure that our findings are not specific to one domain or ecosystem, the selection comprises an equal mix of Java and C/C++ systems from different application domains (cf. Table~\ref{tab:subject_systems}). We include systems studied in previous and related work~\cite{velez_2020_configcrusher_jase,weber_white_2021,alves_sampling_2020} and incorporate further ones with comparable size and configuration complexity. All systems operate by processing a domain-specific input fed to them (henceforth called \textit{workload}). This study treats execution time as the key performance indicator with the exception of \htwo, where we report throughput.
 
-\begin{table}
+\begin{table*}
 	\footnotesize
 	\centering
 	\caption{Subject System Characteristics}
 	\input{tables/subject_systems.tex}
 	\label{tab:subject_systems}
-\end{table}
+\end{table*}
 
 \subsubsection{Workload Selection}
 This study relies on a selection of workloads for each domain or software system. Ideally, each set of workloads is diverse enough to be representative of most possible use cases. We selected the workload sets in this spirit, but cannot always guarantee a measurable degree of diversity and representativeness. This is due to the opacity of workloads: Beyond educated guesses, prior to conducting measurements, it is not possible to state which workload characteristics (size, scale, file type etc.) are performance-relevant. We discuss this aspect in the threats to validity. Below we outline the twelve case studies along with the workloads tested. 
@@ -152,12 +152,12 @@ For all data points, we report the median across five repetitions (except for \h
 \subsubsection{Operationalization}
 We answer \RQref{1} by pairwisely comparing the performance distributions from different workloads (cf. the comparison in Figure~\ref{fig:h2_intro}) and by determining whether any two distributions are similar or, if not, can be transformed into each other. For the latter case, we are specifically interested in what type of transformation is necessary as this determines \textit{how} complex a workload interacts with configuration options. Specifically, we categorize each pair of workloads with respect to the following aspects: 
 \begin{compactenum}
-	\item {\color{novelblue}\textbf{Similarity}: To test whether workload variation has any effect at all, we employ statistical tests. We use the non-parametric Wilcoxon signed-rank test~\cite{lovric_international_2010} because performance distributions are often multi-modal or long-tailed~\cite{curtsinger_stabilizer_2013,maricq2018taming}, failing to meet requirements for parametric methods. We assess whether varying the workload affects configuration-specific performance. If we can reject the null hypothesis $H_0$ at $\alpha=0.95$, we consider the distributions dissimilar. To account for overpowering due to high and different sample sizes (cf. Table~\ref{tab:subject_systems}), we further report effect sizes to weed out negligible effects. Following the interpretation guidelines from Romano et al.~\cite{romano2006exploring}. we use Cliff's~$\delta$~\cite{Cliff1993DominanceSO} and a threshold effect size of $\vert\delta > 0.147\vert$.}
+	\item {\color{novelblue}\emph{Similarity}: To test whether workload variation has any effect at all, we employ statistical tests. We use the non-parametric Wilcoxon signed-rank test~\cite{lovric_international_2010} because performance distributions are often multi-modal or long-tailed~\cite{curtsinger_stabilizer_2013,maricq2018taming}, failing to meet requirements for parametric methods. We assess whether varying the workload affects configuration-specific performance. If we can reject the null hypothesis $H_0$ at $\alpha=0.95$, we consider the distributions dissimilar. To account for overpowering due to high and different sample sizes (cf. Table~\ref{tab:subject_systems}), we further report effect sizes to weed out negligible effects. Following the interpretation guidelines from Romano et al.~\cite{romano2006exploring}. we use Cliff's~$\delta$~\cite{Cliff1993DominanceSO} and a threshold effect size of $\vert\delta > 0.147\vert$.}
 	
-	\item \textbf{Linear Correlation}: To test whether both performance distributions are shifted by a constant value or scaled by a constant factor, we compute for each pair of distributions Pearson's correlation coefficient $r$. To discard the sign of relationship, we use the absolute value and consider $\vert r\vert >0.6$ indicates a strong linear relationship. 
+	\item \emph{Linear Correlation}: To test whether both performance distributions are shifted by a constant value or scaled by a constant factor, we compute for each pair of distributions Pearson's correlation coefficient $r$. To discard the sign of relationship, we use the absolute value and consider $\vert r\vert >0.6$ indicates a strong linear relationship. 
 	
-	\item \textbf{Monotone Correlation}: Finally, we test whether there exists a monotonous relationship between the two performance distributions. We use Kendall's rank correlation coefficient $\tau$~\cite{kendall1938new} and consider $\vert\tau\vert > 0.6$ a strong monotonous relationship.
-\end{compactenum}\todo{\tiny Does not really add any newstiff}
+	\item \emph{Monotone Correlation}: Finally, we test whether there exists a monotonous relationship between the two performance distributions. We use Kendall's rank correlation coefficient $\tau$~\cite{kendall1938new} and consider $\vert\tau\vert > 0.6$ a strong monotonous relationship.
+\end{compactenum}
 {\color{black} Based on these three tests and metrics, we composed four categories that each pair of performance distributions can be categorized into. If we cannot reject $H_0$, we consider them identical and as similar distributions (\textsf{\colorbox{cs-color}{SD}}). If both distributions exhibit a strong linear relationship, we classify them as linearly transformable (\textsf{\colorbox{lt-color}{LT}}). If we observe a strong monotonous, but not a linear relationship, we classify such pairs as exclusively monotonously transformable into a separate category (\textsf{\colorbox{xmt-color}{XMT}}). Last, if the comparison yields no monotonous relationship, we can only transform them using non-monotonous methods (\textsf{\colorbox{nmt-color}{NMT}}). We summarize the category criteria as well as the category counts in Table~\ref{tab:categorization}. 
 
 \begin{table}
@@ -457,9 +457,29 @@ For the other subject systems and remaining configuration options, we could not 
 \greybox{\textbf{Summary} (\RQref{3}): Varying the workload can condition the execution of option-specific code  (\textit{code coverage}) and cause performance differences. However, there is no single driving factor: \textit{Code utilization} depending on workload characteristics is a likely factor accounting for the majority of performance influence variation.  
 }
 
-
 \clearpage
-{\color{novelblue}
+\section{Discussion}
+\subsection{Feature-level Input Sensitivity}
+
+\begin{compactitem}
+	\item wird nicht hergenommen in der Domain
+	\item wir zeigen, dass das eigentlich aber relevant ist
+	\item BEtrachtung in anderen Bereichen vorhanden, im Feature Context 
+	\item Bestimmte Features sind betroffen, mache nicht (highly-specific)!
+\end{compactitem}
+
+\greybox{\textbf{Lesson 1:} Robust and practical configuration-specific performance models require input sensitivity analysis for individual configuration options.  
+}
+
+\subsection{Driving Factors for Input Sensitivity}
+\begin{compactitem}
+	\item wird nicht hergenommen in der Domain
+	\item wir zeigen, dass das eigentlich aber relevant ist
+\end{compactitem}
+\greybox{\textbf{Insight:} Stuff is cool
+}
+
+\begin{comment}
 \section{Discussion / Lessons Learned}
 Our experiments shed light on the effects of varying workloads on configuration-specific performance as well as which code sections are executed. We now relate our findings to the strategies and challenges outlined in Section 2, mainly strategies for considering the workload when modeling performance as well as the challenges with representative workloads. The remainder of this section addresses threats to validity.
 
@@ -473,12 +493,13 @@ Existing strategies to consider the workload when modeling  performance either i
 \subsection{Workload Composition}
 The creation of a representative workload is a challenge for effective testing for both functional and non-functional properties. While we cannot guarantee that the combination of workloads in our study itself triggers all functionality, we have identified scenarios, where option-specific code coverage corresponds with changes in the  respective option’s influence on performance [cf ...]. 
 }}
-\section{Threats to Validity}\label{sec:threats}
+\end{comment}
+\subsection{Threats to Validity}\label{sec:threats}
 
 Threats to \textit{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate these threats by repeating each experiment five times and reporting the median as a robust measure in a controlled environment. Moreover, the coverage analysis (cf. Section ?) entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of h2, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario with only negligible overhead. 	
 	
 Threats to\textit{ external validity} include the selection of subject systems and workloads. To ensure generalizability, we select software systems from various various application domains as well as two different programming language ecosystems (cf.~Table~\ref{tab:subject_systems}). In lieu of domain knowledge, we cannot select workloads systematically with respect to workload characteristics due to workloads inherent opacity. We address this issue by varying likely relevant characteristics and, where possible, reusing workloads across subject systems of the same domain. Achieving true representativeness is desirable, yet intractable. 
-	The goal of this selection is to study the \textit{presence} and quality of workload-option interactions, but not their \textit{prevalence}. Hence, we believe this selection does not invalidate our findings. 
+The goal of this selection is to study the \textit{presence} and quality of workload-option interactions, but not their \textit{prevalence}. Hence, we are confident that this selection does not invalidate our findings.
 
 
 
