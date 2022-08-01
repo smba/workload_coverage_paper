@@ -76,13 +76,13 @@ The first two research questions describe the performance behavior of our subjec
 \subsubsection{Subject System Selection}
 We selected twelve configurable software systems for our study. To ensure that our findings are not specific to one domain or ecosystem, the selection comprises an equal mix of Java and C/C++ systems from different application domains (cf. Table~\ref{tab:subject_systems}). We include systems studied in previous and related work~\cite{velez_2020_configcrusher_jase,weber_white_2021,alves_sampling_2020} and incorporate further ones with comparable size and configuration complexity. All systems operate by processing a domain-specific input fed to them (henceforth called \textit{workload}). This study treats execution time as the key performance indicator with the exception of \htwo, where we report throughput.
 
-\begin{table*}
+\begin{table}
 	\footnotesize
 	\centering
 	\caption{Subject System Characteristics}
 	\input{tables/subject_systems.tex}
 	\label{tab:subject_systems}
-\end{table*}
+\end{table}
 
 \subsubsection{Workload Selection}
 This study relies on a selection of workloads for each domain or software system. Ideally, each set of workloads is diverse enough to be representative of most possible use cases. We selected the workload sets in this spirit, but cannot always guarantee a measurable degree of diversity and representativeness. This is due to the opacity of workloads: Beyond educated guesses, prior to conducting measurements, it is not possible to state which workload characteristics (size, scale, file type etc.) are performance-relevant. We discuss this aspect in the threats to validity. Below we outline the twelve case studies along with the workloads tested. 
@@ -457,26 +457,22 @@ For the other subject systems and remaining configuration options, we could not 
 \greybox{\textbf{Summary} (\RQref{3}): Varying the workload can condition the execution of option-specific code  (\textit{code coverage}) and cause performance differences. However, there is no single driving factor: \textit{Code utilization} depending on workload characteristics is a likely factor accounting for the majority of performance influence variation.  
 }
 
-\clearpage
+%\clearpage
 \section{Discussion}
-\subsection{Feature-level Input Sensitivity}
+\subsection{Option-level Input Sensitivity}
+The observed input sensitivity for configuration options exhibits a wide range of characteristics. While a large portion of options scales proportionally with workload complexity or remains unaffected by workload variation, the performance influences of several configuration options appear sensitive to the workload.  So far, the existing body of work on modeling and optimizing configuration-specific performance largely neglects the impact of workload variation at the cost of generalizability. Option-specific input sensitivity is a strong motivation for assessing influential factors beyond configuration options more thoroughly and rigorously. Performance variation that is unaccounted for poses the risk of distorting performance estimations and, thus, rendering performance models useless in practice. Although transfer learning is used in literature to reuse existing performance models across different workloads, our findings let us raise concerns about its effectiveness and generalizability. 
 
-\begin{compactitem}
-	\item wird nicht hergenommen in der Domain
-	\item wir zeigen, dass das eigentlich aber relevant ist
-	\item BEtrachtung in anderen Bereichen vorhanden, im Feature Context 
-	\item Bestimmte Features sind betroffen, mache nicht (highly-specific)!
-\end{compactitem}
+In their exploratory analysis, Jamshidi et al. reuse existing performance models by learning a linear transfer function across workloads~\cite{jamishidi_transfer_2017}. Our results from \RQref{1} have shown non-monotonous performance relationships across workloads, which, in practice, can be challenging to capture with such transfer functions. The presence of \textit{non-monotonous interactions} between workloads and configuration options provides a strong argument for employing more apt machine learning techniques. Ensemble-based approaches, such as gradient boosting regression trees have shown promising results for transfer across versions and are an avenue for future work~\cite{martin_transfer_2021}.
 
-\greybox{\textbf{Lesson 1:} Robust and practical configuration-specific performance models require input sensitivity analysis for individual configuration options.  
+%Second, a similar sampling-based approach for transferring performance models focuses on exploring the impact of workload variation on configuration options that are influential under a single workload~\cite{jamshidi_learning_2018}. While this heuristic can be effective, its justification is weak in the light of our findings from \RQref{2} and \RQref{3}, where input-sensitivity can be triggered by the presence of workload characteristics. 
+
+\greybox{\textbf{Summary:} Option-level input sensitivity can challenge robust and practical configuration-specific performance models, yet is neglected in state-of-the-art approaches.
 }
 
 \subsection{Driving Factors for Input Sensitivity}
-\begin{compactitem}
-	\item wird nicht hergenommen in der Domain
-	\item wir zeigen, dass das eigentlich aber relevant ist
-\end{compactitem}
-\greybox{\textbf{Insight:} Stuff is cool
+Extending on the findings from RQ2 and RQ3, in order to treat option-specific input sensitivity, a key challenge is to infer which options are susceptible to workload variation. Despite the limitations faced with the coverage-based approach from RQ3 (missing baseline), we have correlated missed option code with variation in the observed performance. Our findings point to more detailed code analysis, such as line hit counts or execution logs, and more profound domain knowledge as key ingredients for mastering the input sensitivity assessment. In literature, the heuristic to consider only influential configuration options for transfer learning has shown effective results~\cite{jamshidi_learning_2018}. However, we question whether this approach would generalize in practice in the light of the conditional performance influences observed in Setions~\ref{sec:rq2} and \ref{sec:rq3}. Clearly, more research is needed to provide an empirical base and framework for sensitivity assessment.
+
+\greybox{\textbf{Summary:} Understanding the driving factors for input sensitivity is necessary for providing representative workloads and identifying sensitive configuration options. 
 }
 
 \begin{comment}
@@ -494,7 +490,7 @@ Existing strategies to consider the workload when modeling  performance either i
 The creation of a representative workload is a challenge for effective testing for both functional and non-functional properties. While we cannot guarantee that the combination of workloads in our study itself triggers all functionality, we have identified scenarios, where option-specific code coverage corresponds with changes in the  respective option’s influence on performance [cf ...]. 
 }}
 \end{comment}
-\subsection{Threats to Validity}\label{sec:threats}
+\section{Threats to Validity}\label{sec:threats}
 
 Threats to \textit{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate these threats by repeating each experiment five times and reporting the median as a robust measure in a controlled environment. Moreover, the coverage analysis (cf. Section ?) entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of h2, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario with only negligible overhead. 	
 	
