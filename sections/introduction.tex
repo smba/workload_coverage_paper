@@ -9,7 +9,7 @@ Take as an example the distributions of configuration-specific throughput of the
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\linewidth]{images/h2_motivation.eps}
-	\caption{Performance distributions of the database system \htwo run the \textsf{TPC-C} benchmark at different scale factors.}
+	\caption{Performance distributions of the database system \htwo run the \texttt{TPC-C} benchmark at different scale factors.}
 	\label{fig:h2_intro}
 \end{figure}
 
@@ -35,19 +35,22 @@ The existing body of research reflects the prevalence and importance of the work
 \end{compactitem}
 
 To answer these questions, we have conducted a systematic empirical study that sheds light on whether and how configuration options and workload choices interact with regard to performance. 
-Specifically, {\color{red}we analyze 35\,659 configurations and 103 workloads across ten} configurable software systems to obtain a broad picture of the interaction of configuration and workload when learning performance models and estimating a configuration's performance (i.e., response time). Aside from studying the sole effects of workload variation on performance behavior, we explore possible driving factors. To this end, we enrich performance observations with corresponding statement coverage data to understand workload variation at finer granularity.
+Specifically, we analyze 35\,659 configurations and 103 workloads across ten configurable software systems to obtain a broad picture of the interaction of configuration and workload when learning performance models and estimating a configuration's performance (i.e., response time). Aside from studying the sole effects of workload variation on performance behavior, we explore possible driving factors. To this end, we enrich performance observations with corresponding statement coverage data to understand workload variation at finer granularity.
 
 Our findings show that varying the workload can influence con\-fi\-gu\-ra\-tion-de\-pen\-dent software performance in different ways, including non-linear and non-monotonous effects. 
-{\color{magenta}Our findings suggest that (a) coverage of code  specific to configuration options as well as (b) how such code is utilized are driving factors of input sensitivity.} A key insight is that, to maintain and improve performance model representativeness, an additional notion of input sensitivity has to be considered. We argue that the use of code analysis techniques to address input sensitivity when varying the workload and maintain and improve the representativeness of a performance-prediction model.
+We identify different two factors that drive input sensitivity. First, the fact \textit{whether} option-specific code is executed at all under a specific workload can determine whether an option has an impact on performance. Second, the frequency at which covered code is executed (loop executions, system calls etc.) can shape performance and is sensitive to the workload. In the following, we refer to these two different aspects as \textit{code coverage} and \textit{code utilization}.
+
+
+A \textit{key take-away} of our study is that, to maintain and improve performance model representativeness, an additional notion of input sensitivity has to be considered. We argue that the use of code analysis techniques to address input sensitivity when varying the workload and maintain and improve the representativeness of a performance-prediction model.
 
 To summarize, we make the following contributions: 
 
 \begin{compactitem}
-	\item {\color{red}An empirical study of 35\,659 configurations and 103 workloads across ten configurable software systems on whether interactions of workloads with configuration options affect performance and what factors can drive such interactions;}
+	\item An empirical study of 35\,659 configurations and 103 workloads across ten configurable software systems on whether interactions of workloads with configuration options affect performance and what factors can drive such interactions;
 	
 	\item A detailed analysis that illustrates that variation in code coverage and code utilization due to varying workloads can affect the influence of configuration options on software performance; 
 	
-	\item {\color{red}A companion Web site\footnote{\url{https://github.com/fse-submission-2022/workload-performance/}} with supplementary material including performance and coverage measurements, experiment workloads and configurations, and an interactive dashboard\footnote{\url{https://workload-performance.herokuapp.com/}} to reenact all findings and additional visualizations left out due to space limitations.}
+	\item A companion Web site\footnote{\url{https://github.com/fse-submission-2022/workload-performance/}} with supplementary material including performance and coverage measurements, experiment workloads and configurations, and an interactive dashboard\footnote{\url{https://workload-performance.herokuapp.com/}} to \textbf{reproduce} all analyses and additional visualizations left out due to space limitations.
 \end{compactitem}
 
 

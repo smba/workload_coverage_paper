@@ -34,9 +34,30 @@ While workload characterization and benchmark construction is domain-specific, t
 \subsection{Representative Estimations?}\label{sec:generalizability}
 While the notion of representative workloads is ubiquitous in an industry setting, we face a different situation in research on empirical performance models (cf. Section~\ref{sec:perfmodels}): Most approaches provide accurate performance estimations, yet are based on observations gained by varying configurations while keeping the workload the same. Clearly, this can limit the model's generalizability to different workloads, especially if the training workload poorly represents real-world scenarios. While the configuration-specific behavior might be congruent across different workloads (i.e, a configuration scoring comparably for different workloads), we cannot rely on such assumptions in practice, where different workloads can indeed result in entirely different configuration-specific performance behavior.
 
-{\todo{kürzen, Beispiel für performance model hier bringen}\color{red}Revisiting an observation by Pereira\,et al.~\cite{alves_sampling_2020}, the following example illustrates that even seemingly small differences in the composition of a workload can induce performance behavior that is hard to anticipate: We tested the performance (throughput: transactions per second) of a number of configurations for the database system \htwo across two different workloads. Both workloads are instances of the database benchmark \textsf{TPC-C}, consisting of a fixed-ratio mix of transactions (inserts, updates, selects) for a specific database schema. The only difference was varying the scale factor, which controls for the number of warehouses modeled in the schema. The resulting performance distributions are given in Figure~\ref{fig:h2_intro}.
+\begin{figure}
+	\centering\footnotesize
+	\begin{tabular}{r|rrr|rr}
+		\toprule
+		id & $c_1$ & $c_2$ &  $c_3$ & $\Pi_{w_1}(c)$ & $\Pi_{w_2}(c)$\\
+		\midrule
+		1  & \cellcolor{black!15}1 & \cellcolor{black!4}0 & \cellcolor{black!4}0 & \cellcolor{green!10}4 seconds & 22 seconds \\
+		2  & \cellcolor{black!4}0 & \cellcolor{black!15}1 & \cellcolor{black!4}0 & 6 seconds & \cellcolor{green!10}14 seconds \\
+		3  & \cellcolor{black!4}0 & \cellcolor{black!4}0 & \cellcolor{black!15}1 & 9 seconds & 35 seconds \\
+		\bottomrule
+	\end{tabular}
+	
+	$$ \Pi_{w_1}(c) = c_1 \cdot 3 + c_2 \cdot 5 + c_3 \cdot 8 + 1$$
+	$$ \Pi_{w_2}(c) = c_1 \cdot 21 + c_2 \cdot 13 + c_3 \cdot 34 + 1$$
+	\caption{Input sensitivity in the case for a software system with three configuration options $C = (o_1, o_2, o_3)$.}
+	\label{fig:sensitivity_example}
+\end{figure}
 
-While one might first expect that a more complex workload results in lower throughput, this is indeed the case, but does not hold for all configurations. The median throughput decreases for the larger number of warehouses, yet the shape and spread of the distribution are entirely different. Most notably, the maximum throughput for the greater scale factor is higher than for the smaller scale factor, indicating that some configurations indeed do not follow the general trend. This illustrates that the effect of varying the workload for some configurations cannot be captured by a linear transformation (constant shift or scaling).}
+
+{\color{blue!60!black} Consider the illustratory example from Figure~\ref{fig:sensitivity_example}. Here, we measure performance under three different configurations and two different inputs $w_1$ and $w_2$. Apparently, the software system takes longer for $w_2$, regardless of the configuration. This could, for instance, be attributed to $w_2$ being more complex and performance scaling proportionally. However, if we ask which option is fastest in general there is no concrete answer since configuration 1 prevails for $w_1$ and configuration 2 for $w_2$. If we look at the corresponding performance prediction models below, we learn that the influence of $o_1$ is smaller than for $o_2$ in $\Pi_{w_1}$ and vice versa in $\Pi_{w_2}$. Thus, there must be some hidden feature or variable, the "difference" between $w_1$ and $w_2$ that accounts for this performance variation beyond configuration options.
+}
+%{\todo{kürzen, Beispiel für performance model hier bringen}\color{red}Revisiting an observation by Pereira\,et al.~\cite{alves_sampling_2020}, the following example illustrates that even seemingly small differences in the composition of a workload can induce performance behavior that is hard to anticipate: We tested the performance (throughput: transactions per second) of a number of configurations for the database system \htwo across two different workloads. Both workloads are instances of the database benchmark \textsf{TPC-C}, consisting of a fixed-ratio mix of transactions (inserts, updates, selects) for a specific database schema. The only difference was varying the scale factor, which controls for the number of warehouses modeled in the schema. The resulting performance distributions are given in Figure~\ref{fig:h2_intro}.
+
+%While one might first expect that a more complex workload results in lower throughput, this is indeed the case, but does not hold for all configurations. The median throughput decreases for the larger number of warehouses, yet the shape and spread of the distribution are entirely different. Most notably, the maximum throughput for the greater scale factor is higher than for the smaller scale factor, indicating that some configurations indeed do not follow the general trend. This illustrates that the effect of varying the workload for some configurations cannot be captured by a linear transformation (constant shift or scaling).}
 
 
 Some aspects of this \emph{input sensitivity} have been observed and documented before in the literature~\cite{liao_2020_using_emse,alves_sampling_2020,jamishidi_transfer_2017} and raise questions, such as: \textit{Which options are input sensitive? What are the driving factors for input sensitivity? Can we estimate which options are input-sensitive?} We set out to answer these questions in this paper.
@@ -45,7 +66,7 @@ Some aspects of this \emph{input sensitivity} have been observed and documented 
 To some aspects of the said questions, different approaches have been proposed to tackle the problem of input sensitivity.
 
 \paragraph{Workload-aware Performance Modeling}\label{sec:workload-aware}
-Extending on workload characterization (cf.~Section~\ref{sec:varying_workloads}), a strategy that embraces workload diversity is to incorporate workload characteristics into the problem space of a performance prediction model. Here, performance is modeled as a function of both the configuration options exhibited by the software system as well as the workload characteristics, formally $\Pi: C \times W \rightarrow R$.
+Extending on workload characterization (cf.~Section~\ref{sec:varying_workloads}), a strategy that embraces workload diversity is to incorporate workload characteristics into the problem space of a performance prediction model. Here, performance is modeled as a function of both the configuration options exhibited by the software system as well as the workload characteristics, formally $\Pi: C \times W \rightarrow \mathbb{R}$.
 The combined problem space enables learning performance models that generalize to workloads that exhibit characteristics denoted by $W$ since we can screen for performance-relevant combinations of options and workload characteristics. Although this strategy is highly application-specific, it has been successfully applied to different domains, such as program verification~\cite{koc_satune_2021}. However, its main disadvantages are twofold: The combined problem space (configuration and workload dimension) requires substantially more observations to screen for identifying performance-relevant options, characteristics, and combinations thereof. In addition, previous work  found that  only few configuration options are input sensitive~\cite{jamishidi_transfer_2017} when varying the workload. That is, the problem of identifying meaningful, but sparse predictors is exacerbated since one must not only identify performance-relevant configuration options, but also input-sensitive ones.
 
 \paragraph{Transfer Learning for Performance Models}\label{sec:transfer}
@@ -93,7 +114,7 @@ For the \textit{audio encoder} \jumper, the measured task was to encode raw WAVE
 
 For the \textit{video encoder} \xzwo, the measured task was to encode raw video frames (y4m format). We selected a number of files from the “derf collection”\footnote{\url{https://media.xiph.org/video/derf/}}, a set of test media for a variety of use cases. The frame files vary in resolution (low/SD up to 4K) and file size. For files with 4K resolution, we limited our measurements to encoding a subset of consecutive frames.
 
-For the \textit{file compression} tools \kanzi, \xz, and \lrzip, we used a variety of community compression benchmarks that represent different goals, including mixes of files of different types (text, binary, structured data etc.) or single-type files. We augmented this set of workloads with custom data, such as the Hubble Deepfield image and a binary of the Linux kernel. Beyond this set of workloads, for xz and lrzip we added different parameterizations of the UIQ2 benchmark to study the effect of varying file size. 
+For the \textit{file compression} tools \kanzi, \xz, and \lrzip, we used a variety of community compression benchmarks that represent different goals, including mixes of files of different types (text, binary, structured data etc.) or single-type files. We augmented this set of workloads with custom data, such as the Hubble Deepfield image and a binary of the Linux kernel. Beyond this set of workloads, for \xz and \lrzip we added different parameterizations of the UIQ2 benchmark\footnote{\url{link zu uiq2 benchmark}} to study the effect of varying file size. 
 
 For the \textit{SMT solver} \zdrei, the measured task was to decide the satisfiability (find a solution or counter example) of a range of logical problems expressed in the SMT2 format. We selected the six longest-running problem instances from z3’s performance test suite and augmented it with additional instances from the SMT2-Lib repository\footnote{\url{Link to SMT2-Lib}} to cover different types of logic and increase diversity.
 
@@ -128,22 +149,22 @@ For all data points, we report the median across five repetitions (except for \h
 \section{Study Results}~\label{sec:results}
 \subsection{Comparing Performance Distributions ($RQ_1$)}\label{sec:rq1}
 \subsubsection{Operationalization}
-We answer \RQref{1} by pairwisely comparing the performance distributions from different workloads (cf. the comparison in Figure~\ref{fig:h2_intro}) and by determining whether any two distributions are similar or, if not, can be transformed into each other. For the latter case, we are specifically interested in what type of transformation is necessary as this determines \textit{how} complex a workload interacts with configuration options. Specifically, we categorize each pair of workloads with respect to the following aspects: 
-\todo{add statistical test here}
+We answer \RQref{1} by pairwisely comparing the performance distributions from different workloads (cf. the comparison in Figure~\ref{fig:h2_intro}) and by determining whether any two distributions are similar or, if not, can be transformed into each other: For the former case, we tested all combinbations of workload-specific performance observations with the Wilcoxon signed-rank test\footnote{We use non-parametric methods since performance-distributions are often long-tailed and multi-modal~\cite{curtsinger_stabilizer_2013,maricq2018taming} and, thus, fail to meet requirements for parametric methods.}~\cite{lovric_international_2010}. For all combinations, we rejected the null hypothesis $H_0$ at $\alpha=0.95$. To account for overpowering due to high and different sample sizes (cf. Table~\ref{tab:subject_systems}), we further checked effect sizes to weed out negligible effects. Following the interpretation guidelines from Romano et al.~\cite{romano2006exploring}, for no combination, Cliff's~$\delta$~\cite{Cliff1993DominanceSO} exceeded a threshold effect size of $\vert\delta > 0.147\vert$.
+For the latter case, we are specifically interested in what \textit{type} of transformation is necessary as this determines \textit{how} complex a workload interacts with configuration options. Specifically, we categorize each pair of workloads with respect to the following aspects: 
+
 \begin{compactenum}
-%	\item {\color{novelblue}\textit{Similarity}: To test whether workload variation has any effect at all, we employ statistical tests. We use the non-parametric Wilcoxon signed-rank test~\cite{lovric_international_2010} because performance distributions are often multi-modal or long-tailed~\cite{curtsinger_stabilizer_2013,maricq2018taming}, failing to meet requirements for parametric methods. We assess whether varying the workload affects configuration-specific performance. If we can reject the null hypothesis $H_0$ at $\alpha=0.95$, we consider the distributions dissimilar. To account for overpowering due to high and different sample sizes (cf. Table~\ref{tab:subject_systems}), we further report effect sizes to weed out negligible effects. Following the interpretation guidelines from Romano et al.~\cite{romano2006exploring}. we use Cliff's~$\delta$~\cite{Cliff1993DominanceSO} and a threshold effect size of $\vert\delta > 0.147\vert$.}
+
+	\item \textit{Linear Correlation}: To test whether both performance distributions are shifted by a constant value or scaled by a constant factor, we compute for each pair of distributions Pearson's correlation coefficient $r$. To discard the sign of relationship, we use the absolute value and a threshold of $\vert r\vert >0.6$ to indicate a linear relationship.
 	
-	\item \textit{Linear Correlation}: To test whether both performance distributions are shifted by a constant value or scaled by a constant factor, we compute for each pair of distributions Pearson's correlation coefficient $r$. {\color{magenta}To discard the sign of relationship, we use the absolute value and consider $\vert r\vert >0.6$ indicates a strong linear relationship. }
-	
-	\item \textit{Monotone Correlation}: Finally, we test whether there exists a monotonous relationship between the two performance distributions. We use Kendall's rank correlation coefficient $\tau$~\cite{kendall1938new} and {\color{magenta}consider $\vert\tau\vert > 0.6$ a strong monotonous relationship.}
+	\item \textit{Monotone Correlation}: Finally, we test whether there exists a monotonous relationship between the two performance distributions. We use Kendall's rank correlation coefficient $\tau$~\cite{kendall1938new} and a threshold of  $\vert\tau\vert > 0.6$ for a monotonous relationship.
 \end{compactenum}
-{\color{black} Based on these two aspects and metrics, we composed three categories that each pair of performance distributions can be categorized into. 
-	%If we cannot reject $H_0$, we consider them identical and as similar distributions (\textsf{\colorbox{cs-color}{SD}}). 
-If both distributions exhibit a strong linear relationship, we classify them as linearly transformable (\textit{\colorbox{lt-color}{LT}}). If we observe a strong monotonous, but not a linear relationship, we classify such pairs as exclusively monotonously transformable into a separate category (\textit{\colorbox{xmt-color}{XMT}}). Last, if the comparison yields no monotonous relationship, we can only transform them using non-monotonous methods (\textit{\colorbox{nmt-color}{NMT}}). We summarize the category criteria as well as the category counts in Table~\ref{tab:categorization}. 
+{\color{black}Based on these two correlation measures, we composed three categories that each pair of performance distributions can be categorized into.
+If both distributions exhibit a strong linear relationship, we classify them as linearly transformable (\textit{\colorbox{lt-color}{LT}}). If we observe a strong monotonous, but not a linear relationship, we classify such pairs as exclusively monotonously transformable into a separate category (\textit{\colorbox{xmt-color}{XMT}}). Last, if the comparison yields no monotonous relationship, we can only transform them using non-monotonous methods (\textit{\colorbox{nmt-color}{NMT}}). 
+We summarize the category criteria as well as the category counts in Table~\ref{tab:categorization}. 
 
 \begin{table}
 	\footnotesize
-	\caption{Four disjoint categories of relationships between pairs of workload-specific performance distributions and their respective criteria.}
+	\caption{Four disjoint categories and criteria of relationships between pairs of workload-specific performance distributions.}
 	\centering
 \begin{tabular}{lp{4.1cm}p{2.8cm}}	
 	\toprule
@@ -236,12 +257,13 @@ If both distributions exhibit a strong linear relationship, we classify them as 
 \end{table}
 
 \subsubsection{Results}
-{\color{magenta}
+{\color{red}
 	We summarize the results of our classification in Table~\ref{tab:categorization_counts}. For all of the six software systems, varying the workloads has a noticable effect on the performance distribution. All software systems, at least, in part, exhibit performance distributions which can be transformed into one another using an linear  transformation, such as shifting by a constant value or scaling by a constant factor. In particular, for \jumper and \jadx, we did  observe only such behavior.
 
-This finding corresponds to experimental insights from Jamshidi et al., who encoded differences between performance distributions using linear functions~\cite{jamishidi_transfer_2017}. For four software systems, we obtained a more diverse picture: For \kanzi and \batik, a few performance distributions require transformations that are non-linear, but still monotonous. For \dconvert and \htwo, the majority of performance distribution pairs cannot be described by a monotonous relationship. In total, four out of the six software systems exhibit \emph{non-monotonous} relationships across, at least, one workload.}
+This finding corresponds to experimental insights from Jamshidi et al., who encoded differences between performance distributions using linear functions~\cite{jamishidi_transfer_2017}. For four software systems, we obtained a more diverse picture: For \kanzi and \batik, a few performance distributions require transformations that are non-linear, but still monotonous. For \dconvert and \htwo, the majority of performance distribution pairs cannot be described by a monotonous relationship. In total, four out of the six software systems exhibit \emph{non-monotonous} relationships across, at least, one workload.
 
 The observed range of relationship types across six software systems had no type prevail across all software systems. The large number of linear relationships suggests that varying the workload does not pose a general obstacle to learning or adapting performance models However, the presence of non-monotonous relationships besides other ones emphasizes that (a) there exist indeed cases where adapting performance models across workloads is challenging. That is, adressing and handling non-monotinicity require more information about what factors (workload characteristics and configuration options) are driving workload-dependent effects.
+}
 
 \vspace{1mm}
 \greybox{\textbf{Summary} (\RQref{1}): Varying the workload causes a substantial amount of variation among performance distributions. Across workloads, we observed \textit{mostly linear}, but to a large extent, also \textit{non-monotonous} differences.
@@ -449,21 +471,6 @@ Extending on the findings from RQ2 and RQ3, to treat option-specific input sensi
 \greybox{\textbf{Summary:} Understanding the driving factors for input sensitivity is necessary for providing representative workloads and identifying sensitive configuration options. 
 }
 
-\begin{comment}
-\section{Discussion / Lessons Learned}
-Our experiments shed light on the effects of varying workloads on configuration-specific performance as well as which code sections are executed. We now relate our findings to the strategies and challenges outlined in Section 2, mainly strategies for considering the workload when modeling performance as well as the challenges with representative workloads. The remainder of this section addresses threats to validity.
-
-\subsection{Incorporating Workloads}
-Existing strategies to consider the workload when modeling  performance either include  workload characteristics (scale factor, size, etc.) as independent variables alongside configuration options~\cite{koc_satune_2021} or transfer existing models (learned from a single workload) to another workload. While the first strategy appears straightforward, characterization of the workload is highly domain-specific and requires in-depth understanding of operation measured, which is more suited to analytical performance models~\cite{analytic_model_2000,analytic_model_2011}.  By contrast, the former strategy can---in theory---be facilitated with only an existing model learned from a single workload and relatively  few configuration-specific measurements under a second workload~\cite{martin_transfer_2021}.
-
-\subsubsection{Single-transfer Scenario}
-\subsubsection{Multi-transfer Scenario}
-{\textit{We do...}
-
-\subsection{Workload Composition}
-The creation of a representative workload is a challenge for effective testing for both functional and non-functional properties. While we cannot guarantee that the combination of workloads in our study itself triggers all functionality, we have identified scenarios, where option-specific code coverage corresponds with changes in the  respective option’s influence on performance [cf ...]. 
-}}
-\end{comment}
 \section{Threats to Validity}\label{sec:threats}
 
 Threats to \textit{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate these threats by repeating each experiment five times  (except for \htwo; cf. Section~\ref{sec:measurement_setup}) and reporting the median as a robust measure in a controlled environment. Moreover, the coverage analysis (cf. Section~\ref{sec:profiling}) entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario with only negligible overhead. 	
@@ -471,8 +478,8 @@ Threats to \textit{internal validity} include measurement noise which may distor
 Threats to\textit{ external validity} include the selection of subject systems and workloads. To ensure generalizability, we select software systems from various various application domains as well as two different programming language ecosystems (cf.~Table~\ref{tab:subject_systems}). In lieu of domain knowledge, we cannot select workloads systematically with respect to workload characteristics due to workloads inherent opacity. We address this issue by varying likely relevant characteristics and, where possible, reusing workloads across subject systems of the same domain. Achieving true representativeness is desirable, yet intractable. 
 The goal of this selection is to study the \emph{presence} and quality of workload-option interactions, but not their \emph{prevalence}. Hence, we are confident that this selection does not invalidate our findings.
 
-Threats to \textit{construct validity} ...
-
+{\color{magenta}Threats to \textit{construct validity} include our choice of correlation metrics in Section~\ref{sec:rq1}, regression technique in Section~\ref{sec:rq2}, and similarity metric in Section~\ref{sec:rq3}. The correlation metrics are widely used to describe statistical relationships and the overall picture remains consistent with slightly different thresholds. Multiple linear regression as well 
+}
 \color{black}
 \section{Conclusion}\label{sec:conclusion}
 Most modern software systems exhibit configuration options to customize behaviors and meet user demands. Configuration choices, however, can also affect the performance of a software system.
