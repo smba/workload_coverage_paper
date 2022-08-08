@@ -262,11 +262,11 @@ We summarize the results of our classification in Table~\ref{tab:categorization_
 All software systems, at least, in part, exhibit performance distributions which can be transformed into one another using an linear transformations (\textit{\colorbox{lt-color}{LT}}), such as shifting by a constant value or scaling by a constant factor. In particular, for \jumper, \jadx, and \xzwo, we observe only such behavior. The presence of linear transformations corresponds to experimental insights from Jamshidi et al., who encoded differences between performance distributions using linear functions~\cite{jamishidi_transfer_2017}.
 
 Exclusively monotone transformations (\textit{\colorbox{xmt-color}{XMT}}) are the exception and are only exhibited by five out of the ten systems (\kanzi, \batik, \xz, \lrzip, \zdrei), twice with only one workload pair each (\xz and \zdrei).  
-For all, except two systems (\jumper and \xzwo) we observe non-monotonous transformations (\textit{\colorbox{nmt-color}{NMT}}) with different prevalence.  For three systems (\dconvert, \htwo, and \zdrei) the majority of transformations is non-monotous, for the remaining four systems (\kanzi, \batik, \xz, \lrzip) more than 10\,\% fall into this category.
+For all, except two systems (\jumper and \xzwo) we observe non-monotonous transformations (\textit{\colorbox{nmt-color}{NMT}}) with different prevalence.  For three systems (\dconvert, \htwo, and \zdrei) the majority of transformations is non-monotous, for the remaining four systems (\kanzi, \batik, \xz, \lrzip) more than 10\,\% of workload pairs fall into this category.
 }
 
 \vspace{1mm}
-\greybox{\textbf{Summary} (\RQref{1}): Varying the workload causes a substantial amount of variation among performance distributions. Across workloads, we observed \textit{mostly linear} (majority for 7 of 10 systems), but to a large extent, also \textit{non-monotonous} relationships (majority for 3 of 10 systems).
+\greybox{\textbf{Summary} (\RQref{1}): Varying the workload causes a substantial amount of variation among performance distributions. Across workloads, we observed \textit{mostly linear} (majority for for 70\,\% of the subject systems), but to a large extent, also \textit{non-monotonous} relationships (majority for for 30\,\% of the subject systems).
 }
 
 \subsection{Input Sensitivity of Options ($RQ_2$)}\label{sec:rq2}
