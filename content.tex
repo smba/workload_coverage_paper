@@ -257,13 +257,12 @@ We summarize the category criteria as well as the category counts in Table~\ref{
 \end{table}
 
 \subsubsection{Results}
-{\color{blue!70!black}
+
 We summarize the results of our classification in Table~\ref{tab:categorization_counts}. The observed range of relationships across the ten software systems has to type prevail across all software systems. 
 All software systems, at least, in part, exhibit performance distributions which can be transformed into one another using an linear transformations (\textit{\colorbox{lt-color}{LT}}), such as shifting by a constant value or scaling by a constant factor. In particular, for \jumper, \jadx, and \xzwo, we observe only such behavior. The presence of linear transformations corresponds to experimental insights from Jamshidi et al., who encoded differences between performance distributions using linear functions~\cite{jamishidi_transfer_2017}.
 
 Exclusively monotone transformations (\textit{\colorbox{xmt-color}{XMT}}) are the exception and are only exhibited by five out of the ten systems (\kanzi, \batik, \xz, \lrzip, \zdrei), twice with only one workload pair each (\xz and \zdrei).  
 For all, except two systems (\jumper and \xzwo) we observe non-monotonous transformations (\textit{\colorbox{nmt-color}{NMT}}) with different prevalence.  For three systems (\dconvert, \htwo, and \zdrei) the majority of transformations is non-monotous, for the remaining four systems (\kanzi, \batik, \xz, \lrzip) more than 10\,\% of workload pairs fall into this category.
-}
 
 \vspace{1mm}
 \greybox{\textbf{Summary} (\RQref{1}): Varying the workload causes a substantial amount of variation among performance distributions. Across workloads, we observed \textit{mostly linear} (majority for for 70\,\% of the subject systems), but to a large extent, also \textit{non-monotonous} relationships (majority for for 30\,\% of the subject systems).
@@ -357,7 +356,7 @@ With two exceptions, we see that all software systems have configuration options
 
 \end{comment}
 \subsection{Code Coverage and Performance ($RQ_3$)}\label{sec:rq3}\label{sec:categories}
-\subsubsection{Operationalization} From the findings of \RQref{2}, we have learned that input sensitivity of configuration options is specific to certain configuration options and can be diverse along multiple dimensions. With regard to the characteristic traits from~\RQref{2}, we conjecture that workload-specific sign flipping or conditional influences are driving factors for non-monotonicity across entire performance distributions (cf.~\RQref{1}). From these findings, the question arises: What causes these different aspects of input sensitivity? For a practical setting, one might, in addition, ask whether it is possible to identify input-sensitive configuration options without the effort of measuring substantial portions of the configuration space under varying worklods.
+\subsubsection{Operationalization} From the findings of \RQref{2}, we have learned that input sensitivity of can be specific to certain configuration options. With regard to the characteristic traits from~\RQref{2}, we conjecture that workload-specific sign flipping or conditional influences are driving factors for non-monotonicity across entire performance distributions (cf.~\RQref{1}). From these findings, the question arises: What causes these different aspects of input sensitivity? For a practical setting, one might, in addition, ask whether it is possible to identify input-sensitive configuration options without the effort of measuring substantial portions of the configuration space under varying worklods.
 To shed light on possible explanations for input sensitivity, in general, and, possibly, different shades (cf.~\RQref{2}), we switch to the code level and analyze the relation of performance influences inferred for each configuration option to code coverage information. 
 
 We augment our performance observations with code coverage information to assess differences in the execution under different workloads. Specifically, we are interested in code sections that implement option-specific functionality (i.e., functionality that is used only if the configuration option is selected). From comparing the coverage information of option-specific code, we can formulate different hypothetical scenarios explaining input sensitivity. 
@@ -374,16 +373,19 @@ The rationale is that, by exercising feature code, for instance via enabling con
 Applications of such an approach have been studied not only for feature location~\cite{wong_integrated_2005,sulir_annotation_2015,michelon_spectrum_2021,perez_framing_2016}, but root work on in program comprehension~\cite{wilde_early_1996,wilde_reconnaissance_1995,sherwood_reducing_nodate,perez_diagnosis_2014,castro_pangolin_2019} and fault localization~\cite{agrawal_fault_1995,wong_faultloc_2016}. 
 }
 Specifically, we follow  a strategy akin to  \textit{spectrum-based feature location}~\cite{michelon_spectrum_2021}:
-First, we obtain a baseline of \textit{all} option code in the scope of the entire workload selection. For each workload $w \in W$, we compute the set of code lines that depend on any option $o \in O$. 
-Let $C_{o}$ be the set of configurations with option $o$ selected, and $C_{\neg o}$ with option $o$ deselected. To obtain the code sections specific to option $o$ under workload $w$, $S_{w, o}$, we subtract the set of the code lines covered under $C_{\neg o}$ from those of $C_{o}$:
+
+{\color{red!70!black}
+First, we obtain a baseline of \textit{all} option code in the scope of the entire workload selection. For each workload $w \in W$, we compute the set of code lines whose coverage depends on any option $o \in O$. 
+Let $C_{o}$ be the set of configurations with option $o$ selected, and $C_{\neg o}$ with option $o$ deselected. To obtain the code sections specific to option $o$ under workload $w$, $S_{w, o}$, we use the \emph{symmetric difference} between  $C_{\neg o}$ and  $C_{o}$:
 \begin{equation}%\todo{example from Figure~\ref{fig:intro}}
-	S_{w, o} = \bigcup_{p \in C_{o}} S_{w}(p) ~ \setminus ~ \bigcup_{q \in C_{\neg o}} S_{w}(q)
+	S_{w, o} = ~ \underbrace{\bigcup_{p \in C_{o}} S_{w}(p)}_{A} ~ \Delta ~ \underbrace{\bigcup_{q \in C_{\neg o}} S_{w}(q)}_{B} = (A \setminus B)~\cup~(B \setminus A)
 \end{equation}
 While $S_{w, o}$ yields an approximation of option-dependent code for a single workload, we aggregate the approximations for each workload $w\in W$ to obtain the set of lines that depend on a configuration option $o$ and are executed in, at least, one workload,~$S_{o}$: 
 \begin{equation}
 	S_{o} = \bigcup_{w \in W} S_{w, o}
 \end{equation}
 While this aggregated set is not a ground truth per se, it enables us to reason about differences in option-dependent code in the scope of our selected workloads. That is, the expressiveness of this baseline depends on the diversity of the workloads in question. From the ratio of option-specific code per workload to option-specific code across workloads, $\mid S_{w_1, o}\mid/~{\mid S_{w_2, o}\mid}$, we can estimate the coverage of option-dependent code. 
+}
 
 \subsubsection{Comparing Execution Footprints}
 From (a) the information about which code sections are specific to a configuration option and (b) how much of these sections is actually covered under different workloads, we can compare the workload-specific execution footprint for each option. By comparing the sets $S_{w_1, o}$ and $S_{w_2, o}$ for any two workloads $w_1$ and $w_2$, we can estimate similarity between the option-code coverage via the Jaccard set similarity index. A Jaccard similariy of zero implies that there is no overlap in the lines covered under each workload, whereas a Jaccard similarity of 1 implies that the exact same code was covered. Based on this pairwise similarity metric $sim_o(w_1, w_2)$, we can compute a distance $d_o(w_1, w_2) = 1 - sim(w_1, w_2)$ and cluster all workload-specific execution profiles. 
