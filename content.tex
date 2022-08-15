@@ -122,7 +122,7 @@ For the \textit{SVG rasterizer} \batik, the measured task was to transform a SVG
 
 For the embedded \textit{database} \htwo, we used a selection of four benchmarks (SmallBank, TPC-H, YCSB, Voter) from \textsc{OLTPBench}~\cite{difallah_oltp_2013}, a load generator for databases that allows for using a variety of performance testing benchmarks. For each benchmark, we varied the scale factor, which controls the complexity (number of entities modeled) in each scenario.
 
-For the \textit{Java decompiler} \jadx, the measured task was to decompile a number of Android applications in DEX byte code. We selected a number of APK packages from APKMirror\footnote{\url{https://apkmirror.com/}} from different domains (social media, games, utility etc.) and of varying size.
+%For the \textit{Java decompiler} \jadx, the measured task was to decompile a number of Android applications in DEX byte code. We selected a number of APK packages from APKMirror\footnote{\url{https://apkmirror.com/}} from different domains (social media, games, utility etc.) and of varying size.
 
 For the \textit{image scaler} \dconvert, the measured task was to transform resources (image files, Photoshop sketches) at different scales (useful for Android development). We selected files that reflect \dconvert's documented input formats (JPEG, PNG, PSD, and SVG) and vary in file size.
 
@@ -219,19 +219,19 @@ We summarize the category criteria as well as the category counts in Table~\ref{
 	\cellcolor{xmt-color!14!white}8 & \cellcolor{xmt-color!14!white}14.6\,\% & 
 	\cellcolor{nmt-color!34!white}19 & \cellcolor{nmt-color!34!white}34.6\,\%\\
 	
-	\jadx & \textit{120} &
+	%\jadx & \textit{120} &
+	%%0 & 0\,\% & 
+	%\cellcolor{lt-color!100!white}120 & \cellcolor{lt-color!100!white}100.0\,\% & 
 	%0 & 0\,\% & 
-	\cellcolor{lt-color!100!white}120 & \cellcolor{lt-color!100!white}100.0\,\% & 
-	0 & 0\,\% & 
-	0 & 0\,\%\\
+	%0 & 0\,\%\\
 	
 	\midrule
 	
-	\rowcolor{black}	\xz & \textit{78} &
+		\xz & \textit{78} &
 	%0 & 0\,\% & 
-	\cellcolor{lt-color!82!white}64 & \cellcolor{lt-color!82!white}82.0\,\% & 
+	\cellcolor{lt-color!83!white}65 & \cellcolor{lt-color!83!white}83.3\,\% & 
 	\cellcolor{xmt-color!1!white}1 & \cellcolor{xmt-color!1!white}1.3\,\% & 
-	\cellcolor{nmt-color!16!white}13 & \cellcolor{nmt-color!16!white}16.7\,\%\\
+	\cellcolor{nmt-color!15!white}12 & \cellcolor{nmt-color!16!white}15.4\,\%\\
 	
 		\lrzip & \textit{78} &
 	%0 & 0\,\% & 
@@ -259,7 +259,7 @@ We summarize the category criteria as well as the category counts in Table~\ref{
 \subsubsection{Results}
 
 We summarize the results of our classification in Table~\ref{tab:categorization_counts}. The observed range of relationships across the ten software systems has to type prevail across all software systems. 
-All software systems, at least, in part, exhibit performance distributions which can be transformed into one another using an linear transformations (\textit{\colorbox{lt-color}{LT}}), such as shifting by a constant value or scaling by a constant factor. In particular, for \jumper, \jadx, and \xzwo, we observe only such behavior. The presence of linear transformations corresponds to experimental insights from Jamshidi et al., who encoded differences between performance distributions using linear functions~\cite{jamishidi_transfer_2017}.
+All software systems, at least, in part, exhibit performance distributions which can be transformed into one another using an linear transformations (\textit{\colorbox{lt-color}{LT}}), such as shifting by a constant value or scaling by a constant factor. In particular, for \jumper and \xzwo, we observe only such behavior. The presence of linear transformations corresponds to experimental insights from Jamshidi et al., who encoded differences between performance distributions using linear functions~\cite{jamishidi_transfer_2017}.
 
 Exclusively monotone transformations (\textit{\colorbox{xmt-color}{XMT}}) are the exception and are only exhibited by five out of the ten systems (\kanzi, \batik, \xz, \lrzip, \zdrei), twice with only one workload pair each (\xz and \zdrei).  
 For all, except two systems (\jumper and \xzwo) we observe non-monotonous transformations (\textit{\colorbox{nmt-color}{NMT}}) with different prevalence.  For three systems (\dconvert, \htwo, and \zdrei) the majority of transformations is non-monotous, for the remaining four systems (\kanzi, \batik, \xz, \lrzip) more than 10\,\% of workload pairs fall into this category.
@@ -480,8 +480,7 @@ Threats to \textit{internal validity} include measurement noise which may distor
 Threats to\textit{ external validity} include the selection of subject systems and workloads. To ensure generalizability, we select software systems from various various application domains as well as two different programming language ecosystems (cf.~Table~\ref{tab:subject_systems}). In lieu of domain knowledge, we cannot select workloads systematically with respect to workload characteristics due to workloads inherent opacity. We address this issue by varying likely relevant characteristics and, where possible, reusing workloads across subject systems of the same domain. Achieving true representativeness is desirable, yet intractable. 
 The goal of this selection is to study the \emph{presence} and quality of workload-option interactions, but not their \emph{prevalence}. Hence, we are confident that this selection does not invalidate our findings.
 
-{\color{magenta}Threats to \textit{construct validity} include our choice of correlation metrics in Section~\ref{sec:rq1}, regression technique in Section~\ref{sec:rq2}, and similarity metric in Section~\ref{sec:rq3}. The correlation metrics are widely used to describe statistical relationships and the overall picture remains consistent with slightly different thresholds. Multiple linear regression as well... 
-}
+%{\color{magenta}Threats to \textit{construct validity} include our choice of correlation metrics in Section~\ref{sec:rq1}, regression technique in Section~\ref{sec:rq2}, and similarity metric in Section~\ref{sec:rq3}. The correlation metrics are widely used to describe statistical relationships and the overall picture remains consistent with slightly different thresholds. Multiple linear regression as well... }
 \color{black}
 \section{Conclusion}\label{sec:conclusion}
 Most modern software systems exhibit configuration options to customize behaviors and meet user demands. Configuration choices, however, can also affect the performance of a software system.
