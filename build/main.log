@@ -1,0 +1,5534 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2022.4.22)  28 JUL 2022 11:15
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**main.tex
+(./main.tex
+LaTeX2e <2020-10-01> patch level 4
+L3 programming layer <2021-01-09> xparse <2020-03-03> (./IEEEtran.cls
+Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/
+\@IEEEtrantmpdimenA=\dimen138
+\@IEEEtrantmpdimenB=\dimen139
+\@IEEEtrantmpdimenC=\dimen140
+\@IEEEtrantmpcountA=\count177
+\@IEEEtrantmpcountB=\count178
+\@IEEEtrantmpcountC=\count179
+\@IEEEtrantmptoksA=\toks15
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 5
+03.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+-- Using 8.5in x 11in (letter) paper.
+-- Using PDF output.
+\@IEEEnormalsizeunitybaselineskip=\dimen141
+-- This is a 10 point document.
+\CLASSINFOnormalsizebaselineskip=\dimen142
+\CLASSINFOnormalsizeunitybaselineskip=\dimen143
+\IEEEnormaljot=\dimen144
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+\IEEEquantizedlength=\dimen145
+\IEEEquantizedlengthdiff=\dimen146
+\IEEEquantizedtextheightdiff=\dimen147
+\IEEEilabelindentA=\dimen148
+\IEEEilabelindentB=\dimen149
+\IEEEilabelindent=\dimen150
+\IEEEelabelindent=\dimen151
+\IEEEdlabelindent=\dimen152
+\IEEElabelindent=\dimen153
+\IEEEiednormlabelsep=\dimen154
+\IEEEiedmathlabelsep=\dimen155
+\IEEEiedtopsep=\skip47
+\c@section=\count180
+\c@subsection=\count181
+\c@subsubsection=\count182
+\c@paragraph=\count183
+\c@IEEEsubequation=\count184
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\c@figure=\count185
+\c@table=\count186
+\@IEEEeqnnumcols=\count187
+\@IEEEeqncolcnt=\count188
+\@IEEEsubeqnnumrollback=\count189
+\@IEEEquantizeheightA=\dimen156
+\@IEEEquantizeheightB=\dimen157
+\@IEEEquantizeheightC=\dimen158
+\@IEEEquantizeprevdepth=\dimen159
+\@IEEEquantizemultiple=\count190
+\@IEEEquantizeboxA=\box47
+\@IEEEtmpitemindent=\dimen160
+\IEEEPARstartletwidth=\dimen161
+\c@IEEEbiography=\count191
+\@IEEEtranrubishbin=\box48
+) (./preamble.tex
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+\lst@mode=\count192
+\lst@gtempboxa=\box49
+\lst@token=\toks17
+\lst@length=\count193
+\lst@currlwidth=\dimen162
+\lst@column=\count194
+\lst@pos=\count195
+\lst@lostspace=\dimen163
+\lst@width=\dimen164
+\lst@newlines=\count196
+\lst@lineno=\count197
+\lst@maxwidth=\dimen165
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count198
+\lst@skipnumbers=\count199
+\lst@framebox=\box50
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
+\col@sep=\dimen166
+\ar@mcellbox=\box51
+\extrarowheight=\dimen167
+\NC@list=\toks18
+\extratabsurround=\skip50
+\backup@length=\skip51
+\ar@cellbox=\box52
+)
+\TX@col@width=\dimen168
+\TX@old@table=\dimen169
+\TX@old@col=\dimen170
+\TX@target=\dimen171
+\TX@delta=\dimen172
+\TX@cols=\count266
+\TX@ftn=\toks19
+)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithmic.sty
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@ALC@unique=\count267
+\c@ALC@line=\count268
+\c@ALC@rem=\count269
+\c@ALC@depth=\count270
+\ALC@tlm=\skip52
+\algorithmicindent=\skip53
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+)
+\Gin@req@height=\dimen173
+\Gin@req@width=\dimen174
+)
+(/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
+Package: todonotes 2020/08/18 v1.1.3 Todonotes source and documentation.
+Package: todonotes 2018/11/22
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks20
+\XKV@tempa@toks=\toks21
+)
+\XKV@depth=\count271
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks22
+\pgfutil@tempdima=\dimen175
+\pgfutil@tempdimb=\dimen176
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
+ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box53
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2020/12/27 v3.1.8b (3.1.8b)
+))
+Package: pgf 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks23
+\pgfkeys@temptoks=\toks24
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
+ex
+\pgfkeys@tmptoks=\toks25
+))
+\pgf@x=\dimen177
+\pgf@y=\dimen178
+\pgf@xa=\dimen179
+\pgf@ya=\dimen180
+\pgf@xb=\dimen181
+\pgf@yb=\dimen182
+\pgf@xc=\dimen183
+\pgf@yc=\dimen184
+\pgf@xd=\dimen185
+\pgf@yd=\dimen186
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count272
+\c@pgf@countb=\count273
+\c@pgf@countc=\count274
+\c@pgf@countd=\count275
+\t@pgf@toka=\toks26
+\t@pgf@tokb=\toks27
+\t@pgf@tokc=\toks28
+\pgf@sys@id@count=\count276
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2020/12/27 v3.1.8b (3.1.8b)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
+f
+File: pgfsys-common-pdf.def 2020/12/27 v3.1.8b (3.1.8b)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
+tex
+File: pgfsyssoftpath.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfsyssoftpath@smallbuffer@items=\count277
+\pgfsyssoftpath@bigbuffer@items=\count278
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
+tex
+File: pgfsysprotocol.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen187
+\pgfmath@count=\count279
+\pgfmath@box=\box54
+\pgfmath@toks=\toks29
+\pgfmath@stack@operand=\toks30
+\pgfmath@stack@operation=\toks31
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count280
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
+x
+File: pgfcorepoints.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@picminx=\dimen188
+\pgf@picmaxx=\dimen189
+\pgf@picminy=\dimen190
+\pgf@picmaxy=\dimen191
+\pgf@pathminx=\dimen192
+\pgf@pathmaxx=\dimen193
+\pgf@pathminy=\dimen194
+\pgf@pathmaxy=\dimen195
+\pgf@xx=\dimen196
+\pgf@xy=\dimen197
+\pgf@yx=\dimen198
+\pgf@yy=\dimen199
+\pgf@zx=\dimen256
+\pgf@zy=\dimen257
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+code.tex
+File: pgfcorepathconstruct.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@path@lastx=\dimen258
+\pgf@path@lasty=\dimen259
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
+.tex
+File: pgfcorepathusage.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@shorten@end@additional=\dimen260
+\pgf@shorten@start@additional=\dimen261
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
+x
+File: pgfcorescopes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfpic=\box55
+\pgf@hbox=\box56
+\pgf@layerbox@main=\box57
+\pgf@picture@serial@count=\count281
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
+ode.tex
+File: pgfcoregraphicstate.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgflinewidth=\dimen262
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
+s.code.tex
+File: pgfcoretransformations.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@pt@x=\dimen263
+\pgf@pt@y=\dimen264
+\pgf@pt@temp=\dimen265
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
+ex
+File: pgfcoreobjects.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
+.code.tex
+File: pgfcorepathprocessing.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
+x
+File: pgfcorearrows.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfarrowsep=\dimen266
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@max=\dimen267
+\pgf@sys@shading@range@num=\count282
+\pgf@shadingcount=\count283
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
+tex
+File: pgfcoreexternal.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfexternal@startupbox=\box58
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x
+File: pgfcorelayers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
+ode.tex
+File: pgfcoretransparency.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
+tex
+File: pgfcorepatterns.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfnodeparttextbox=\box59
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
+.sty
+Package: pgfcomp-version-0-65 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@nodesepstart=\dimen268
+\pgf@nodesepend=\dimen269
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
+.sty
+Package: pgfcomp-version-1-18 2020/12/27 v3.1.8b (3.1.8b)
+)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen270
+\pgffor@skip=\dimen271
+\pgffor@stack=\toks32
+\pgffor@toks=\toks33
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
+.code.tex
+File: pgflibraryplothandlers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@plot@mark@count=\count284
+\pgfplotmarksize=\dimen272
+)
+\tikz@lastx=\dimen273
+\tikz@lasty=\dimen274
+\tikz@lastxsaved=\dimen275
+\tikz@lastysaved=\dimen276
+\tikz@lastmovetox=\dimen277
+\tikz@lastmovetoy=\dimen278
+\tikzleveldistance=\dimen279
+\tikzsiblingdistance=\dimen280
+\tikz@figbox=\box60
+\tikz@figbox@bg=\box61
+\tikz@tempbox=\box62
+\tikz@tempbox@bg=\box63
+\tikztreelevel=\count285
+\tikznumberofchildren=\count286
+\tikznumberofcurrentchild=\count287
+\tikz@fig@count=\count288
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfmatrixcurrentrow=\count289
+\pgfmatrixcurrentcolumn=\count290
+\pgf@matrix@numberofcolumns=\count291
+)
+\tikz@expandcount=\count292
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshadows.code.tex
+File: tikzlibraryshadows.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryfadings.code.tex
+File: tikzlibraryfadings.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code
+.tex
+File: pgflibraryfadings.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+))) (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count293
+\calc@Bcount=\count294
+\calc@Adimen=\dimen281
+\calc@Bdimen=\dimen282
+\calc@Askip=\skip54
+\calc@Bskip=\skip55
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count295
+\calc@Cskip=\skip56
+)
+\c@@todonotes@numberoftodonotes=\count296
+)
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2020/12/07 v2.8 Micro-typographical refinements (RS)
+\MT@toks=\toks34
+\MT@count=\count297
+LaTeX Info: Redefining \textls on input line 788.
+\MT@outer@kern=\dimen283
+LaTeX Info: Redefining \textmicrotypecontext on input line 1358.
+\MT@listname@count=\count298
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+File: microtype-pdftex.def 2020/12/07 v2.8 Definitions specific to pdftex (RS)
+LaTeX Info: Redefining \lsstyle on input line 915.
+LaTeX Info: Redefining \lslig on input line 915.
+\MT@outer@space=\skip57
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2020/12/07 v2.8 microtype main configuration file (RS)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2021/01/29 v2.7 Span multiple rows of a table
+\multirow@colwidth=\skip58
+\multirow@cntb=\count299
+\multirow@dima=\skip59
+\bigstrutjot=\dimen284
+)
+(/usr/share/texlive/texmf-dist/tex/latex/savetrees/savetrees.sty
+Package: savetrees 2016/04/13 v2.4 Pack as much text as possible onto each page
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifpdf.sty
+Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+)
+\everypar=\toks35
+)
+(/usr/share/texlive/texmf-dist/tex/latex/paralist/paralist.sty
+Package: paralist 2017/01/22 v2.7 Extended list environments
+\pltopsep=\skip60
+\plpartopsep=\skip61
+\plitemsep=\skip62
+\plparsep=\skip63
+\pl@lab=\toks36
+)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen285
+\captionmargin@=\dimen286
+\captionwidth=\dimen287
+\caption@tempdima=\dimen288
+\caption@indent=\dimen289
+\caption@parindent=\dimen290
+\caption@hangindent=\dimen291
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+Package caption Info: \@makecaption = \long macro:#1#2->\ifx \@captype \@IEEEta
+blestring \footnotesize \bgroup \par \centering \@IEEEtabletopskipstrut {\norma
+lfont \footnotesize #1}\\{\normalfont \footnotesize \scshape #2}\par \addvspace
+ {0.5\baselineskip }\egroup \@IEEEtablecaptionsepspace \else \@IEEEfigurecaptio
+nsepspace \setbox \@tempboxa \hbox {\normalfont \footnotesize {#1.}\nobreakspac
+e \nobreakspace #2}\ifdim \wd \@tempboxa >\hsize \setbox \@tempboxa \hbox {\nor
+malfont \footnotesize {#1.}\nobreakspace \nobreakspace }\parbox [t]{\hsize }{\n
+ormalfont \footnotesize \noindent \unhbox \@tempboxa #2}\else \ifCLASSOPTIONcon
+ference \hbox to\hsize {\normalfont \footnotesize \hfil \box \@tempboxa \hfil }
+\else \hbox to\hsize {\normalfont \footnotesize \box \@tempboxa \hfil }\fi \fi 
+\fi  on input line 1139.
+)
+
+Package caption Warning: Unknown document class (or package),
+(caption)                standard defaults will be used.
+See the caption package documentation for explanation.
+
+\c@caption@flags=\count300
+\c@continuedfloat=\count301
+Package caption Info: listings package is loaded.
+)
+\c@subfigure=\count302
+\c@subtable=\count303
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2020-05-15 v7.00e Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+)
+\@linkdim=\dimen292
+\Hy@linkcounter=\count304
+\Hy@pagecounter=\count305
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2020-05-15 v7.00e Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count306
+Package hyperref Info: Hyper figures OFF on input line 4464.
+Package hyperref Info: Link nesting OFF on input line 4469.
+Package hyperref Info: Hyper index ON on input line 4472.
+Package hyperref Info: Plain pages OFF on input line 4479.
+Package hyperref Info: Backreferencing OFF on input line 4484.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4717.
+\c@Hy@tempcnt=\count307
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5076.
+\XeTeXLinkMargin=\dimen293
+
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count308
+\Field@Width=\dimen294
+\Fld@charsize=\dimen295
+Package hyperref Info: Hyper figures OFF on input line 6347.
+Package hyperref Info: Link nesting OFF on input line 6352.
+Package hyperref Info: Hyper index ON on input line 6355.
+Package hyperref Info: backreferencing OFF on input line 6362.
+Package hyperref Info: Link coloring OFF on input line 6367.
+Package hyperref Info: Link coloring with OCG OFF on input line 6372.
+Package hyperref Info: PDF/A mode OFF on input line 6377.
+LaTeX Info: Redefining \ref on input line 6417.
+LaTeX Info: Redefining \pageref on input line 6421.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi packa
+ge
+with kernel methods
+)
+\Hy@abspage=\count309
+\c@Item=\count310
+\c@Hfootnote=\count311
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2020-05-15 v7.00e Hyperref driver for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atvery packag
+e
+with kernel methods
+)
+\Fld@listcount=\count312
+\c@bookmark@seq@number=\count313
+
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+86.
+)
+\Hy@SectionHShift=\skip64
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 34.
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdfcomment/pdfcomment.sty
+Package: pdfcomment 2018/11/01 pdfcomment.sty v2.4a - Josef Kleber (C) 2008-201
+2, 2015-2016, 2018
+\c@pc@count@i=\count314
+\c@pc@count@ii=\count315
+\c@pc@count@iii=\count316
+\c@pc@count@iv=\count317
+\pc@mathannot@box=\box64
+\pc@nullbox=\box65
+\pc@dima=\skip65
+\pc@dimb=\skip66
+\pc@Sposx=\skip67
+\pc@Sposy=\skip68
+\pc@Eposx=\skip69
+\pc@Eposy=\skip70
+\pc@column=\skip71
+\pc@box@width=\skip72
+\pc@box@height=\skip73
+\pc@box@depth=\skip74
+
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count318
+)
+(/usr/share/texlive/texmf-dist/tex/latex/datetime2/datetime2.sty
+Package: datetime2 2020/03/02 v1.5.6 (NLCT) date and time formats
+
+(/usr/share/texlive/texmf-dist/tex/latex/tracklang/tracklang.sty
+Package: tracklang 2020/06/30 v1.5 (NLCT) Track Languages
+
+(/usr/share/texlive/texmf-dist/tex/generic/tracklang/tracklang.tex)))
+(/usr/share/texlive/texmf-dist/tex/latex/zref/zref-savepos.sty
+Package: zref-savepos 2020-07-03 v2.32 Module savepos for zref (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/zref/zref-base.sty
+Package: zref-base 2020-07-03 v2.32 Module base for zref (HO)
+Package zref Info: New property list: main on input line 764.
+Package zref Info: New property: default on input line 765.
+Package zref Info: New property: page on input line 766.
+)
+Package zref Info: New property list: savepos on input line 80.
+Package zref Info: New property: posx on input line 82.
+Package zref Info: New property: posy on input line 83.
+)
+\c@zref@unique=\count319
+
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/marginnote/marginnote.sty
+Package: marginnote 2018/08/09 v1.4b non floating margin notes for LaTeX
+\c@mn@abspage=\count320
+)
+(/usr/share/texlive/texmf-dist/tex/latex/soulpos/soulpos.sty
+Package: soulpos 2012/02/25 v1.1 Fancy underlining
+\ulp@subcnt=\count321
+\ulp@cnt=\count322
+\ulp@out=\write4
+\ulp@in=\read3
+\ulwidth=\dimen296
+)
+
+Package hyperref Warning: Option `pdftex' has already been used,
+(hyperref)                setting the option has no effect on input line 1369.
+
+Package zref Info: New property list: pdfcomment on input line 2735.
+Package zref Info: New property: PCPDFOBJID on input line 2736.
+) (/usr/share/texlive/texmf-dist/tex/latex/makecell/makecell.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+\rotheadsize=\dimen297
+\c@nlinenum=\count323
+\TeXr@lab=\toks37
+)
+(/usr/share/texlive/texmf-dist/tex/generic/soul/soul.sty
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks38
+\SOUL@lasttoken=\toks39
+\SOUL@cmds=\toks40
+\SOUL@buffer=\toks41
+\SOUL@token=\toks42
+\SOUL@spaceskip=\skip75
+\SOUL@ttwidth=\dimen298
+\SOUL@uldp=\dimen299
+\SOUL@ulht=\dimen300
+)
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count324
+\float@exts=\toks43
+\float@box=\box66
+\@float@everytoks=\toks44
+\@floatcapt=\box67
+)
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen301
+\lightrulewidth=\dimen302
+\cmidrulewidth=\dimen303
+\belowrulesep=\dimen304
+\belowbottomsep=\dimen305
+\aboverulesep=\dimen306
+\abovetopsep=\dimen307
+\cmidrulesep=\dimen308
+\cmidrulekern=\dimen309
+\defaultaddspace=\dimen310
+\@cmidla=\count325
+\@cmidlb=\count326
+\@aboverulesep=\dimen311
+\@belowrulesep=\dimen312
+\@thisruleclass=\count327
+\@lastruleclass=\count328
+\@thisrulewidth=\dimen313
+)
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
+\everycr=\toks45
+\minrowclearance=\skip76
+)
+(/usr/share/texlive/texmf-dist/tex/latex/blindtext/blindtext.sty
+Package: blindtext 2012/01/06 V2.0 blindtext-Package
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+\c@blindtext=\count329
+\c@Blindtext=\count330
+\c@blind@countparstart=\count331
+\blind@countxx=\count332
+\blindtext@numBlindtext=\count333
+\blind@countyy=\count334
+\c@blindlist=\count335
+\c@blindlistlevel=\count336
+\c@blindlist@level=\count337
+\blind@listitem=\count338
+\c@blind@listcount=\count339
+\c@blind@levelcount=\count340
+\blind@mathformula=\count341
+\blind@Mathformula=\count342
+\c@blind@randomcount=\count343
+\c@blind@randommax=\count344
+\c@blind@pangramcount=\count345
+\c@blind@pangrammax=\count346
+)
+(/usr/share/texlive/texmf-dist/tex/latex/mdframed/mdframed.sty
+Package: mdframed 2013/07/01 1.9b: mdframed
+
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2021-01-09 L3 programming layer (loader) 
+
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2020-01-29 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count347
+\l__pdf_internal_box=\box68
+))
+Package: xparse 2020-10-27 L3 Experimental document command parser
+
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse-generic.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/zref/zref-abspage.sty
+Package: zref-abspage 2020-07-03 v2.32 Module abspage for zref (HO)
+\c@abspage=\count348
+Package zref Info: New property: abspage on input line 66.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/needspace/needspace.sty
+Package: needspace 2010/09/12 v1.3d reserve vertical space
+)
+\mdf@templength=\skip77
+\c@mdf@globalstyle@cnt=\count349
+\mdf@skipabove@length=\skip78
+\mdf@skipbelow@length=\skip79
+\mdf@leftmargin@length=\skip80
+\mdf@rightmargin@length=\skip81
+\mdf@innerleftmargin@length=\skip82
+\mdf@innerrightmargin@length=\skip83
+\mdf@innertopmargin@length=\skip84
+\mdf@innerbottommargin@length=\skip85
+\mdf@splittopskip@length=\skip86
+\mdf@splitbottomskip@length=\skip87
+\mdf@outermargin@length=\skip88
+\mdf@innermargin@length=\skip89
+\mdf@linewidth@length=\skip90
+\mdf@innerlinewidth@length=\skip91
+\mdf@middlelinewidth@length=\skip92
+\mdf@outerlinewidth@length=\skip93
+\mdf@roundcorner@length=\skip94
+\mdf@footenotedistance@length=\skip95
+\mdf@userdefinedwidth@length=\skip96
+\mdf@needspace@length=\skip97
+\mdf@frametitleaboveskip@length=\skip98
+\mdf@frametitlebelowskip@length=\skip99
+\mdf@frametitlerulewidth@length=\skip100
+\mdf@frametitleleftmargin@length=\skip101
+\mdf@frametitlerightmargin@length=\skip102
+\mdf@shadowsize@length=\skip103
+\mdf@extratopheight@length=\skip104
+\mdf@subtitleabovelinewidth@length=\skip105
+\mdf@subtitlebelowlinewidth@length=\skip106
+\mdf@subtitleaboveskip@length=\skip107
+\mdf@subtitlebelowskip@length=\skip108
+\mdf@subtitleinneraboveskip@length=\skip109
+\mdf@subtitleinnerbelowskip@length=\skip110
+\mdf@subsubtitleabovelinewidth@length=\skip111
+\mdf@subsubtitlebelowlinewidth@length=\skip112
+\mdf@subsubtitleaboveskip@length=\skip113
+\mdf@subsubtitlebelowskip@length=\skip114
+\mdf@subsubtitleinneraboveskip@length=\skip115
+\mdf@subsubtitleinnerbelowskip@length=\skip116
+
+(/usr/share/texlive/texmf-dist/tex/latex/mdframed/md-frame-1.mdf
+File: md-frame-1.mdf 2013/07/01\ 1.9b: md-frame-1
+)
+\mdf@frametitlebox=\box69
+\mdf@footnotebox=\box70
+\mdf@splitbox@one=\box71
+\mdf@splitbox@two=\box72
+\mdf@splitbox@save=\box73
+\mdfsplitboxwidth=\skip117
+\mdfsplitboxtotalwidth=\skip118
+\mdfsplitboxheight=\skip119
+\mdfsplitboxdepth=\skip120
+\mdfsplitboxtotalheight=\skip121
+\mdfframetitleboxwidth=\skip122
+\mdfframetitleboxtotalwidth=\skip123
+\mdfframetitleboxheight=\skip124
+\mdfframetitleboxdepth=\skip125
+\mdfframetitleboxtotalheight=\skip126
+\mdffootnoteboxwidth=\skip127
+\mdffootnoteboxtotalwidth=\skip128
+\mdffootnoteboxheight=\skip129
+\mdffootnoteboxdepth=\skip130
+\mdffootnoteboxtotalheight=\skip131
+\mdftotallinewidth=\skip132
+\mdfboundingboxwidth=\skip133
+\mdfboundingboxtotalwidth=\skip134
+\mdfboundingboxheight=\skip135
+\mdfboundingboxdepth=\skip136
+\mdfboundingboxtotalheight=\skip137
+\mdf@freevspace@length=\skip138
+\mdf@horizontalwidthofbox@length=\skip139
+\mdf@verticalmarginwhole@length=\skip140
+\mdf@horizontalspaceofbox=\skip141
+\mdfsubtitleheight=\skip142
+\mdfsubsubtitleheight=\skip143
+\c@mdfcountframes=\count350
+
+****** mdframed patching \endmdf@trivlist
+
+****** -- success******
+
+\mdf@envdepth=\count351
+\c@mdf@env@i=\count352
+\c@mdf@env@ii=\count353
+\c@mdf@zref@counter=\count354
+Package zref Info: New property: mdf@pagevalue on input line 895.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2021/01/26 3.53 The Babel package
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2021/01/26 3.53 Babel common definitions
+\babel@savecnt=\count355
+\U@D=\dimen314
+\l@babelnohyphens=\language86
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read4
+)
+\bbl@dirlevel=\count356
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: \l@canadian = using hyphenrules for english
+(babel)             (\language0) on input line 102.
+Package babel Info: \l@australian = using hyphenrules for ukenglish
+(babel)             (\language28) on input line 105.
+Package babel Info: \l@newzealand = using hyphenrules for ukenglish
+(babel)             (\language28) on input line 108.
+)))
+
+LaTeX Warning: Unused global option(s):
+    [review].
+
+(./main.aux)
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+
+-- Lines per column: 56 (exact).
+\c@lstlisting=\count357
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count358
+\scratchdimen=\dimen315
+\scratchbox=\box74
+\nofMPsegments=\count359
+\nofMParguments=\count360
+\everyMPshowfont=\toks46
+\MPscratchCnt=\count361
+\MPscratchDim=\dimen316
+\MPnumerator=\count362
+\makeMPintoPDFobject=\count363
+\everyMPtoPDFconversion=\toks47
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/latex/grfext/grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+
+Package todonotes Warning: The length marginparwidth is less than 2cm and will 
+most likely cause issues with the appearance of inserted todonotes. The issue c
+an be solved by adding a line like \setlength {\marginparwidth }{2cm} prior to 
+loading the todonotes package. on input line 9.
+
+LaTeX Info: Redefining \microtypecontext on input line 9.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 9.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg
+File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: End \AtBeginDocument code.
+Package hyperref Info: Link coloring ON on input line 9.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count364
+)
+LaTeX Info: Redefining \ref on input line 9.
+LaTeX Info: Redefining \pageref on input line 9.
+LaTeX Info: Redefining \nameref on input line 9.
+
+(./main.out) (./main.out)
+\@outlinefile=\write5
+\openout5 = `main.out'.
+
+ (./content.tex (./sections/introduction.tex
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Dorn, Apel, and Siegmund}{Do...
+l.3 ...o_2018_data,fourier_learning_2015,perLasso}
+                                                  . The backbone of performa...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Siegmund, Grebhahn, Apel, an...
+l.3 ...o_2018_data,fourier_learning_2015,perLasso}
+                                                  . The backbone of performa...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Ha and Zhang}{Ha and Zhang}{...
+l.3 ...o_2018_data,fourier_learning_2015,perLasso}
+                                                  . The backbone of performa...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Shu, Sui, Zhang, and Xu}{Shu...
+l.3 ...o_2018_data,fourier_learning_2015,perLasso}
+                                                  . The backbone of performa...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Guo, Czarnecki, Apel, Siegmu...
+l.3 ...o_2018_data,fourier_learning_2015,perLasso}
+                                                  . The backbone of performa...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Sarkar, Guo, Siegmund, Apel,...
+l.3 ...o_2018_data,fourier_learning_2015,perLasso}
+                                                  . The backbone of performa...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Guo, Yang, Siegmund, Apel, S...
+l.3 ...o_2018_data,fourier_learning_2015,perLasso}
+                                                  . The backbone of performa...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Zhang, Guo, Blais, and Czarn...
+l.3 ...o_2018_data,fourier_learning_2015,perLasso}
+                                                  . The backbone of performa...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Ha and Zhang}{Ha and Zhang}{...
+l.3 ...o_2018_data,fourier_learning_2015,perLasso}
+                                                  . The backbone of performa...
+
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+[]\OT1/ptm/m/n/10 (+20) Most mod-ern soft-ware sys-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (+20) tems can be cus-tomized via
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (+20) con-fig-u-ra-tion op-tions to meet
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (+20) user de-mands. Con-fig-u-ra-tion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (+20) op-tions can en-able de-sired
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (+20) func-tion-al-ity or tweak non-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (+20) functional as-pects of a soft-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (+20) ware sys-tem, such as im-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (+20) prov-ing per-for-mance or en-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (+20) ergy con-sump-tion. The re-la-tion-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (+20) ship of con-fig-u-ra-tion choices
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (+20) and their in-flu-ence on per-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (+20) for-mance has been ex-ten-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (+20) sively stud-ied in the lit-er-a-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (+20) ture [[]],
+ []
+
+
+Overfull \hbox (6.3954pt too wide) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (-20) [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (+20) [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (+20) [[]],
+ []
+
+
+Overfull \hbox (17.04536pt too wide) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (-20) [[]],
+ []
+
+
+Overfull \hbox (11.01535pt too wide) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (-20) [[]],
+ []
+
+
+Overfull \hbox (121.04529pt too wide) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (-20) [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\OT1/ptm/m/n/10 (+20) [[]],
+ []
+
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Falkner, Lindauer, and Hutte...
+l.5 ...ite{falkner_sat_solvers_2015,satzilla_2008}
+                                                  , compilation~\cite{ding_c...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Xu, Hutter, Hoos, and Leyton...
+l.5 ...ite{falkner_sat_solvers_2015,satzilla_2008}
+                                                  , compilation~\cite{ding_c...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Ding, Ansel, Veeramachaneni,...
+l.5 ...ompilation_2015,plotnikov_compilation_2013}
+                                                  , video transcoding~\cite{...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Plotnikov, Melnik, Vardanyan...
+l.5 ...ompilation_2015,plotnikov_compilation_2013}
+                                                  , video transcoding~\cite{...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Maxiaguine, Liu, Chakraborty...
+l.5 ...xiaguine_workload_2004,alves_sampling_2020}
+                                                  , data compression~\cite{k...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Pereira, Acher, Martin, and ...
+l.5 ...xiaguine_workload_2004,alves_sampling_2020}
+                                                  , data compression~\cite{k...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Khavari~Tavana, Sun, Bohm~Ag...
+l.5 ...compression~\cite{khavari_compression_2019}
+                                                  , and code verification~\c...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Koc, Mordahl, Wei, Foster, a...
+l.5 ...nd code verification~\cite{koc_satune_2021}
+                                                  . Besides apparent interac...
+
+? 
+LaTeX Font Info:    Trying to load font information for OT1+phv on input line 7
+.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
+File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `phv' (encoding: OT1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+Package epstopdf Info: Source file: <images/h2_motivation.eps>
+(epstopdf)                    date: 2022-07-19 18:00:25
+(epstopdf)                    size: 124682 bytes
+(epstopdf)             Output file: <images/h2_motivation-eps-converted-to.pdf>
+
+(epstopdf)                    date: 2022-07-19 18:01:34
+(epstopdf)                    size: 56870 bytes
+(epstopdf)             Command: <repstopdf --outfile=images/h2_motivation-eps-c
+onverted-to.pdf images/h2_motivation.eps>
+(epstopdf)             \includegraphics on input line 11.
+Package epstopdf Info: Output file is already uptodate.
+<images/h2_motivation-eps-converted-to.pdf, id=205, 395.4775pt x 158.5925pt>
+File: images/h2_motivation-eps-converted-to.pdf Graphic file (type pdf)
+<use images/h2_motivation-eps-converted-to.pdf>
+Package pdftex.def Info: images/h2_motivation-eps-converted-to.pdf  used on inp
+ut line 11.
+(pdftex.def)             Requested size: 239.39923pt x 96.00319pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--15
+[]\OT1/ptm/m/n/10 (+20) The choice of the work-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--15
+\OT1/ptm/m/n/10 (+20) load (i.e., the in-put fed
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--15
+\OT1/ptm/m/n/10 (+20) to the soft-ware sys-tem) is
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--15
+\OT1/ptm/m/n/10 (+20) known to in-flu-ence the per-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--15
+\OT1/ptm/m/n/10 (+20) for-mance of con-fig-urable soft-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--15
+\OT1/ptm/m/n/10 (+20) ware sys-tems in dif-fer-ent
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--15
+\OT1/ptm/m/n/10 (+20) ways as has been shown
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--15
+\OT1/ptm/m/n/10 (+20) for the do-mains of SAT
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--15
+\OT1/ptm/m/n/10 (+20) solvers [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--15
+\OT1/ptm/m/n/10 (+20) [[]],
+ []
+
+
+Overfull \hbox (133.80804pt too wide) in paragraph at lines 5--15
+\OT1/ptm/m/n/10 (-20) com-pi-la-tion [[]],
+ []
+
+
+Overfull \hbox (90.30544pt too wide) in paragraph at lines 5--15
+\OT1/ptm/m/n/10 (-20) [[]],
+ []
+
+
+Overfull \hbox (81.2267pt too wide) in paragraph at lines 5--15
+\OT1/ptm/m/n/10 (-20) video transcod-ing [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--15
+\OT1/ptm/m/n/10 (+20) [[]],
+ []
+
+
+Overfull \hbox (132.56995pt too wide) in paragraph at lines 5--15
+\OT1/ptm/m/n/10 (-20) data com-pres-sion [[]],
+ []
+
+
+Overfull \hbox (56.95726pt too wide) in paragraph at lines 5--15
+\OT1/ptm/m/n/10 (-20) and code ver-i-fi-ca-tion [[]].
+ []
+
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Koc, Mordahl, Wei, Foster, a...
+l.18 ...pendent performance~\cite{koc_satune_2021}
+                                                  .
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Jamshidi, Velez, K\"{a}stner...
+l.19 ...ng workloads~\cite{jamshidi_learning_2018}
+                                                  , but can also be applied ...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Jamshidi, Siegmund, Velez, K...
+l.19 ...idi_transfer_gp_2017,martin_transfer_2021}
+                                                  , or hardware setups~\cite...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Jamshidi, Velez, K\"{a}stner...
+l.19 ...idi_transfer_gp_2017,martin_transfer_2021}
+                                                  , or hardware setups~\cite...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Martin, Acher, Lesoil, Jezeq...
+l.19 ...idi_transfer_gp_2017,martin_transfer_2021}
+                                                  , or hardware setups~\cite...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Ding, Pervaiz, Krishnan, and...
+l.19 ... hardware setups~\cite{ding_bayesian_2020}
+                                                  , its main limitation is t...
+
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+[]\OT1/ptm/m/n/10 (+20) To ad-dress this lim-i-ta-tion,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) two dif-fer-ent di-rec-tions have
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) been pur-sued in the lit-er-a-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) ture. First, per-for-mance mod-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) els trained us-ing a spe-cific work-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) load can be adapted to an-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) other spe-cific work-load. Sec-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) ond, one can spec-ify work-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) load char-ac-ter-is-tics as fur-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) ther in-de-pen-dent vari-ables
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) when mod-el-ing configuration-
+ []
+
+
+Overfull \hbox (67.31203pt too wide) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (-20) dependent per-for-mance [[]].
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) The first strat-egy di-rec-tion re-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) lies on trans-fer learn-ing tech-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) niques, where, given an ex-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) ist-ing per-for-mance model, in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) a sep-a-rate step only the dif-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) fer-ences to a new en-vi-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) ron-ment are learned. Such
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) a trans-fer func-tion en-codes
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) which con-fig-u-ra-tion op-tions' in-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) flu-ence on per-for-mance is
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) sen-si-tive to work-load vari-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) a-tion. While trans-fer learn-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) ing is an ef-fec-tive strat-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) egy that is not lim-ited to
+ []
+
+
+Overfull \hbox (74.8097pt too wide) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (-20) vary-ing work-loads [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (+20) but can also be ap-plied
+ []
+
+
+Overfull \hbox (151.14719pt too wide) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (-20) to dif-fer-ent ver-sions [[]],
+ []
+
+
+Overfull \hbox (54.76437pt too wide) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (-20) [[]],
+ []
+
+
+Overfull \hbox (48.26408pt too wide) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (-20) [[]],
+ []
+
+
+Overfull \hbox (58.77386pt too wide) in paragraph at lines 18--20
+\OT1/ptm/m/n/10 (-20) or hard-ware se-tups [[]],
+ []
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+\openout4 = `main.upa'.
+
+
+]
+Underfull \hbox (badness 1983) in paragraph at lines 32--33
+[]\OT1/ptm/m/n/10 (+20) How dif-fer-ent is configuration-specific per-for-mance
+
+ []
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 49.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 49.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 49.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 49.
+
+Underfull \hbox (badness 2285) in paragraph at lines 49--50
+\OT1/ptm/m/n/10 (+20) in-clud-ing per-for-mance and cov-er-age mea-sure-ments,
+ []
+
+
+Underfull \hbox (badness 4341) in paragraph at lines 49--50
+\OT1/ptm/m/n/10 (+20) ex-per-i-ment work-loads and con-fig-u-ra-tions, and an
+ []
+
+) [2 <./images/h2_motivation-eps-converted-to.pdf>]
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Brown, Falgout, Jones, Jim, ...
+l.16 ...e{analytic_model_2000,analytic_model_2011}
+                                                  . Here, one deliberately i...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Gahvari, Baker, Schulz, Yang...
+l.16 ...e{analytic_model_2000,analytic_model_2011}
+                                                  . Here, one deliberately i...
+
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--17
+[]\OT1/ptm/m/n/10 (+20) Analytic mod-els in-cor-po-rate ex-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--17
+\OT1/ptm/m/n/10 (+20) ist-ing knowl-edge about the op-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--17
+\OT1/ptm/m/n/10 (+20) er-a-tions of a soft-ware sys-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--17
+\OT1/ptm/m/n/10 (+20) tem, com-pa-ra-ble to es-ti-mat-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--17
+\OT1/ptm/m/n/10 (+20) ing an al-go-rithm's com-plex-
+ []
+
+
+Overfull \hbox (34.49538pt too wide) in paragraph at lines 16--17
+\OT1/ptm/m/n/10 (-20) [[]].
+ []
+
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Nair, Menzies, Siegmund, and...
+l.18 ...18,ohFindingNearoptimalConfigurations2017}
+                                                   and estimating the perfor...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {{Nair}, {Yu}, {Menzies}, {Si...
+l.18 ...18,ohFindingNearoptimalConfigurations2017}
+                                                   and estimating the perfor...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Oh, Batory, Myers, and Siegm...
+l.18 ...18,ohFindingNearoptimalConfigurations2017}
+                                                   and estimating the perfor...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Siegmund, Grebhahn, Apel, an...
+l.18 ..._2018_data,fourier_learning_2015,perLasso}
+                                                  .
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Ha and Zhang}{Ha and Zhang}{...
+l.18 ..._2018_data,fourier_learning_2015,perLasso}
+                                                  .
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Shu, Sui, Zhang, and Xu}{Shu...
+l.18 ..._2018_data,fourier_learning_2015,perLasso}
+                                                  .
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Guo, Czarnecki, Apel, Siegmu...
+l.18 ..._2018_data,fourier_learning_2015,perLasso}
+                                                  .
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Sarkar, Guo, Siegmund, Apel,...
+l.18 ..._2018_data,fourier_learning_2015,perLasso}
+                                                  .
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Guo, Yang, Siegmund, Apel, S...
+l.18 ..._2018_data,fourier_learning_2015,perLasso}
+                                                  .
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Zhang, Guo, Blais, and Czarn...
+l.18 ..._2018_data,fourier_learning_2015,perLasso}
+                                                  .
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Ha and Zhang}{Ha and Zhang}{...
+l.18 ..._2018_data,fourier_learning_2015,perLasso}
+                                                  .
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Dorn, Apel, and Siegmund}{Do...
+l.19 ... probabilistic programming~\cite{dorn2020}
+                                                  , multiple linear regressi...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Siegmund, Grebhahn, Apel, an...
+l.19 ...gmundPerformanceinfluenceModelsHighly2015}
+                                                  , classification and regre...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Guo, Czarnecki, Apel, Siegmu...
+l.19 ...fficientSamplingPerformance,guo_2018_data}
+                                                  , Fourier learning~\cite{f...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Sarkar, Guo, Siegmund, Apel,...
+l.19 ...fficientSamplingPerformance,guo_2018_data}
+                                                  , Fourier learning~\cite{f...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Guo, Yang, Siegmund, Apel, S...
+l.19 ...fficientSamplingPerformance,guo_2018_data}
+                                                  , Fourier learning~\cite{f...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Zhang, Guo, Blais, and Czarn...
+l.19 ...ning~\cite{fourier_learning_2015,perLasso}
+                                                  , and deep neural networks...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Ha and Zhang}{Ha and Zhang}{...
+l.19 ...ning~\cite{fourier_learning_2015,perLasso}
+                                                  , and deep neural networks...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Ha and Zhang}{Ha and Zhang}{...
+l.19 ...ural networks~\cite{haDeepPerf2019,perfAL}
+                                                  .
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Shu, Sui, Zhang, and Xu}{Shu...
+l.19 ...ural networks~\cite{haDeepPerf2019,perfAL}
+                                                  .
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Kaltenecker, Grebhahn, Siegm...
+l.20 ...chniques~\cite{kaltenecker_interplay_2020}
+                                                  . All sampling strategies ...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Siegmund, Kolesnikov, Kästn...
+l.20 ...iegmundPredictingPerformanceAutomated2012}
+                                                  , or sampling uniformly fr...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Oh, Batory, Myers, and Siegm...
+l.20 ...tions2017,kaltenecker_distance-based_2019}
+                                                  .
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Kaltenecker, Grebhahn, Siegm...
+l.20 ...tions2017,kaltenecker_distance-based_2019}
+                                                  .
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Velez, Jamshidi, Sattler, Si...
+l.21 ...020_configcrusher_jase,velez_comprex_2021}
+                                                   or model non-functional p...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Velez, Jamshidi, Siegmund, A...
+l.21 ...020_configcrusher_jase,velez_comprex_2021}
+                                                   or model non-functional p...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Weber, Apel, and Siegmund}{W...
+l.21 ... finer granularity~\cite{weber_white_2021}
+                                                  .
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+[]\OT1/ptm/m/n/10 (+20) Empirical per-for-mance mod-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) els, by con-trast, do not rely
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) on an un-der-stand-ing of the soft-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) ware sys-tem, but on a set
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) of configuration-specific ob-ser-va-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) tions. In this vein, find-ing con-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) fig-u-ra-tions with op-ti-mal per-for-
+ []
+
+
+Underfull \hbox (badness 3780) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) mance [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) [[]]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) and es-ti-mat-ing the per-for-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) mance for ar-bi-trary con-fig-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) u-ra-tions of the con-fig-u-ra-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) tion space is an es-tab-lished
+ []
+
+
+Overfull \hbox (68.80165pt too wide) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (-20) line of re-search [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) [[]],
+ []
+
+
+Overfull \hbox (17.04536pt too wide) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (-20) [[]],
+ []
+
+
+Overfull \hbox (11.01535pt too wide) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (-20) [[]],
+ []
+
+
+Overfull \hbox (121.04529pt too wide) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (-20) [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) [[]]. Em-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) pir-i-cal per-for-mance mod-els can
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) be ob-tained us-ing a va-ri-ety of
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) machine-learning tech-niques, in-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) clud-ing prob-a-bilis-tic pro-gram-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) ming [[]],
+ []
+
+
+Overfull \hbox (108.40956pt too wide) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (-20) mul-ti-ple lin-ear re-gres-sion [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) clas-si-fi-ca-tion and re-gres-sion
+ []
+
+
+Overfull \hbox (37.84732pt too wide) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (-20) trees [[]],
+ []
+
+
+Overfull \hbox (11.01535pt too wide) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (-20) [[]],
+ []
+
+
+Overfull \hbox (121.04529pt too wide) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (-20) [[]],
+ []
+
+
+Overfull \hbox (30.44061pt too wide) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (-20) Fourier learn-ing [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) [[]], and deep
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) neu-ral net-works [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) [[]].
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) The set of con-fig-u-ra-tions
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) for train-ing can be sam-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) pled from the con-fig-u-ra-tion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) space us-ing a va-ri-ety of
+ []
+
+
+Overfull \hbox (148.65088pt too wide) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (-20) dif-fer-ent sam-pling tech-niques [[]].
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) All sam-pling strate-gies aim
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) at yield-ing a rep-re-sen-ta-tive
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) sam-ple, ei-ther by cov-er-ing
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) the main ef-fects of con-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) fig-u-ra-tion op-tions and in-
+ []
+
+
+Overfull \hbox (221.76135pt too wide) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (-20) ter-ac-tions among them [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) or sam-pling uni-formly from the con-fig-u-ra-tion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) space [[]],
+ []
+
+
+Overfull \hbox (53.62502pt too wide) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (-20) [[]].
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) Most ap-proaches share the per-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) spec-tive of treat-ing a con-fig-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) urable soft-ware sys-tem as a black-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) box model at application-level gran-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) u-lar-ity. Re-cent work has in-cor-po-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) rated fea-ture lo-ca-tion tech-niques
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) to guide sam-pling ef-fort to-wards
+ []
+
+
+Overfull \hbox (163.333pt too wide) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (-20) rel-e-vant con-fig-u-ra-tion op-tions [[]],
+ []
+
+
+Overfull \hbox (11.33467pt too wide) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (-20) [[]]
+ []
+
+
+Underfull \hbox (badness 5652) in paragraph at lines 18--22
+\OT1/ptm/m/n/10 (+20) or model non-functional prop-er-ties at finer gran-u-lar-
+
+ []
+
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Ceesay, Lin, and Barker}{Cee...
+l.29 ...ization~\cite{ceesay2020,papadopoulos2021}
+                                                  . To select a representati...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Papadopoulos, Versluis, Baue...
+l.29 ...ization~\cite{ceesay2020,papadopoulos2021}
+                                                  . To select a representati...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Calzarossa, Massari, and Tes...
+l.29 ... from usage patterns~\cite{calzarossa2016}
+                                                  , or by increasing the wor...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Jiang and Hassan}{Jiang and ...
+l.29 ...r than a single one~\cite{jiang2015survey}
+                                                  .
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+[]\OT1/ptm/m/n/10 (+20) A use-ful work-load for as-sess-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+\OT1/ptm/m/n/10 (+20) ing per-for-mance or bench-mark-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+\OT1/ptm/m/n/10 (+20) ing should, in prac-tice, closely
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+\OT1/ptm/m/n/10 (+20) rep-re-sent the real-world sce-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+\OT1/ptm/m/n/10 (+20) nario that the sys-tem un-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+\OT1/ptm/m/n/10 (+20) der test is de-ployed in. To
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+\OT1/ptm/m/n/10 (+20) achieve this, a well-defined
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+\OT1/ptm/m/n/10 (+20) and widely em-ployed tech-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+\OT1/ptm/m/n/10 (+20) nique in per-for-mance en-gi-neer-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+\OT1/ptm/m/n/10 (+20) ing is work-load char-ac-ter-i-za-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+\OT1/ptm/m/n/10 (+20) tion [[]],
+ []
+
+
+Overfull \hbox (240.67343pt too wide) in paragraph at lines 29--30
+\OT1/ptm/m/n/10 (-20) [[]].
+ []
+
+
+Underfull \hbox (badness 1490) in paragraph at lines 29--30
+\OT1/ptm/m/n/10 (+20) with real-world ob-ser-va-tions. This can be achieved by
+ []
+
+
+Underfull \hbox (badness 1694) in paragraph at lines 29--30
+\OT1/ptm/m/n/10 (+20) con-struct-ing work-loads, among oth-ers, from us-age pat
+-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+\OT1/ptm/m/n/10 (+20) or by in-creas-ing the work-load cov-er-age by us-ing
+ []
+
+
+Underfull \hbox (badness 6236) in paragraph at lines 29--30
+\OT1/ptm/m/n/10 (+20) a mix of dif-fer-ent work-loads rather than a sin-gle
+ []
+
+[3]
+Underfull \hbox (badness 5741) in paragraph at lines 31--32
+\OT1/ptm/m/n/10 (+20) Per-for-mance Coun-cil (TPC) pro-vide large bod-ies of
+ []
+
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Pereira, Acher, Martin, and ...
+l.36 ...Pereira\,et al.~\cite{alves_sampling_2020}
+                                                  , the following example il...
+
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--37
+[]\OT1/ptm/m/n/10 (+20) Revisiting an ob-ser-va-tion by Pereiraet
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--37
+\OT1/ptm/m/n/10 (+20) al. [[]],
+ []
+
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Liao, Chen, Li, Zeng, Shang,...
+l.41 ...ves_sampling_2020,jamishidi_transfer_2017}
+                                                   and raise questions, such...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Pereira, Acher, Martin, and ...
+l.41 ...ves_sampling_2020,jamishidi_transfer_2017}
+                                                   and raise questions, such...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Jamshidi, Siegmund, Velez, K...
+l.41 ...ves_sampling_2020,jamishidi_transfer_2017}
+                                                   and raise questions, such...
+
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--42
+[]\OT1/ptm/m/n/10 (+20) Some as-pects of this \OT1/ptm/m/it/10 (+20) in-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--42
+\OT1/ptm/m/it/10 (+20) put sen-si-tiv-ity \OT1/ptm/m/n/10 (+20) have been ob-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--42
+\OT1/ptm/m/n/10 (+20) served and doc-u-mented be-
+ []
+
+
+Overfull \hbox (150.29001pt too wide) in paragraph at lines 41--42
+\OT1/ptm/m/n/10 (-20) fore in the lit-er-a-ture [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--42
+\OT1/ptm/m/n/10 (+20) [[]],
+ []
+
+
+Overfull \hbox (69.41411pt too wide) in paragraph at lines 41--42
+\OT1/ptm/m/n/10 (-20) [[]]
+ []
+
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 47.
+
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Koc, Mordahl, Wei, Foster, a...
+l.48 ...rogram verification~\cite{koc_satune_2021}
+                                                  . However, its main disadv...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Jamshidi, Siegmund, Velez, K...
+l.48 ...t sensitive~\cite{jamishidi_transfer_2017}
+                                                   when varying the workload...
+
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+ \OT1/ptm/m/it/10 (+20) a) Workload-aware Per-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/it/10 (+20) for-mance Mod-el-ing: [][][] \OT1/ptm/m/n/10 (+20) Ex-te
+nd-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) ing on work-load char-ac-ter-i-za-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) tion (cf. Sec-tion [][][][][]), a strat-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) egy that em-braces work-load di-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) ver-sity is to in-cor-po-rate work-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) load char-ac-ter-is-tics into the prob-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) lem space of a per-for-mance pre-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) dic-tion model. Here, per-for-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) mance is mod-eled as a func-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) tion of both the con-fig-u-ra-tion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) op-tions ex-hib-ited by the soft-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) ware sys-tem as well as the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) work-load char-ac-ter-is-tics, for-mally
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/cmr/m/n/10 ^^E : \OML/cmm/m/it/10 C \OMS/cmsy/m/n/10 ^^B \OML/cmm/m/it/10 
+W \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 R$\OT1/ptm/m/n/10 (+20) . The
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) com-bined prob-lem space en-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) ables learn-ing per-for-mance mod-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) els that gen-er-al-ize to work-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) loads that ex-hibit char-ac-ter-is-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) tics de-noted by $\OML/cmm/m/it/10 W$ \OT1/ptm/m/n/10 (+2
+0) since we
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) can screen for performance-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) relevant com-bi-na-tions of op-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) tions and work-load char-ac-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) ter-is-tics. Al-though this strat-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) egy is highly application-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) specific, it has been suc-cess-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) fully ap-plied to dif-fer-ent do-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) mains, such as pro-gram ver-i-fi-ca-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) tion [[]].
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) How-ever, its main dis-ad-van-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) tages are twofold: The com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) bined prob-lem space (con-fig-u-ra-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) tion and work-load di-men-sion) re-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) quires sub-stan-tially more ob-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) ser-va-tions to screen for iden-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) ti-fy-ing performance-relevant op-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) tions, char-ac-ter-is-tics, and com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) bi-na-tions thereof. In ad-di-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) tion, pre-vi-ous work found that
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (+20) that only few con-fig-u-ra-tion op-
+ []
+
+
+Overfull \hbox (163.68817pt too wide) in paragraph at lines 47--49
+\OT1/ptm/m/n/10 (-20) tions are in-put sen-si-tive [[]]
+ []
+
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Jamshidi, Siegmund, Velez, K...
+l.51 ...t sensitive~\cite{jamishidi_transfer_2017}
+                                                  . Here one first trains a ...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Jamshidi, Velez, K\"{a}stner...
+l.51 ...to workloads~\cite{jamshidi_learning_2018}
+                                                  , but has successfully bee...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Ding, Pervaiz, Krishnan, and...
+l.51 ..._2020,valov_transferring_performance_2017}
+                                                   and across versions~\cite...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Valov, Petkovich, Guo, Fisch...
+l.51 ..._2020,valov_transferring_performance_2017}
+                                                   and across versions~\cite...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Martin, Acher, Lesoil, Jezeq...
+l.51 ...cross versions~\cite{martin_transfer_2021}
+                                                  . The main shortcoming of ...
+
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+ \OT1/ptm/m/it/10 (+20) b) Trans-fer Learn-ing for
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/it/10 (+20) Per-for-mance Mod-els: [][][] \OT1/ptm/m/n/10 (+20) An-o
+ther
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) strat-egy that builds on the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) fact that, across dif-fer-ent
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) work-loads, only few con-fig-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) u-ra-tion op-tions are in fact
+ []
+
+
+Overfull \hbox (128.76198pt too wide) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (-20) in-put sen-si-tive [[]].
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) Here one first trains a model
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) on a stan-dard work-load and,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) sub-se-quently, adapts it to dif-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) fer-ent work-loads. Con-trary
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) to a gen-er-al-iz-able workload-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) aware model, trans-fer learn-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) ing strate-gies fo-cus on ap-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) prox-i-mat-ing a trans-fer func-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) tion that, with-out char-ac-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) ter-iz-ing the work-load, en-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) codes the in-for-ma-tion of
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) which con-fig-u-ra-tion op-tions are
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) sen-si-tive to dif-fer-ences be-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) tween a source and tar-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) get pair of work-loads. Train-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) ing a workload-specific model
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) and adapt-ing it on oc-ca-sion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) pro-vides an ef-fec-tive means
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) to reuse per-for-mance mod-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) els, which is not lim-ited
+ []
+
+
+Overfull \hbox (52.99522pt too wide) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (-20) to work-loads [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (+20) but has suc-cess-fully been ap-plied
+ []
+
+
+Overfull \hbox (94.03065pt too wide) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (-20) to dif-fer-ent hard-ware se-tups [[]],
+ []
+
+
+Overfull \hbox (34.335pt too wide) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (-20) [[]]
+ []
+
+
+Overfull \hbox (125.8179pt too wide) in paragraph at lines 51--52
+\OT1/ptm/m/n/10 (-20) and across ver-sions [[]].
+ []
+
+[4]
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Kounev, Lange, and von Kisto...
+l.61 ...s in the workload~\cite{benchmarking_book}
+                                                  . In a practical setting, ...
+
+? 
+
+Underfull \hbox (badness 4518) in paragraph at lines 61--64
+ \OT1/ptm/m/it/10 (+20) 1) Per-for-mance Vari-a-tion Across Work-loads: [][][] 
+\OT1/ptm/m/n/10 (+20) Per-for-
+ []
+
+
+Underfull \hbox (badness 2503) in paragraph at lines 61--64
+\OT1/ptm/m/n/10 (+20) load [[]].
+ []
+
+
+Underfull \hbox (badness 10000) in alignment at lines 65--65
+[][] 
+ []
+
+
+Overfull \hbox (10.0pt too wide) in paragraph at lines 65--66
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 65--66
+
+ []
+
+
+Underfull \hbox (badness 2134) in paragraph at lines 67--68
+\OT1/ptm/m/n/10 (+20) To un-der-stand which con-fig-u-ra-tion op-tions are driv
+-ing
+ []
+
+
+Underfull \hbox (badness 10000) in alignment at lines 69--69
+[][] 
+ []
+
+
+Overfull \hbox (10.0pt too wide) in paragraph at lines 69--70
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--70
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--73
+\OT1/ptm/m/it/10 (+20) per-for-mance in-flu-ence across work-loads
+ []
+
+
+Underfull \hbox (badness 10000) in alignment at lines 73--73
+[][] 
+ []
+
+
+Overfull \hbox (10.0pt too wide) in paragraph at lines 73--74
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--74
+
+ []
+
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Velez, Jamshidi, Sattler, Si...
+l.77 ...jase,weber_white_2021,alves_sampling_2020}
+                                                   and incorporate further o...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Weber, Apel, and Siegmund}{W...
+l.77 ...jase,weber_white_2021,alves_sampling_2020}
+                                                   and incorporate further o...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Pereira, Acher, Martin, and ...
+l.77 ...jase,weber_white_2021,alves_sampling_2020}
+                                                   and incorporate further o...
+
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+ \OT1/ptm/m/it/10 (+20) 1) Sub-ject Sys-tem Se-lec-tion: [][][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 (+20) We se-lected twelve con-fig-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 (+20) urable soft-ware sys-tems for
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 (+20) our study. To en-sure that
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 (+20) our find-ings are not spe-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 (+20) cific to one do-main or ecosys-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 (+20) tem, the se-lec-tion com-prises
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 (+20) an equal mix of Java and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 (+20) C/C++ sys-tems from dif-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 (+20) fer-ent ap-pli-ca-tion do-mains
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 (+20) (cf. Ta-ble [][]I[][]). We in-clude
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 (+20) sys-tems stud-ied in pre-vi-
+ []
+
+
+Overfull \hbox (127.91154pt too wide) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 (-20) ous and re-lated work [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 (+20) [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 (+20) [[]]
+ []
+
+[5] (./tables/subject_systems.tex
+Overfull \hbox (1.18867pt too wide) in paragraph at lines 3--3
+[]|\OT1/ptm/b/n/8 (-20) System| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+[]|\OT1/ptm/b/n/8 (+20) Application
+ []
+
+
+Overfull \hbox (1.19652pt too wide) in paragraph at lines 5--5
+[]|[]\OT1/phv/m/n/8 (-20) jump3r[]| 
+ []
+
+
+Overfull \hbox (7.26378pt too wide) in paragraph at lines 9--9
+[]|[]\OT1/phv/m/n/8 (-20) dconvert[]| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+[]|\OT1/ptm/m/n/8 (+20) Embedded
+ []
+
+
+Overfull \hbox (31.66743pt too wide) in paragraph at lines 1--28
+ [][] 
+ []
+
+)
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Difallah, Pavlo, Curino, and...
+l.105 ...xtsc{OLTPBench}~\cite{difallah_oltp_2013}
+                                                  , a load generator for dat...
+
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--106
+[]\OT1/ptm/m/n/10 (+20) For the em-bed-ded \OT1/ptm/m/it/10 (+20) database
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--106
+[]\OT1/phv/m/n/10 (+20) h2[]\OT1/ptm/m/n/10 (+20) , we used a se-lec-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--106
+\OT1/ptm/m/n/10 (+20) tion of four bench-marks
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--106
+\OT1/ptm/m/n/10 (+20) (Small-Bank, TPC-H, YCSB,
+ []
+
+
+Overfull \hbox (141.30464pt too wide) in paragraph at lines 105--106
+\OT1/ptm/m/n/10 (-20) Voter) from \OT1/ptm/m/sc/10 (-20) OLTP-Bench \OT1/ptm/m/
+n/10 (-20) [[]],
+ []
+
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {{Henard}, {Papadakis}, {Harm...
+l.113 ...rial explosion~\cite{henardCombining2015}
+                                                  , for binary configuration...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Siegmund, Grebhahn, Apel, an...
+l.114 ...mundPerformanceinfluenceModelsHighly2015}
+                                                  , where each option is ena...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {{Henard}, {Papadakis}, {Harm...
+l.114 ...vely expensive~\cite{henardCombining2015}
+                                                  .
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Kaltenecker, Grebhahn, Siegm...
+l.115 ...g}~\cite{kaltenecker_distance-based_2019}
+                                                  . If a software system exh...
+
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+ \OT1/ptm/m/it/10 (+20) 3) Con-fig-u-ra-tion Sam-pling: [][][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) For each sub-ject sys-tem, we
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) sam-pled a set of con-fig-u-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) ra-tions. As ex-haus-tive cov-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) er-age of the con-fig-u-ra-tion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) space is in-fea-si-ble due to
+ []
+
+
+Overfull \hbox (101.65549pt too wide) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (-20) com-bi-na-to-rial ex-plo-sion [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) for bi-nary con-fig-u-ra-tion op-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) tions, we com-bine sev-eral
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) coverage-based sam-pling strate-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) gies and uni-form ran-dom sam-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) pling into an \OT1/ptm/m/it/10 (+20) en-sem-ble \OT1/ptm/
+m/n/10 (+20) ap-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) proach: We em-ploy option-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) wise and neg-a-tive option-
+ []
+
+
+Overfull \hbox (64.53448pt too wide) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (-20) wise sam-pling [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) where each op-tion is en-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) abled once (i.e., in, at least,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) one con-fig-u-ra-tion), or all ex-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) cept one, re-spec-tively. In ad-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) di-tion, we use pair-wise sam-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) pling, where two-way com-bi-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) na-tions of con-fig-u-ra-tion op-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) tions are sys-tem-at-i-cally se-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) lected. In-ter-ac-tions of higher de-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) gree could be found ac-cord-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) ingly, how-ever, it is com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) pu-ta-tion-ally pro-hibitively ex-
+ []
+
+
+Overfull \hbox (35.9942pt too wide) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (-20) pen-sive [[]].
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) Last, we aug-ment our sam-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) ple set with a ran-dom sam-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) ple that is, at least, the size
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) of the coverage-based sam-ple. To
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) achieve a nearly uni-form ran-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
+\OT1/ptm/m/n/10 (+20) dom sam-ple, we used \OT1/ptm/m/it/10 (+20) distance-
+ []
+
+
+Overfull \hbox (117.02435pt too wide) in paragraph at lines 113--116
+\OT1/ptm/m/it/10 (-20) based sam-pling \OT1/ptm/m/n/10 (-20) [[]].
+ []
+
+[6]
+Overfull \hbox (33.92178pt too wide) in paragraph at lines 130--139
+ [][] 
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 151.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 151.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 151.
+
+
+Underfull \hbox (badness 2310) in paragraph at lines 153--155
+\OT1/ptm/m/n/10 (+20) com-par-ing the per-for-mance dis-tri-bu-tions from dif-f
+er-ent
+ []
+
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Lovric}{Lovric}{2010}
+l.155 ...ank test~\cite{lovric_international_2010}
+                                                   because performance distr...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Curtsinger and Berger}{Curts...
+l.155 ...tsinger_stabilizer_2013,maricq2018taming}
+                                                  , failing to meet requirem...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Maricq, Duplyakin, Jimenez, ...
+l.155 ...tsinger_stabilizer_2013,maricq2018taming}
+                                                  , failing to meet requirem...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Romano, Kromrey, Coraggio, S...
+l.155 ... Romano et al.~\cite{romano2006exploring}
+                                                  . we use Cliff's~$\delta$~...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Cliff}{Cliff}{1993}
+l.155 ...ff's~$\delta$~\cite{Cliff1993DominanceSO}
+                                                   and a threshold effect si...
+
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--156
+[]\OT1/ptm/b/n/10 (+20) Similarity\OT1/ptm/m/n/10 (+20) : To test whether work-
+load vari-a-tion
+ []
+
+
+Underfull \hbox (badness 2057) in paragraph at lines 155--156
+\OT1/ptm/m/n/10 (+20) has any ef-fect at all, we em-ploy sta-tis-ti-cal tests.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--156
+\OT1/ptm/m/n/10 (+20) We use the non-parametric Wilcoxon signed-
+ []
+
+
+Underfull \hbox (badness 4967) in paragraph at lines 155--156
+\OT1/ptm/m/n/10 (+20) rank test [[]] be-cause per-for-mance
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--156
+\OT1/ptm/m/n/10 (+20) dis-tri-bu-tions are of-ten multi-modal or long-
+ []
+
+
+Overfull \hbox (1.18039pt too wide) in paragraph at lines 155--156
+\OT1/ptm/m/n/10 (-20) tailed [[]],
+ []
+
+
+Overfull \hbox (96.46378pt too wide) in paragraph at lines 155--156
+\OT1/ptm/m/n/10 (-20) [[]],
+ []
+
+
+Underfull \hbox (badness 4316) in paragraph at lines 155--156
+\OT1/ptm/m/n/10 (+20) We as-sess whether vary-ing the work-load af-fects
+ []
+
+
+Overfull \hbox (87.0608pt too wide) in paragraph at lines 155--156
+\OT1/ptm/m/n/10 (-20) al. [[]].
+ []
+
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Kendall}{Kendall}{1938}
+l.159 ... coefficient $\tau$~\cite{kendall1938new}
+                                                   and consider $\vert\tau\v...
+
+? 
+
+Underfull \hbox (badness 4156) in paragraph at lines 159--160
+[]\OT1/ptm/b/n/10 (+20) Monotone Cor-re-la-tion\OT1/ptm/m/n/10 (+20) : Fi-nally
+, we test whether
+ []
+
+
+Underfull \hbox (badness 4378) in paragraph at lines 159--160
+\OT1/ptm/m/n/10 (+20) cor-re-la-tion co-ef-fi-cient $\OML/cmm/m/it/10 ^^\$ \OT1
+/ptm/m/n/10 (+20) [[]] and
+ []
+
+
+Overfull \hbox (6.91142pt too wide) in alignment at lines 167--176
+[][][] 
+ []
+
+
+Overfull \hbox (36.54063pt too wide) in paragraph at lines 183--267
+[][]
+ []
+
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Jamshidi, Siegmund, Velez, K...
+l.272 ... functions~\cite{jamishidi_transfer_2017}
+                                                  . For four software system...
+
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+ \OT1/ptm/m/it/10 (+20) 2) Re-sults: [][][] \OT1/ptm/m/n/10 (+20) We sum-ma-riz
+e
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) the re-sults of our clas-si-fi-ca-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) tion in Ta-ble [][]IV[][]. For all of
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) the six soft-ware sys-tems, vary-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) ing the work-loads has a not-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) i-ca-ble ef-fect on the per-for-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) mance dis-tri-bu-tion. All soft-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) ware sys-tems, at least, in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) part, ex-hibit per-for-mance dis-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) tri-bu-tions which can be trans-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) formed into one an-other us-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) ing an lin-ear trans-for-ma-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) tion, such as shift-ing by
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) a con-stant value or scal-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) ing by a con-stant fac-tor. In
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) par-tic-u-lar, for []\OT1/phv/m/n/10 (+20) jump3r[] \OT1/
+ptm/m/n/10 (+20) and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+[]\OT1/phv/m/n/10 (+20) jadx[]\OT1/ptm/m/n/10 (+20) , we did ob-serve only
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) such be-hav-ior. []This find-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) ing cor-re-sponds to ex-per-i-men-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) tal in-sights from Jamshidi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) et al., who en-coded dif-fer-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) ences be-tween per-for-mance dis-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) tri-bu-tions us-ing lin-ear func-
+ []
+
+
+Overfull \hbox (91.47472pt too wide) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (-20) tions [[]].
+ []
+
+
+Underfull \hbox (badness 1448) in paragraph at lines 270--273
+\OT1/ptm/m/n/10 (+20) In to-tal, four out of the six soft-ware sys-tems ex-hibi
+t
+ []
+
+[7]
+Underfull \hbox (badness 1394) in paragraph at lines 278--278
+\OT1/ptm/m/n/10 (+20) amount of vari-a-tion among per-for-mance dis-tri-bu-tion
+s.
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 280.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 280.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 280.
+
+
+Underfull \hbox (badness 1484) in paragraph at lines 283--284
+ \OT1/ptm/m/it/10 (+20) 1) Op-er-a-tional-iza-tion: [][][] \OT1/ptm/m/n/10 (+20
+) To ad-dress [][]$\OML/cmm/m/it/10 RQ[]$[][]\OT1/ptm/m/n/10 (+20) , we need to
+
+ []
+
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Dorn, Apel, and Siegmund}{Do...
+l.286 ...rmanceinfluenceModelsHighly2015,perLasso}
+                                                  . Here, each variable in t...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Siegmund, Grebhahn, Apel, an...
+l.286 ...rmanceinfluenceModelsHighly2015,perLasso}
+                                                  . Here, each variable in t...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Ha and Zhang}{Ha and Zhang}{...
+l.286 ...rmanceinfluenceModelsHighly2015,perLasso}
+                                                  . Here, each variable in t...
+
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--288
+ []\OT1/ptm/m/it/10 (+20) Explanatory Model: [] \OT1/ptm/m/n/10 (+20) To ob-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--288
+\OT1/ptm/m/n/10 (+20) tain ac-cu-rate and in-ter-pretable
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--288
+\OT1/ptm/m/n/10 (+20) per-for-mance in-flu-ences per op-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--288
+\OT1/ptm/m/n/10 (+20) tion, we learn an ex-plana-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--288
+\OT1/ptm/m/n/10 (+20) tory per-for-mance model us-ing
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--288
+\OT1/ptm/m/n/10 (+20) the en-tire sam-ple set that is
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--288
+\OT1/ptm/m/n/10 (+20) based on mul-ti-ple lin-ear re-gres-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--288
+\OT1/ptm/m/n/10 (+20) sion [[]],
+ []
+
+
+Overfull \hbox (6.3954pt too wide) in paragraph at lines 286--288
+\OT1/ptm/m/n/10 (-20) [[]],
+ []
+
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Daoud}{Daoud}{2017}
+l.290 ...features are correlated~\cite{Daoud_2017}
+                                                  . This can, for instance, ...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Dorn, Apel, and Siegmund}{Do...
+l.290 ...d regression coefficients~\cite{dorn2020}
+                                                  . Although the model's pre...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Dorn, Apel, and Siegmund}{Do...
+l.290 ...t cause multicollinearity~\cite{dorn2020}
+                                                  . For the training step, w...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {O'Brien}{O'Brien}{2007}
+l.290 ...to a negligble degree~\cite{o2007caution}
+                                                  .
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--291
+ []\OT1/ptm/m/it/10 (+20) Handling Mul-ti-collinear-ity: [] \OT1/ptm/m/n/10 (+2
+0) Mul-ti-collinear-ity is
+ []
+
+
+Underfull \hbox (badness 5817) in paragraph at lines 290--291
+\OT1/ptm/m/n/10 (+20) a stan-dard prob-lem in statis-tics and emerges when
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--291
+\OT1/ptm/m/n/10 (+20) fea-tures are cor-re-lated [[]]. This can,
+ []
+
+
+Underfull \hbox (badness 2334) in paragraph at lines 290--291
+\OT1/ptm/m/n/10 (+20) for in-stance, arise from groups of mu-tu-ally ex-clu-siv
+e
+ []
+
+
+Underfull \hbox (badness 1838) in paragraph at lines 290--291
+\OT1/ptm/m/n/10 (+20) con-fig-u-ra-tion op-tions and re-sult in dis-torted re-g
+res-sion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--291
+\OT1/ptm/m/n/10 (+20) co-ef-fi-cients [[]].
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--291
+\OT1/ptm/m/n/10 (+20) Al-though the model's pre-dic-tion ac-cu-racy re-mains
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--291
+\OT1/ptm/m/n/10 (+20) to en-sure that the ob-tained per-for-mance in-flu-ences
+ []
+
+[8]
+Underfull \hbox (badness 1910) in paragraph at lines 292--293
+\OT1/ptm/m/n/10 (+20) we can an-swer [][]$\OML/cmm/m/it/10 RQ[]$[][] \OT1/ptm/m
+/n/10 (+20) in de-tail and as-sess how many
+ []
+
+<images/out_annotated2.pdf, id=455, 418.91002pt x 1013.38892pt>
+File: images/out_annotated2.pdf Graphic file (type pdf)
+<use images/out_annotated2.pdf>
+Package pdftex.def Info: images/out_annotated2.pdf  used on input line 298.
+(pdftex.def)             Requested size: 244.4403pt x 591.3225pt.
+
+Overfull \hbox (4.03412pt too wide) in paragraph at lines 321--321
+[]|\OT1/ptm/b/n/8 (-20) System| 
+ []
+
+
+Overfull \hbox (2.84544pt too wide) in paragraph at lines 324--324
+[]|[]| 
+ []
+
+
+Overfull \hbox (10.10922pt too wide) in paragraph at lines 326--326
+[]|[]\OT1/phv/m/n/8 (-20) dconvert[]| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 328--329
+[]|[]\OT1/phv/m/n/8 (+20) ,
+ []
+
+
+Overfull \hbox (2.84544pt too wide) in paragraph at lines 335--335
+[]|[]| 
+ []
+
+
+Overfull \hbox (10.10922pt too wide) in paragraph at lines 337--337
+[]|[]\OT1/phv/m/n/8 (-20) dconvert[]| 
+ []
+
+
+Overfull \hbox (2.84544pt too wide) in paragraph at lines 344--344
+[]|[]| 
+ []
+
+
+Overfull \hbox (4.04196pt too wide) in paragraph at lines 344--344
+[]|[]\OT1/phv/m/n/8 (-20) jump3r[]| 
+ []
+
+
+Overfull \hbox (10.10922pt too wide) in paragraph at lines 348--348
+[]|[]\OT1/phv/m/n/8 (-20) dconvert[]| 
+ []
+
+[9 <./images/out_annotated2.pdf>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 365.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 365.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 365.
+
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Rubin and Chechik}{Rubin and...
+l.377 ...ature location}~\cite{rubin_feature_2013}
+                                                  .
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Velez, Jamshidi, Sattler, Si...
+l.378 ...e,lillack_2018_lotrack_tse,luo_2019_cova}
+                                                   and dynamic taint analysi...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Lillack, Kästner, and Bodde...
+l.378 ...e,lillack_2018_lotrack_tse,luo_2019_cova}
+                                                   and dynamic taint analysi...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Luo, Bodden, and Späth}{Luo...
+l.378 ...e,lillack_2018_lotrack_tse,luo_2019_cova}
+                                                   and dynamic taint analysi...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Bell and Kaiser}{Bell and Ka...
+l.378 ...r_2014,velez_comprex_2021,splat_kim_2013}
+                                                  , we employ a more light-w...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Velez, Jamshidi, Siegmund, A...
+l.378 ...r_2014,velez_comprex_2021,splat_kim_2013}
+                                                  , we employ a more light-w...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Kim, Marinov, Khurshid, Bato...
+l.378 ...r_2014,velez_comprex_2021,splat_kim_2013}
+                                                  , we employ a more light-w...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Wong and Li}{Wong and Li}{2005}
+l.380 ...ichelon_spectrum_2021,perez_framing_2016}
+                                                  , but root work on in prog...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Sulír and Porubän}{Sulír ...
+l.380 ...ichelon_spectrum_2021,perez_framing_2016}
+                                                  , but root work on in prog...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Michelon, Sotto-Mayor, Marti...
+l.380 ...ichelon_spectrum_2021,perez_framing_2016}
+                                                  , but root work on in prog...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Perez and Abreu}{Perez and A...
+l.380 ...ichelon_spectrum_2021,perez_framing_2016}
+                                                  , but root work on in prog...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Wilde and Casey}{Wilde and C...
+l.380 ...erez_diagnosis_2014,castro_pangolin_2019}
+                                                   and fault localization~\c...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Wilde and Scully}{Wilde and ...
+l.380 ...erez_diagnosis_2014,castro_pangolin_2019}
+                                                   and fault localization~\c...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Sherwood and Murphy}{Sherwoo...
+l.380 ...erez_diagnosis_2014,castro_pangolin_2019}
+                                                   and fault localization~\c...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Perez and Abreu}{Perez and A...
+l.380 ...erez_diagnosis_2014,castro_pangolin_2019}
+                                                   and fault localization~\c...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Castro, Perez, and Abreu}{Ca...
+l.380 ...erez_diagnosis_2014,castro_pangolin_2019}
+                                                   and fault localization~\c...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Agrawal, Horgan, London, and...
+l.380 ...te{agrawal_fault_1995,wong_faultloc_2016}
+                                                  .
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Wong, Gao, Li, Abreu, and Wo...
+l.380 ...te{agrawal_fault_1995,wong_faultloc_2016}
+                                                  .
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Michelon, Sotto-Mayor, Marti...
+l.382 ...e location}~\cite{michelon_spectrum_2021}
+                                                  :
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+ \OT1/ptm/m/it/10 (+20) 2) Lo-cat-ing Configuration-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/it/10 (+20) Dependent Code: [][][] \OT1/ptm/m/n/10 (+20) To rea-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) son about option-specific code,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) we re-quire a map-ping of con-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) fig-u-ra-tion op-tions to code.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) The prob-lem of de-ter-min-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) ing which code sec-tion im-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) ple-ments which func-tion-al-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) ity in a soft-ware sys-tem
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) is known as \OT1/ptm/m/it/10 (+20) fea-ture lo-ca-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/it/10 (+20) tion \OT1/ptm/m/n/10 (+20) [[]].
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) While there are a num-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) ber of ap-proaches based on
+ []
+
+
+Overfull \hbox (67.23145pt too wide) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (-20) static [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) [[]]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) and dy-namic taint anal-y-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) sis [[]],
+ []
+
+
+Overfull \hbox (12.53467pt too wide) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (-20) [[]],
+ []
+
+
+Overfull \hbox (81.03479pt too wide) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (-20) [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) we em-ploy a more light-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) weight, but also less pre-cise ap-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) proach that uses code cov-er-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) age in-for-ma-tion, such as ex-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) e-cu-tion traces. The ra-tio-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) nale is that, by ex-er-cis-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) ing fea-ture code, for in-stance
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) via en-abling con-fig-u-ra-tion op-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) tions or run-ning cor-re-spond-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) ing tests, its lo-ca-tion can be in-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) ferred from dif-fer-ences in code
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) cov-er-age. Ap-pli-ca-tions of such
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) an ap-proach have been stud-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) ied not only for fea-ture lo-ca-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) tion [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) [[]],
+ []
+
+
+Overfull \hbox (103.26398pt too wide) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (-20) [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) [[]], but
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) root work on in pro-gram com-pre-hen-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) sion [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) [[]],
+ []
+
+
+Overfull \hbox (96.38136pt too wide) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (-20) [[]], [[]]
+ []
+
+
+Overfull \hbox (73.11624pt too wide) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (-20) and fault lo-cal-iza-tion [[]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+\OT1/ptm/m/n/10 (+20) [[]].
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--385
+[] \OT1/ptm/m/n/10 (+20) Specif-i-cally, we fol-low a strat-egy akin to
+ []
+
+
+Overfull \hbox (231.86789pt too wide) in paragraph at lines 376--385
+\OT1/ptm/m/it/10 (-20) spectrum-based fea-ture lo-ca-tion \OT1/ptm/m/n/10 (-20)
+ [[]]:
+ []
+
+[10]
+Underfull \hbox (badness 6893) in paragraph at lines 395--396
+ \OT1/ptm/m/it/10 (+20) 3) Com-par-ing Ex-e-cu-tion Foot-prints: [][][] \OT1/pt
+m/m/n/10 (+20) From (a) the
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<images/plots/jump3r_Mono_influences.pdf, id=2055, 263.15501pt x 157.54044pt>
+File: images/plots/jump3r_Mono_influences.pdf Graphic file (type pdf)
+<use images/plots/jump3r_Mono_influences.pdf>
+Package pdftex.def Info: images/plots/jump3r_Mono_influences.pdf  used on input
+ line 406.
+(pdftex.def)             Requested size: 124.74069pt x 74.67862pt.
+<images/plots/jump3r_Mono_workloads.pdf, id=2056, 215.82822pt x 156.5367pt>
+File: images/plots/jump3r_Mono_workloads.pdf Graphic file (type pdf)
+<use images/plots/jump3r_Mono_workloads.pdf>
+Package pdftex.def Info: images/plots/jump3r_Mono_workloads.pdf  used on input 
+line 409.
+(pdftex.def)             Requested size: 112.26585pt x 81.42581pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 405--411
+[]$[]$
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 411.
+<images/plots/kanzi_skip_influences.pdf, id=2057, 255.0466pt x 157.54044pt>
+File: images/plots/kanzi_skip_influences.pdf Graphic file (type pdf)
+<use images/plots/kanzi_skip_influences.pdf>
+Package pdftex.def Info: images/plots/kanzi_skip_influences.pdf  used on input 
+line 417.
+(pdftex.def)             Requested size: 124.74069pt x 77.05124pt.
+<images/plots/kanzi_skip_workloads.pdf, id=2058, 207.71977pt x 156.5367pt>
+File: images/plots/kanzi_skip_workloads.pdf Graphic file (type pdf)
+<use images/plots/kanzi_skip_workloads.pdf>
+Package pdftex.def Info: images/plots/kanzi_skip_workloads.pdf  used on input l
+ine 420.
+(pdftex.def)             Requested size: 112.26585pt x 84.60258pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 416--422
+[]$[]$
+ []
+
+<images/plots/dconvert_web_influences.pdf, id=2059, 233.15231pt x 157.54044pt>
+File: images/plots/dconvert_web_influences.pdf Graphic file (type pdf)
+<use images/plots/dconvert_web_influences.pdf>
+Package pdftex.def Info: images/plots/dconvert_web_influences.pdf  used on inpu
+t line 428.
+(pdftex.def)             Requested size: 124.74069pt x 84.2869pt.
+<images/plots/dconvert_web_workloads.pdf, id=2060, 185.8255pt x 156.5367pt>
+File: images/plots/dconvert_web_workloads.pdf Graphic file (type pdf)
+<use images/plots/dconvert_web_workloads.pdf>
+Package pdftex.def Info: images/plots/dconvert_web_workloads.pdf  used on input
+ line 431.
+(pdftex.def)             Requested size: 112.26585pt x 94.57242pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 427--433
+[]$[]$
+ []
+
+<images/plots/h2_MVSTORE_influences.pdf, id=2061, 234.39131pt x 157.54044pt>
+File: images/plots/h2_MVSTORE_influences.pdf Graphic file (type pdf)
+<use images/plots/h2_MVSTORE_influences.pdf>
+Package pdftex.def Info: images/plots/h2_MVSTORE_influences.pdf  used on input 
+line 439.
+(pdftex.def)             Requested size: 124.74069pt x 83.83977pt.
+<images/plots/h2_MVSTORE_workloads.pdf, id=2062, 187.0645pt x 156.5367pt>
+File: images/plots/h2_MVSTORE_workloads.pdf Graphic file (type pdf)
+<use images/plots/h2_MVSTORE_workloads.pdf>
+Package pdftex.def Info: images/plots/h2_MVSTORE_workloads.pdf  used on input l
+ine 442.
+(pdftex.def)             Requested size: 112.26585pt x 93.94423pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 438--444
+[]$[]$
+ []
+
+
+LaTeX Warning: Float too large for page by 112.0016pt on input line 449.
+
+[11] [12 <./images/plots/jump3r_Mono_influences.pdf> <./images/plots/jump3r_Mon
+o_workloads.pdf
+
+pdfTeX warning: pdflatex (file ./images/plots/jump3r_Mono_workloads.pdf): PDF i
+nclusion: multiple pdfs with page group included in a single page
+> <./images/plots/kanzi_skip_influences.pdf
+
+pdfTeX warning: pdflatex (file ./images/plots/kanzi_skip_influences.pdf): PDF i
+nclusion: multiple pdfs with page group included in a single page
+> <./images/plots/kanzi_skip_workloads.pdf
+
+pdfTeX warning: pdflatex (file ./images/plots/kanzi_skip_workloads.pdf): PDF in
+clusion: multiple pdfs with page group included in a single page
+> <./images/plots/dconvert_web_influences.pdf
+
+pdfTeX warning: pdflatex (file ./images/plots/dconvert_web_influences.pdf): PDF
+ inclusion: multiple pdfs with page group included in a single page
+> <./images/plots/dconvert_web_workloads.pdf
+
+pdfTeX warning: pdflatex (file ./images/plots/dconvert_web_workloads.pdf): PDF 
+inclusion: multiple pdfs with page group included in a single page
+> <./images/plots/h2_MVSTORE_influences.pdf
+
+pdfTeX warning: pdflatex (file ./images/plots/h2_MVSTORE_influences.pdf): PDF i
+nclusion: multiple pdfs with page group included in a single page
+> <./images/plots/h2_MVSTORE_workloads.pdf
+
+pdfTeX warning: pdflatex (file ./images/plots/h2_MVSTORE_workloads.pdf): PDF in
+clusion: multiple pdfs with page group included in a single page
+>]
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Koc, Mordahl, Wei, Foster, a...
+l.467 ...figuration options~\cite{koc_satune_2021}
+                                                   or transfer existing mode...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Brown, Falgout, Jones, Jim, ...
+l.467 ...{analytic_model_2000,analytic_model_2011}
+                                                  .  By contrast, the former...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Gahvari, Baker, Schulz, Yang...
+l.467 ...{analytic_model_2000,analytic_model_2011}
+                                                  .  By contrast, the former...
+
+? 
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Martin, Acher, Lesoil, Jezeq...
+l.467 ...cond workload~\cite{martin_transfer_2021}
+                                                  .
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+[]\OT1/ptm/m/n/10 (+20) Existing strate-gies to con-sider
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) the work-load when mod-el-ing per-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) for-mance ei-ther in-clude work-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) load char-ac-ter-is-tics (scale fac-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) tor, size, etc.) as in-de-pen-dent vari-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) ables along-side con-fig-u-ra-tion op-
+ []
+
+
+Underfull \hbox (badness 2158) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) tions [[]]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) or trans-fer ex-ist-ing mod-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) els (learned from a sin-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) gle work-load) to an-other work-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) load. While the first strat-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) egy ap-pears straight-for-ward,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) char-ac-ter-i-za-tion of the work-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) load is highly domain-specific
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) and re-quires in-depth un-der-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) stand-ing of op-er-a-tion mea-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) sured, which is more suited
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) to an-a-lyt-i-cal per-for-mance mod-
+ []
+
+
+Overfull \hbox (34.49538pt too wide) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (-20) [[]].
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) By con-trast, the for-mer strat-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) egy can---in theory---be fa-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) cil-i-tated with only an ex-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) ist-ing model learned from
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) a sin-gle work-load and rel-a-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) tively few configuration-specific
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (+20) mea-sure-ments un-der a sec-
+ []
+
+
+Overfull \hbox (103.97832pt too wide) in paragraph at lines 467--468
+\OT1/ptm/m/n/10 (-20) ond work-load [[]]. 
+ []
+
+! Undefined control sequence.
+<argument> \@safe@activesfalse \citeauthoryear 
+                                               {Difallah, Pavlo, Curino, and...
+l.478 ...ench} framework~\cite{difallah_oltp_2013}
+                                                   ran on the same machine a...
+
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+[]\OT1/ptm/m/n/10 (+20) Threats to \OT1/ptm/m/it/10 (+20) in-ter-nal va-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/it/10 (+20) lid-ity \OT1/ptm/m/n/10 (+20) in-clude mea-sure-ment
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) noise which may dis-tort our
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) clas-si-fi-ca-tion into cat-e-gories
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) (Sec-tion [][][][][]) and model
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) con-struc-tion (Sec-tion [][][][][]).
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) We mit-i-gate these threats
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) by re-peat-ing each ex-per-i-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) ment five times and re-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) port-ing the me-dian as a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) ro-bust mea-sure in a con-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) trolled en-vi-ron-ment. More-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) over, the cov-er-age anal-y-sis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) (cf. Sec-tion ?) en-tails a no-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) tice-able in-stru-men-ta-tion over-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) head, which may dis-tort per-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) for-mance ob-ser-va-tions. We mit-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) i-gate this threat by sep-a-rat-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) ing the ex-per-i-ment runs for cov-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) er-age as-sess-ment and per-for-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) mance mea-sure-ment. In the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) case of h2, the load gen-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (+20) er-a-tor of the \OT1/ptm/m/sc/10 (+20) OLTP-Bench
+ []
+
+
+Overfull \hbox (59.32707pt too wide) in paragraph at lines 478--479
+\OT1/ptm/m/n/10 (-20) frame-work [[]]
+ []
+
+[13
+
+]) (./main.bbl
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Agrawal, Horgan, London, and Wong}{Agra...
+l.42         {agrawal_fault_1995}
+                                 
+? 
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Bao, Busany, Lo, and Maoz}{Bao et~al\mb...
+l.58         {bao_logdiff_ase_2019}
+                                   
+? 
+LaTeX Info: Redefining \tempurl on input line 67.
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Bell and Kaiser}{Bell and Kaiser}{2014}
+l.72         {bell_phosphor_2014}
+                                 
+? 
+LaTeX Info: Redefining \tempurl on input line 82.
+
+Underfull \hbox (badness 10000) in paragraph at lines 74--84
+[]\OT1/ptm/m/n/8 (+20) Jonathan Bell and Gail Kaiser.
+ []
+
+
+Underfull \hbox (badness 2653) in paragraph at lines 74--84
+\OT1/ptm/m/n/8 (+20) Jvms.  \OT1/ptm/m/it/8 (+20) ACM SIG-PLAN No-tices \OT1/pt
+m/m/n/8 (+20) 49, 10 (Oct. 2014), 83{101.
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Brown, Falgout, Jones, Jim, and Jones}{...
+l.88         {analytic_model_2000}
+                                  
+? 
+LaTeX Info: Redefining \tempurl on input line 98.
+
+Underfull \hbox (badness 3668) in paragraph at lines 91--100
+\OT1/ptm/m/n/8 (+20) Robert D. Fal-gout, Jim E. Jones, Jim, and E. Jones. 2000.
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--100
+\OT1/ptm/m/n/8 (+20) Semi-coars-en-ing Multi-grid On Dis-tributed Mem-ory Ma-ch
+ines.
+ []
+
+
+Underfull \hbox (badness 3260) in paragraph at lines 91--100
+\OT1/ptm/m/it/8 (+20) SIAM Jour-nal on Sci-en-tific Com-put-ing \OT1/ptm/m/n/8 
+(+20) 21 (2000), 1823--1834.
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Calzarossa, Massari, and Tessera}{Calza...
+l.104         {calzarossa2016}
+                              
+? 
+LaTeX Info: Redefining \tempurl on input line 113.
+
+Underfull \hbox (badness 10000) in paragraph at lines 106--115
+[]\OT1/ptm/m/n/8 (+20) Maria Carla
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Castro, Perez, and Abreu}{Castro et~al\...
+l.119         {castro_pangolin_2019}
+                                    
+? 
+LaTeX Info: Redefining \tempurl on input line 128.
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--130
+[]\OT1/ptm/m/n/8 (+20) Bruno Cas-tro, Alexan-dre
+ []
+
+
+Underfull \hbox (badness 4621) in paragraph at lines 121--130
+\OT1/ptm/m/it/8 (+20) on Au-to-mated Soft-ware En-gi-neer-ing (ASE)\OT1/ptm/m/n
+/8 (+20) . IEEE, 1130--1133.
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Ceesay, Lin, and Barker}{Ceesay et~al\m...
+l.134         {ceesay2020}
+                          
+? 
+LaTeX Info: Redefining \tempurl on input line 143.
+
+Underfull \hbox (badness 3861) in paragraph at lines 136--145
+[]\OT1/ptm/m/n/8 (+20) Sheriffo Ceesay, Yuhui Lin,
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Cliff}{Cliff}{1993}
+l.148         {Cliff1993DominanceSO}
+                                    
+? 
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Curtsinger and Berger}{Curtsinger and B...
+l.160         {curtsinger_stabilizer_2013}
+                                          
+? 
+LaTeX Info: Redefining \tempurl on input line 170.
+
+Underfull \hbox (badness 10000) in paragraph at lines 162--172
+[]\OT1/ptm/m/n/8 (+20) Charlie Curtsinger
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 162--172
+\OT1/ptm/m/n/8 (+20) Per-for-mance Eval-u-a-tion. In \OT1/ptm/m/it/8 (+20) Pro-
+ceed-ings of the Eigh-teenth
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Daoud}{Daoud}{2017}
+l.175         {Daoud_2017}
+                          
+? 
+LaTeX Info: Redefining \tempurl on input line 184.
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Difallah, Pavlo, Curino, and Cudre-Maur...
+l.190         {difallah_oltp_2013}
+                                  
+? 
+LaTeX Info: Redefining \tempurl on input line 201.
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--203
+[]
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Ding, Ansel, Veeramachaneni, Shen, O’...
+l.207         {ding_compilation_2015}
+                                     
+? 
+LaTeX Info: Redefining \tempurl on input line 219.
+
+Overfull \hbox (21.49425pt too wide) in paragraph at lines 211--221
+[]
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Ding, Pervaiz, Krishnan, and Hoffmann}{...
+l.225         {ding_bayesian_2020}
+                                  
+? 
+
+Underfull \hbox (badness 2970) in paragraph at lines 227--234
+[]\OT1/ptm/m/n/8 (+20) Yi Ding, Ah-san
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Dorn, Apel, and Siegmund}{Dorn et~al\mb...
+l.238         {dorn2020}
+                        
+? 
+LaTeX Info: Redefining \tempurl on input line 247.
+
+Underfull \hbox (badness 3323) in paragraph at lines 240--249
+[]\OT1/ptm/m/n/8 (+20) Johannes Dorn, Sven Apel,
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Falkner, Lindauer, and Hutter}{Falkner ...
+l.253         {falkner_sat_solvers_2015}
+                                        
+? 
+
+Underfull \hbox (badness 5681) in paragraph at lines 255--264
+[]\OT1/ptm/m/n/8 (+20) Stefan Falkner, Mar-ius
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Gahvari, Baker, Schulz, Yang, Jordan, a...
+l.268         {analytic_model_2011}
+                                   
+? 
+LaTeX Info: Redefining \tempurl on input line 280.
+
+Underfull \hbox (badness 10000) in paragraph at lines 272--282
+[]
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Guo, Czarnecki, Apel, Siegmund, and Was...
+l.286 ...ariabilityawarePerformancePrediction2013}
+                                                  
+? 
+LaTeX Info: Redefining \tempurl on input line 297.
+
+Underfull \hbox (badness 10000) in paragraph at lines 289--299
+[]\OT1/ptm/m/n/8 (+20) Jianmei
+ []
+
+
+Underfull \hbox (badness 2443) in paragraph at lines 289--299
+\OT1/ptm/m/n/8 (+20) Guo, Krzysztof Czar-necki, Sven Apel, Nor-bert Sieg-mund, 
+and
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Guo, Yang, Siegmund, Apel, Sarkar, Valo...
+l.303         {guo_2018_data}
+                             
+? 
+LaTeX Info: Redefining \tempurl on input line 316.
+
+Overfull \hbox (50.58295pt too wide) in paragraph at lines 308--318
+[]
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Ha and Zhang}{Ha and Zhang}{2019a}
+l.321         {haDeepPerf2019}
+                              
+? 
+LaTeX Info: Redefining \tempurl on input line 331.
+
+Underfull \hbox (badness 2409) in paragraph at lines 323--333
+\OT1/ptm/m/it/8 (+20) Con-fer-ence on Soft-ware En-gi-neer-ing (ICSE)\OT1/ptm/m
+/n/8 (+20) . IEEE, 1095--1106.
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Ha and Zhang}{Ha and Zhang}{2019b}
+l.336         {perLasso}
+                        
+? 
+LaTeX Info: Redefining \tempurl on input line 345.
+
+Underfull \hbox (badness 3386) in paragraph at lines 338--347
+\OT1/ptm/m/n/8 (+20) Performance-Influence Model for Highly Con-fig-urable Soft
+-ware
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {{Henard}, {Papadakis}, {Harman}, and {L...
+l.351         {henardCombining2015}
+                                   
+? 
+LaTeX Info: Redefining \tempurl on input line 362.
+
+Underfull \hbox (badness 10000) in paragraph at lines 354--364
+[]\OT1/ptm/m/n/8 (+20) Christopher
+ []
+
+
+Underfull \hbox (badness 4242) in paragraph at lines 354--364
+\OT1/ptm/m/n/8 (+20) Com-bin-ing Multi-Objective Search and Con-straint Solv-in
+g for
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Jamshidi, Siegmund, Velez, K\"{a}stner,...
+l.368         {jamishidi_transfer_2017}
+                                       
+? 
+LaTeX Info: Redefining \tempurl on input line 380.
+
+Overfull \hbox (10.23811pt too wide) in paragraph at lines 372--382
+[]
+ []
+
+
+Underfull \hbox (badness 5460) in paragraph at lines 372--382
+\OT1/ptm/m/n/8 (+20) Pooyan Jamshidi, Nor-bert Sieg-mund, Miguel Velez, Chris-t
+ian
+ []
+
+
+Underfull \hbox (badness 2035) in paragraph at lines 372--382
+\OT1/ptm/m/n/8 (+20) K[]astner, Ak-shay Pa-tel, and Yu-vraj Agar-wal. 2017a.  T
+rans-fer
+ []
+
+
+Underfull \hbox (badness 5091) in paragraph at lines 372--382
+\OT1/ptm/m/n/8 (+20) Learn-ing for Per-for-mance Mod-el-ing of Con-fig-urable S
+ys-tems:
+ []
+
+
+Underfull \hbox (badness 3769) in paragraph at lines 372--382
+\OT1/ptm/m/n/8 (+20) An Ex-ploratory Anal-y-sis. In \OT1/ptm/m/it/8 (+20) Pro-c
+eed-ings of the In-ter-na-tional
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Jamshidi, Velez, K\"{a}stner, and Siegm...
+l.386         {jamshidi_learning_2018}
+                                      
+? 
+LaTeX Info: Redefining \tempurl on input line 398.
+
+Underfull \hbox (badness 10000) in paragraph at lines 389--400
+[]\OT1/ptm/m/n/8 (+20) Pooyan
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Jamshidi, Velez, K\"{a}stner, Siegmund,...
+l.404         {jamshidi_transfer_gp_2017}
+                                         
+? 
+LaTeX Info: Redefining \tempurl on input line 416.
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--418
+[]
+ []
+
+
+Underfull \hbox (badness 4899) in paragraph at lines 407--418
+\OT1/ptm/m/it/8 (+20) of the In-ter-na-tional Sym-po-sium on Soft-ware En-gi-ne
+er-ing for
+ []
+
+
+Underfull \hbox (badness 6316) in paragraph at lines 407--418
+\OT1/ptm/m/it/8 (+20) Adap-tive and Self-Managing Sys-tems (SEAMS)\OT1/ptm/m/n/
+8 (+20) . IEEE, 31{41.
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Jiang and Hassan}{Jiang and Hassan}{2015}
+l.421         {jiang2015survey}
+                               
+? 
+LaTeX Info: Redefining \tempurl on input line 431.
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Kaltenecker, Grebhahn, Siegmund, and Ap...
+l.437         {kaltenecker_interplay_2020}
+                                          
+? 
+LaTeX Info: Redefining \tempurl on input line 447.
+
+Underfull \hbox (badness 10000) in paragraph at lines 440--449
+[]
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Kaltenecker, Grebhahn, Siegmund, Guo, a...
+l.453         {kaltenecker_distance-based_2019}
+                                               
+? 
+LaTeX Info: Redefining \tempurl on input line 464.
+
+Underfull \hbox (badness 10000) in paragraph at lines 456--466
+[]
+ []
+
+
+Underfull \hbox (badness 4416) in paragraph at lines 456--466
+\OT1/ptm/m/n/8 (+20) Christian Kalte-necker, Alexan-der Greb-hahn, Nor-bert Sie
+g-mund,
+ []
+
+
+Underfull \hbox (badness 2409) in paragraph at lines 456--466
+\OT1/ptm/m/it/8 (+20) Con-fer-ence on Soft-ware En-gi-neer-ing (ICSE)\OT1/ptm/m
+/n/8 (+20) . IEEE, 1084--1094.
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Kendall}{Kendall}{1938}
+l.469         {kendall1938new}
+                              
+? 
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Khavari~Tavana, Sun, Bohm~Agostini, and...
+l.480         {khavari_compression_2019}
+                                        
+? 
+LaTeX Info: Redefining \tempurl on input line 490.
+
+Overfull \hbox (3.43083pt too wide) in paragraph at lines 483--492
+[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 483--492
+\OT1/ptm/m/n/8 (+20) to Im-prove Per-for-mance and Energy-Efficiency of Com-put
+e
+ []
+
+
+Underfull \hbox (badness 1960) in paragraph at lines 483--492
+\OT1/ptm/m/n/8 (+20) Work-loads in Multi-GPU Sys-tems. In \OT1/ptm/m/it/8 (+20)
+ 2019 IEEE In-ter-na-tional
+ []
+
+[14]
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Kim, Marinov, Khurshid, Batory, Souto, ...
+l.496         {splat_kim_2013}
+                              
+? 
+LaTeX Info: Redefining \tempurl on input line 510.
+
+Overfull \hbox (18.57458pt too wide) in paragraph at lines 500--512
+[]
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Koc, Mordahl, Wei, Foster, and Porter}{...
+l.516         {koc_satune_2021}
+                               
+? 
+LaTeX Info: Redefining \tempurl on input line 527.
+
+Underfull \hbox (badness 3746) in paragraph at lines 519--529
+[]\OT1/ptm/m/n/8 (+20) Ugur Koc, Austin
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Kounev, Lange, and von Kistowski}{Koune...
+l.533         {benchmarking_book}
+                                 
+? 
+LaTeX Info: Redefining \tempurl on input line 543.
+
+Underfull \hbox (badness 10000) in paragraph at lines 536--545
+[]\OT1/ptm/m/n/8 (+20) Samuel Kounev,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 536--545
+\OT1/ptm/m/it/8 (+20) Bench-mark-ing \OT1/ptm/m/n/8 (+20) (1 ed.).  Springer In
+-ter-na-tional Pub-lish-ing.
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Liao, Chen, Li, Zeng, Shang, Guo, Spore...
+l.549         {liao_2020_using_emse}
+                                    
+? 
+LaTeX Info: Redefining \tempurl on input line 561.
+
+Overfull \hbox (10.015pt too wide) in paragraph at lines 553--563
+[]
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Lillack, Kästner, and Bodden}{Lillack ...
+l.567         {lillack_2018_lotrack_tse}
+                                        
+? 
+LaTeX Info: Redefining \tempurl on input line 577.
+
+Underfull \hbox (badness 10000) in paragraph at lines 569--579
+[]\OT1/ptm/m/n/8 (+20) Max Lil-lack, Chris-tian
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Lovric}{Lovric}{2010}
+l.582         {lovric_international_2010}
+                                         
+? 
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Luo, Bodden, and Späth}{Luo et~al\mbox...
+l.594         {luo_2019_cova}
+                             
+? 
+LaTeX Info: Redefining \tempurl on input line 603.
+
+Underfull \hbox (badness 10000) in paragraph at lines 596--605
+[]\OT1/ptm/m/n/8 (+20) Linghui Luo, Eric Bod-den,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 596--605
+\OT1/ptm/m/n/8 (+20) Taint-Analysis Re-sults. In \OT1/ptm/m/it/8 (+20) Pro-ceed
+-ings of the In-ter-na-tional
+ []
+
+
+Underfull \hbox (badness 5359) in paragraph at lines 596--605
+\OT1/ptm/m/it/8 (+20) Con-fer-ence on Au-to-mated Soft-ware En-gi-neer-ing (ASE
+)\OT1/ptm/m/n/8 (+20) . IEEE,
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Maricq, Duplyakin, Jimenez, Maltzahn, S...
+l.609         {maricq2018taming}
+                                
+? 
+
+Overfull \hbox (14.91785pt too wide) in paragraph at lines 612--618
+[]
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Martin, Acher, Lesoil, Jezequel, Khella...
+l.622         {martin_transfer_2021}
+                                    
+? 
+LaTeX Info: Redefining \tempurl on input line 633.
+
+Underfull \hbox (badness 10000) in paragraph at lines 626--635
+[]
+ []
+
+
+Underfull \hbox (badness 1571) in paragraph at lines 626--635
+\OT1/ptm/m/n/8 (+20) Hugo Mar-tin, Math-ieu Acher, Luc Lesoil, Jean Marc Jeze-q
+uel,
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Maxiaguine, Liu, Chakraborty, and Ooi}{...
+l.639         {maxiaguine_workload_2004}
+                                        
+? 
+LaTeX Info: Redefining \tempurl on input line 649.
+
+Underfull \hbox (badness 10000) in paragraph at lines 642--651
+[]\OT1/ptm/m/n/8 (+20) A.
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Michelon, Sotto-Mayor, Martinez, Arriet...
+l.655         {michelon_spectrum_2021}
+                                      
+? 
+LaTeX Info: Redefining \tempurl on input line 667.
+
+Overfull \hbox (36.358pt too wide) in paragraph at lines 659--669
+[]
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Nair, Menzies, Siegmund, and Apel}{Nair...
+l.673         {nairUsingBadLearners2017}
+                                        
+? 
+LaTeX Info: Redefining \tempurl on input line 684.
+
+Underfull \hbox (badness 10000) in paragraph at lines 675--686
+[]\OT1/ptm/m/n/8 (+20) Vivek Nair, Tim
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {{Nair}, {Yu}, {Menzies}, {Siegmund}, an...
+l.690         {nairFlash18}
+                           
+? 
+LaTeX Info: Redefining \tempurl on input line 700.
+
+Underfull \hbox (badness 10000) in paragraph at lines 693--702
+[]\OT1/ptm/m/n/8 (+20) Vivek Nair,
+ []
+
+
+Underfull \hbox (badness 5970) in paragraph at lines 693--702
+\OT1/ptm/m/n/8 (+20) Zhe Yu, Tim. Men-zies, Nor-bert Sieg-mund, and Sven Apel.
+ []
+
+
+Underfull \hbox (badness 2809) in paragraph at lines 693--702
+\OT1/ptm/m/n/8 (+20) 2020.  Find-ing Faster Con-fig-u-ra-tions Us-ing FLASH.  \
+OT1/ptm/m/it/8 (+20) IEEE
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {O'Brien}{O'Brien}{2007}
+l.705         {o2007caution}
+                            
+? 
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Oh, Batory, Myers, and Siegmund}{Oh et~...
+l.717 ... {ohFindingNearoptimalConfigurations2017}
+                                                  
+? 
+LaTeX Info: Redefining \tempurl on input line 728.
+
+Underfull \hbox (badness 3735) in paragraph at lines 719--730
+[]\OT1/ptm/m/n/8 (+20) Jeho Oh, Don Ba-tory,
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Papadopoulos, Versluis, Bauer, Herbst, ...
+l.735         {papadopoulos2021}
+                                
+? 
+LaTeX Info: Redefining \tempurl on input line 749.
+
+Overfull \hbox (146.68561pt too wide) in paragraph at lines 741--751
+[]
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Pereira, Acher, Martin, and J\'{e}z\'{e...
+l.755         {alves_sampling_2020}
+                                   
+? 
+LaTeX Info: Redefining \tempurl on input line 766.
+
+Underfull \hbox (badness 10000) in paragraph at lines 758--768
+[]\OT1/ptm/m/n/8 (+20) Juliana Alves
+ []
+
+
+Underfull \hbox (badness 1975) in paragraph at lines 758--768
+\OT1/ptm/m/n/8 (+20) Pereira, Math-ieu Acher, Hugo Mar-tin, and Jean-Marc J[]ez
+[]equel.
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Perez and Abreu}{Perez and Abreu}{2014}
+l.771         {perez_diagnosis_2014}
+                                    
+? 
+LaTeX Info: Redefining \tempurl on input line 780.
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Perez and Abreu}{Perez and Abreu}{2016}
+l.785         {perez_framing_2016}
+                                  
+? 
+LaTeX Info: Redefining \tempurl on input line 794.
+
+Underfull \hbox (badness 3460) in paragraph at lines 787--796
+\OT1/ptm/m/n/8 (+20) 2016.  Fram-ing pro-gram com-pre-hen-sion as fault lo-cal-
+iza-tion.
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Plotnikov, Melnik, Vardanyan, Buchatski...
+l.800         {plotnikov_compilation_2013}
+                                          
+? 
+LaTeX Info: Redefining \tempurl on input line 812.
+
+Overfull \hbox (25.9911pt too wide) in paragraph at lines 804--816
+[]
+ []
+
+
+Underfull \hbox (badness 2564) in paragraph at lines 804--816
+\OT1/ptm/m/n/8 (+20) Dmitry Plot-nikov, Dmitry Mel-nik, Mamikon Var-danyan, Rub
+en
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Romano, Kromrey, Coraggio, Skowronek, a...
+l.820         {romano2006exploring}
+                                   
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 823--830
+[]
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Rubin and Chechik}{Rubin and Chechik}{2...
+l.833         {rubin_feature_2013}
+                                  
+? 
+LaTeX Info: Redefining \tempurl on input line 844.
+
+Underfull \hbox (badness 10000) in paragraph at lines 835--846
+[]\OT1/ptm/m/n/8 (+20) Julia Ru-bin and Mar-sha
+ []
+
+
+Underfull \hbox (badness 4353) in paragraph at lines 835--846
+\OT1/ptm/m/n/8 (+20) Chechik. 2013.  A Sur-vey of Fea-ture Lo-ca-tion Tech-niqu
+es.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 835--846
+\OT1/ptm/m/n/8 (+20) In \OT1/ptm/m/it/8 (+20) Do-main En-gi-neer-ing: Prod-uct 
+Lines, Lan-guages, and
+ []
+
+
+Underfull \hbox (badness 4341) in paragraph at lines 835--846
+\OT1/ptm/m/it/8 (+20) Con-cep-tual Mod-els\OT1/ptm/m/n/8 (+20) , Iris Reinhartz
+-Berger, Arnon Sturm, Tony
+ []
+
+
+Underfull \hbox (badness 1552) in paragraph at lines 835--846
+\OT1/ptm/m/n/8 (+20) Clark, Sholom Co-hen, and Jorn Bet-tin (Eds.). Springer, 2
+9--58.
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Sarkar, Guo, Siegmund, Apel, and Czarne...
+l.850 ... {sarkarCostEfficientSamplingPerformance}
+                                                  
+? 
+LaTeX Info: Redefining \tempurl on input line 860.
+
+Underfull \hbox (badness 10000) in paragraph at lines 853--862
+[]\OT1/ptm/m/n/8 (+20) Atri
+ []
+
+
+Underfull \hbox (badness 4024) in paragraph at lines 853--862
+\OT1/ptm/m/n/8 (+20) of Con-fig-urable Sys-tems. In \OT1/ptm/m/it/8 (+20) Pro-c
+eed-ings of the In-ter-na-tional
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Sherwood and Murphy}{Sherwood and Murph...
+l.866         {sherwood_reducing_nodate}
+                                        
+? 
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Shu, Sui, Zhang, and Xu}{Shu et~al\mbox...
+l.879         {perfAL}
+                      
+? 
+LaTeX Info: Redefining \tempurl on input line 892.
+
+Underfull \hbox (badness 10000) in paragraph at lines 881--894
+[]\OT1/ptm/m/n/8 (+20) Yangyang Shu, Yulei Sui,
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Siegmund, Grebhahn, Apel, and K\"astner...
+l.898 ...mundPerformanceinfluenceModelsHighly2015}
+                                                  
+? 
+LaTeX Info: Redefining \tempurl on input line 909.
+
+Underfull \hbox (badness 10000) in paragraph at lines 901--911
+[]\OT1/ptm/m/n/8 (+20) Norbert
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Siegmund, Kolesnikov, Kästner, Apel, B...
+l.915 ...egmundPredictingPerformanceAutomated2012}
+                                                  
+? 
+LaTeX Info: Redefining \tempurl on input line 926.
+
+Overfull \hbox (58.13454pt too wide) in paragraph at lines 919--928
+[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 919--928
+\OT1/ptm/m/n/8 (+20) Per-for-mance via Au-to-mated Feature-Interaction De-tec-t
+ion. In
+ []
+
+[15]
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Sulír and Porubän}{Sulír and Porubä...
+l.932         {sulir_annotation_2015}
+                                     
+? 
+LaTeX Info: Redefining \tempurl on input line 941.
+
+Underfull \hbox (badness 10000) in paragraph at lines 934--943
+[]\OT1/ptm/m/n/8 (+20) Mat[]u[]s Sul[]^^Pr and Jaroslav
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 934--943
+\OT1/ptm/m/n/8 (+20) Porub[]an. 2015.  Semi-automatic con-cern an-no-ta-tion us
+-ing
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 934--943
+\OT1/ptm/m/n/8 (+20) dif-fer-en-tial code cov-er-age. In \OT1/ptm/m/it/8 (+20) 
+Pro-ceed-ings of the IEEE
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Valov, Petkovich, Guo, Fischmeister, an...
+l.947 ...    {valov_transferring_performance_2017}
+                                                  
+? 
+LaTeX Info: Redefining \tempurl on input line 957.
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--959
+[]\OT1/ptm/m/n/8 (+20) Pavel
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Velez, Jamshidi, Sattler, Siegmund, Ape...
+l.963         {velez_2020_configcrusher_jase}
+                                             
+? 
+LaTeX Info: Redefining \tempurl on input line 974.
+
+Underfull \hbox (badness 10000) in paragraph at lines 967--976
+[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 967--976
+\OT1/ptm/m/n/8 (+20) Sven Apel, and Chris-tian K[]astner. 2020.  Con-figCrusher
+:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 967--976
+\OT1/ptm/m/n/8 (+20) To-wards White-Box Per-for-mance Anal-y-sis for Con-fig-ur
+able
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Velez, Jamshidi, Siegmund, Apel, and K�...
+l.980         {velez_comprex_2021}
+                                  
+? 
+LaTeX Info: Redefining \tempurl on input line 991.
+
+Underfull \hbox (badness 10000) in paragraph at lines 983--993
+[]\OT1/ptm/m/n/8 (+20) Miguel
+ []
+
+
+Underfull \hbox (badness 4634) in paragraph at lines 983--993
+\OT1/ptm/m/n/8 (+20) Per-for-mance of Con-fig-urable Sys-tems. In \OT1/ptm/m/it
+/8 (+20) Pro-ceed-ings of the
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Weber, Apel, and Siegmund}{Weber et~al\...
+l.997         {weber_white_2021}
+                                
+? 
+LaTeX Info: Redefining \tempurl on input line 1006.
+
+Underfull \hbox (badness 6332) in paragraph at lines 999--1008
+[]\OT1/ptm/m/n/8 (+20) Max We-ber, Sven Apel,
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Wilde and Casey}{Wilde and Casey}{1996}
+l.1011         {wilde_early_1996}
+                                 
+? 
+LaTeX Info: Redefining \tempurl on input line 1020.
+
+Underfull \hbox (badness 1609) in paragraph at lines 1013--1022
+[]\OT1/ptm/m/n/8 (+20) Norman Wilde and Christo-pher
+ []
+
+
+Underfull \hbox (badness 2809) in paragraph at lines 1013--1022
+\OT1/ptm/m/n/8 (+20) Tech-nique for Pro-gram Com-pre-hen-sion. In \OT1/ptm/m/it
+/8 (+20) Pro-ceed-ings of the
+ []
+
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Wilde and Scully}{Wilde and Scully}{1995}
+l.1025         {wilde_reconnaissance_1995}
+                                          
+? 
+LaTeX Info: Redefining \tempurl on input line 1035.
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Wong, Gao, Li, Abreu, and Wotawa}{Wong ...
+l.1041         {wong_faultloc_2016}
+                                   
+? 
+LaTeX Info: Redefining \tempurl on input line 1051.
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Wong and Li}{Wong and Li}{2005}
+l.1056         {wong_integrated_2005}
+                                     
+? 
+LaTeX Info: Redefining \tempurl on input line 1065.
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Xu, Hutter, Hoos, and Leyton-Brown}{Xu ...
+l.1071         {satzilla_2008}
+                              
+? 
+! Undefined control sequence.
+<argument> \protect \citeauthoryear 
+                                    {Zhang, Guo, Blais, and Czarnecki}{Zhang...
+l.1086         {fourier_learning_2015}
+                                      
+? 
+LaTeX Info: Redefining \tempurl on input line 1096.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1088--1098
+[]\OT1/ptm/m/n/8 (+20) Yi Zhang, Jian-mei
+ []
+
+)
+
+** Conference Paper **
+Before submitting the final camera ready copy, remember to:
+
+ 1. Manually equalize the lengths of two columns on the last page
+ of your paper;
+
+ 2. Ensure that any PostScript and/or PDF output post-processing
+ uses only Type 1 fonts and that every step in the generation
+ process uses the appropriate paper size.
+
+[16
+
+] (build//main.aux
+* soulpos - computing points - it may take a few seconds *
+\openout4 = `main.upb'.
+
+ (build//main.upa))
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 69F04768E997B38DC6B376460631B176;2925.
+ ) 
+Here is how much of TeX's memory you used:
+ 29357 strings out of 479304
+ 568402 string characters out of 5869779
+ 1102917 words of memory out of 5000000
+ 45405 multiletter control sequences out of 15000+600000
+ 468189 words of font info for 383 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 107i,20n,134p,1438b,1180s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
+w/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/u
+hvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/urw/times/utmri8a.pfb>
+Output written on build//main.pdf (16 pages, 671019 bytes).
+PDF statistics:
+ 2658 PDF objects out of 2984 (max. 8388607)
+ 1912 compressed objects within 20 object streams
+ 145 named destinations out of 1000 (max. 500000)
+ 73175 words of extra memory for PDF output out of 74296 (max. 10000000)
+

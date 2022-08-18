@@ -1,0 +1,62 @@
+This is BibTeX, Version 0.99d (TeX Live 2020/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: mein.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: literature.bib
+Warning--string name "springer" is undefined
+--line 1835 of file literature.bib
+Warning--string name "springer" is undefined
+--line 1855 of file literature.bib
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty booktitle in weber_white_2021
+
+Done.
+You've used 66 entries,
+            4087 wiz_defined-function locations,
+            1236 strings with 22918 characters,
+and the built_in function-call counts, 57201 in all, are:
+= -- 4473
+> -- 1500
+< -- 452
++ -- 815
+- -- 270
+* -- 2661
+:= -- 7933
+add.period$ -- 160
+call.type$ -- 66
+change.case$ -- 71
+chr.to.int$ -- 1071
+cite$ -- 67
+duplicate$ -- 4182
+empty$ -- 4802
+format.name$ -- 333
+if$ -- 13668
+int.to.chr$ -- 0
+int.to.str$ -- 66
+missing$ -- 744
+newline$ -- 227
+num.names$ -- 70
+pop$ -- 1835
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 4478
+stack$ -- 0
+substring$ -- 2719
+swap$ -- 3393
+text.length$ -- 95
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 66
+warning$ -- 1
+while$ -- 251
+width$ -- 68
+write$ -- 656
+(There were 3 warnings)
