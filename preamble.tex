@@ -19,7 +19,7 @@
 % for emergencies
 % suble = develpent
 % moderate = serious
-%\usepackage[subtle]{savetrees}
+\usepackage[subtle]{savetrees}
 
 \usepackage[noadjust]{cite}
 
@@ -29,7 +29,7 @@
 % configure hyperlinks 
 \usepackage{hyperref}
 \hypersetup{%
-	colorlinks,
+	%colorlinks,
 	linkcolor={brown!50!red},
 	citecolor={blue},
 	urlcolor={green!60!black}
@@ -60,8 +60,8 @@
 \usepackage[framemethod=TikZ]{mdframed}
 \newcommand{\greybox}[1]{
 	\begin{mdframed}[
-		backgroundcolor=cyan!5!white,
-		linecolor=cyan!10!white,
+		backgroundcolor=edited!10!white,
+		linecolor=edited!20!white,
 		linewidth=2pt,
 		innerleftmargin=5pt,
 		innerrightmargin=5pt,
@@ -137,14 +137,14 @@
 		\def\arraystretch{1.3}%  1 is the default, change whatever you need
 		\begin{tabularx}{\linewidth}{p{0.12\linewidth}?p{0.75\linewidth}}
 			\rowcolor{white!5!white}
-			$RQ_{#1}$ & \textit{#2} \\
+			$\text{RQ}_\text{#1}$ & \textit{#2} \\
 		\end{tabularx}
 		\egroup
 	}
 }
 
 %\colorbox{mentioned-color}{text}
-\newcommand{\RQref}[1]{\hyperlink{rq:#1}{$RQ_{#1}$}}
+\newcommand{\RQref}[1]{\hyperlink{rq:#1}{$\text{RQ}_\text{#1}$}}
 
 \usepackage{comment}
 
@@ -171,7 +171,7 @@
 \definecolor{lt-color-raw}{HTML}{d9cf16}
 \definecolor{xmt-color-raw}{HTML}{e303fc}
 \definecolor{nmt-color-raw}{HTML}{0fb4bd}
-\definecolor{edited}{HTML}{6608a8}
+\definecolor{edited}{HTML}{170c82}
 
 \colorlet{cs-color}{cs-color-raw!28!white}
 \colorlet{lt-color}{lt-color-raw!28!white}
