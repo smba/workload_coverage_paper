@@ -32,6 +32,7 @@ A useful workload for assessing performance or benchmarking should, in practice,
 While workload characterization and benchmark construction is domain-specific, there are numerous examples of this task being driven by community efforts instead of individuals. For instance, the non-profit organizations Standard Performance Evaluation Corporation (SPEC) and Transaction Processing Performance Council (TPC) provide large bodies of benchmarks for data-centric applications or across different domains, respectively.
 
 \subsection{Representative Estimations?}\label{sec:generalizability}
+{\color{edited}
 While the notion of representative workloads is ubiquitous in an industry setting, we face a different situation in research on empirical performance models (cf. Section~\ref{sec:perfmodels}): Most approaches provide accurate performance estimations, yet are based on observations gained by varying configurations while keeping the workload the same. The choice of workloads is an "orthogonal" problem~\cite{han_confprof_2021} and can limit the model's generalizability to different workloads, especially if the training workload poorly represents real-world scenarios. While the configuration-specific behavior might be congruent across different workloads (i.e, a configuration scoring comparably for different workloads), we cannot rely on such assumptions in practice, where different workloads can indeed result in entirely different configuration-specific performance behavior.
 
 \begin{figure}
@@ -53,7 +54,7 @@ While the notion of representative workloads is ubiquitous in an industry settin
 \end{figure}
 
 
-{\color{blue!80!black} Consider the illustratory example from Figure~\ref{fig:sensitivity_example}. Here, we measure performance under three different configurations and two different inputs, $w_1$ and $w_2$. The software system takes longer for $w_2$, regardless of the configuration. This could, for instance, be attributed to $w_2$ being more complex and performance scaling proportionally. However, if we ask which option is fastest in general there is no concrete answer since configuration 1 prevails for $w_1$ and configuration 2 for $w_2$. If we look at the corresponding performance prediction models below, we learn that the influence of $o_1$ is smaller than for $o_2$ in $\Pi_{w_1}$ and vice versa in $\Pi_{w_2}$. Thus, there must be some hidden feature or variable, the "difference" between $w_1$ and $w_2$ that accounts for this performance variation beyond configuration options.
+ Consider the illustratory example from Figure~\ref{fig:sensitivity_example}. Here, we measure performance under three different configurations and two different inputs, $w_1$ and $w_2$. The software system takes longer for $w_2$, regardless of the configuration. This could, for instance, be attributed to $w_2$ being more complex and performance scaling proportionally. However, if we ask which option is fastest in general there is no concrete answer since configuration 1 prevails for $w_1$ and configuration 2 for $w_2$. If we look at the corresponding performance prediction models below, we learn that the influence of $o_1$ is smaller than for $o_2$ in $\Pi_{w_1}$ and vice versa in $\Pi_{w_2}$. Thus, there must be some hidden feature or variable, the "difference" between $w_1$ and $w_2$ that accounts for this performance variation beyond configuration options.
 }
 %{\todo{kürzen, Beispiel für performance model hier bringen}\color{red}Revisiting an observation by Pereira\,et al.~\cite{alves_sampling_2020}, the following example illustrates that even seemingly small differences in the composition of a workload can induce performance behavior that is hard to anticipate: We tested the performance (throughput: transactions per second) of a number of configurations for the database system \htwo across two different workloads. Both workloads are instances of the database benchmark \textsf{TPC-C}, consisting of a fixed-ratio mix of transactions (inserts, updates, selects) for a specific database schema. The only difference was varying the scale factor, which controls for the number of warehouses modeled in the schema. The resulting performance distributions are given in Figure~\ref{fig:h2_intro}.
 
@@ -95,6 +96,7 @@ The first two research questions describe the performance behavior of our subjec
 \RQ{3}{Does the variation in configuration options' performance influence across workloads correlate with differences in the respective execution footprint?}
 \subsection{Experiment Setup}\label{sec:setup}
 \subsubsection{Subject System Selection}
+{\color{edited}
 We selected ten configurable software systems for our study. To ensure that our findings are not specific to one domain or ecosystem, the selection comprises an equal mix of Java and C/C++ systems from different application domains (cf. Table~\ref{tab:subject_systems}). We include systems studied in previous and related work~\cite{velez_2020_configcrusher_jase,weber_white_2021,alves_sampling_2020} and incorporate further ones with comparable size and configuration complexity. All systems operate by processing a domain-specific input fed to them (henceforth called \textit{workload}). This study treats execution time as the key performance indicator with the exception of \htwo, where we report throughput.
 
 \begin{table}
@@ -122,10 +124,8 @@ For the \textit{SVG rasterizer} \batik, the measured task was to transform a SVG
 
 For the embedded \textit{database} \htwo, we used a selection of four benchmarks (SmallBank, TPC-H, YCSB, Voter) from \textsc{OLTPBench}~\cite{difallah_oltp_2013}, a load generator for databases that allows for using a variety of performance testing benchmarks. For each benchmark, we varied the scale factor, which controls the complexity (number of entities modeled) in each scenario.
 
-%For the \textit{Java decompiler} \jadx, the measured task was to decompile a number of Android applications in DEX byte code. We selected a number of APK packages from APKMirror\footnote{\url{https://apkmirror.com/}} from different domains (social media, games, utility etc.) and of varying size.
-
 For the \textit{image scaler} \dconvert, the measured task was to transform resources (image files, Photoshop sketches) at different scales (useful for Android development). We selected files that reflect \dconvert's documented input formats (JPEG, PNG, PSD, and SVG) and vary in file size.
-
+}
 
 \subsubsection{Configuration Sampling}\label{sec:sampling}
 For each subject system, we sampled a set of configurations. As exhaustive coverage of the configuration space is infeasible due to combinatorial explosion~\cite{henardCombining2015}, for binary configuration options, we combine several coverage-based sampling strategies and uniform random sampling into an \emph{ensemble} approach: 
@@ -134,8 +134,9 @@ Last, we augment our sample set with a random sample that is, at least, the size
 
 
 \subsubsection{Coverage Profiling}\label{sec:profiling}
+{\color{edited}
 To assess what lines of code are executed for each combination of workload and software configuration, we used two separate approaches for Java and C/C++. For Java, we used the on-the-fly profiler \textsc{Jacoco}\footnote{\url{https://www.jacoco.org/jacoco/trunk/doc/}} that intercepts byte code running on the JVM at run-time. For C/C++, we added instrumentation code to the software systems using \textsc{Clang/LLVM}\footnote{\url{link to LLVM}} to collect coverage information. We split the performance measurement and coverage analysis runs to  avoid distortion from the profiling overhead.
-
+}
 	
 \subsubsection{Measurement Setup}\label{sec:measurement_setup}
 All experiments were conducted on three different compute clusters), where all machines within a compute cluster had the identical hardware setup: Cluster \textsf{A} with an Intel Xeon E5-2630v4 CPU (2.2\,GHz) and 256\,GB of RAM, cluster \textsf{B}  with an Intel Core i7-8559U CPU (2.7\,GHz) and 32\,GB of RAM, and cluster \textsf{C} with an Intel Core i5-8259U (2.3\,GHz) and 32\,GB of RAM. All clusters ran a headless Debian 10 installation (kernel 4.19.0-17 for cluster \textsf{A} and 4.19.0-14 for clusters \textsf{B} and \textsf{C}). To minimize measurement noise, we used a controlled environment, where no additional user processes were running in the background, and no other than necessary packages were installed. 
@@ -257,7 +258,7 @@ We summarize the category criteria as well as the category counts in Table~\ref{
 \end{table}
 
 \subsubsection{Results}
-
+{\color{edited}
 We summarize the results of our classification in Table~\ref{tab:categorization_counts}. The observed range of relationships across the ten software systems has to type prevail across all software systems. 
 All software systems, at least, in part, exhibit performance distributions which can be transformed into one another using an linear transformations (\textit{\colorbox{lt-color}{LT}}), such as shifting by a constant value or scaling by a constant factor. In particular, for \jumper and \xzwo, we observe only such behavior. The presence of linear transformations corresponds to experimental insights from Jamshidi et al., who encoded differences between performance distributions using linear functions~\cite{jamishidi_transfer_2017}.
 
@@ -278,12 +279,12 @@ To obtain accurate and interpretable performance influences per option, we learn
 We limit the set of independent variables to individual options rather than including higher-order interactions to be consistent with the feature location used for \RQref{3} where we determine option-specific, yet not interaction-specific code segments.
 \paragraph*{Standardization}
 To facilitate the comparison of regression coefficients across workloads, we follow common practice in machine learning and standardize our dependent variable by subtracting the population’s mean performance and divide the result by the respective standard deviation. Henceforth, we refer to these standardized regression coefficients as \textit{relative performance influences}. A beneficial side effect of standardization is that the observed variation of regression coefficients for each configuration option cannot be attributed to shifting or scaling effects (affine transformation, category \colorbox{lt-color}{\textit{LT}} in Table~\ref{tab:categorization}). This way, we can pin down  the non-linear or explicitly non-monotonous effect that workloads may exercise on performance.
-\paragraph*{Handling Multicollinearity} Multicollinearity is a standard problem in statistics and emerges when features are correlated~\cite{Daoud_2017}. This can, for instance, arise from groups of mutually exclusive configuration options and result in distorted regression coefficients~\cite{dorn2020}. Although the model's prediction accuracy remains unaffected, we cannot trust and interpret the calculated coefficients. To mitigate this problem and, in particular, to ensure that the obtained performance influences remain interpretable, we follow best practices and remove specific configuration options from the sample that cause multicollinearity~\cite{dorn2020}. For the training step, we exclude all mandatory configuration options since these, by definition, cannot contribute to performance variation. In addition, for each group of mutually exclusive configuration options, we discard one group member. These measures reduced the variance inflation factor (indicating multicollinearity) to a negligble degree~\cite{o2007caution}.\\
+\paragraph*{Handling Multicollinearity} Multicollinearity is a standard problem in statistics and emerges when features are correlated~\cite{Daoud_2017}. This can, for instance, arise from groups of mutually exclusive configuration options and result in distorted regression coefficients~\cite{dorn2020}. Although the model's prediction accuracy remains unaffected, we cannot trust and interpret the calculated coefficients. To mitigate this problem and, in particular, to ensure that the obtained performance influences remain interpretable, we follow best practices and remove specific configuration options from the sample that cause multicollinearity~\cite{dorn2020}. For the training step, we exclude all mandatory configuration options since these, by definition, cannot contribute to performance variation. In addition, for each group of mutually exclusive configuration options, we discard one group member. These measures reduced the variance inflation factor (indicating multicollinearity) to a negligble degree~\cite{o2007caution}.
 
 From the comparison of the relative performance influences, we can answer \RQref{2} in detail and describe how options are sensitive to varying the workload, what characteristic traits describe the performance influences, and whether we can identify patterns.
 
 \subsubsection{Results}\label{sec:results2}
-{\color{blue}
+{\color{edited}
 Our results from fitting performance prediction models show a wide variety of input sensitivity. Due to the size of our empirical study and space limitations we selected three configuration options that showcase different characteristic traits of observed input sensitivity. The exhaustive analysis for all configuration options is illustrated at the interactive dashboard provided as supplementary material.
 
 \paragraph{Conditional Influence} For some configuration options, we observe that they become influential to performance only under specific workloads and remain non-influential otherwise. An example of such conditional influence is the configuration option “MONO” for the mp3 encoder jump3r. We illustrate the performance influence of this option across all workloads tested in the bar plot in Figure3. Selecting this option reduced the execution time greatly for two workloads, whereas for the other four workloads, the influence  was substantially smaller.
@@ -295,7 +296,9 @@ The global parameter “proof” enables tracking information in the SMT solver 
 
 \paragraph{Scaling Anomaly} The last example we present illustrates that workload characteristics one would consider transparent at first glance do not necessarily have anticipated results. Consider the example of the configuration option MVSTORE of the database system h2. The option controls which storage engine, either the newer multi-version store or the legacy page store, is used. As shown in Figure5, we observe that selecting the newer multi-version store increases the measured throughput for all but one benchmark scenario. When tested with the Yahoo! Cloud Serving Benchmark (YCSB) with two different scale factors (which control the workload complexity; expressed as number of rows), we observe that the less complex parameterization (ycsb-600) results in a lower throughput. This is in stark contrast to the expectation that a more complex workload would show lower throughput. While it is possible that some optimizations of the multi-version store are only effective under higher load, this example demonstrates that performance influence is not guaranteed to scale with the workload as expected.  
 
-
+\vspace{1mm}
+\greybox{\textbf{Summary} (\RQref{2}): ...
+}
 
 
 
@@ -375,7 +378,7 @@ These criteria, the spread (\circled{1}) or concentration, opposing influences (
 		\multirow{5}{*}{\parbox{1.3cm}{\centering \circled{3}\\\vspace{1mm}Conditional Influences}} & \jumper & 3 & \textsf{Mono, MidSideStereo, JointStereo}\\
 		\cmidrule{2-4}
 		 & \kanzi & 4 & \textsf{BWT, skip, TPAQ, TPAQX} \\
-		 \cmidrule{2-4}
+		 \cmidrule{2-4}Varying the workload causes a substantial amount of variation among performance distributions. Across workloads, we observed \textit{mostly linear} (majority for for 70\,\% of the subject systems), but to a large extent, also \textit{non-monotonous} relationships (majority for 30\,\% of the subject systems).
 		 & \dconvert & 7 & \textsf{floor, png, round, threads, web, ios, win} \\
 		 \cmidrule{2-4}
 		 & \htwo & 2 & \textsf{DEFRAG\_ALWAYS, COMPRESS} \\
@@ -409,6 +412,7 @@ Applications of such an approach have been studied not only for feature location
 }
 Specifically, we follow  a strategy akin to  \textit{spectrum-based feature location}~\cite{michelon_spectrum_2021}:
 
+{\color{edited}
 We commence with obtaining a baseline of all code that can be associated with a configuration option in the scope of our workload selection. Since we are looking for workload-specific differences in option-code coverage, the expressiveness of such a baseline depends on the diversity of the workloads in question. To infer option-specific code, we split our sample (cf. Section ?) into two disjoint sets $c_o$ and $c_{\neg o}$ such that option $o$ is selected only in $c_o$ and vice versa. Next, we select from our coverage logs the corresponding covered lines of code, $S_o$ and $S_{\neg o}$.  The rationale is that all lines common between both sets are not affected by the selection of an option $o$. Thus, we compute the \textit{symmetric difference} $\mathbb{S}_o = S_o~\Delta~S_{\neg o}$ to approximate option-specific or, at least, option-related code sections. To finally obtain code sections that are option-specific under a specific workload $w$, we repeat the steps above. Here, we only consider execution logs under workload $w$ ($S_{o, w}$ and $S_{\neg o, w}$) and compute the symmetric difference $\mathbb{S}_{o,w}=S_{o,w}~\Delta~S_{\neg o, w}$.  
 
 
@@ -417,8 +421,19 @@ From (a) the information about which code sections are specific to a configurati
 We use agglomerative hierarchical clustering with full linkage to construct dendrograms. In this bottom-up approach, we iteratively add execution footprints to clusters and merge sub clusters into larger ones depending on their Jaccard similarity  to each other. 
 
 \subsubsection{Results}
+We report our findings for the relationship between execution footprints and performance influences for the same configuration options presented for \RQref{2} since these illustrate likely causes of input sensitivity and the limitations of solely relying on code coverage. Nonetheless, the dashboard on the supplementary web site provides diagrams and inferred feature code for all configuration options.
 
+We report our findings for the relationship between execution footprints and performance influences for the same configuration options presented for RQ2 since these illustrate likely causes of input sensitivity and the limitations of solely relying on code coverage. Nonetheless, the dashboard on the supplementary web site provides diagrams and inferred option-specific code for all configuration options. 
 
+The dendrograms beside the visualizations of performance influences in Figures 3, 4, and 5, respectively, illustrate how similar the covered lines of option-specific code under each workload are. 
+
+In many cases, where  a configuration option is “conditionally influential”, the respective option-specific code under the interacting workloads fall into a cluster, as with the option-specific code for Mono in Figure3. In this particular example, the dendrogram can be somewhat misleading as the number of common lines of code between workloads helix and dual-channel is far greater than between the other four workloads. Hence, differences in the coverage of option-specific code can account for, at least, some input sensitivity.
+
+The other two examples, configuration options “proof” (z3) and “MVSTORE” (h2) provide a different picture. Akin to the variation of performance influence of option “proof”, the clustering for this configuration option (cf. Figure4) shows that some clusters are disjoint, and, thus, the option-specific code is highly fragmented depending on the workload. 
+
+Similarly to option “proof”, for “MVSTORE” we see that the option-specific code is highly fragmented, yet all four benchmarks constitute clusters of high internal similarity. In the context of the observed variation of performance influences for the Yahoo! Cloud Serving Benchmark (YCSB), we see that even very high similarity in the covered code can virtually either improve or deteriorate performance.
+
+}
 \begin{comment}
 We inspected manually the relation of the coverage similarity across workloads per option and the observed workload-specific performance influences.  For the majority of cases, the results suggest that the workload determines how the code is executed since we did not observe a strong relationship between performance variation and differences in code coverage. However, we have identified seven configuration options across three software systems (\jumper, \kanzi, and \dconvert) for which code coverage is likely the driving factor for performance variation. We present illustrative examples for both scenarios in Figure~\ref{fig:results_rq3}.
 \begin{figure}
@@ -480,23 +495,28 @@ For the other subject systems and remaining configuration options, we could not 
 \greybox{\textbf{Summary} (\RQref{3}): Varying the workload can condition the execution of option-specific code  (\textit{code coverage}) and cause performance differences. However, there is no single driving factor: \textit{Code utilization} depending on workload characteristics is a likely factor accounting for the majority of performance influence variation.  
 }
 \end{comment}
-\todo{Here results from RQ3}
-%\clearpage
-\section{Discussion}
 
+%\clearpage
+
+\vspace{1mm}
+\greybox{\textbf{Summary} (\RQref{3}): ...
+}
+
+\section{Discussion}
+{\color{edited}
 \subsection{Option-level Input Sensitivity}
 
 The observed input sensitivity for configuration options exhibits a wide range of characteristics. While a large portion of options scales proportionally with workload complexity or remains unaffected by workload variation, the performance influences of several configuration options appear sensitive to the workload.  So far, the existing body of work on modeling and optimizing configuration-specific performance largely neglects the impact of workload variation at the cost of generalizability. Option-specific input sensitivity is a strong motivation for assessing influential factors beyond configuration options more thoroughly and rigorously. Performance variation that is unaccounted for poses the risk of distorting performance estimations and, thus, rendering performance models useless in practice. Although transfer learning is used in literature to reuse existing performance models across different workloads, our findings let us raise concerns about its effectiveness and generalizability. 
 
 In their exploratory analysis, Jamshidi et al. reuse existing performance models by learning a linear transfer function across workloads~\cite{jamishidi_transfer_2017}. Our results from \RQref{1} have shown non-monotonous performance relationships across workloads, which, in practice, can be challenging to capture with such transfer functions. The presence of \textit{non-monotonous interactions} between workloads and configuration options provides a strong argument for employing more apt machine learning techniques. Ensemble-based approaches, such as gradient boosting regression trees have shown promising results for transfer across versions and are an avenue for future work~\cite{martin_transfer_2021}.
 
-\greybox{\textbf{Summary:} Option-level input sensitivity can challenge robust and practical configuration-specific performance models, yet is neglected in state-of-the-art approaches.
+\greybox{\textbf{Lesson 1:} Option-level input sensitivity can challenge robust and practical configuration-specific performance models, yet is neglected in state-of-the-art approaches.
 }
 
 \subsection{Driving Factors for Input Sensitivity}
 Extending on the findings from \RQref{2} and \RQref{3}, to treat option-specific input sensitivity, a key challenge is to infer which options are susceptible to workload variation. Despite the limitations faced with the coverage-based approach from \RQref{3} (missing baseline), we have correlated missed option code with variation in the observed performance. Our findings point to more detailed code analysis, such as line hit counts or execution logs, and more profound domain knowledge as key ingredients for mastering the input sensitivity assessment. In literature, the heuristic to consider only influential configuration options for transfer learning has shown effective results~\cite{jamshidi_learning_2018}. However, we question whether this approach would generalize in practice in the light of the conditional performance influences observed in Setions~\ref{sec:rq2} and \ref{sec:rq3}. Clearly, more research is needed to provide an empirical base and framework for sensitivity assessment.
 
-\greybox{\textbf{Summary:} Understanding the driving factors for input sensitivity is necessary for providing representative workloads and identifying sensitive configuration options. 
+\greybox{\textbf{Lesson 2:} Understanding the driving factors for input sensitivity is necessary for providing representative workloads and identifying sensitive configuration options. 
 }
 
 \section{Threats to Validity}\label{sec:threats}
@@ -507,7 +527,7 @@ Threats to\textit{ external validity} include the selection of subject systems a
 The goal of this selection is to study the \emph{presence} and quality of workload-option interactions, but not their \emph{prevalence}. Hence, we are confident that this selection does not invalidate our findings.
 
 %{\color{magenta}Threats to \textit{construct validity} include our choice of correlation metrics in Section~\ref{sec:rq1}, regression technique in Section~\ref{sec:rq2}, and similarity metric in Section~\ref{sec:rq3}. The correlation metrics are widely used to describe statistical relationships and the overall picture remains consistent with slightly different thresholds. Multiple linear regression as well... }
-\color{black}
+}
 \section{Conclusion}\label{sec:conclusion}
 Most modern software systems exhibit configuration options to customize behaviors and meet user demands. Configuration choices, however, can also affect the performance of a software system.
 State-of-the-art approaches model configuration-dependent software performance, yet overlook variation due to the workload. Until now, there exists no \textit{systematic} assessment of what is driving the effect that input sensitivity of individual configuration options’ influence on performance. We have conducted an empirical study of {\color{red}35\,659 configurations and 103 workloads across ten} configurable software systems to characterize the effects that varying the workload can have on configuration-specific performance. We compare performance measurements with code coverage data to identify possible factors that drive input sensitivity. We found that the interactions between options and workloads are driven by workload characteristics conditioning the execution of option-specific code sections as well as determining how option-specific code sections are executed. Our findings highlight the necessity to consider input sensitivity when modeling configuration-dependent performance as varying the workload resulted in a substantial number of non-monotonous relationships, which limits a performance model's representativeness. Code analysis can provide an effective strategy to differentiate between sources of input sensitivity to obtain more representative performance models.
