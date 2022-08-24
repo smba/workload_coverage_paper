@@ -78,6 +78,11 @@ H.~Ha and H.~Zhang, ``{Performance-Influence Model for Highly Configurable
   of the International Conference on Software Maintenance and Evolution
   (ICSME)}, 2019, pp. 470--480.
 
+\bibitem{chen_hinnperf_2022}
+J.~Cheng, C.~Gao, and Z.~Zheng, ``{HINNPerf: Hierarchical Interaction Neural
+  Network for Performance Prediction of Configurable Systems},'' \emph{ACM
+  Transactions on Software Engineering and Methodology}, 2022, to appear.
+
 \bibitem{falkner_sat_solvers_2015}
 S.~Falkner, M.~Lindauer, and F.~Hutter, ``Spysmac: Automated configuration and
   performance analysis of sat solvers,'' in \emph{Theory and Applications of
@@ -159,11 +164,12 @@ H.~Martin, M.~Acher, L.~Lesoil, J.~M. Jezequel, D.~E. Khelladi, and J.~A.
 Y.~Ding, A.~Pervaiz, S.~Krishnan, and H.~Hoffmann, ``{Bayesian Learning for
   Hardware and Software Configuration Co-Optimization},'' Tech. Rep.
 
-\bibitem{han_confprof_2021}
-X.~Han, T.~Yu, and M.~Pradel, ``{ConfProf: White-Box Performance Profiling of
-  Configuration Options},'' in \emph{Proceedings of the ACM/SPEC International
-  Conference on Performance Engineering (ICPE)}.\hskip 1em plus 0.5em minus
-  0.4em\relax ACM, 2021, p. 1–8.
+\bibitem{chen_mmo_2021}
+{Chen, Tao and Li, Miqing}, ``{Multi-Objectivizing Software Configuration
+  Tuning},'' in \emph{Proceedings of the Joint Meeting of the European Software
+  Engineering Conference and the ACM SIGSOFT Symposium on the Foundations of
+  Software Engineering (ESEC/FSE)}.\hskip 1em plus 0.5em minus 0.4em\relax ACM,
+  2021, pp. 453--465.
 
 \bibitem{nairUsingBadLearners2017}
 V.~Nair, T.~Menzies, N.~Siegmund, and S.~Apel, ``{Using Bad Learners to Find
@@ -219,6 +225,12 @@ M.~Weber, S.~Apel, and N.~Siegmund, ``{White-Box Performance-Influence Models:
   A Profiling and Learning Approach}.''\hskip 1em plus 0.5em minus 0.4em\relax
   IEEE, 2021, pp. 1059--1071.
 
+\bibitem{han_confprof_2021}
+X.~Han, T.~Yu, and M.~Pradel, ``{ConfProf: White-Box Performance Profiling of
+  Configuration Options},'' in \emph{Proceedings of the ACM/SPEC International
+  Conference on Performance Engineering (ICPE)}.\hskip 1em plus 0.5em minus
+  0.4em\relax ACM, 2021, p. 1–8.
+
 \bibitem{ceesay2020}
 S.~Ceesay, Y.~Lin, and A.~Barker, ``{A Survey: Benchmarking and Performance
   Modelling of Data Intensive Applications},'' in \emph{IEEE/ACM International
@@ -240,12 +252,6 @@ M.~C. Calzarossa, L.~Massari, and D.~Tessera, ``{Workload Characterization: A
 Z.~M. Jiang and A.~E. Hassan, ``{A Survey on Load Testing of Large-Scale
   Software Systems},'' \emph{IEEE Transactions on Software Engineering (TSE)},
   vol.~41, no.~11, pp. 1091--1118, 2015.
-
-\bibitem{liao_2020_using_emse}
-L.~Liao, J.~Chen, H.~Li, Y.~Zeng, W.~Shang, J.~Guo, C.~Sporea, A.~Toma, and
-  S.~Sajedi, ``{Using black-box performance models to detect performance
-  regressions under varying workloads: an empirical study},'' \emph{Empirical
-  Software Engineering (ESE)}, pp. 1--31, 2020.
 
 \bibitem{valov_transferring_performance_2017}
 P.~Valov, J.-C. Petkovich, J.~Guo, S.~Fischmeister, and K.~Czarnecki,

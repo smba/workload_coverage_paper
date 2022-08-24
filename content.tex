@@ -1,9 +1,21 @@
+\begin{comment}
+content...
+\color{red}
+The performance characteristics of a software system depends to a significant extent on its configuration and workload. State-of-the-art performance modeling approaches either address configuration-dependent or workload-dependent performance behavior.  The interaction of both factors and how they influence performance have not been systematically studied so far. Understanding to what extent configuration and workload---individually and combined---cause a software system’s performance to vary is key to understand whether performance models are generalizable, across different configurations and workloads. Assessing the impact and driving factors of such input sensitivity is key to develop strategies that obtain representative performance prediction models.
+
+To shed light on this issue, we have conducted a \emph{systematic} empirical study, analyzing a multitude of configurations and workloads across {\color{red}nine} software systems. We have obtained a substantial number of black-box performance measurements and enriched them with coverage data to assess whether and how configuration choices and workloads interact and shape software performance. 
+We find that input sensitivity does not only affect software performance at the system-level, but affects individual configuration options as well, often in a non-monotonous way. We critically reflect on these patterns and aim at raising awareness to the missing notion of input sensitivity in state-of-the-art-approaches that model configuration-specific software performance. Our study provides an empirical basis which questions the practicality and generalizability of such approaches.
+\end{comment}
+
 \begin{abstract}
-	\color{red}
-	The performance characteristics of a software system depends to a significant extent on its configuration and workload. State-of-the-art performance modeling approaches either address configuration-dependent or workload-dependent performance behavior.  The interaction of both factors and how they influence performance have not been systematically studied so far. Understanding to what extent configuration and workload---individually and combined---cause a software system’s performance to vary is key to understand whether performance models are generalizable, across different configurations and workloads. Assessing the impact and driving factors of such input sensitivity is key to develop strategies that obtain representative performance prediction models.
-	
-	To shed light on this issue, we have conducted a \emph{systematic} empirical study, analyzing a multitude of configurations and workloads across {\color{red}nine} software systems. We have obtained a substantial number of black-box performance measurements and enriched them with coverage data to assess whether and how configuration choices and workloads interact and shape software performance. 
-	We find that input sensitivity does not only affect software performance at the system-level, but affects individual configuration options as well, often in a non-monotonous way. We critically reflect on these patterns and aim at raising awareness to the missing notion of input sensitivity in state-of-the-art-approaches that model configuration-specific software performance. Our study provides an empirical basis which questions the practicality and generalizability of such approaches.
+\color{blue}	
+\paragraph*{Context} 
+\paragraph*{Problem}
+\paragraph*{Objective}
+\paragraph*{Method}
+\paragraph*{Result}
+\paragraph*{Conclusion}
+
 \end{abstract}
 
 \section{Introduction}
@@ -298,30 +310,34 @@ From the comparison of the relative performance influences, we can answer \RQref
 
 \subsubsection{Results}\label{sec:results2}
 
-\begin{figure*}[ht!]
+\begin{figure*}
 	
-	\begin{subfigure}{0.33\linewidth}
+	\begin{subfigure}{0.3\linewidth}
 		\centering
-		\vspace{5cm}
+		\includegraphics[width=\linewidth]{images/jump3r.pdf}
 		\caption{\jumper}
+		\label{fig:overview_jump3r}
 	\end{subfigure}
-	\begin{subfigure}{0.33\linewidth}
+	\begin{subfigure}{0.3\linewidth}
 		\centering
-		\vspace{5cm}
+		\includegraphics[width=\linewidth]{images/z3.pdf}
 		\caption{\zdrei}
+		\label{fig:overview_z3}
 	\end{subfigure}
-	\begin{subfigure}{0.33\linewidth}
+	\begin{subfigure}{0.4\linewidth}
 		\centering
-		\vspace{5cm}
+		\includegraphics[width=\linewidth]{images/h2.pdf}
 		\caption{\htwo}
+		\label{fig:overview_h2}
 	\end{subfigure}
 	
-	\caption{abcdef}
+	\caption{\color{blue} Distribution of configuration options' performance influences for three of the nine subject systems (\jumper, \zdrei, and \htwo).}
+	\label{fig:three_systems}
 \end{figure*}
-\todo{add system-wide performance}
-
-{\color{edited}
+	
 Our results from fitting performance prediction models show a wide variety of input sensitivity. Due to the size of our empirical study and space limitations we selected three configuration options that showcase different characteristic traits of observed input sensitivity. The exhaustive analysis for all configuration options is illustrated at the interactive dashboard provided as supplementary material. We strongly invite the interested reader to use this interactive dashboard to explore all distributions and result obtained in this study.
+
+{\color{blue} In Figure~\ref{fig:three_systems}, we show the distribution of configuration options' performance influences for three of the nine software systems (\jumper, \zdrei, and \htwo) to provide an overview of the complete systems. The following showcases refer to one row in Figures~\ref{fig:overview_jump3r}, \ref{fig:overview_z3}, and \ref{fig:overview_h2} (configuration option) for one subject system each.}
 
 \paragraph{Conditional Influence}\label{sec:conditional_influence} For some configuration options, we observe that they affect performance only under specific workloads and remain non-influential otherwise. An example of such conditional influence is the configuration option \textsf{Mono} for the mp3 encoder \jumper. We illustrate the performance influence of this option across six workloads presented as bar plots in Figure~\ref{fig:mono_jump3r}. Selecting this option reduced the execution time substantially for two workloads, whereas for the other four workloads, the effect was substantially smaller.
 
@@ -330,7 +346,7 @@ According to the documentation of the software system\footnote{\url{https://gith
 \paragraph{High Spread} Another pattern we found is that the performance influence of most (relevant) configuration options exhibits a large spread. For example, option \textsf{proof} of the SMT solver \zdrei can both increase or decrease the execution time as shown in Figure~\ref{fig:proof_z3}. Compared to the example above, we cannot attribute this variation to an apparent workload characteristic.
 The global parameter \textsf{proof} enables tracking information in the SMT solver such that proof generation in the case when unsatisfiability is facilitated. Each workload in our selection contains multiple problems instances to decide satisfiability for. We conjecture that the ratio of satisfiable to unsatisfiable instances likely accounts for this high variation. From the user's perspective, any input to the solver is opaque in that satisfiability as a workload characteristic cannot be determined practically without a solver. 
 
-\paragraph{Scaling Anomaly} The anomaly pattern is shown for the configuration option \textsf{MVSTORE} of the database system \htwo in Figure~\ref{fig:mvstore_h2} (left()). The option controls which storage engine, either the newer multi-version store or the legacy page store, is used. We observe that selecting the newer multi-version store increases the measured throughput for all but one benchmark scenario. When tested with the Yahoo! Cloud Serving Benchmark (YCSB) with two different scale factors (that control the workload complexity; expressed as number of rows), we found that the less complex parameterization (ycsb-600) results in a lower throughput. This is in stark contrast to the expectation that a more complex workload would show lower throughput. While it is possible that some optimizations of the multi-version store are effective only under higher load, this example demonstrates that performance influence is not guaranteed to scale with the workload as expected.  
+\paragraph{Scaling Anomaly} The anomaly pattern is shown for the configuration option \textsf{MVSTORE} of the database system \htwo in Figure~\ref{fig:mvstore_h2} (left). The option controls which storage engine, either the newer multi-version store or the legacy page store, is used. We observe that selecting the newer multi-version store increases the measured throughput for all but one benchmark scenario. When tested with the Yahoo! Cloud Serving Benchmark (YCSB) with two different scale factors (that control the workload complexity; expressed as number of rows), we found that the less complex parameterization (ycsb-600) results in a lower throughput. This is in stark contrast to the expectation that a more complex workload would show lower throughput. While it is possible that some optimizations of the multi-version store are effective only under higher load, this example demonstrates that performance influence is not guaranteed to scale with the workload as expected.  
 
 \vspace{1mm}
 \greybox{\textbf{Summary} (\RQref{2}): Workloads and their characteristics can affect configuration options' performance influence in various ways (e.g., conditioning influence, introducing variance, having outliers), yet identifying relevant workload characteristics is highly domain-specific and cannot be considered trivial. 
@@ -346,18 +362,20 @@ The global parameter \textsf{proof} enables tracking information in the SMT solv
 		\label{fig:mono_jump3r}
 	\end{subfigure}
 	
-	
 	\begin{subfigure}{\linewidth}
-		\includegraphics[width=0.999\linewidth]{rq23/MVSTORE.pdf}
-		\caption{Performance influence (left) and option-code coverage clustering for option \textsf{MVSTORE} (\htwo).}
-		\label{fig:mvstore_h2}
-	\end{subfigure}
-	
-	\begin{subfigure}{\linewidth}
+		\vspace{2em}
 		\includegraphics[width=0.999\linewidth]{rq23/proof.pdf}
 		\caption{Performance influence (left) and option-code coverage clustering for option \textsf{proof} (\zdrei).}
 		\label{fig:proof_z3}
 	\end{subfigure}
+
+	\begin{subfigure}{\linewidth}
+		\vspace{2em}
+		\includegraphics[width=0.999\linewidth]{rq23/MVSTORE.pdf}
+		\caption{Performance influence (left) and option-code coverage clustering for option \textsf{MVSTORE} (\htwo).}
+		\label{fig:mvstore_h2}
+	\end{subfigure}
+\caption{\color{blue} Workload-dependent performance influences of configuration options \textsf{Mono} (\jumper), \textsf{proof} (\zdrei), and \textsf{MVSTORE} (\htwo).}
 \end{figure}
 
 \subsection{Relationship of Configuration-Specific Code Coverage and Workload Variation ($RQ_3$)}\label{sec:rq3}\label{sec:categories}
@@ -390,6 +408,7 @@ We use agglomerative hierarchical clustering with full linkage to construct dend
 
 \subsubsection{Results}\label{sec:results3}
 We report our findings for the relationship between execution footprints and performance influences for the same configuration options presented for \RQref{2} since these illustrate likely causes of input sensitivity and the limitations of solely relying on code coverage. The dashboard on the supplementary Web site provides diagrams and inferred feature code for all configuration options. The dendrograms beside the visualizations of performance influences in Figures \ref{fig:mono_jump3r}, \ref{fig:mvstore_h2}, and \ref{fig:proof_z3}, respectively, illustrate how similar the covered lines of option-specific code under each workload are. 
+{\color{blue} The dendrograms depict the Jaccard similarity clustering, where (from left to right) the split points indicate what Jaccard distance individual sets of lines or subclusters exhibit. The further to the left the point is, the more similar are the constituent parts.}
 
 In many cases, where  a configuration option is "conditionally influential" (cf.~Section~\ref{sec:conditional_influence}), the respective option-specific code under the interacting workloads fall into a cluster, as with the option-specific code for \textsf{Mono} in Figure~\ref{fig:mono_jump3r}. In this particular example, the dendrogram can be somewhat misleading as the number of common lines of code between workloads helix and dual-channel is far greater than between the other four workloads. Hence, differences in the coverage of option-specific code can account for, at least, some input sensitivity.
 
@@ -441,7 +460,7 @@ for mastering assessment of input sensitivity. Our coverage-based technique has 
 }
 
 \section{Threats to Validity}\label{sec:threats}
-%\subsection{Internal Validity}
+\color{blue}
 Threats to \textit{internal validity} include measurement noise which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We mitigate these threats by repeating each experiment five times  (except for \htwo; cf. Section~\ref{sec:measurement_setup}) and reporting the median as a robust measure in a controlled environment. Moreover, the coverage analysis (cf. Section~\ref{sec:profiling}) entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario with only negligible overhead. 	
 	
 Threats to\textit{ external validity} include the selection of subject systems and workloads. To ensure generalizability, we select software systems from various various application domains as well as two different programming language ecosystems (cf.~Table~\ref{tab:subject_systems}). In lieu of domain knowledge, we cannot select workloads systematically with respect to workload characteristics due to workloads inherent opacity. We address this issue by varying likely relevant characteristics and, where possible, reusing workloads across subject systems of the same domain. Achieving true representativeness is desirable, yet intractable. 
@@ -451,8 +470,8 @@ Threats to \textit{construct validity} include our choice of correlation metrics
 	
 
 \section{Conclusion}\label{sec:conclusion}
-\color{black}
+
 Most modern software systems exhibit configuration options to customize behaviors and meet user demands. Configuration choices, however, can also affect the performance of a software system.
 State-of-the-art approaches model configuration-dependent software performance, yet overlook variation due to the workload. Until now, there exists no \textit{systematic} assessment of what is driving the effect that input sensitivity of individual configuration options’ influence on performance. We have conducted an empirical study of {\color{red}X configurations and Y workloads across nine} configurable software systems to characterize the effects that varying the workload can have on configuration-specific performance. We compare performance measurements with code coverage data to identify possible factors that drive input sensitivity. 
 
-{\color{edited}We find that input sensitivity does not only affect software performance at the system-level, but affects individual configuration options as well, often in a non-monotonous way. We critically reflect on these patterns and aim at raising awareness to the missing notion of input sensitivity in state-of-the-art-approaches that model configuration-specific software performance. Our study provides an empirical basis which questions the practicality and generalizability of such approaches and calls for incorporating input sensitivity to maintain and improve the representativeness of approaches that model configuration-specific software performance.}
+We find that input sensitivity does not only affect software performance at the system-level, but affects individual configuration options as well, often in a non-monotonous way. We critically reflect on these patterns and aim at raising awareness to the missing notion of input sensitivity in state-of-the-art-approaches that model configuration-specific software performance. Our study provides an empirical basis which questions the practicality and generalizability of such approaches and calls for incorporating input sensitivity to maintain and improve the representativeness of approaches that model configuration-specific software performance.

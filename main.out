@@ -1,40 +1,42 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Background and Problem Statement}{}% 2
+\BOOKMARK [1][-]{section.2}{Background}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Performance Prediction Models}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Varying Workloads}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{Representative Estimations?}{section.2}% 5
-\BOOKMARK [2][-]{subsection.2.4}{Workloads and Performance Prediction}{section.2}% 6
-\BOOKMARK [3][-]{paragraph.2.4.0.1}{Workload-aware Performance Modeling}{subsection.2.4}% 7
-\BOOKMARK [4][-]{paragraph.2.4.0.2}{Transfer Learning for Performance Models}{paragraph.2.4.0.1}% 8
-\BOOKMARK [1][-]{section.3}{Study Design}{}% 9
-\BOOKMARK [2][-]{subsection.3.1}{Research Questions}{section.3}% 10
-\BOOKMARK [3][-]{subsubsection.3.1.1}{Performance Variation Across Workloads}{subsection.3.1}% 11
-\BOOKMARK [3][-]{subsubsection.3.1.2}{Option Influence Across Workloads}{subsection.3.1}% 12
-\BOOKMARK [3][-]{subsubsection.3.1.3}{Causes of Input Sensitivity}{subsection.3.1}% 13
-\BOOKMARK [2][-]{subsection.3.2}{Experiment Setup}{section.3}% 14
-\BOOKMARK [3][-]{subsubsection.3.2.1}{Subject System Selection}{subsection.3.2}% 15
-\BOOKMARK [3][-]{subsubsection.3.2.2}{Workload Selection}{subsection.3.2}% 16
-\BOOKMARK [3][-]{subsubsection.3.2.3}{Configuration Sampling}{subsection.3.2}% 17
-\BOOKMARK [3][-]{subsubsection.3.2.4}{Coverage Profiling}{subsection.3.2}% 18
-\BOOKMARK [3][-]{subsubsection.3.2.5}{Measurement Setup}{subsection.3.2}% 19
-\BOOKMARK [1][-]{section.4}{Study Results}{}% 20
-\BOOKMARK [2][-]{subsection.4.1}{Comparing Performance Distributions \(RQ1\)}{section.4}% 21
-\BOOKMARK [3][-]{subsubsection.4.1.1}{Operationalization}{subsection.4.1}% 22
-\BOOKMARK [3][-]{subsubsection.4.1.2}{Results}{subsection.4.1}% 23
-\BOOKMARK [2][-]{subsection.4.2}{Input Sensitivity of Options \(RQ2\)}{section.4}% 24
-\BOOKMARK [3][-]{subsubsection.4.2.1}{Operationalization}{subsection.4.2}% 25
-\BOOKMARK [3][-]{subsubsection.4.2.2}{Results}{subsection.4.2}% 26
-\BOOKMARK [4][-]{paragraph.4.2.2.1}{Conditional Influence}{subsubsection.4.2.2}% 27
-\BOOKMARK [4][-]{paragraph.4.2.2.2}{High Spread}{subsubsection.4.2.2}% 28
-\BOOKMARK [4][-]{paragraph.4.2.2.3}{Scaling Anomaly}{subsubsection.4.2.2}% 29
-\BOOKMARK [2][-]{subsection.4.3}{Code Coverage and Performance \(RQ3\)}{section.4}% 30
-\BOOKMARK [3][-]{subsubsection.4.3.1}{Operationalization}{subsection.4.3}% 31
-\BOOKMARK [3][-]{subsubsection.4.3.2}{Locating Configuration-Dependent Code}{subsection.4.3}% 32
-\BOOKMARK [3][-]{subsubsection.4.3.3}{Comparing Execution Footprints}{subsection.4.3}% 33
-\BOOKMARK [3][-]{subsubsection.4.3.4}{Results}{subsection.4.3}% 34
-\BOOKMARK [1][-]{section.5}{Discussion}{}% 35
-\BOOKMARK [2][-]{subsection.5.1}{Option-level Input Sensitivity}{section.5}% 36
-\BOOKMARK [2][-]{subsection.5.2}{Driving Factors for Input Sensitivity}{section.5}% 37
-\BOOKMARK [1][-]{section.6}{Threats to Validity}{}% 38
-\BOOKMARK [1][-]{section.7}{Conclusion}{}% 39
-\BOOKMARK [1][-]{section*.13}{References}{}% 40
+\BOOKMARK [2][-]{subsection.2.3}{Workloads and Performance Prediction}{section.2}% 5
+\BOOKMARK [3][-]{paragraph.2.3.0.1}{Workload-aware Performance Modeling}{subsection.2.3}% 6
+\BOOKMARK [4][-]{paragraph.2.3.0.2}{Transfer Learning for Performance Models}{paragraph.2.3.0.1}% 7
+\BOOKMARK [1][-]{section.3}{Study Design}{}% 8
+\BOOKMARK [2][-]{subsection.3.1}{Research Questions}{section.3}% 9
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Performance Variation Across Workloads}{subsection.3.1}% 10
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Option Influence Across Workloads}{subsection.3.1}% 11
+\BOOKMARK [3][-]{subsubsection.3.1.3}{Causes of Input Sensitivity}{subsection.3.1}% 12
+\BOOKMARK [2][-]{subsection.3.2}{Experiment Setup}{section.3}% 13
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Subject System Selection}{subsection.3.2}% 14
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Workload Selection}{subsection.3.2}% 15
+\BOOKMARK [3][-]{subsubsection.3.2.3}{Configuration Sampling}{subsection.3.2}% 16
+\BOOKMARK [3][-]{subsubsection.3.2.4}{Coverage Profiling}{subsection.3.2}% 17
+\BOOKMARK [3][-]{subsubsection.3.2.5}{Measurement Setup}{subsection.3.2}% 18
+\BOOKMARK [1][-]{section.4}{Study Results}{}% 19
+\BOOKMARK [2][-]{subsection.4.1}{Comparing Performance Distributions \(RQ1\)}{section.4}% 20
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Operationalization}{subsection.4.1}% 21
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Results}{subsection.4.1}% 22
+\BOOKMARK [2][-]{subsection.4.2}{Input Sensitivity of Individual Options \(RQ2\)}{section.4}% 23
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Operationalization}{subsection.4.2}% 24
+\BOOKMARK [3][-]{figure.caption.14}{Results}{subsection.4.2}% 25
+\BOOKMARK [4][-]{paragraph.4.2.2.1}{Conditional Influence}{figure.caption.14}% 26
+\BOOKMARK [4][-]{paragraph.4.2.2.2}{High Spread}{figure.caption.14}% 27
+\BOOKMARK [4][-]{paragraph.4.2.2.3}{Scaling Anomaly}{figure.caption.14}% 28
+\BOOKMARK [2][-]{subsection.4.3}{Relationship of Configuration-Specific Code Coverage and Workload Variation \(RQ3\)}{section.4}% 29
+\BOOKMARK [3][-]{subsubsection.4.3.1}{Operationalization}{subsection.4.3}% 30
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Locating Configuration-Dependent Code}{subsection.4.3}% 31
+\BOOKMARK [3][-]{subsubsection.4.3.3}{Comparing Execution Traces}{subsection.4.3}% 32
+\BOOKMARK [3][-]{subsubsection.4.3.4}{Results}{subsection.4.3}% 33
+\BOOKMARK [1][-]{section.5}{Discussion}{}% 34
+\BOOKMARK [2][-]{subsection.5.1}{Input Sensitivity and Singular-Workload Approaches}{section.5}% 35
+\BOOKMARK [2][-]{subsection.5.2}{Adressing Workload Variations}{section.5}% 36
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Transfer Learning}{subsection.5.2}% 37
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Workload-aware Performance Modeling}{subsection.5.2}% 38
+\BOOKMARK [2][-]{subsection.5.3}{Future Work}{section.5}% 39
+\BOOKMARK [1][-]{section.6}{Threats to Validity}{}% 40
+\BOOKMARK [1][-]{section.7}{Conclusion}{}% 41
+\BOOKMARK [1][-]{section*.16}{References}{}% 42
