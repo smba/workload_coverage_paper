@@ -25,7 +25,7 @@ Not only does it require substantially more measurements, we often lack knowledg
 
 %\paragraph*{\color{purple}Problem}
 % ~\cite{khavari_compression_2019,maxiaguine_workload_2004,plotnikov_compilation_2013,ding_compilation_2015,falkner_sat_solvers_2015,satzilla_2008,alves_sampling_2020}
-The existing body of research reflects the prevalence and importance of the workload influence on software systems. All these works are aware of the workload dimension as a factor of performance variation, yet little is known about the quality and driving factors of the \emph{interplay} between configuration options and workloads. 
+The existing body of research~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso,chen_hinnperf_2022,chen_mmo_2021,nairUsingBadLearners2017,nairFlash18,ohFindingNearoptimalConfigurations2017} reflects the prevalence and importance of the workload influence on software systems. All these works are aware of the workload dimension as a factor of performance variation, yet little is known about the quality and driving factors of the \emph{interplay} between configuration options and workloads. 
 
 We have conducted a systematic empirical study that sheds light on whether and how configuration options and workload choices interact with regard to performance. 
 Specifically, we analyze 25\,258 configurations and 103 workloads across nine configurable real-world software systems to obtain a broad picture of the interaction of configuration and workload when learning performance models and estimating a configuration's performance (i.e., response time). Aside from studying the sole effects of workload variation on performance behavior, we explore what is driving the interaction between workloads and configuration options. To this end, we enrich performance observations with corresponding statement coverage data to understand workload variation with respect to executed code regions.
@@ -40,7 +40,7 @@ To summarize, we make the following contributions:
 	
 	\item A detailed analysis that illustrates that variation in code coverage and code utilization due to varying workloads can affect the influence of configuration options on software performance; 
 	
-	\item A companion Web site\footnote{\color{red}\url{TODO}} with supplementary material including performance and coverage measurements, experiment workloads and configurations, and an interactive dashboard\footnote{\url{https://workload-performance.herokuapp.com}} to \textit{reproduce} all analyses and additional visualizations left out due to space limitations.
+	\item A companion Web site\footnote{\color{red}TODO: move supplementary web site to gitlab} with supplementary material including performance and coverage measurements, experiment workloads and configurations, and an interactive dashboard\footnote{\url{https://workload-performance.herokuapp.com}} to \textit{reproduce} all analyses and additional visualizations left out due to space limitations.
 	
 \end{compactitem}
 
