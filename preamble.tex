@@ -27,12 +27,15 @@
 
 
 % configure hyperlinks 
+\definecolor{citecolor}{HTML}{b8e0d2}
+\definecolor{linkcolor}{HTML}{ffc09f}
+\definecolor{urlcolor}{HTML}{f5e960}
 \usepackage{hyperref}
 \hypersetup{%
-	%colorlinks,
-	linkcolor={brown!50!red},
-	citecolor={blue},
-	urlcolor={green!60!black}
+	colorlinks=false,
+	urlbordercolor=urlcolor,
+	linkbordercolor=linkcolor,
+	citebordercolor=citecolor,
 }%
 
 \usepackage{pdfcomment}
@@ -60,8 +63,8 @@
 \usepackage[framemethod=TikZ]{mdframed}
 \newcommand{\greybox}[1]{
 	\begin{mdframed}[
-		backgroundcolor=autocommit!10!white,
-		linecolor=autocommit!29!white,
+		backgroundcolor=black!3!white,
+		linecolor=black!8!white,
 		linewidth=2pt,
 		innerleftmargin=6pt,
 		innerrightmargin=6pt,
@@ -150,7 +153,7 @@
 
 % Custom commands for subject systems
 \usepackage{xspace}
-\newcommand{\sosy}[1]{\textsc{\color{blue!40!black}#1}\xspace}
+\newcommand{\sosy}[1]{\textsc{\color{black}#1}\xspace}
 \newcommand{\jumper}{\sosy{jump3r}}
 \newcommand{\htwo}{\sosy{h2}}
 \newcommand{\hsqldb}{\sosy{hsqlsb}}
