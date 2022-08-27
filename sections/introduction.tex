@@ -35,9 +35,11 @@ As a \textit{key take-away} of our study, we found empirical evidence that singl
 To summarize, we make the following contributions: 
 \begin{compactitem}
 	\item An empirical study of 25\,258 configurations across nine configurable software systems on whether and how interactions of workload and configuration affect software  performance;
+	{\color{edited}
+	\item A detailed analysis that illustrates that (1) system-level performance, and (2) the performance influence of individual configuration options can be sensitive to workload variation and often exhibit a \textit{non-monotonous} relationship, caused by variation in the execution of option-specific  code;
 	
-	\item {\color{red}A detailed analysis that illustrates that variation in code coverage due to varying workloads can affect the influence of individual configuration options on software performance; }
-	
+	\item A critical reflection of the suitability of singular-workload models for predicting configuration-dependent performance and assumptions of state-of-the-art transfer learning approaches in this area;}
+
 	\item A companion Web site\footnote{\color{red}TODO: move supplementary web site to gitlab} with supplementary material including performance and coverage measurements, experiment workloads and configurations, and an interactive dashboard\footnote{\url{https://workload-performance.herokuapp.com}} for data exploration to \textit{reproduce} all analyses and additional visualizations left out due to space limitations.
 	
 \end{compactitem}

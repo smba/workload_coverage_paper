@@ -7,20 +7,17 @@ To shed light on this issue, we have conducted a \emph{systematic} empirical stu
 We find that input sensitivity does not only affect software performance at the system-level, but affects individual configuration options as well, often in a non-monotonous way. We critically reflect on these patterns and aim at raising awareness to the missing notion of input sensitivity in state-of-the-art-approaches that model configuration-specific software performance. Our study provides an empirical basis which questions the practicality and generalizability of such approaches.
 \end{comment}
 
-\begin{abstract}\textit{Context:}
+\begin{abstract}\color{edited}\textit{Context:}
 Modern software systems often exhibit configuration options to meet customer requirements, including a system's performance behavior. Estimating and optimizing configuration-dependent performance with machine learning techniques is an established line of research.
 
 \textit{Problem:} 
 Most existing approaches in this area rely on software performance observations under a single workload (input fed to a system), which is not necessarily representative of a software system's real-world application scenarios. Understanding to what extent configuration and
 workload---individually and combined---cause a software system’s
 performance to vary is key to understand whether performance
-models are generalizable, across different configurations and workloads.
-
-\textit{Objective:}
-The interplay of workload variation and configurations on software performance has not been studied systematically, yet we require a better understanding to adequately assess the genralizability of singular-workload approaches.
+models are generalizable, across different configurations and workloads. Yet, so far, this aspect has not been systematically studied.
 
 \textit{Method:} 
-We conducted a systematic empirical study across 25\,258 configurations across nine real-world configurable software systems to investigate the effects of workload variation at system-level performance and for individual configuration options. To explore driving causes for workload-configuration interactions, we enrich performance observations with option-specific code coverage information.
+To fill this gap, we conducted a systematic empirical study across 25\,258 configurations across nine real-world configurable software systems to investigate the effects of workload variation at system-level performance and for individual configuration options. To explore driving causes for workload-configuration interactions, we enrich performance observations with option-specific code coverage information.
 
 \textit{Results:}
 Our results indicate that workloads can induce substantial performance variation and interact with configuration options, often in \emph{non-monotonous} ways. This limits not only the generalizability of singular-workload approaches, but also questions assumptions for existing transfer learning techniques. We demonstrate that workloads should be considered when building performance prediction models to maintain and improve representativeness and reliability.
@@ -295,13 +292,13 @@ To facilitate the comparison of regression coefficients across workloads, we fol
 		\label{fig:overview_h2}
 	\end{subfigure}
 	
-	\caption{Distribution of configuration options' performance influences for \jumper, \zdrei, and \htwo.}
+	\caption{Distribution of configuration options' performance influences under different workloads for \jumper, \zdrei, and \htwo. Each vertical bar depicts the performance influence under a specific workload. The observed ranges of positive and negative influences are highlighted in green and red, respectively.}
 	\label{fig:three_systems}
 \end{figure*}
 	
 Our results show a wide variety of workload sensitivity. Due to the size of our empirical study and space limitations, we selected three configuration options that showcase different characteristic traits of observed input sensitivity. The exhaustive analysis for all configuration options is illustrated in terms of an interactive dashboard provided as supplementary material. We strongly invite the interested reader to use this interactive dashboard to explore all distributions and result obtained in this study.
 
-{In Figure~\ref{fig:three_systems}, we show the distribution of configuration options' performance influences for three of the nine software systems (\jumper, \zdrei, and \htwo). The following patterns refer to one row in Figures~\ref{fig:overview_jump3r}, \ref{fig:overview_z3}, and \ref{fig:overview_h2} (configuration option) for one subject system each.}
+{In Figure~\ref{fig:three_systems}, we show the distribution of configuration options' performance influences for three of the nine software systems (\jumper, \zdrei, and \htwo). {\color{edited}Each vertical bar depicts the performance influence under a specific workload, the colored ranges depict positive (green) and negative (red) performance influences. The following patterns refer to one row in Figures~\ref{fig:overview_jump3r}, \ref{fig:overview_z3}, and \ref{fig:overview_h2} (configuration option) for one subject system each.}
 
 \paragraph{Conditional Influence}\label{sec:conditional_influence} For some configuration options, we observe that they affect performance only under specific workloads and remain non-influential otherwise. An example of such conditional influence is the configuration option \textsf{Mono} for the MP3 encoder \jumper. We illustrate the performance influence of this option across six workloads presented as bar plots in Figure~\ref{fig:mono_jump3r}. Selecting this option reduced the execution time substantially for two workloads, whereas for the other four workloads, the effect was substantially smaller.
 
@@ -312,8 +309,8 @@ The global parameter \textsf{proof} enables tracking information, which is used 
 \paragraph{Scaling Anomaly} The anomaly pattern is shown for the configuration option \textsf{MVSTORE} of the database system \htwo in Figure~\ref{fig:mvstore_h2} (left). The option controls which storage engine, either the newer multi-version store or the legacy page store, is used. We observe that selecting the newer multi-version store increases the measured throughput for all but one benchmark scenario. When tested with the Yahoo! Cloud Serving Benchmark (YCSB) with two different scale factors (that control the workload complexity; expressed as number of rows), we found that the less complex parameterization (ycsb-600) results in a lower throughput. This is in stark contrast to the expectation that a more complex workload would show lower throughput. While it is possible that some optimizations of the multi-version store are effective only under higher load, this example demonstrates that performance influence is not guaranteed to scale with the workload as expected. 
 
 \vspace{1mm}
-\greybox{\textbf{Summary} (\RQref{2}): Workloads can affect performance influences of configuration options in various ways (e.g., conditioning influence, introducing variance, having outliers). Yet identifying relevant workload characteristics is highly domain-specific and cannot be considered trivial. 
-}\todo{noch was substantielles}
+\greybox{\textbf{Summary} (\RQref{2}): Workloads can affect performance influences of configuration options in various ways (e.g., conditioning influence, introducing variance, having outliers). We can correlate some variation of performance influences with workload characteristics, yet identifying relevant workload characteristics is highly domain-specific and cannot be considered trivial. 
+}
 
 }
 
@@ -437,8 +434,6 @@ As the performance influence of configuration options can be conditioned by work
 
 \greybox{\textbf{Insight:} Applying transfer learning to adapt performance models to new workloads must lift the assumption of stability of influential options. Domain-specific and workload-aware approaches are promising and should be extended on.
 }
-
-
 \section{Threats to Validity}\label{sec:threats}
 \color{black}
 Threats to \textit{internal validity} include measurement noise, which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We address these threats by repeating each experiment five times  (except for \htwo; cf. Section~\ref{sec:measurement_setup}) and reporting the median as a robust measure in a controlled environment. Our coverage analysis (cf. Section~\ref{sec:profiling}) entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario. 	
@@ -448,10 +443,12 @@ Threats to\textit{ external validity} include the selection of subject systems a
 %Threats to \textit{statistical conclusion validity} include our choice of correlation metrics in Section~\ref{sec:rq1}.\todo{warum?} The correlation metrics are widely used to describe statistical relationships provide an overview of the effect of workload on the population of tested configurations.
 	
 
-\section{Conclusion}\label{sec:conclusion}
+\section{Conclusion}\label{sec:conclusion}\color{edited}
 Configuration options are a key mechanism for optimizing the performance of modern software systems.
 State-of-the-art approaches of modeling configuration-dependent software performance  yet often ignore performance variation caused by changes in the workload. So far, there is no \textit{systematic} assessment of whether, and if so, to what extent can workload variations render singular-workload approaches inaccurate. We have conducted an empirical study of 25\,258 configurations across nine configurable software systems to characterize the effects that varying the workload can have on configuration-specific performance. We compare performance measurements with code coverage data to identify possible similarities of executed code of different workloads compared against performance variations. 
 
-\todo{more findings in die conclusion}
-We find that workload variations affect software performance not only at the system-level, but also the influence of individual configuration options, often in a non-monotonous way. We critically reflect on prevalent patterns we found in our subject systems and aim at raising awareness to the missing notion of input sensitivity in existing approaches in this area. Our study provides an empirical basis that questions the practicality and generalizability of state-of-the-art approaches as well as  the validity of assumptions under which existing transfer learning approaches operate.
+We find that workload variations affect software performance not only at the system-level, but also the influence of individual configuration options, often in a non-monotonous way. 
+While in some cases, we can correlate performance variations with the workload-conditioned execution of option-specific code, workload characteristics, furthermore, influence the utilization of option-specific code (e.g., number of method calls and loop executions). 
+
+We critically reflect on prevalent patterns we found in our subject systems and aim at raising awareness to the missing notion of input sensitivity in existing approaches in this area. Our study provides an empirical basis that questions the practicality and generalizability of existing singular-workload approaches as well as the validity of assumptions under which existing transfer learning approaches in this area operate.
 
