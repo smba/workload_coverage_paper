@@ -141,9 +141,7 @@ We selected nine configurable software systems for our study. To ensure that our
 	\htwo & Java & Database & 1.4.200 & 16 & 1\,954  & 8  \\
 	
 	\batik & Java & SVG Rasterizer & 1.14 & 10 & 1\,919 &  11  \\
-	
-	%\jadx & Java & Java Decompiler & 1.2.0 & 18 & 10\,502 & 9  \\
-	
+
 	\midrule
 	
 	\xz & C/C++ & File Compressor & 5.2.0 & 33 & 1\,999 & 13  \\
@@ -190,15 +188,15 @@ Last, we augment our sample set with a random sample that is, at least, the size
 To assess what lines of code are executed for each combination of workload and software configuration, we used two separate approaches for Java and C/C++. For Java, we used the on-the-fly profiler \textsc{Jacoco}\footnote{\url{https://www.jacoco.org/jacoco/trunk/doc/}}, which intercepts byte code running on the JVM at run-time. For C/C++, we added instrumentation code to the software systems using \textsc{Clang/LLVM}\footnote{\url{https://clang.llvm.org/docs/SourceBasedCodeCoverage.html}} to collect coverage information. We split the performance measurement and coverage analysis runs to  avoid distortion from the profiling overhead.
 	
 \subsubsection{Measurements}\label{sec:measurement_setup}
-All experiments were conducted on three different compute clusters), where all machines within a compute cluster had the identical hardware setup: Cluster \textsf{A} with an Intel Xeon E5-2630v4 CPU (2.2\,GHz) and 256\,GB of RAM, cluster \textsf{B}  with an Intel Core i7-8559U CPU (2.7\,GHz) and 32\,GB of RAM, and cluster \textsf{C} with an Intel Core i5-8259U (2.3\,GHz) and 32\,GB of RAM. All clusters ran a headless Debian 10 installation (kernel 4.19.0-17 for cluster \textsf{A} and 4.19.0-14 for clusters \textsf{B} and \textsf{C}). To minimize measurement noise, we used a controlled environment, where no additional user processes were running in the background, and no other than necessary packages were installed. 
-We ran each subject system \textit{exclusively} on a single cluster: \htwo on cluster \textsf{A}; \dconvert, \batik, and \jadx on cluster \textsf{B}; the remaining systems on cluster \textsf{C}.
+All experiments were conducted on three different compute clusters), where all machines within a compute cluster had the identical hardware setup: Cluster A with an Intel Xeon E5-2630v4 CPU (2.2\,GHz) and 256\,GB of RAM, cluster B  with an Intel Core i7-8559U CPU (2.7\,GHz) and 32\,GB of RAM, and cluster \textsf{C} with an Intel Core i5-8259U (2.3\,GHz) and 32\,GB of RAM. All clusters ran a headless Debian 10 installation (kernel 4.19.0-17 for cluster A and 4.19.0-14 for clusters B and C). To minimize measurement noise, we used a controlled environment, where no additional user processes were running in the background, and no other than necessary packages were installed. 
+We ran each subject system \textit{exclusively} on a single cluster: \htwo on cluster A; \dconvert and \batik on cluster B; the remaining systems on cluster C.
 
 For all data points, we report the median across five repetitions (except for \htwo), which has shown to be a good trade-off between variance and measurement effort~\cite{molyneauxArtApplicationPerformance2015}. For \htwo, we omitted the repetitions as, in a pre-study, running on the identical cluster setup, we found that \textit{across all benchmarks} the coefficient of variation of the throughput was consistently below 5\,\%.
 
 \section{Study Results}~\label{sec:results}
 In this section, we present the results of our empirical study with regard to variation of system-level performance distributions (\RQref{1}) and the performance influence of individual configuration options (\RQref{2}) as well as the relationship of configuration-specific code-coverage and workload variation (\RQref{3}). 
 
-\subsection{Comparing Performance Distributions ($RQ_1$)}\label{sec:rq1}
+\subsection{Comparing Performance Distributions ($\text{RQ}_\text{1}$)}\label{sec:rq1}
 \subsubsection{Operationalization}
 We answer \RQref{1} by pairwisely comparing the performance distributions from different workloads (cf. the comparison in Figure~\ref{fig:h2_intro}) and by determining whether any two distributions are similar or, if not, can be transformed into each other: For the former case, we tested all combinbations of workload-specific performance observations with the Wilcoxon signed-rank test\footnote{We use non-parametric methods since performance-distributions are often long-tailed and multi-modal~\cite{curtsinger_stabilizer_2013,maricq2018taming} and, thus, fail to meet requirements for parametric methods.}~\cite{lovric_international_2010}. For all combinations, we rejected the null hypothesis $H_0$ at $\alpha=0.95$. To account for overpowering due to high and different sample sizes (cf.~Table~\ref{tab:subject_systems}), we further checked effect sizes to weed out negligible effects. Following the interpretation guidelines from Romano et al.~\cite{romano2006exploring}, for no combination, Cliff's~$\delta$~\cite{Cliff1993DominanceSO} exceeded a threshold effect size of $\vert\delta > 0.147\vert$.
 For the latter case, we are specifically interested in what \textit{type} of transformation is necessary as this determines, \textit{how} complex a workload interacts with configuration options. Specifically, we categorize each pair of workloads with respect to the following aspects: 
@@ -270,12 +268,6 @@ We summarize the category criteria as well as the category counts in Table~\ref{
 	\cellcolor{xmt-color!14!white}8 & \cellcolor{xmt-color!14!white}14.6\,\% & 
 	\cellcolor{nmt-color!34!white}19 & \cellcolor{nmt-color!34!white}34.6\,\%\\
 	
-	%\jadx & \textit{120} &
-	%%0 & 0\,\% & 
-	%\cellcolor{lt-color!100!white}120 & \cellcolor{lt-color!100!white}100.0\,\% & 
-	%0 & 0\,\% & 
-	%0 & 0\,\%\\
-	
 	\midrule
 	
 		\xz & \textit{78} &
@@ -319,7 +311,7 @@ For all, except two systems (\jumper and \xzwo), we observe non-monotonous relat
 \greybox{\textbf{Summary} (\RQref{1}): Varying the workload causes a substantial amount of variation among performance distributions. Across workloads, we observed \textit{mostly linear} (for six of the nine subject systems), but to a large extent, also \textit{non-monotonous} relationships (for three of the nine subject systems).
 }
 
-\subsection{Workload Sensitivity of Individual Options ($RQ_2$)}\label{sec:rq2}
+\subsection{Workload Sensitivity of Individual Options ($\text{RQ}_\text{2}$)}\label{sec:rq2}
 
 \subsubsection{Operationalization}
 To address \RQref{2}, we need to determine the configuration options’ influence on performance and assess their variation across workloads. 
@@ -369,7 +361,7 @@ According to the documentation of t\jumper\footnote{\url{https://github.com/Scis
 
 \paragraph{High Spread} Another pattern we found is that the performance influence of most (relevant) configuration options exhibits a large spread. For example, option \textsf{proof} of the SMT solver \zdrei can both increase or decrease the execution time as shown in Figure~\ref{fig:proof_z3}. Compared to the example above, we cannot attribute this variation to an apparent workload characteristic.
 The global parameter \textsf{proof} enables tracking information, which is used for proof generation in case a problem instance is unsatisfiable. Each workload in our selection contains multiple problems instances to decide satisfiability for. We conjecture that the ratio of satisfiable to unsatisfiable instances likely accounts for this high variation. From the user's perspective, any input to the solver is opaque in that satisfiability as a workload characteristic cannot be determined practically without a solver. 
-\paragraph{Scaling Anomaly} The anomaly pattern is shown for the configuration option \textsf{MVSTORE} of the database system \htwo in Figure~\ref{fig:mvstore_h2} (left). The option controls which storage engine, either the newer multi-version store or the legacy page store, is used. We observe that selecting the newer multi-version store increases the measured throughput for all but one benchmark scenario. When tested with the Yahoo! Cloud Serving Benchmark (YCSB) with two different scale factors (that control the workload complexity; expressed as number of rows), we found that the less complex parameterization (ycsb-600) results in a lower throughput. This is in stark contrast to the expectation that a more complex workload would show lower throughput. While it is possible that some optimizations of the multi-version store are effective only under higher load, this example demonstrates that performance influence is not guaranteed to scale with the workload as expected. 
+\paragraph{Scaling Anomaly} The anomaly pattern is shown for the configuration option \textsf{MVSTORE} of the database system \htwo in Figure~\ref{fig:mvstore_h2} (left). The option controls which storage engine, either the newer multi-version store or the legacy page store, is used. We observe that selecting the newer multi-version store increases the measured throughput for all but one benchmark scenario. When tested with the Yahoo! Cloud Serving Benchmark (YCSB) with two different scale factors (that control the workload complexity; expressed as number of rows), we found that the less complex parameterization (\textsf{ycsb-600}) results in a lower throughput. This is in stark contrast to the expectation that a more complex workload would show lower throughput. While it is possible that some optimizations of the multi-version store are effective only under higher load, this example demonstrates that performance influence is not guaranteed to scale with the workload as expected. 
 
 \vspace{1mm}
 \greybox{\textbf{Summary} (\RQref{2}): Workloads can affect performance influences of configuration options in various ways (e.g., conditioning influence, introducing variance, having outliers). We can correlate some variation of performance influences with workload characteristics, yet identifying relevant workload characteristics is highly domain-specific and cannot be considered trivial. 
@@ -381,7 +373,7 @@ The global parameter \textsf{proof} enables tracking information, which is used 
 
 	\begin{subfigure}{\linewidth}
 		\centering
-		\includegraphics[width=0.99\linewidth]{rq23/Mono.pdf}
+		\includegraphics[width=0.99\linewidth]{images/Mono.pdf}
 		\caption{Performance influence (left) and option-code coverage clustering for option \textsf{Mono} (\jumper).}
 		\label{fig:mono_jump3r}
 	\end{subfigure}
@@ -389,7 +381,7 @@ The global parameter \textsf{proof} enables tracking information, which is used 
 	\begin{subfigure}{\linewidth}
 		\centering
 		\vspace{2em}
-		\includegraphics[width=0.99\linewidth]{rq23/proof.pdf}
+		\includegraphics[width=0.99\linewidth]{images/proof.pdf}
 		\caption{Performance influence (left) and option-code coverage clustering for option \textsf{proof} (\zdrei).}
 		\label{fig:proof_z3}
 	\end{subfigure}
@@ -397,14 +389,14 @@ The global parameter \textsf{proof} enables tracking information, which is used 
 	\begin{subfigure}{\linewidth}
 		\centering
 		\vspace{2em}
-		\includegraphics[width=0.99\linewidth]{rq23/MVSTORE.pdf}
+		\includegraphics[width=0.99\linewidth]{images/MVSTORE.pdf}
 		\caption{Performance influence (left) and option-code coverage clustering for option \textsf{MVSTORE} (\htwo).}
 		\label{fig:mvstore_h2}
 	\end{subfigure}
 \caption{Workload-dependent performance influences of configuration options \textsf{Mono} (\jumper), \textsf{proof} (\zdrei), and \textsf{MVSTORE} (\htwo) (left sides of each subfigure) and option-code coverage clusterings for the the configuration options (right side of each subfigure).}
 \end{figure}
 
-\subsection{Relationship of Configuration-Specific Code Coverage and Workload Variation ($RQ_3$)}\label{sec:rq3}\label{sec:categories}
+\subsection{Relationship of Configuration-Specific Code Coverage and Workload Variation ($\text{RQ}_\text{3}$)}\label{sec:rq3}\label{sec:categories}
 \subsubsection{Operationalization}To explore whether and to what extent variations in the execution paths (that stem from the interplay of the given workload and configuration) correlate with performance variations, we employ an analysis based on code coverage information. That is, we augment our performance observations with code coverage information to assess differences in the execution under different workloads. Specifically, we are interested in code sections that implement option-specific functionality. From comparing the coverage information of option-specific code, we can formulate different hypothetical scenarios explaining performance-relevant workload sensitivity. 
 
 \textit{First}, if we observe that the  coverage of option-specific code is conditioned by the presence of some workload characteristic, we expect that such an option is only influential under corresponding workloads. This scenario enables us (to some extent) to use code coverage as a cheap-to-compute proxy for estimating the representativeness of a workload and, by extension, resulting performance models: For options that are known to condition code sections, we can maximize option-code coverage to elicit all option-specific behavior and, thus, performance influence. For instance, a database system could cache a specific view only if a minimum number of queries are executed. Here, the effect of any caching option would be conditioned by the number of transactions resulting from the workload.
