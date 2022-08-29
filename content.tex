@@ -1,14 +1,14 @@
-\begin{abstract}\color{edited}\textit{Context:}
-Modern software systems often exhibit configuration options to meet customer requirements, including a system's performance behavior. Estimating and optimizing configuration-dependent performance with machine learning techniques is an established line of research.
+\begin{abstract}\color{black}\textit{Context:}
+Modern software systems often exhibit configuration options to meet customer requirements, including a system's performance behavior. Performance models derived via machine learning are an established approach for estimating and optimizing configuration-dependent performance with machine learning techniques is an established line of research.
 
 \textit{Problem:} 
-Most existing approaches in this area rely on software performance observations under a single workload (input fed to a system), which is not necessarily representative of a software system's real-world application scenarios. Understanding to what extent configuration and
+Most existing approaches in this area rely on software performance measurements conducted with a single workload (input fed to a system). This single workload is often not representative of a software system's real-world application scenarios. Understanding to what extent configuration and
 workload---individually and combined---cause a software system’s
 performance to vary is key to understand whether performance
 models are generalizable, across different configurations and workloads. Yet, so far, this aspect has not been systematically studied.
 
 \textit{Method:} 
-To fill this gap, we conducted a systematic empirical study across 25\,258 configurations across nine real-world configurable software systems to investigate the effects of workload variation at system-level performance and for individual configuration options. To explore driving causes for workload-configuration interactions, we enrich performance observations with option-specific code coverage information.
+To fill this gap, we conducted a systematic empirical study across 25\,258 configurations from nine real-world configurable software systems to investigate the effects of workload variation at system-level performance and for individual configuration options. We explore driving causes for workload-configuration interactions, by enriching performance observations with option-specific code coverage information.
 
 \textit{Results:}
 Our results indicate that workloads can induce substantial performance variation and interact with configuration options, often in \emph{non-monotonous} ways. This limits not only the generalizability of singular-workload approaches, but also questions assumptions for existing transfer learning techniques. We demonstrate that workloads should be considered when building performance prediction models to maintain and improve representativeness and reliability.
@@ -26,7 +26,7 @@ It is almost folklore that choice of the workload (i.e., the input fed to the so
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\linewidth]{images/h2_intro.pdf}
-	\caption{Throughput distribution of 1\,954 configurations of the database system \htwo run the \textsf{TPC-C} benchmark at different scale factors.}
+	\caption{Throughput distribution of 1\,954 configurations of the database system \htwo, executing the \textsf{TPC-C} benchmark at different scale factors.}
 	\label{fig:h2_intro}
 \end{figure}
 
@@ -49,8 +49,8 @@ Specifically, we analyzed 25\,258 configurations across nine configurable real-w
 To summarize, we make the following contributions: 
 \begin{compactitem}
 	\item An empirical study of 25\,258 configurations across nine configurable software systems on whether and how interactions of workload and configuration affect software  performance;
-	{\color{edited}
-		\item A detailed analysis that illustrates that (1) system-level performance, and (2) the performance influence of individual configuration options can be sensitive to workload variation and often exhibit a \textit{non-monotonous} relationship, caused by variation in the execution of option-specific  code;
+	{\color{black}
+		\item A detailed analysis illustrating that (1) system-level performance, and (2) the performance influence of individual configuration options can be sensitive to workload variation and often exhibit a \textit{non-monotonous} relationship, caused by variation in the execution of option-specific  code;
 		
 		\item A critical reflection of the suitability of singular-workload models for predicting configuration-dependent performance and assumptions of state-of-the-art transfer learning approaches in this area;}
 	
@@ -471,12 +471,12 @@ Threats to\textit{ external validity} include the selection of subject systems a
 %Threats to \textit{statistical conclusion validity} include our choice of correlation metrics in Section~\ref{sec:rq1}.\todo{warum?} The correlation metrics are widely used to describe statistical relationships provide an overview of the effect of workload on the population of tested configurations.
 	
 
-\section{Conclusion}\label{sec:conclusion}\color{edited}
+\section{Conclusion}\label{sec:conclusion}\color{black}
 Configuration options are a key mechanism for optimizing the performance of modern software systems.
-State-of-the-art approaches of modeling configuration-dependent software performance  yet often ignore performance variation caused by changes in the workload. So far, there is no \textit{systematic} assessment of whether, and if so, to what extent can workload variations render singular-workload approaches inaccurate. We have conducted an empirical study of 25\,258 configurations across nine configurable software systems to characterize the effects that varying the workload can have on configuration-specific performance. We compare performance measurements with code coverage data to identify possible similarities of executed code of different workloads compared against performance variations. 
+State-of-the-art approaches of modeling configuration-dependent software performance  yet often ignore performance variation caused by changes in the workload. So far, there is no \textit{systematic} assessment of whether, and if so, to what extent can workload variations render singular-workload approaches inaccurate. We have conducted an empirical study of 25\,258 configurations across nine configurable software systems to characterize the effects that varying workloads can have on configuration-specific performance. We compare performance measurements with code coverage data to identify possible similarities of executed code of different workloads compared against performance variations. 
 
-We find that workload variations affect software performance not only at the system-level, but also the influence of individual configuration options, often in a non-monotonous way. 
-While in some cases, we can correlate performance variations with the workload-conditioned execution of option-specific code, workload characteristics, furthermore, influence the utilization of option-specific code (e.g., number of method calls and loop executions). 
+We find that workload variations affect software performance not only at the system-level, but change also the influence of individual configuration options on performance, often in a non-monotonous way. 
+While in some cases, we can correlate performance variations with the workload-conditioned execution of option-specific code, workload characteristics influence the utilization of option-specific code in further ways (e.g., number of method calls and loop executions). 
 
 We critically reflect on prevalent patterns we found in our subject systems and aim at raising awareness to the missing notion of workload sensitivity in existing approaches in this area. Our study provides an empirical basis that questions the practicality and generalizability of existing singular-workload approaches as well as the validity of assumptions under which existing transfer learning approaches in this area operate.
 
