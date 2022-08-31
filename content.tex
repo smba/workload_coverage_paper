@@ -372,7 +372,7 @@ The global parameter \textsf{proof} enables tracking information, which is used 
 
 	\begin{subfigure}{\linewidth}
 		\centering
-		\includegraphics[width=0.99\linewidth]{images/Mono.pdf}
+		\includegraphics[width=0.97\linewidth]{images/Mono.pdf}
 		\caption{Performance influence (left) and option-code coverage clustering for option \textsf{Mono} (\jumper).}
 		\label{fig:mono_jump3r}
 	\end{subfigure}
@@ -380,7 +380,7 @@ The global parameter \textsf{proof} enables tracking information, which is used 
 	\begin{subfigure}{\linewidth}
 		\centering
 		\vspace{2em}
-		\includegraphics[width=0.99\linewidth]{images/proof.pdf}
+		\includegraphics[width=0.97\linewidth]{images/proof.pdf}
 		\caption{Performance influence (left) and option-code coverage clustering for option \textsf{proof} (\zdrei).}
 		\label{fig:proof_z3}
 	\end{subfigure}
@@ -388,7 +388,7 @@ The global parameter \textsf{proof} enables tracking information, which is used 
 	\begin{subfigure}{\linewidth}
 		\centering
 		\vspace{2em}
-		\includegraphics[width=0.99\linewidth]{images/MVSTORE.pdf}
+		\includegraphics[width=0.97\linewidth]{images/MVSTORE.pdf}
 		\caption{Performance influence (left) and option-code coverage clustering for option \textsf{MVSTORE} (\htwo).}
 		\label{fig:mvstore_h2}
 	\end{subfigure}
@@ -430,7 +430,6 @@ In the same vein, for \textsf{MVSTORE}, we see that the option-specific code is 
 
 For cases where we did not detect any differences in code coverage despite substantial differences in an option's performance influence across workloads, our results suggest that the way \emph{how} code was executed (i.e., how frequently methods or loops are executed) is shaping performance.
 
-\vspace{1mm}
 \greybox{\textbf{Summary} (\RQref{3}):  Varying the workload can condition the execution of option-specific code coverage and cause performance differences. However, there is no single driving cause of variation: Code utilization depending on workload characteristics is a likely further cause	accounting for the majority of variation in the performance influence of an option.
 }
 
@@ -451,7 +450,7 @@ Beyond performance estimation, using performance models as surrogates for findin
 \subsection{Adressing Workload Variations}
 In Section~\ref{sec:workload-aware}, we have outlined the existing body of work that aims at incorporating workload variations into performance modeling~\cite{koc_satune_2021,jamishidi_transfer_2017,jamshidi_learning_2018,jamshidi_transfer_gp_2017}. In spite of the effectiveness of individual approaches, our results raise questions about assumptions and methods used for transfer learning~\cite{jamshidi_learning_2018,jamishidi_transfer_2017} in this setting. 
 
-\subsubsection{Transfer Learning} In their exploratory analysis, Jamshidi et al. reuse existing performance models by learning a linear transfer function across workloads~\cite{jamishidi_transfer_2017}. Our results from \RQref{1} have shown non-monotonous performance relationships across workloads, which is challenging to capture with such transfer functions. The presence of \textit{non-monotonous interactions} between workloads and configuration options provides a strong argument for employing more advanced machine learning techniques. 
+\subsubsection{Transfer Learning} In their exploratory analysis, Jamshidi et al. reuse existing performance models by learning a linear transfer function across workloads~\cite{jamishidi_transfer_2017}. Our results from \RQref{1} have shown non-monotonous performance relationships across workloads, which is challenging to capture with such transfer functions. The presence of \textit{non-monotonous interactions} between workloads and configuration options motivates employing more advanced machine learning techniques. 
 
 The more recent transfer learning approach \emph{Learning to Sample}~\cite{jamshidi_learning_2018} improves over the prior exploratory work by Jamshidi et al.~\cite{jamishidi_transfer_2017}. It operates under the assumption that sampling for a new context, such as workloads, should focus on the influential options and interactions from a previously trained performance model. While this approach has shown to be effective, our results from \RQref{2} contradict the basic assumption of stable influential options. 
 To illustrate this in the context of our study, we select a pair of workloads for each of the nine subject systems studied and compare the ranking of configuration options with regard to their absolute performance influence (cf.~\RQref{2}). In Table~\ref{tab:shared_options}, we show for each pair, how many configuration options are ranked in the top five (most influential) and shared across both workloads. For these workload pairs, we see that the rankings are inconsistent and, thus, not a reliable heuristic for transfer learning.
@@ -460,9 +459,9 @@ To illustrate this in the context of our study, we select a pair of workloads fo
 	\centering
 	\footnotesize
 	\caption{Common top five influential configuration options among pairs of workloads.}
-	\begin{tabular}{L{1.34cm}llR{17mm}}
+	\begin{tabular}{lllr}
 		\toprule
-		\textbf{Subject System} & \textbf{Workload 1} & \textbf{Workload 2} & \textbf{\#\,Common Top 5 Options} \\
+		\textbf{Subject System} & \textbf{Workload 1} & \textbf{Workload 2} & \textbf{\#\,C} \\
 		\midrule
 		\jumper & helix.wav & sweep.wav & 2\\
 		\kanzi & vmlinux & fannie\_mae\_500k & 1\\
@@ -479,20 +478,21 @@ To illustrate this in the context of our study, we select a pair of workloads fo
 \label{tab:shared_options}
 
 \end{table}
-
 }
-
 As the performance influence of configuration options can be conditioned by workload characteristics, a more appropriate metric to guide sampling would be to assess, which configuration are workload sensitive rather than focusing on influential ones. This reiterates the problems described for most kinds of performance prediction approaches above.
 
 \subsubsection{Workload-aware and Configuration-aware Performance Modeling} While there is little body of work that \textit{explicitly} considers the impact of factors beside configuration options on performance~\cite{koc_satune_2021}, our results from \RQref{2} support the domain- or application-specific performance modeling. For instance, for several configuration options of \jumper, we can confidently associate workload sensitivity with a workload characteristic. To abstract more from application-specific approaches, a notion of workload sensitivity as a form of uncertainty is a promising avenue for further work. Recent work on using probabilisitc programming to learn performance prediction models~\cite{dorn2020} could be adapted to encode workload sensitivity in a similar way.
 
 \greybox{\textbf{Insight:} Applying transfer learning to adapt performance models to new workloads must lift the assumption of stability of influential options. Domain-specific and workload-aware approaches are promising and should be extended on.
 }
+
 \section{Threats to Validity}\label{sec:threats}
 \color{black}
-Threats to \textit{internal validity} include measurement noise, which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We address these threats by repeating each experiment five times  (except for \htwo; cf. Section~\ref{sec:measurement_setup}) and reporting the median as a robust measure in a controlled environment. Our coverage analysis (cf. Section~\ref{sec:profiling}) entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario. 	
+Threats to \textit{internal validity} include measurement noise, 
+which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We address these threats by repeating each experiment five times  (except for \htwo; cf. Section~\ref{sec:measurement_setup}) and reporting the median as a robust measure in a controlled environment. Our coverage analysis (cf.~ Section~\ref{sec:profiling}) entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario. 	
 	
-Threats to\textit{ external validity} include the selection of subject systems and workloads. To ensure generalizability, we select software systems from various application domains as well as two different programming language ecosystems (cf.~Table~\ref{tab:subject_systems}). To increase the representativeness of our workloads, we vary relevant characteristics (e.g., input types, input sizes, and problem classes) and, where possible, reuse workloads across subject systems of the same domain. Although there might be additional workload characteristics, our results demonstrate already for this selection severe consequences for existing performance modeling approaches. So, further variations could only enhance our message.
+Threats to\textit{ external validity} include the selection of subject systems and workloads. To ensure generalizability, we select software systems from various application domains as well as two different programming language ecosystems (cf.~Table~\ref{tab:subject_systems}). To increase the representativeness of our workloads, we vary relevant characteristics %(e.g., input types, input sizes, and problem classes) 
+and, where possible, reuse workloads across subject systems of the same domain. Although there might be additional workload characteristics, our results demonstrate already for this selection severe consequences for existing performance modeling approaches. So, further variations could only enhance our message.
 
 %Threats to \textit{statistical conclusion validity} include our choice of correlation metrics in Section~\ref{sec:rq1}.\todo{warum?} The correlation metrics are widely used to describe statistical relationships provide an overview of the effect of workload on the population of tested configurations.
 	
