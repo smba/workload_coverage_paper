@@ -2,7 +2,7 @@
 
 
 ## Link on HotCrap
-[Submission 177](https://icse2023.hotcrp.com/paper/177?cap=hcav177EAfqHueeGXAYabzFNeiaamAB)
+* [Submission 177](https://icse2023.hotcrp.com/paper/177?cap=hcav177EAfqHueeGXAYabzFNeiaamAB)
 
 ## Supplementary Material
 
