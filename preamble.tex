@@ -1,6 +1,4 @@
-\usepackage{listings}
-
-\newcommand{\xmark}{\ding{55}}
+\usepackage[english]{babel}
 
 \usepackage{xcolor}
 \usepackage{amsmath}
@@ -8,30 +6,10 @@
 \usepackage{tabularx}
 \usepackage{algorithmic}
 \usepackage{graphicx}
-\usepackage{todonotes}
-\usepackage{setspace}
-
-% layout and formatting
-\usepackage[
-activate={true,nocompatibility},
-final,
-%tracking=true,
-kerning=true,
-spacing=true,
-%factor=1100,
-%stretch=5,
-%shrink=5
-]{microtype}
 \usepackage{multirow}
+\usepackage{cite}
 
-
-% for emergencies
-% suble = develpent
-% moderate = serious
-%\usepackage[subtle]{savetrees}
-
-\usepackage[noadjust]{cite}
-
+% more compact enumerations / itemizes
 \usepackage{paralist}
 
 
@@ -48,101 +26,44 @@ spacing=true,
 	pdfborder={1.6 1.6 1.6},
 }%
 
-\usepackage{pdfcomment}
-
-\usepackage{makecell}
 \usepackage{soul}
-
-\renewcommand\theadalign{bc}
-\renewcommand\theadfont{\bfseries}
-\renewcommand\theadgape{\Gape[0pt]}
-\renewcommand\cellgape{\Gape[0pt]}
-
 \usepackage{url}
-\usepackage{float}
 
 % configure subfigures
 \usepackage{subcaption}
-\usepackage{amsfonts}
 
 % configure tables
 \usepackage{booktabs}
+
+% colorfule tables / rows
 \usepackage{colortbl}
-\usepackage{blindtext}
+
 % fancy box for research questions, result summaries etc.
 \usepackage[framemethod=TikZ]{mdframed}
 \newcommand{\greybox}[1]{
 	\begin{mdframed}[
-		backgroundcolor=black!5!white,
-		linecolor=black!36!white,
+		backgroundcolor=black!2!white,
+		linecolor=black!20!white,
 		linewidth=1pt,
-		innerleftmargin=5pt,
-		innerrightmargin=5pt,
-		innertopmargin=5pt,
-		roundcorner=1pt,
+		innerleftmargin=3pt,
+		innerrightmargin=3pt,
+		innertopmargin=3pt,
+		roundcorner=2pt,
 		]
 		%\noindent
 		#1
 	\end{mdframed}
 }
 
-\usepackage[framemethod=TikZ]{mdframed}
-\newcommand{\challenge}[1]{
-	\begin{mdframed}[
-		backgroundcolor=79c900!15,
-		linewidth=0.0pt,
-		innerleftmargin=5pt,
-		innertopmargin=5pt,
-		roundcorner=3pt,
-		]
-		%\noindent
-		#1ediuted
-	\end{mdframed}
-}
 \renewcommand\labelitemi{---}
 
-\lstset{framesep=2pt}
-\lstset{
-	language=Java, 
-	basicstyle=\footnotesize\ttfamily,
-	linewidth=0.48\textwidth,
-	numbers=left,
-	columns=flexible,
-	numbersep=5pt,      % Abstand der Nummern zum Text
-	tabsize=2,
-	%breaklines=true,
-	%frame=bt,
-	showspaces=false,
-	showtabs=false,
-	xleftmargin=10pt,
-	breakatwhitespace=true,
-	framexleftmargin=10pt,
-	framexrightmargin=5pt,
-	framexbottommargin=4pt,
-	showstringspaces=false,
-	literate=%
-	{Ö}{{\"O}}1
-	{Ä}{{\"A}}1
-	{Ü}{{\"U}}1
-	{ß}{{\ss}}2
-	{ü}{{\"u}}1
-	{ä}{{\"a}}1
-	{ö}{{\"o}}1
-}
 
 
-\definecolor{duplicatecheck}{HTML}{ffd3b1}
-\definecolor{autocommit}{HTML}{b1c5ff}
-\definecolor{nicegreen}{HTML}{79c900}
+% Define thick line for tables, used in \RQ{} macro below
+\usepackage{array}
+\newcolumntype{?}{!{\vrule width 1pt}}
 
-\definecolor{indigo}{rgb}{0.0, 0.25, 0.42}
-
-\newcommand{\cova}{\makebox[0pt][l]{\color{duplicatecheck}\rule[-2pt]{0.92\textwidth}{8pt}}}
-\newcommand{\covb}{\makebox[0pt][l]{\color{autocommit}\rule[-2pt]{0.92\textwidth}{8pt}}}
-\newcommand{\covc}{\makebox[0pt][l]{\color{yellow!15!white}\rule[-2pt]{0.92\textwidth}{8pt}}}
-
-% color
-% Custom commands for research questions
+% Macro for research questions
 \newcommand{\RQ}[2]{
 	\hypertarget{rq:#1}{
 		\vspace{0.5em}
@@ -156,10 +77,8 @@ spacing=true,
 	}
 }
 
-%\colorbox{mentioned-color}{text}
+% Macro for references to \RQ{1} -> \RQref{1}
 \newcommand{\RQref}[1]{\hyperlink{rq:#1}{$\text{RQ}_\text{#1}$}}
-
-\usepackage{comment}
 
 % Custom commands for subject systems
 \usepackage{xspace}
@@ -171,7 +90,6 @@ spacing=true,
 \newcommand{\batik}{\sosy{batik}}
 \newcommand{\dconvert}{\sosy{dconvert}}
 \newcommand{\jadx}{\sosy{jadx}}
-
 \newcommand{\xz}{\sosy{xz}}
 \newcommand{\lrzip}{\sosy{lrzip}}
 \newcommand{\flac}{\sosy{FLAC}}
@@ -179,35 +97,21 @@ spacing=true,
 \newcommand{\xzwo}{\sosy{x264}}
 \newcommand{\zdrei}{\sosy{z3}}
 
+% define colors 
+\definecolor{duplicatecheck}{HTML}{ffd3b1}
+\definecolor{autocommit}{HTML}{b1c5ff}
+\definecolor{nicegreen}{HTML}{79c900}
+\definecolor{indigo}{rgb}{0.0, 0.25, 0.42}
 \definecolor{cs-color-raw}{HTML}{ffa822}
-
 \definecolor{lt-color-raw}{HTML}{95c9e2}
 \definecolor{xmt-color-raw}{HTML}{86dbd4}
 \definecolor{nmt-color-raw}{HTML}{fee4a7}
-\colorlet{edited}{cyan!70!blue}
 
-%\colorlet{cs-color}{cs-color-raw!28!white}
+% mix colors
+\colorlet{edited}{cyan!70!blue}
 \colorlet{lt-color}{lt-color-raw!100!white}
 \colorlet{xmt-color}{xmt-color-raw!100!white}
 \colorlet{nmt-color}{nmt-color-raw!100!white}
-
-
 \colorlet{xxx}{blue!30!cyan}
 \colorlet{novelblue}{xxx!60!black}
 \colorlet{novelblue2}{xxx!90!black}
-\usepackage[english]{babel}
-
-% thicc line
-\usepackage{array}
-\newcolumntype{?}{!{\vrule width 1pt}}
-
-\usepackage{tikz}
-\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
-		\node[shape=circle,draw,inner sep=0.7pt] (char) {#1};}}
-
-
-% borrowed from https://tex.stackexchange.com/questions/12703/how-to-create-fixed-width-table-columns-with-text-raggedright-centered-raggedlef	
-\usepackage{array}
-\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}

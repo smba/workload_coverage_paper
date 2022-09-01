@@ -14,6 +14,7 @@ Our results indicate that workloads can induce substantial performance variation
 
 \end{abstract}
 
+
 \section{Introduction}
 Most modern software systems can be customized by means of configuration options to  enable desired functionality or tweak non-functional aspects, such as  performance or energy consumption. The relationship of configuration choices and their influence on performance has been extensively studied in the literature~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso,chen_hinnperf_2022}. The backbone of performance estimation are prediction models that map a given configuration to the estimated performance value. Learning performance models relies on a training set of configuration-specific performance measurements. In state-of-the-art approaches, observations usually rely on  only a single workload that aims to represent a typical real-world application scenario.
 
@@ -181,7 +182,7 @@ For the \textit{image scaler} \dconvert, the measured task was to transform reso
 \subsubsection{Configuration Sampling}\label{sec:sampling}
 For each subject system, we sampled a set of configurations. As exhaustive coverage of the configuration space is infeasible due to combinatorial explosion~\cite{henardCombining2015}, for binary configuration options, we combine several coverage-based sampling strategies and uniform random sampling into an \emph{ensemble} approach: 
 We employ option-wise and negative option-wise sampling~\cite{siegmundPerformanceinfluenceModelsHighly2015}, where each option is enabled once (i.e., in, at least, one configuration), or all except one, respectively. In addition, we use pairwise sampling, where two-way combinations of configuration options are systematically selected. Interactions of higher degree could be found accordingly, however, full interaction coverage is computationally prohibitively expensive~\cite{henardCombining2015}. 
-Last, we augment our sample set with a random sample that is, at least, the size of the coverage-based sample. To achieve a nearly uniform random sample, we used \emph{distance-based sampling}~\cite{kaltenecker_distance-based_2019}. If a software system exhibited numeric configuration options, we varied them across, at least, two levels to account for their effect.
+Last, we augment our sample set with a random sample that is, at least, the size of the coverage-based sample. To achieve a nearly uniform random sample, we used \emph{distance-based sampling}~\cite{kaltenecker_distance-based_2019}. If a software system exhibited numeric configuration options, we varied them across, at least, two levels to measure their effect.
 
 \subsubsection{Coverage Profiling}\label{sec:profiling}
 To assess what lines of code are executed for each combination of workload and software configuration, we used two separate approaches for Java and C/C++. For Java, we used the on-the-fly profiler \textsc{Jacoco}\footnote{\url{https://www.jacoco.org/jacoco/trunk/doc/}}, which intercepts byte code running on the JVM at run-time. For C/C++, we added instrumentation code to the software systems using \textsc{Clang/LLVM}\footnote{\url{https://clang.llvm.org/docs/SourceBasedCodeCoverage.html}} to collect coverage information. We split the performance measurement and coverage analysis runs to  avoid distortion from the profiling overhead.
@@ -304,36 +305,32 @@ We depict the results of our classification in Table~\ref{tab:categorization_cou
 All software systems, at least, in part, exhibit performance distributions that can be transformed into one another using a linear transformation (\textit{\colorbox{lt-color}{LT}}), such as shifting by a constant value or scaling by a constant factor. In particular, for \jumper and \xzwo, we observe solely such behavior. The presence of linear transformations corresponds to experimental insights from Jamshidi et al., who encoded differences between performance distributions using linear functions~\cite{jamishidi_transfer_2017}.
 
 Exclusively monotone transformations (\textit{\colorbox{xmt-color}{XMT}}) are the exception and are exhibited only by five out of the nine systems (\kanzi, \batik, \xz, \lrzip, \zdrei), twice with only one workload pair each (\xz and \zdrei).  
-For all, except two systems (\jumper and \xzwo), we observe non-monotonous relationships (\textit{\colorbox{nmt-color}{NMT}}) with different prevalence.  For three systems (\dconvert, \htwo, and \zdrei), the majority of transformations required is non-monotonous; for the remaining four systems (\kanzi, \batik, \xz, \lrzip), more than 10\,\% of workload pairs fall into this category.
-
-\vspace{1mm}
+For all, except two systems (\jumper and \xzwo), we observe non-monotonous relationships (\textit{\colorbox{nmt-color}{NMT}}) with different prevalence.  For three systems (\dconvert, \htwo, and \zdrei), the majority of transformations required is non-monotonous; for the other four systems (\kanzi, \batik, \xz, \lrzip), more than 10\,\% of workload pairs fall into this category.
 \greybox{\textbf{Summary} (\RQref{1}): Varying the workload causes a substantial amount of variation among performance distributions. Across workloads, we observed \textit{mostly linear} (for six of the nine subject systems), but to a large extent, also \textit{non-monotonous} relationships (for three of the nine subject systems).
 }
 
 \subsection{Workload Sensitivity of Individual Options ($\text{RQ}_\text{2}$)}\label{sec:rq2}
-
 \subsubsection{Operationalization}
 To address \RQref{2}, we need to determine the configuration options’ influence on performance and assess their variation across workloads. 
-
 \paragraph*{Explanatory Model}
 To obtain accurate and interpretable performance influences per option, we learn an explanatory performance model based on the entire sample set using multiple linear regression~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,perLasso}. Here, each variable in the linear model corresponds to an option, and each coefficient represents the corresponding option's influence on performance. 
 We limit the set of independent variables to individual options rather than including higher-order interactions to be consistent with the feature location used for \RQref{3}, where we determine option-specific, yet not interaction-specific code segments.
 \paragraph*{Standardization}
-To facilitate the comparison of regression coefficients across workloads, we follow common practice in machine learning and standardize our dependent variable by subtracting the population’s mean performance and divide the result by the respective standard deviation. Henceforth, we refer to these standardized regression coefficients as \textit{relative performance influences}. A beneficial side effect of standardization is that the observed variation of regression coefficients for each configuration option cannot be attributed to shifting or scaling effects (affine transformation, category \colorbox{lt-color}{\textit{LT}} in Table~\ref{tab:categorization}). This way, we can pin down  the non-linear or explicitly non-monotonous effect that workloads may exercise on performance.
+To facilitate the comparison of regression coefficients across workloads, we follow common practice in machine learning and standardize our dependent variable by subtracting the population’s mean performance and divide the result by the respective standard deviation. Henceforth, we refer to these standardized regression coefficients as \textit{relative performance influences}. A beneficial side effect of standardization is that the observed variation of regression coefficients for each configuration option cannot be attributed to shifting or scaling effects (\colorbox{lt-color}{\textit{LT}}). This way, we can pin down  the non-linear or explicitly non-monotonous effect that workloads may exercise on performance.
 \paragraph*{Handling Multicollinearity} Multicollinearity is a standard problem in statistics and emerges when features are correlated~\cite{Daoud_2017}. This can, for instance, arise from groups of mutually exclusive configuration options and result in distorted regression coefficients~\cite{dorn2020}. Although the model's prediction accuracy remains unaffected, we cannot trust and easily interpret the calculated coefficients. To mitigate this problem and, in particular, to ensure that the obtained performance influences remain interpretable, we follow best practices and remove specific configuration options from the sample that cause multicollinearity~\cite{dorn2020}. For the training step, we exclude all mandatory configuration options since these, by definition, cannot contribute to performance variation. In addition, for each group of mutually exclusive configuration options, we discard one group member when learning a model. These measures reduced multicollinearity to a negligble degree~\cite{o2007caution}. Specifically, after these corrections, we observed no configuration options exceeding a variance inflation factor (indicating multicollinearity) of 5.
 
 
 \subsubsection{Results}\label{sec:results2}
 
 \begin{figure*}
-	
-	\begin{subfigure}{0.3\linewidth}
+	\centering
+	\begin{subfigure}{0.29\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{images/jump3r.pdf}
 		\caption{\jumper}
 		\label{fig:overview_jump3r}
 	\end{subfigure}
-	\begin{subfigure}{0.3\linewidth}
+	\begin{subfigure}{0.29\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{images/z3.pdf}
 		\caption{\zdrei}
@@ -354,25 +351,23 @@ Our results show a wide variety of workload sensitivity. Due to the size of our 
 
 {In Figure~\ref{fig:three_systems}, we show the distribution of configuration options' performance influences for three of the nine software systems (\jumper, \zdrei, and \htwo). {\color{black}Each vertical bar depicts the relative performance influence under a specific workload, the colored ranges depict positive (green) and negative (red) performance influences. The following patterns refer to one row in Figures~\ref{fig:overview_jump3r}, \ref{fig:overview_z3}, and \ref{fig:overview_h2} (configuration option) for one subject system each.}
 
-\paragraph{Conditional Influence}\label{sec:conditional_influence} For some configuration options, we observe that they affect performance only under specific workloads and remain non-influential otherwise. An example of such conditional influence is the configuration option \textsf{Mono} for the MP3 encoder \jumper. We illustrate the performance influence of this option across six workloads presented as bar plots in Figure~\ref{fig:mono_jump3r}. Selecting this option reduced the execution time substantially for two workloads, whereas for the other four workloads, the effect was substantially smaller.
+\paragraph{Conditional Influence}\label{sec:conditional_influence} For some configuration options, we observe that they affect performance only under specific workloads and remain non-influential otherwise. An example of such conditional influence is the configuration option \textsf{Mono} for the MP3 encoder \jumper. We illustrate the performance influence of this option across six workloads presented as bar plots in Figure~\ref{fig:mono_jump3r}. Selecting this option reduced the execution time substantially for two workloads, whereas, for the other workloads, the effect was far smaller.
 
 According to the documentation of \jumper\footnote{\url{https://github.com/Sciss/jump3r/blob/master/README.md}}, selecting this option for stereo files (i.e., audio files with two channels) results in averaging them into one channel. Indeed, the two workloads described above are the only ones that exhibit two audio channels in this selection. Hence, this example illustrates how a workload  characteristic can condition the performance influence of a configuration option. 
 
 \paragraph{High Spread} Another pattern we found is that the performance influence of most (relevant) configuration options exhibits a large spread. For example, option \textsf{proof} of the SMT solver \zdrei can both increase or decrease the execution time as shown in Figure~\ref{fig:proof_z3}. Compared to the example above, we cannot attribute this variation to an apparent workload characteristic.
 The global parameter \textsf{proof} enables tracking information, which is used for proof generation in case a problem instance is unsatisfiable. Each workload in our selection contains multiple problem instances to decide satisfiability for. We conjecture that the ratio of satisfiable to unsatisfiable instances likely accounts for this high variation. From the user's perspective, any input to the solver is opaque in that satisfiability as a workload characteristic cannot be determined practically without a solver. 
 \paragraph{Scaling Anomaly} The anomaly pattern is shown for the configuration option \textsf{MVSTORE} of the database system \htwo in Figure~\ref{fig:mvstore_h2} (left). The option controls which storage engine, either the newer multi-version store or the legacy page store, is used. We observe that selecting the newer multi-version store increases the measured throughput for all but one benchmark scenario. When tested with the Yahoo! Cloud Serving Benchmark (YCSB) with two different scale factors (that control the workload complexity; expressed as number of rows), we found that the less complex parameterization (\textsf{ycsb-600}) results in a lower throughput. This is in stark contrast to the expectation that a more complex workload would show lower throughput. While it is possible that some optimizations of the multi-version store are effective only under higher load, this example demonstrates that performance influence is not guaranteed to scale with the workload as expected. 
-
-\vspace{1mm}
 \greybox{\textbf{Summary} (\RQref{2}): Workloads can affect performance influences of configuration options in various ways (e.g., conditioning influence, introducing variance, having outliers). We can correlate some variation of performance influences with workload characteristics, yet identifying relevant workload characteristics is highly domain-specific and cannot be considered trivial. 
 }
 
 }
 
 \begin{figure}
-
+	\centering
 	\begin{subfigure}{\linewidth}
 		\centering
-		\includegraphics[width=0.97\linewidth]{images/Mono.pdf}
+		\includegraphics[width=0.96\linewidth]{images/Mono.pdf}
 		\caption{Performance influence (left) and option-code coverage clustering for option \textsf{Mono} (\jumper).}
 		\label{fig:mono_jump3r}
 	\end{subfigure}
@@ -380,7 +375,7 @@ The global parameter \textsf{proof} enables tracking information, which is used 
 	\begin{subfigure}{\linewidth}
 		\centering
 		\vspace{2em}
-		\includegraphics[width=0.97\linewidth]{images/proof.pdf}
+		\includegraphics[width=0.96\linewidth]{images/proof.pdf}
 		\caption{Performance influence (left) and option-code coverage clustering for option \textsf{proof} (\zdrei).}
 		\label{fig:proof_z3}
 	\end{subfigure}
@@ -388,17 +383,17 @@ The global parameter \textsf{proof} enables tracking information, which is used 
 	\begin{subfigure}{\linewidth}
 		\centering
 		\vspace{2em}
-		\includegraphics[width=0.97\linewidth]{images/MVSTORE.pdf}
+		\includegraphics[width=0.96\linewidth]{images/MVSTORE.pdf}
 		\caption{Performance influence (left) and option-code coverage clustering for option \textsf{MVSTORE} (\htwo).}
 		\label{fig:mvstore_h2}
 	\end{subfigure}
-\caption{Workload-dependent performance influences of configuration options \textsf{Mono} (\jumper), \textsf{proof} (\zdrei), and \textsf{MVSTORE} (\htwo) (left sides of each subfigure) and option-code coverage clusterings for the the configuration options (right side of each subfigure).}
+\caption{Workload-dependent performance influences of configuration options \textsf{Mono} (\jumper), \textsf{proof} (\zdrei), and \textsf{MVSTORE} (\htwo) (left) and option-code coverage clusterings for the the configuration options (right).}
 \end{figure}
 
 \subsection{Relationship of Configuration-Specific Code Coverage and Workload Variation ($\text{RQ}_\text{3}$)}\label{sec:rq3}\label{sec:categories}
-\subsubsection{Operationalization}To explore whether and to what extent variations in the execution paths (that stem from the interplay of the given workload and configuration) correlate with performance variations, we employ an analysis based on code coverage information. That is, we augment our performance observations with code coverage information to assess differences in the execution under different workloads. Specifically, we are interested in code sections that implement option-specific functionality. From comparing the coverage information of option-specific code, we can formulate different hypothetical scenarios explaining performance-relevant workload sensitivity. 
+\subsubsection{Operationalization}To explore whether and to what extent variations in the execution paths (that stem from the interplay of the given workload and configuration) correlate with performance variations, we employ an analysis based on code coverage information. That is, we augment our performance observations with code coverage information to assess differences in the execution under different workloads. Specifically, we are interested in code sections that implement option-specific functionality. From comparing the coverage information of option-specific code, we can formulate different hypothetical scenarios explaining workload sensitivity. 
 
-\textit{First}, if we observe that the  coverage of option-specific code is conditioned by the presence of some workload characteristic, we expect that such an option is only influential under corresponding workloads. This scenario enables us (to some extent) to use code coverage as a cheap-to-compute proxy for estimating the representativeness of a workload and, by extension, resulting performance models: For options that are known to condition code sections, we can maximize option-code coverage to elicit all option-specific behavior and, thus, performance influence. For instance, a database system could cache a specific view only if a minimum number of queries are executed. Here, the effect of any caching option would be conditioned by the number of transactions resulting from the workload.
+\textit{First}, if we observe that the  coverage of option-specific code is conditioned by the presence of some workload characteristic, we expect that such an option is only influential under corresponding workloads. This scenario enables us (to some extent) to use code coverage as a cheap-to-compute proxy for estimating the representativeness of a workload and, by extension, resulting performance models: For options that are known to condition code sections, we can maximize option-code coverage to elicit all option-specific behavior and, thus, performance influence. For instance, a database system could cache a specific view only if a minimum number of queries are executed. Here, the effect of any caching option would be conditioned by the workload-specific number of transactions.
 
 \textit{Second}, if we observe performance variation across workloads in spite of similar or identical option-specific code coverage, we draw a different picture. In this case, we cannot attribute performance variation to code coverage, yet have to consider differences in the workloads’ characteristics as potential cause: The presence of a workload characteristic may influence not  \emph{what} code sections are executed, but \emph{how} code sections are executed. For instance, in a simple case, a software system’s performance may scale linearly with the workload size. In a more complex case, the presence of a characteristic may determine how frequently an operation is repeated, as is the case for a table merge operation in a database system. Here, we would not elicit the worst-case performance if a previous transaction has sorted the data (e.g., by building an index).
 
@@ -420,7 +415,7 @@ We use agglomerative hierarchical clustering with full linkage to construct dend
 
 \subsubsection{Results}\label{sec:results3}
 We report our findings for the relationship between execution footprints and performance influences for the same configuration options presented for \RQref{2}, since these illustrate likely causes of workload sensitivity and the limitations of solely relying on code coverage. The dashboard on the supplementary Web site provides diagrams and inferred feature code for all configuration options. The dendrograms next to the visualizations of performance influences in Figures \ref{fig:mono_jump3r}, \ref{fig:mvstore_h2}, and \ref{fig:proof_z3}, respectively, illustrate how similar the covered lines of option-specific code under each workload are. 
-The dendrograms depict the Jaccard similarity clustering, where (from left to right) the split points indicate what Jaccard distance individual sets of lines or subclusters exhibit. The further to the left the point is, the more similar are the constituent parts.
+The dendrograms depict the Jaccard similarity clustering, where the split points indicate what Jaccard distance individual sets of lines or subclusters exhibit. The further to the left the point is, the more similar are the components.
 
 We  observe that, in many cases, where  a configuration option is "conditionally influential" (cf.~Section~\ref{sec:conditional_influence}), the respective option-specific code under the interacting workloads fall into a cluster, as with the option-specific code for \textsf{Mono} in Figure~\ref{fig:mono_jump3r}. In this particular example, the dendrogram can be somewhat misleading as the number of common lines of code between workloads helix and dual-channel is far greater than between the other four workloads. Hence, differences in the coverage of option-specific code can account for, at least, some workload sensitivity.
 
@@ -429,11 +424,8 @@ The other two examples, the configuration options \textsf{proof} (\zdrei) and \t
 In the same vein, for \textsf{MVSTORE}, we see that the option-specific code is highly fragmented, yet all four benchmarks constitute clusters of high internal similarity. In the context of the observed variation of performance influences for the Yahoo! Cloud Serving Benchmark (YCSB), we see that even very high similarity in the covered code can virtually either improve or deteriorate performance.
 
 For cases where we did not detect any differences in code coverage despite substantial differences in an option's performance influence across workloads, our results suggest that the way \emph{how} code was executed (i.e., how frequently methods or loops are executed) is shaping performance.
-
 \greybox{\textbf{Summary} (\RQref{3}):  Varying the workload can condition the execution of option-specific code coverage and cause performance differences. However, there is no single driving cause of variation: Code utilization depending on workload characteristics is a likely further cause	accounting for the majority of variation in the performance influence of an option.
 }
-
-%\clearpage
 \section{Discussion}
 Our results paint a clear picture of workload-induced performance variations of individual options. This sheds light on the extent of representativeness of singular-workload performance models. But, this is not the end of the story: We saw distinct patterns of complex variations that challenge transfer-learning approaches, which set out to overcome the workload specificity of models. Next, we discuss these points in more detail.
 
@@ -442,24 +434,21 @@ The observed workload sensitivity of configuration options exhibits a wide range
 Our findings from \RQref{2} demonstrate that individual configuration options becoming influential under specific workloads or shifting their influence from beneficial to detrimental (or vice versa) are not uncommon, which can distort performance estimations.
 
 Beyond performance estimation, using performance models as surrogates for finding configurations with optimal performance properties is not without risk. For instance, there are several approaches utilizing the rank or importance of options~\cite{nairUsingBadLearners2017,ohFindingNearoptimalConfigurations2017}. Given the observed workload sensitivity, such rankings remain susceptible to the choice of workload.
-
-
 \greybox{\textbf{Insight:} Workload sensitivity challenges the robustness and generalizability of singular-workload performance models, yet is neglected in state-of-the-art approaches. Even more, robust techniques using only rankings or relative importance of options are inapplicable for certain workload variations.
 }
 
 \subsection{Adressing Workload Variations}
-In Section~\ref{sec:workload-aware}, we have outlined the existing body of work that aims at incorporating workload variations into performance modeling~\cite{koc_satune_2021,jamishidi_transfer_2017,jamshidi_learning_2018,jamshidi_transfer_gp_2017}. In spite of the effectiveness of individual approaches, our results raise questions about assumptions and methods used for transfer learning~\cite{jamshidi_learning_2018,jamishidi_transfer_2017} in this setting. 
+In Section~\ref{sec:workload-aware}, we have outlined the existing body of work that aims at incorporating workload variations into performance modeling~\cite{koc_satune_2021,jamishidi_transfer_2017,jamshidi_learning_2018,jamshidi_transfer_gp_2017}. Despite the effectiveness of individual approaches, our results raise questions about assumptions  used for transfer learning~\cite{jamshidi_learning_2018,jamishidi_transfer_2017} in this setting. 
 
 \subsubsection{Transfer Learning} In their exploratory analysis, Jamshidi et al. reuse existing performance models by learning a linear transfer function across workloads~\cite{jamishidi_transfer_2017}. Our results from \RQref{1} have shown non-monotonous performance relationships across workloads, which is challenging to capture with such transfer functions. The presence of \textit{non-monotonous interactions} between workloads and configuration options motivates employing more advanced machine learning techniques. 
 
 The more recent transfer learning approach \emph{Learning to Sample}~\cite{jamshidi_learning_2018} improves over the prior exploratory work by Jamshidi et al.~\cite{jamishidi_transfer_2017}. It operates under the assumption that sampling for a new context, such as workloads, should focus on the influential options and interactions from a previously trained performance model. While this approach has shown to be effective, our results from \RQref{2} contradict the basic assumption of stable influential options. 
 To illustrate this in the context of our study, we select a pair of workloads for each of the nine subject systems studied and compare the ranking of configuration options with regard to their absolute performance influence (cf.~\RQref{2}). In Table~\ref{tab:shared_options}, we show for each pair, how many configuration options are ranked in the top five (most influential) and shared across both workloads. For these workload pairs, we see that the rankings are inconsistent and, thus, not a reliable heuristic for transfer learning.
-
 \begin{table}
 	\centering
 	\footnotesize
 	\caption{Common top five influential configuration options among pairs of workloads.}
-	\begin{tabular}{lllr}
+	\begin{tabular}{p{12mm}llr}
 		\toprule
 		\textbf{System} & \textbf{Workload 1} & \textbf{Workload 2} & \textbf{\#\,Common} \\
 		\midrule
@@ -476,13 +465,12 @@ To illustrate this in the context of our study, we select a pair of workloads fo
 		\bottomrule
 	\end{tabular}
 \label{tab:shared_options}
-
 \end{table}
 }
+
 As the performance influence of configuration options can be conditioned by workload characteristics, a more appropriate metric to guide sampling would be to assess, which configuration are workload sensitive rather than focusing on influential ones. This reiterates the problems described for most kinds of performance prediction approaches above.
 
-\subsubsection{Workload-aware and Configuration-aware Performance Modeling} While there is little body of work that \textit{explicitly} considers the impact of factors beside configuration options on performance~\cite{koc_satune_2021}, our results from \RQref{2} support the domain- or application-specific performance modeling. For instance, for several configuration options of \jumper, we can confidently associate workload sensitivity with a workload characteristic. To abstract more from application-specific approaches, a notion of workload sensitivity as a form of uncertainty is a promising avenue for further work. Recent work on using probabilisitc programming to learn performance prediction models~\cite{dorn2020} could be adapted to encode workload sensitivity in a similar way.
-
+\subsubsection{Workload-aware and Configuration-aware Performance Modeling} While there is little body of work that \textit{explicitly} considers the impact of factors beside configuration options on performance~\cite{koc_satune_2021}, our results from \RQref{2} support the domain- or application-specific performance modeling. For instance, for several configuration options of \jumper, we can confidently associate workload sensitivity with a workload characteristic. To abstract more from application-specific approaches, a notion of workload sensitivity as a form of uncertainty is a promising avenue for further work. Work on using probabilisitc programming to learn performance models~\cite{dorn2020} could be adapted to similarly encode workload sensitivity.
 \greybox{\textbf{Insight:} Applying transfer learning to adapt performance models to new workloads must lift the assumption of stability of influential options. Domain-specific and workload-aware approaches are promising and should be extended on.
 }
 
@@ -499,10 +487,10 @@ and, where possible, reuse workloads across subject systems of the same domain. 
 
 \section{Conclusion}\label{sec:conclusion}\color{black}
 Configuration options are a key mechanism for optimizing the performance of modern software systems.
-Yet, state-of-the-art approaches of modeling configuration-dependent software performance  yet often ignore performance variation caused by changes in the workload. So far, there is no \textit{systematic} assessment of whether, and if so, to what extent workload variations can render singular-workload approaches inaccurate. We have conducted an empirical study of 25\,258 configurations from nine configurable software systems to characterize the effects that varying workloads can have on configuration-specific performance. We compare performance measurements with code coverage data to identify possible similarities of executed code of different workloads compared against performance variations. 
+Yet, state-of-the-art approaches of modeling configuration-dependent software performance  yet often ignore performance variation caused by changes in the workload. So far, there is no \textit{systematic} assessment of whether, and if so, to what extent workload variations can render singular-workload approaches inaccurate. We have conducted an empirical study of 25\,258 configurations from nine configurable software systems to characterize the effects that varying workloads can have on configuration-specific performance. We compare performance measurements with coverage data to identify possible similarities of executed code of different workloads compared to performance variations. 
 
 We find that workload variations affect software performance not only at the system-level, but also change also the influence of individual configuration options on performance, often in a non-monotonous way. 
-While in some cases, we can correlate performance variations with the workload-conditioned execution of option-specific code, workload characteristics influence the utilization of option-specific code in further ways (e.g., number of method calls and loop executions). 
+While in some cases, we can correlate performance variations with the workload-conditioned execution of option-specific code, workload characteristics influence the utilization of option-specific code in further ways (e.g., number of method calls). 
 
 We critically reflect on prevalent patterns we found in our subject systems and aim at raising awareness to the missing notion of workload sensitivity in existing approaches in this area. Our study provides an empirical basis that questions the practicality and generalizability of existing singular-workload approaches as well as the validity of assumptions under which existing transfer learning approaches in this area operate.
 
