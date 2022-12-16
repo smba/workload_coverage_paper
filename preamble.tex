@@ -12,7 +12,6 @@
 % more compact enumerations / itemizes
 \usepackage{paralist}
 
-
 % configure hyperlinks 
 \definecolor{citecolor}{HTML}{b8e0d2}
 \definecolor{linkcolor}{HTML}{ffc09f}
@@ -42,21 +41,24 @@
 \usepackage[framemethod=TikZ]{mdframed}
 \newcommand{\greybox}[1]{
 	\begin{mdframed}[
-		backgroundcolor=black!2!white,
+		backgroundcolor=black!0!white,
 		linecolor=black!20!white,
 		linewidth=1pt,
-		innerleftmargin=3pt,
-		innerrightmargin=3pt,
-		innertopmargin=3pt,
-		roundcorner=2pt,
+		innerleftmargin=4pt,
+		innerrightmargin=4pt,
+		innertopmargin=4pt,
+		innerbottommargin=5pt,
+		roundcorner=3pt,
 		]
 		%\noindent
 		#1
 	\end{mdframed}
 }
 
-\renewcommand\labelitemi{---}
+\renewcommand\labelitemi{--}
 
+% avoidorphaned words
+\usepackage[all]{nowidow}
 
 
 % Define thick line for tables, used in \RQ{} macro below
