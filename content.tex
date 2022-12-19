@@ -107,12 +107,6 @@ The global performance behavior emerges from the influences of several individua
 
 \RQ{2}{To what extent do \textit{influences of individual configuration options} depend on the workload?}
 
-\subsubsection{Causes of Workload Sensitivity}
-The first two research questions describe the performance behavior of our subject systems: From related work, we expect configuration options to be, at least, to some extent workload sensitive. To contextualize our findings, we switch now our perspective to the code level. The goal is to understand the relationship between workload sensitivity and the internal execution of the subject system under varying workloads. We hypothesize that executions under different workloads also exhibit variation with respect to what code sections are executed and how this code is used. 
-Differences in performance influences of individual methods may stem from differences in program execution. Depending on whether an option is active or what value it has been set to, we may visit different code sections of the program or change their intensity. We are interested in how far one could infer or even explain performance variations just based on standard code-coverage analyses. The result would provide us either with a simple proxy for workload-sensitive configuration options or indicate that performance variations are more complex and non-trivial to detect a priori.
-
-
-\RQ{3}{Does the variation of performance influence of configuration options across workloads correlate with differences in the respective execution footprint?}
 \subsection{Experiment Setup}\label{sec:setup}
 \subsubsection{Subject System Selection}
 {\color{black}
@@ -391,8 +385,21 @@ The global parameter \textsf{proof} enables tracking information, which is used 
 \caption{Workload-dependent performance influences of configuration options \textsf{Mono} (\jumper), \textsf{proof} (\zdrei), and \textsf{MVSTORE} (\htwo) (left) and option-code coverage clusterings for the the configuration options (right).}
 \end{figure}
 
-\subsection{Relationship between Configuration-Specific Code Coverage and Workload Variation ($\text{RQ}_\text{3}$)}\label{sec:rq3}\label{sec:categories}
-\subsubsection{Operationalization}To explore whether and to what extent variations in the execution paths (that stem from the interplay of the given workload and configuration) correlate with performance variations, we employ an analysis based on code coverage information. That is, we augment our performance observations with code coverage information to assess differences in the execution under different workloads. Specifically, we are interested in code sections that implement option-specific functionality. From comparing the coverage information of option-specific code, we can formulate different hypothetical scenarios explaining workload sensitivity. 
+\label{sec:rq3}\label{sec:categories}
+\color{red!70!black}
+\section{Exploring Causes of Workload Sensitivity}
+\cite{lesoil_2021,samoaa_2021}
+
+	The first two research questions describe the performance behavior of our subject systems: From related work, we expect configuration options to be, at least, to some extent workload sensitive. To contextualize our findings, we switch now our perspective to the code level. The goal is to understand the relationship between workload sensitivity and the internal execution of the subject system under varying workloads. We hypothesize that executions under different workloads also exhibit variation with respect to what code sections are executed and how this code is used. 
+	Differences in performance influences of individual methods may stem from differences in program execution. Depending on whether an option is active or what value it has been set to, we may visit different code sections of the program or change their intensity. We are interested in how far one could infer or even explain performance variations just based on standard code-coverage analyses. The result would provide us either with a simple proxy for workload-sensitive configuration options or indicate that performance variations are more complex and non-trivial to detect a priori.
+	
+	
+	\RQ{3}{Does the variation of performance influence of configuration options across workloads correlate with differences in the respective execution footprint?}
+
+
+
+%\section{Relationship between Configuration-Specific Code Coverage and Workload Variation ($\text{RQ}_\text{3}$)}
+\subsection{Operationalization}To explore whether and to what extent variations in the execution paths (that stem from the interplay of the given workload and configuration) correlate with performance variations, we employ an analysis based on code coverage information. That is, we augment our performance observations with code coverage information to assess differences in the execution under different workloads. Specifically, we are interested in code sections that implement option-specific functionality. From comparing the coverage information of option-specific code, we can formulate different hypothetical scenarios explaining workload sensitivity. 
 
 \textit{First}, if we observe that the  coverage of option-specific code is conditioned by the presence of some workload characteristic, we expect that such an option is only influential under corresponding workloads. This scenario enables us (to some extent) to use code coverage as a cheap-to-compute proxy for estimating the representativeness of a workload and, by extension, resulting performance models: For options that are known to condition code sections, we can maximize option-code coverage to elicit all option-specific behavior and, thus, performance influence. For instance, a database system could cache a specific view only if a minimum number of queries are executed. Here, the effect of any caching option would be conditioned by the workload-specific number of transactions.
 
@@ -404,9 +411,10 @@ The problem of determining which code section implements which functionality in 
 While there is a number of approaches based on static~\cite{velez_2020_configcrusher_jase,lillack_2018_lotrack_tse,luo_2019_cova} and dynamic taint analysis~\cite{bell_phosphor_2014,velez_comprex_2021,splat_kim_2013}, we employ a more light-weight,  but also less precise approach that uses code coverage information, such as execution traces.
 The rationale is that, by exercising feature code, for instance, by enabling configuration options or running corresponding tests, its location can be inferred from differences in code coverage. 
 Applications of such an approach have been studied not only for feature location~\cite{wong_integrated_2005,sulir_annotation_2015,michelon_spectrum_2021,perez_framing_2016}, but root in work on program comprehension~\cite{wilde_early_1996,wilde_reconnaissance_1995,sherwood_reducing_nodate,perez_diagnosis_2014,castro_pangolin_2019} and fault localization~\cite{agrawal_fault_1995,wong_faultloc_2016}. 
-}
+
+
 Specifically, we follow  a strategy akin to  \textit{spectrum-based feature location}~\cite{michelon_spectrum_2021}:
-{\color{black}
+
 We commence with obtaining a baseline of all code that can be associated with a configuration option in the scope of our workload selection. Since we are looking for workload-specific differences in option-code coverage, the expressiveness of such a baseline depends on the diversity of the workloads in question. To infer option-specific code, we split our configuration sample (cf. Section~\ref{sec:sampling}) into two disjoint sets $c_o$ and $c_{\neg o}$ such that option $o$ is selected only in $c_o$ and not in $c_{\neg_o}$. Next, we select from our code coverage logs the corresponding covered lines of code, $S_o$ and $S_{\neg o}$.  The rationale is that all shared lines between both sets are not affected by the selection of an option $o$. Thus, we compute the \textit{symmetric set difference} $\mathbb{S}_o = S_o~\Delta~S_{\neg o}$ to approximate option-specific or, at least, option-related code sections. To finally obtain code sections that are option-specific under a specific workload $w$, we repeat the steps above. Here, we consider only execution logs under workload $w$ ($S_{o, w}$ and $S_{\neg o, w}$) and compute the symmetric set difference $\mathbb{S}_{o,w}=S_{o,w}~\Delta~S_{\neg o, w}.$
 
 
@@ -414,21 +422,26 @@ We commence with obtaining a baseline of all code that can be associated with a 
 From (a) the information about which code sections are specific to a configuration option and (b) how much of these sections is actually covered under different workloads, we can compare the workload-specific execution traces for each option. By comparing the sets $\mathbb{S}_{o, v}$ and $\mathbb{S}_{o, w}$ for any two workloads $v$ and $w$, we can estimate the similarity between the option-code coverage via the Jaccard set similarity index. A Jaccard similarity of zero implies that there is no overlap in the code lines covered under each workload, whereas a Jaccard similarity of 1 implies that the exact same code was covered. Based on this pairwise similarity metric $sim_o(v, w)$, we can compute a corresponding distance metric $d_o(v, w) = 1 - sim(v, w)$ and cluster all workload-specific execution profiles. 
 We use agglomerative hierarchical clustering with full linkage to construct dendrograms. In this bottom-up approach, we iteratively add execution footprints to clusters and merge sub clusters into larger ones depending on their Jaccard similarity  to each other. 
 
-\subsubsection{Results}\label{sec:results3}
+\subsection{Results}\label{sec:results3}
 We report our findings for the relationship between execution footprints and performance influences for the same configuration options presented for \RQref{2}, since these illustrate likely causes of workload sensitivity and the limitations of solely relying on code coverage. The dashboard on the supplementary Web site provides diagrams and inferred feature code for all configuration options. The dendrograms next to the visualizations of performance influences in Figures \ref{fig:mono_jump3r}, \ref{fig:mvstore_h2}, and \ref{fig:proof_z3}, respectively, illustrate how similar the covered lines of option-specific code under each workload are. 
 The dendrograms depict the Jaccard similarity clustering, where the split points indicate what Jaccard distance individual sets of lines or subclusters exhibit. The further to the left the point is, the more similar are the components.
 
 We  observe that, in many cases, where  a configuration option is "conditionally influential" (cf.~Section~\ref{sec:conditional_influence}), the respective option-specific code under the interacting workloads fall into a cluster, as with the option-specific code for \textsf{Mono} in Figure~\ref{fig:mono_jump3r}. In this particular example, the dendrogram can be somewhat misleading as the number of common lines of code between workloads helix and dual-channel is far greater than between the other four workloads. Hence, differences in the coverage of option-specific code can account for, at least, some workload sensitivity.
+
 
 The other two examples, the configuration options \textsf{proof} (\zdrei) and \textsf{MVSTORE} (\htwo), provide a different picture. Akin to the variation of performance influence of \textsf{proof}, the clustering for this configuration option (cf.~Figure~\ref{fig:mvstore_h2}) shows that some clusters are disjoint, and, thus, the option-specific code is highly fragmented depending on the workload. 
 
 In the same vein, for \textsf{MVSTORE}, we see that the option-specific code is highly fragmented, yet all four benchmarks constitute clusters of high internal similarity. In the context of the observed variation of performance influences for the Yahoo! Cloud Serving Benchmark (YCSB), we see that even very high similarity in the covered code can virtually either improve or deteriorate performance.
 
 For cases where we did not detect any differences in code coverage despite substantial differences in an option's performance influence across workloads, our results suggest that the way \emph{how} code was executed (i.e., how frequently methods or loops are executed) is shaping performance.
+
+
 \greybox{\textbf{Summary} (\RQref{3}):  Varying the workload can condition the execution of option-specific code coverage and cause performance differences. However, there is no single driving cause of variation: Code utilization depending on workload characteristics is a likely further cause	accounting for the majority of variation in the performance influence of an option.
 }
+\color{black}
 \section{Discussion}
 Our results paint a clear picture of workload-induced performance variations of individual options. This sheds light on the extent of representativeness of singular-workload performance models. But, this is not the end of the story: We saw distinct patterns of complex variations that challenge transfer-learning approaches, which set out to overcome the workload specificity of models. Next, we discuss these points in more detail.
+
 
 \subsection{Workload Sensitivity and Singular-Workload Approaches}
 The observed workload sensitivity of configuration options exhibits a wide range of characteristics. While a large portion of options scales proportionally with workload complexity or remains unaffected by workload variation, the performance influences of several configuration options are sensitive to the workload.  So far, the existing body of work on modeling~\cite{dorn2020,siegmundPerformanceinfluenceModelsHighly2015,haDeepPerf2019,perfAL,guoVariabilityawarePerformancePrediction2013,sarkarCostEfficientSamplingPerformance,guo_2018_data,fourier_learning_2015,perLasso} and optimizing~\cite{chen_mmo_2021,nairUsingBadLearners2017,nairFlash18,ohFindingNearoptimalConfigurations2017} configuration-specific performance largely neglects the impact of workload variation at the cost of generalizability. 
@@ -467,7 +480,7 @@ To illustrate this in the context of our study, we select a pair of workloads fo
 	\end{tabular}
 \label{tab:shared_options}
 \end{table}
-}
+
 
 As the performance influence of configuration options can be conditioned by workload characteristics, a more appropriate metric to guide sampling would be to assess, which configuration are workload sensitive rather than focusing on influential ones. This reiterates the problems described for most kinds of performance prediction approaches above.
 
@@ -476,7 +489,6 @@ As the performance influence of configuration options can be conditioned by work
 }
 
 \section{Threats to Validity}\label{sec:threats}
-\color{black}
 Threats to \textit{internal validity} include measurement noise, 
 which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We address these threats by repeating each experiment five times  (except for \htwo; cf. Section~\ref{sec:measurement_setup}) and reporting the median as a robust measure in a controlled environment. Our coverage analysis (cf.~ Section~\ref{sec:profiling}) entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario. 	
 	

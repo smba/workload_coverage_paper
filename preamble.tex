@@ -22,7 +22,7 @@
 	urlbordercolor=urlcolor,
 	linkbordercolor=linkcolor,
 	citebordercolor=citecolor,
-	pdfborder={1.6 1.6 1.6},
+	pdfborder={0.8 0.8 0.8 },
 }%
 
 \usepackage{soul}
@@ -37,18 +37,21 @@
 % colorfule tables / rows
 \usepackage{colortbl}
 
+%
+\usepackage{microtype}
+
 % fancy box for research questions, result summaries etc.
 \usepackage[framemethod=TikZ]{mdframed}
 \newcommand{\greybox}[1]{
 	\begin{mdframed}[
-		backgroundcolor=black!0!white,
-		linecolor=black!20!white,
-		linewidth=1pt,
+		backgroundcolor=cyan!5,
+		linecolor=cyan!55,
+		linewidth=0.5pt,
 		innerleftmargin=4pt,
 		innerrightmargin=4pt,
 		innertopmargin=4pt,
 		innerbottommargin=5pt,
-		roundcorner=3pt,
+		roundcorner=1pt,
 		]
 		%\noindent
 		#1
@@ -67,16 +70,17 @@
 
 % Macro for research questions
 \newcommand{\RQ}[2]{
-	\hypertarget{rq:#1}{
-		\vspace{0.5em}
+	\vspace{0.5em}
+	\noindent\hypertarget{rq:#1}{
 		\bgroup
 		\def\arraystretch{1.3}%  1 is the default, change whatever you need
-		\begin{tabularx}{\linewidth}{p{0.12\linewidth}?p{0.75\linewidth}}
-			\rowcolor{white!5!white}
-			$\text{RQ}_\text{#1}$ & \textit{#2} \\
+		\begin{tabularx}{\linewidth}{p{0.1\linewidth}?p{0.79\linewidth}}
+			\cellcolor{cyan!15} $\text{RQ}_\text{#1}$ &
+			\cellcolor{cyan!5} \textit{#2} \\
 		\end{tabularx}
 		\egroup
 	}
+	\vspace{0.5em}
 }
 
 % Macro for references to \RQ{1} -> \RQref{1}
