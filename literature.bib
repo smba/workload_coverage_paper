@@ -598,7 +598,7 @@
 	year = {2020},
 	publisher = ACM,
 	booktitle = ICPE,
-	pages = {277–288},
+	pages = {277--288},
 	doi="10.1145/3358960.3379137",
 }
 
@@ -742,7 +742,7 @@
 	year = {2016},
 	publisher = ACM,
 	booktitle = ICSE,
-	pages = {643–654},
+	pages = {643--654},
 	doi="10.1145/2884781.2884793",
 }
 
@@ -810,7 +810,7 @@
 	year = {2018},
 	publisher = ACM,
 	booktitle = FSE,
-	pages = {71–82},
+	pages = {71--82},
 	doi="10.1145/3236024.3236074",
 }
 
@@ -820,7 +820,7 @@
 	year = {2017},
 	publisher = IEEE,
 	booktitle = ASE,
-	pages = {497–508},
+	pages = {497--508},
 	doi="10.1109/ASE.2017.8115661",
 }
 
@@ -830,7 +830,7 @@
 	year = {2017},
 	publisher = IEEE,
 	booktitle = SEAMS,
-	pages = {31–41},
+	pages = {31--41},
 	doi="10.1109/SEAMS.2017.11",
 }
 
@@ -1011,7 +1011,7 @@
 
 
 @article{bell_phosphor_2014,
-	author = {Bell, Jonathan and Kaiser, Gail},
+	author = {Bell, Jonatand Kaiser, Gail},
 	title = {{Phosphor: Illuminating Dynamic Data Flow in Commodity JVMs}},
 	year = {2014},
 	issue_date = {October 2014},
@@ -1021,7 +1021,7 @@
 	doi = {10.1145/2714064.2660212},
 	journal = SIGPLANNOT,
 	month = oct,
-	pages = {83–101},
+	pages = {83--101},
 }
 
 @InProceedings{schubert_phasar_2019,
@@ -1493,7 +1493,7 @@ doi={10.1109/ASE51524.2021.9678761}
 	month = {dec},
 	publisher = {{IOP} Publishing},
 	volume = {949},
-	pages = {012009},
+	series = {012009},
 	author = {Jamal I. Daoud},
 	title = {{Multicollinearity and Regression Analysis}},
 	journal = {Journal of Physics: Conference Series},
@@ -1554,12 +1554,10 @@ doi={10.1109/ASE51524.2021.9678761}
 	volume = {41},
 	number = {1},
 	issn = {0163-5964},
-	url = {https://doi.org/10.1145/2490301.2451141},
 	doi = {10.1145/2490301.2451141},
-	abstract = {Researchers and software developers require effective performance evaluation. Researchers must evaluate optimizations or measure overhead. Software developers use automatic performance regression tests to discover when changes improve or degrade performance. The standard methodology is to compare execution times before and after applying changes.Unfortunately, modern architectural features make this approach unsound. Statistically sound evaluation requires multiple samples to test whether one can or cannot (with high confidence) reject the null hypothesis that results are the same before and after. However, caches and branch predictors make performance dependent on machine-specific parameters and the exact layout of code, stack frames, and heap objects. A single binary constitutes just one sample from the space of program layouts, regardless of the number of runs. Since compiler optimizations and code changes also alter layout, it is currently impossible to distinguish the impact of an optimization from that of its layout effects.This paper presents Stabilizer, a system that enables the use of the powerful statistical techniques required for sound performance evaluation on modern architectures. Stabilizer forces executions to sample the space of memory configurations by repeatedly re-randomizing layouts of code, stack, and heap objects at runtime. Stabilizer thus makes it possible to control for layout effects. Re-randomization also ensures that layout effects follow a Gaussian distribution, enabling the use of statistical tests like ANOVA. We demonstrate Stabilizer's efficiency (&lt;7% median overhead) and its effectiveness by evaluating the impact of LLVM's optimizations on the SPEC CPU2006 benchmark suite. We find that, while -O2 has a significant impact relative to -O1, the performance impact of -O3 over -O2 optimizations is indistinguishable from random noise.},
 	journal = {SIGARCH Comput. Archit. News},
 	month = {mar},
-	pages = {219–228},
+	pages = {219--228},
 	numpages = {10},
 	keywords = {measurement bias, performance evaluation, randomization}
 }
@@ -1571,7 +1569,7 @@ doi={10.1109/ASE51524.2021.9678761}
 	publisher = ACM,
 	doi = {10.1145/2451116.2451141},
 	booktitle = {Proceedings of the Eighteenth International Conference on Architectural Support for Programming Languages and Operating Systems},
-	pages = {219–228},
+	pages = {219--228},
 	series = {ASPLOS '13}
 }
 
@@ -1691,7 +1689,7 @@ doi={10.1109/ASE51524.2021.9678761}
 	issn = {1076-9757},
 	journal = {Journal of Artificial Intelligence Research},
 	month = {jun},
-	pages = {565–606},
+	pages = {565--606},
 }
 
 @article{ding_compilation_2015,
@@ -1704,7 +1702,7 @@ doi={10.1109/ASE51524.2021.9678761}
 	doi = {10.1145/2813885.2737969},
 	journal = {SIGPLAN Not.},
 	month = {jun},
-	pages = {379–390},
+	pages = {379--390},
 }
 
 @article{plotnikov_compilation_2013,
@@ -1779,7 +1777,7 @@ doi={10.1109/ASE51524.2021.9678761}
 	publisher = {ACM},
 	doi = {10.1145/3030207.3030216},
 	booktitle = {ICPE},
-	pages = {39–50},
+	pages = {39--50},
 }
 
 @article{kaltenecker_interplay_2020,
@@ -1829,7 +1827,7 @@ doi={10.1109/ASE51524.2021.9678761}
 	publisher = ACM,
 	doi = {10.1145/3427921.3450255},
 	booktitle = ICPE,
-	pages = {1–8},
+	pages = {1--8},
 }
 
 @article{10.1145/3485517,
@@ -1912,7 +1910,7 @@ doi={10.1109/ASE51524.2021.9678761}
 
 @inproceedings{samoaa_2021,
 	author = {Samoaa, Hazem and Leitner, Philipp},
-	title = {{}An Exploratory Study of the Impact of Parameterization on JMH Measurement Results in Open-Source Projects}},
+	title = {{An Exploratory Study of the Impact of Parameterization on JMH Measurement Results in Open-Source Projects}},
 	year = {2021},
 	publisher = ACM,
 	address = {New York, NY, USA},
@@ -1920,3 +1918,22 @@ doi={10.1109/ASE51524.2021.9678761}
 	booktitle = ICPE,
 	pages = {213–224},
 }
+
+@Incollection{kotthoff_algorithm_selection_2016,
+	author={Kotthoff, Lars},
+	editor={Bessiere, Christian
+	and De Raedt, Luc
+	and Kotthoff, Lars
+	and Nijssen, Siegfried
+	and O'Sullivan, Barry
+	and Pedreschi, Dino},
+	title={{Algorithm Selection for Combinatorial Search Problems: A Survey}},
+	booktitle={{Data Mining and Constraint Programming: Foundations of a Cross-Disciplinary Approach}},
+	year={2016},
+	publisher={{Springer}},
+	pages={{149--190}},
+	isbn={978-3-319-50137-6},
+	doi= {10.1007/978-3-319-50137-6_7},
+}
+
+
