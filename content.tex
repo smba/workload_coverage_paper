@@ -39,9 +39,12 @@ The existing body of research~\cite{dorn2020,siegmundPerformanceinfluenceModelsH
 We have conducted an empirical study that sheds light on whether and how choices of configuration and workload interact with regard to performance. 
 Specifically, we analyzed 25\,258 configurations from nine configurable real-world software systems to obtain a broad picture of the interaction of configuration and workload when learning performance models and estimating a configuration's performance (i.e., response time). Aside from studying the sole effects of workload variation on performance behavior, we explore \textit{what} is driving the interaction between workload and configuration. To this end, we enrich performance observations with corresponding coverage data to understand workload variation with respect to executed code.
 
-Our findings show that varying the workload can influence con\-fi\-gu\-ra\-tion-de\-pen\-dent software performance in different ways, including non-linear and non-monotonous effects. 
-{\color{red!70!black}As a \textit{key take-away} of our study, we found empirical evidence that single-workload approaches do not generalize across workload variations and that even existing transfer learning techniques are too limited to address non-monotonous performance variations induced by qualitative workload changes. }
 
+{
+	\color{brown}
+	We find that varying the workload can influence configuration-dependent software performance in different ways, including non-linear and non-monotonous effects. As a key take-away, we provide empirical evidence that single-workload approaches do not generalize across workload variations  and that even existing transfer learning techniques are too limited to address non-monotonous performance variations induced by qualitative workload changes. 
+We demonstrate how code analyses such as coverage testing can outline a path to screen for workload-sensitive configuration options.
+}
 
 To summarize, we make the following contributions: 
 \begin{compactitem}
@@ -56,8 +59,8 @@ To summarize, we make the following contributions:
 
 \section{Preliminaries and Related Work}
 {
-	\color{red!65!black}
-	Software performance (and other non-functional properties) can emerge from a variety of different factors. While there is a substantial body of work on modeling the relationshipü between configuration options and per
+\color{brown}
+Software performance emerges from a variety of factors including configuration, workload or hardware setup. In what follows, we revisit work that models the relationship between  such factors (individually or in combinations) and software performance.
 
 }
 \subsection{Performance Prediction Models}~\label{sec:perfmodels}
@@ -171,14 +174,12 @@ For the \textit{file compression} tools \kanzi, \xz, and \lrzip, we used a varie
 
 For the \textit{SMT solver} \zdrei, the measured task was to decide the satisfiability (find a solution or counter example) of a range of logical problems expressed in the SMT2 format. We selected the six longest-running problem instances from z3’s performance test suite and augmented it with additional instances from the SMT2-Lib repository\footnote{\url{https://smt-comp.github.io/2017/benchmarks.html}}, to cover different types of logic and to increase diversity.
 
-For the \textit{SVG rasterizer} \batik, the measured task was to transform a SVG vector graphic into a bitmap. We selected a number of resources from the Wikimedia Commons collection, primarily varying the file size.
+For the \textit{SVG rasterizer} \batik, the measured task was to transform a SVG vector graphic into a bitmap. We selected a number of resources from the Wikimedia Commons collection, primarily varying the file size. 
 
 For the embedded \textit{database} \htwo, we used a selection of four benchmarks (SmallBank, TPC-H, YCSB, Voter) from \textsc{OLTPBench}~\cite{difallah_oltp_2013}, a load generator for databases. For each benchmark, we varied the scale factor, which controls the complexity (number of entities modeled) in each scenario.
 
 For the \textit{image scaler} \dconvert, the measured task was to transform resources (image files, Photoshop sketches) at different scales (useful for Android development). We selected files that reflect \dconvert's documented input formats (JPEG, PNG, PSD, and SVG) and vary in file size.
 }
-
-\todo{\small a discussion which precise performance counters have been considered, what aexplicitly does performance mean?}
 
 \subsubsection{Configuration Sampling}\label{sec:sampling}
 For each subject system, we sampled a set of configurations. As exhaustive coverage of the configuration space is infeasible due to combinatorial explosion~\cite{henardCombining2015}, for binary configuration options, we combine several coverage-based sampling strategies and uniform random sampling into an \emph{ensemble} approach: 
@@ -192,7 +193,7 @@ To assess what lines of code are executed for each combination of workload and s
 All experiments were conducted on three different compute clusters, where all machines within a compute cluster had the identical hardware setup: Cluster A with an Intel Xeon E5-2630v4 CPU (2.2\,GHz) and 256\,GB of RAM, cluster B  with an Intel Core i7-8559U CPU (2.7\,GHz) and 32\,GB of RAM, and cluster C with an Intel Core i5-8259U (2.3\,GHz) and 32\,GB of RAM. All clusters ran a headless Debian 10 installation (kernel 4.19.0-17 for cluster A and 4.19.0-14 for clusters B and C). To minimize measurement noise, we used a controlled environment, where no additional user processes were running in the background, and no other than necessary packages were installed. 
 We ran each subject system \textit{exclusively} on a single cluster: \htwo on cluster A; \dconvert and \batik on cluster B; the remaining systems on cluster C.
 
-For all data points, we report the median {\color{brown}performance} across five repetitions (except for \htwo), which has shown to be a good trade-off between variance and measurement effort~\cite{molyneauxArtApplicationPerformance2015}. 
+{\color{brown}We collect performance cata using \textsc{GNU time} (execution time) and \textsc{OLTPBench} (throughput).} For all data points, we report the median {\color{brown}performance} across five repetitions (except for \htwo), which has shown to be a good trade-off between variance and measurement effort~\cite{molyneauxArtApplicationPerformance2015}. 
 {\color{brown}Across these repetitions, most configurations exhibit only little variation (e.g., only a few seconds for whole-system benchmarks which run for several minutes): the ratio of configurations with a coefficient of variation (standard deviation divided by the mean) of less than 10\,\% ranges from 91\,\% (\lrzip) for \lrzip to 99\,\% (\xzwo).}
 For \htwo, we omitted the repetitions as, in a pre-study, running on the identical cluster setup, we found that across all benchmarks the coefficient of variation of the throughput was consistently below 5\,\%.
 
