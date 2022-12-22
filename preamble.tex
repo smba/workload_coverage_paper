@@ -39,7 +39,7 @@
 
 %
 \usepackage{microtype}
-
+%\usepackage[subtle]{savetrees}
 \usepackage{blindtext}
 
 
@@ -124,3 +124,14 @@
 \colorlet{xxx}{blue!30!cyan}
 \colorlet{novelblue}{xxx!60!black}
 \colorlet{novelblue2}{xxx!90!black}
+
+
+% hack hack
+% https://tex.stackexchange.com/questions/324636/centering-the-third-author-in-ieee-format
+\makeatletter % changes the catcode of @ to 11
+\newcommand{\linebreakand}{%
+\end{@IEEEauthorhalign}
+\hfill\mbox{}\par
+\mbox{}\hfill\begin{@IEEEauthorhalign}
+}
+\makeatother % changes the catcode of @ back to 12
