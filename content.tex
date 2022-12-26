@@ -494,16 +494,17 @@ As the performance influence of configuration options can be conditioned by work
 \greybox{\textbf{Insight:} Applying transfer learning to adapt performance models to new workloads must lift the assumption of stability of influential options. Domain-specific and workload-aware approaches are promising and should be extended on.
 }
 
-{\color{red}
+{\color{brown}
 \subsubsection{Identifying Workload Sensitivity via Code Analysis}
 \itshape
-The insights of RQ3, specifically, are that one could, in some scenarios, identify input sensitivity by systematic coverage testing. As an actionable, such practice can be easily incorporated into CI/CD pipelines, along with more advanced code analyses (e.g., hit counts). Hence, we may be able to enhance existing approaches with a low-cost metric. Further findings regarding novel benchmark designs for configurable software systems have been discussed above. We will make these findings more concise in the paper.
+Our findings from \RQref{3} show that it is possible to identify workload sensitivity through code analysis in some cases. This can be done using systematic coverage testing, which can be easily incorporated into CI/CD pipelines along with other code analyses, such as hit counts. While this low-cost metric can enhance existing approaches and help to interpret and contextualize performance estimations, it is important to note that more detailed analyses may be necessary to fully explain all performance variation.
+Examples of how these findings can be applied in practice include using code coverage data to estimate up-front whether an option is input-sensitive and annotating existing performance models with a utilization score per option. These results are important for understanding the performance of configurable software systems and for designing effective benchmarks.
 
-The results of RQ3 are important in two ways. First, we can estimate up-front whether an option is input-sensitive just by analyzing code-coverage data. Such information can be used to annotate existing performance models (e.g., by a utilization score per option) and help to interpret and contextualize performance estimations. Second, the results provide means for sound benchmark design of configurable software systems. That is, we lay the foundation of a metric that assesses the ‘representativeness’ of a workload by measuring which (parts of) options’ code are executed and to what extent.
-
-\greybox{\textbf{Insight:} ---
+\greybox{\textbf{Insight:} \color{brown}
+	Code analysis can be used to identify workload sensitivity and inform benchmark design in configurable software systems, but it is important to consider the limitations of this approach and the need for additional analyses.
 }
 }
+
 \section{Threats to Validity}\label{sec:threats}
 Threats to \textit{internal validity} include measurement noise, 
 which may distort our classification into categories (Section~\ref{sec:rq1}) and model construction (Section~\ref{sec:rq2}). We address these threats by repeating each experiment five times  (except for \htwo; cf. Section~\ref{sec:measurement_setup}) and reporting the median as a robust measure in a controlled environment. Our coverage analysis (cf.~ Section~\ref{sec:profiling}) entails a noticeable instrumentation overhead, which may distort performance observations. We mitigate this threat by separating the experiment runs for coverage assessment and performance measurement. In the case of \htwo, the load generator of the \textsc{OLTPBench} framework~\cite{difallah_oltp_2013} ran on the same machine as the database since we were testing an embedded scenario. 	
