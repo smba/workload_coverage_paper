@@ -17,15 +17,14 @@ Most modern software systems can be customized by means of configuration options
 
 It is almost folklore that choice of the workload (i.e., the input fed to the software system) influences the performance of software systems in different ways as has been shown for the domains of SAT solving~\cite{falkner_sat_solvers_2015,satzilla_2008}, compilation~\cite{ding_compilation_2015,plotnikov_compilation_2013}, video transcoding~\cite{maxiaguine_workload_2004,alves_sampling_2020}, data compression~\cite{khavari_compression_2019}, and code verification~\cite{koc_satune_2021}. Besides apparent interactions, such as performance scaling with the size of a workload, qualitative aspects can result in intricate and inadvertent performance variations.
 
-{\color{black}
-	Take as an example two performance throughput distributions across the configuration space of the database \htwo in Figure~\ref{fig:h2_intro}. Here,  the exact same configurations on two different parameterizations of the benchmark \textsf{TPC-C} have been measured In this scenario, the scale factor controls the modeled number of warehouses. While for most configurations, throughput decreases, for a larger benchmark, some configurations achieve even a higher throughput\footnote{A similar example was outlined by~Pereira et al. for the video encoder \xzwo~\cite{alves_sampling_2020}.}. That is, configuration-dependent performance can be highly sensitive to workload variation and the performance behavior under different workloads can change in unforeseeable ways. In turn, this can render performance models based on a single workload useless, unless configuration options’ sensitivity to workloads is accounted for.
-}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\linewidth]{images/h2_intro.pdf}
 	\caption{Throughput distribution of 1\,954 configurations of the database system \htwo, executing the \textsf{TPC-C} benchmark at different scale factors.}
 	\label{fig:h2_intro}
 \end{figure}
+
+Take as an example two performance throughput distributions across the configuration space of the database \htwo in Figure~\ref{fig:h2_intro}. Here,  the exact same configurations on two different parameterizations of the benchmark \textsf{TPC-C} have been measured In this scenario, the scale factor controls the modeled number of warehouses. While for most configurations, throughput decreases, for a larger benchmark, some configurations achieve even a higher throughput\footnote{A similar example was outlined by~Pereira et al. for the video encoder \xzwo~\cite{alves_sampling_2020}.}. That is, configuration-dependent performance can be highly sensitive to workload variation and the performance behavior under different workloads can change in unforeseeable ways. In turn, this can render performance models based on a single workload useless, unless configuration options’ sensitivity to workloads is accounted for.
 
 To address this limitation, two different approaches have been pursued in the literature. 
 
