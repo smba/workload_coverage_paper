@@ -3,7 +3,8 @@ Modern software systems often exhibit configuration options to meet customer req
 
 Most existing approaches in this area rely on software performance measurements conducted with a single workload (i.e., input fed to a system). This single workload, however,  is often not representative of a software system's real-world application scenarios. Understanding to what extent configuration and
 workload---individually and combined---cause a software system's performance to vary is key to understand whether performance
-models are generalizable across different configurations and workloads. Yet, so far, this aspect has not been \textit{systematically} studied.
+models are generalizable across different configurations and workloads. 
+Yet, so far, this aspect has not been \textit{systematically}~studied.
 
 To fill this gap, we conducted a systematic empirical study across 25\,258 configurations from nine real-world configurable software systems to investigate the effects of workload variation at system-level performance and for individual configuration options. We explore driving causes for workload-configuration interactions by enriching performance observations with option-specific code coverage information.
 
@@ -19,8 +20,8 @@ It is almost folklore that choice of the workload (i.e., the input fed to the so
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.99\linewidth]{images/h2_intro.pdf}
-	\caption{Throughput distribution of 1\,954 configurations of the database system \htwo, executing the \textsf{TPC-C} benchmark at different scale factors.}
+	\includegraphics[width=\linewidth]{images/h2_intro.pdf}
+	\caption{Throughput distribution of 1\,954 configurations of the database system \htwo, executing the \textsf{TPC-C} benchmark at two different scale factors.}
 	\label{fig:h2_intro}
 \end{figure}
 
@@ -53,7 +54,7 @@ To summarize, we make the following contributions:
 		
 		\item A critical reflection of the suitability of singular-workload models for predicting configuration-dependent performance and assumptions of state-of-the-art transfer learning approaches in this area;}
 	
-	\item A companion Web site\footnote{\url{https://gitlab.com/icse2023/submission_177/}} with supplementary material including performance and coverage measurements, experiment workloads and configurations, and an interactive dashboard\footnote{\url{https://workload-performance.herokuapp.com}} for data exploration to \textit{reproduce} all analyses and additional visualizations left out due to space limitations.
+	\item An archived repository\footnote{\bfseries\color{red} LINK OR REFERENCE TO FIGSHARE!} with supplementary material including performance and coverage measurements, {\color{red}experiment workloads} and configurations, and an interactive dashboard for data exploration to \textit{reproduce} all analyses and additional visualizations left out due to space limitations.
 \end{compactitem}
 
 \section{Preliminaries and Related Work}
@@ -396,7 +397,7 @@ The global parameter \textsf{proof} enables tracking information, which is used 
 \end{figure}
 
 \label{sec:rq3}\label{sec:categories}
-\color{brown}
+\color{orange}
 \section{Exploring Causes of Workload Sensitivity}\label{sec:new_section}
 The results for the first two research questions demonstrate configuration options’ sensitivity to the workload due to non-monotonous interactions and are consistent with the findings of a related study~\cite{lesoil_2021}. Before we discuss implications for performance modeling in the next section, we aim at understanding the underlying factors that drive workload sensitivity.
 
@@ -434,7 +435,7 @@ We use agglomerative hierarchical clustering with full linkage to construct dend
 We report our findings for the relationship between execution footprints and performance influences for the same configuration options presented for \RQref{2}, since these illustrate likely causes of workload sensitivity and the limitations of solely relying on code coverage. The dashboard on the supplementary Web site provides diagrams and inferred feature code for all configuration options. The dendrograms next to the visualizations of performance influences in Figures \ref{fig:mono_jump3r}, \ref{fig:mvstore_h2}, and \ref{fig:proof_z3}, respectively, illustrate how similar the covered lines of option-specific code under each workload are. 
 The dendrograms depict the Jaccard similarity clustering, where the split points indicate what Jaccard distance individual sets of lines or subclusters exhibit. The further to the left the point is, the more similar are the components.
 
-We  observe that, in many cases, where  a configuration option is "conditionally influential" (cf.~Section~\ref{sec:conditional_influence}), the respective option-specific code under the interacting workloads fall into a cluster, as with the option-specific code for \textsf{Mono} in Figure~\ref{fig:mono_jump3r}. In this particular example, the dendrogram can be somewhat misleading as the number of common lines of code between workloads helix and dual-channel is far greater than between the other four workloads. Hence, differences in the coverage of option-specific code can account for, at least, some workload sensitivity.
+We  observe that, in many cases, where  a configuration option is ``conditionally influential''~(cf.~Section~\ref{sec:conditional_influence}), the respective option-specific code under the interacting workloads fall into a cluster, as with the option-specific code for \textsf{Mono} in Figure~\ref{fig:mono_jump3r}. In this particular example, the dendrogram can be somewhat misleading as the number of common lines of code between workloads helix and dual-channel is far greater than between the other four workloads. Hence, differences in the coverage of option-specific code can account for, at least, some workload sensitivity.
 
 
 The other two examples, the configuration options \textsf{proof} (\zdrei) and \textsf{MVSTORE} (\htwo), provide a different picture. Akin to the variation of performance influence of \textsf{proof}, the clustering for this configuration option (cf.~Figure~\ref{fig:mvstore_h2}) shows that some clusters are disjoint, and, thus, the option-specific code is highly fragmented depending on the workload. 
