@@ -25,7 +25,7 @@
 @String{ICSM = "Proceedings of the International Conference on Software Maintenance (ICSM)"}
 @String{ICSME = "Proceedings of the International Conference on Software Maintenance and Evolution (ICSME)"}
 
-@String{ICPE = "Proceedings of the ACM/SPEC International Conference on Performance Engineering (ICPE)"}
+@String{ICPE = "Proceedings of the International Conference on Performance Engineering (ICPE)"}
 @String{ISSRE = "Proceedings of the International Symposium on Software Reliability Engineering (ISSRE)"}
 
 % Journals
@@ -37,7 +37,7 @@
 @String{QSIC = "Proceedings of the International Conference on Quality Software (QSIC)"}
 @String(SEAMS = "Proceedings of the International Symposium on Software Engineering for Adaptive and Self-Managing Systems (SEAMS)")
 @String{SoSyM = "Software and Systems Modeling (SoSyM)"}
-@String{TSE = "IEEE Transactions on Software Engineering (TSE)"}
+@String{TSE = "Transactions on Software Engineering (TSE)"}
 @String{WOSP = "Proceedings of the First International Workshop on Software and Performance (WOSP)"} 
 @String{SIGPLANNOT = "ACM SIGPLAN Notices"} 
 @String{TOSEM = "ACM Transactions on Software Engineering and Methodology (TOSEM)"} 
@@ -312,12 +312,12 @@
 
 @inproceedings{kaltenecker_distance-based_2019,
 	author = {Kaltenecker, Christian and Grebhahn, Alexander and Siegmund, Norbert and Guo, Jianmei and Apel, Sven},
-	title = {{Distance-based Sampling of Software Configuration Spaces}},
+	title = {{Distance-Based Sampling of Software Configuration Spaces}},
 	booktitle = ICSE,
 	year = {2019},
 	pages = {1084--1094},
 	publisher = IEEE,
-	doi="10.1109/ICSE.2019.00112",
+	doi={10.1109/ICSE.2019.00112},
 } 
 
 @inproceedings{nguyenUsingControlCharts2012,
@@ -738,7 +738,7 @@
 
 @inproceedings{medeiros_comparison_2016,
 	author = {Medeiros, Fl\'{a}vio and K\"{a}stner, Christian and Ribeiro, M\'{a}rcio and Gheyi, Rohit and Apel, Sven},
-	title = {A Comparison of 10 Sampling Algorithms for Configurable Systems},
+	title = {{A Comparison of 10 Sampling Algorithms for Configurable Systems}},
 	year = {2016},
 	publisher = ACM,
 	booktitle = ICSE,
@@ -925,16 +925,15 @@
 	doi="https://doi.org/10.1007/s10664-020-09866-z"
 }
 
-@article{difallah_oltp_2013,
+@inproceedings{difallah_oltp_2013,
 	title={{OLTP-Bench: An Extensible Testbed for Benchmarking Relational Databases}},
 	author={Difallah, Djellel Eddine and Pavlo, Andrew and Curino, Carlo and Cudre-Mauroux, Philippe},
-	journal={Proceedings of the VLDB Endowment},
+	booktitle={Proceedings of the Intervational Conference on Very Large Databases Endowment (VLDB)},
 	pages = {277--288},
 	year={2013},
 	publisher={VLDB Endowment},
 	volume = {7},
 	number = {4},
-	month = dec,
 	doi = {10.14778/2732240.2732246},
 	
 }
@@ -1020,7 +1019,6 @@
 	number = {10},
 	doi = {10.1145/2714064.2660212},
 	journal = SIGPLANNOT,
-	month = oct,
 	pages = {83--101},
 }
 
@@ -1071,11 +1069,12 @@
 }
 
 @inproceedings{weber_white_2021,
-	title={{White-Box Performance-Influence models: A profiling and Learning Approach}},
+	title={{White-Box Performance-Influence Models: A Profiling and Learning Approach}},
 	author={Weber, Max and Apel, Sven and Siegmund, Norbert},
 	booktitle=ICSE,
 	pages={1059--1071},
 	year={2021},
+	publisher=IEEE
 }
 
 @inproceedings{shu_adversarial_2020,
@@ -1098,11 +1097,10 @@
 @techreport{ding_bayesian_2020,
 	author      = {Yi Ding and Ahsan Pervaiz and Sanjay Krishnan and Henry Hoffmann},
 	title       = {{Bayesian Learning for Hardware and Software
-	Configuration Co-Optimization}}
-	institution = {University of Chicago},
+	Configuration Co-Optimization}},
+	institution = {{University of Chicago}},
 	year        ={2020},
 	number      = {13},
-	month       = {dec},
 }
 
 
@@ -1111,8 +1109,9 @@
 	booktitle = ASPEC,
 	author = {Wong, W. Eric and Li, Jenny},
 	year = {2005},
-	pages = {8},
+	pages = {576-583},
 	doi={10.1109/APSEC.2005.39},
+	publisher=IEEE
 }
 
 @inproceedings{wilde_early_1996,
@@ -1135,7 +1134,8 @@
 	author = {Hall, Robert J.},
 	month = mar,
 	year = {1995},
-	pages = {33--53},
+	pages = {33--53},,
+	publisher=IEEE
 }
 
 @INPROCEEDINGS{agrawal_fault_1995,
@@ -1145,7 +1145,8 @@
 	title={{Fault Localization using Execution Slices and Dataflow Tests}}, 
 	year={1995},
 	pages={143--151},
-	doi={10.1109/ISSRE.1995.497652}
+	doi={10.1109/ISSRE.1995.497652},
+	publisher=IEEE
 }
 
 @article{simmons_industrial_2006,
@@ -1162,7 +1163,6 @@
 	institution = {Department of Computer Science, University of British Columbia},
 	year        = {2008},
 	number={14}
-	
 }
 
 @article{wilde_reconnaissance_1995,
@@ -1189,40 +1189,28 @@
 }
 
 @INPROCEEDINGS{fourier_learning_2015,
-
 	author={Zhang, Yi and Guo, Jianmei and Blais, Eric and Czarnecki, Krzysztof},
-
 	booktitle=ASE, 
-
 	title={{Performance Prediction of Configurable Software Systems by Fourier Learning}}, 
-
 	year={2015},
-
 	volume={},
-
 	number={},
-
 	pages={365-373},
-
-	doi={10.1109/ASE.2015.15}}
+	doi={10.1109/ASE.2015.15},
+	publisher=IEEE
+}
 
 @INPROCEEDINGS{perLasso,
-
 	author={Ha, Huong and Zhang, Hongyu},
-
 	booktitle=ICSME, 
-
-	title={{Performance-Influence Model for Highly Configurable Software with Fourier Learning and Lasso Regression}}, 
-
+	title={{Performance-influence Model for Highly Configurable Software with Fourier Learning and Lasso Regression}}, 
 	year={2019},
-
 	volume={},
-
 	number={},
-
+	publisher=IEEE,
 	pages={470-480},
-
-	doi={10.1109/ICSME.2019.00080}}
+	doi={10.1109/ICSME.2019.00080}
+}
 
 @inproceedings{dorn2020,
 	author = {Dorn, Johannes and Apel, Sven and Siegmund, Norbert},
@@ -1278,16 +1266,18 @@ publisher={Springer}
 
 
 @inproceedings{michelon_spectrum_2021,
- title={{Spectrum-based Feature Localization: A Case Study using ArgoUML}},
-author={Michelon, Gabriela K. and Sotto-Mayor, Bruno and Martinez, Jabier and Arrieta, Aitor and Abreu, Rui and Assun{\c{c}}{\~a}o, Wesley KG},
-booktitle=SPLC,
-pages={126--130},
-year={2021},
-doi={10.1145/3461001.3473065},
-publisher=ACM
+ 	title={{Spectrum-Based Feature Localization: A Case Study using ArgoUML}},
+	author={Michelon, Gabriela K. and Sotto-Mayor, Bruno and Martinez, Jabier and Arrieta, Aitor and Abreu, Rui and Assun{\c{c}}{\~a}o, Wesley KG},
+	booktitle=SPLC,
+	pages={126--130},
+	year={2021},
+	doi={10.1145/3461001.3473065},
+	publisher=ACM
 }
 
-@inproceedings{rubin_feature_2013,
+
+
+@Incollection{rubin_feature_2013,
 	author="Rubin, Julia
 	and Chechik, Marsha",
 	editor="Reinhartz-Berger, Iris
@@ -1313,10 +1303,12 @@ publisher=ACM
 @inproceedings{sulir_annotation_2015,
 	author={Sulír, Matúš and Porubän, Jaroslav},
 	booktitle=ISCI, 
-	title={{Semi-automatic Concern Annotation using Differential Code Coverage}},
+	title={{Semi-Automatic Concern Annotation using Differential Code Coverage}},
 	year={2015},
 	pages={258--262},
-	doi={10.1109/Informatics.2015.7377843}}
+	doi={10.1109/Informatics.2015.7377843},
+	publisher=IEEE
+}
 
 @ARTICLE{wong_faultloc_2016,
 
@@ -1367,7 +1359,7 @@ publisher=ACM
 }
 
 @article{kendall1938new,
-	title={{A new measure of rank correlation}},
+	title={{A New Measure of Rank Correlation}},
 	author={Kendall, Maurice G},
 	journal={Biometrika},
 	volume={30},
@@ -1403,8 +1395,8 @@ doi={10.1109/ASE51524.2021.9678761}
 @INPROCEEDINGS{ceesay2020,
 
 	author={Ceesay, Sheriffo and Lin, Yuhui and Barker, Adam},
-
-	booktitle={IEEE/ACM International Conference on Big Data Computing, Applications and Technologies (BDCAT)}, 
+	publisher=IEEE,
+	booktitle={International Conference on Big Data Computing, Applications and Technologies (BDCAT)}, 
 
 	title={{A Survey: Benchmarking and Performance Modelling of Data Intensive Applications}}, 
 
@@ -1487,7 +1479,6 @@ doi={10.1109/ASE51524.2021.9678761}
 @article{Daoud_2017,
 	doi = {10.1088/1742-6596/949/1/012009},
 	year = 2017,
-	month = {dec},
 	publisher = {{IOP} Publishing},
 	volume = {949},
 	series = {012009},
@@ -1515,28 +1506,23 @@ doi={10.1109/ASE51524.2021.9678761}
 	doi       = {10.1007/978-3-030-41705-5},
 }
 
+
 @ARTICLE{martin_transfer_2021,
-
-	author={Martin, Hugo and Acher, Mathieu and Lesoil, Luc and Jezequel, Jean Marc and Khelladi, Djamel Eddine and Pereira, Juliana Alves},
-
-	journal=TSE, 
-
-	title={{Transfer Learning Across Variants and Versions: The Case of Linux Kernel Size}}, 
-
-	year={2021},
-
-	volume={},
-
-	number={},
-
-	pages={1-1},
-
+	author={Martin, Hugo and Acher, Mathieu and Pereira, Juliana Alves and Lesoil, Luc and Jézéquel, Jean-Marc and Khelladi, Djamel Eddine},
+	journal=TSE,	
+	title={{Transfer Learning Across Variants and Versions: The Case of Linux Kernel Size}}, 	
+	year={2022},	
+	volume={48},	
+	number={11},
+	pages={42744290},
 	doi={10.1109/TSE.2021.3116768}}
 
+
+
 @inproceedings{maricq2018taming,
-	title={{Taming performance variability}},
+	title={{Taming Performance Variability}},
 	author={Maricq, Aleksander and Duplyakin, Dmitry and Jimenez, Ivo and Maltzahn, Carlos and Stutsman, Ryan and Ricci, Robert},
-	booktitle={13th USENIX Symposium on Operating Systems Design and Implementation (OSDI 18)},
+	booktitle={USENIX Symposium on Operating Systems Design and Implementation (OSDI)},
 	pages={409--425},
 	year={2018}
 }
@@ -1565,9 +1551,8 @@ doi={10.1109/ASE51524.2021.9678761}
 	year = {2013},
 	publisher = ACM,
 	doi = {10.1145/2451116.2451141},
-	booktitle = {Proceedings of the Eighteenth International Conference on Architectural Support for Programming Languages and Operating Systems},
+	booktitle = {Proceedings of the International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS)},
 	pages = {219--228},
-	series = {ASPLOS '13}
 }
 
 @inproceedings{chen_mmo_2021,
@@ -1611,32 +1596,24 @@ doi={10.1109/ASE51524.2021.9678761}
 	isbn = {3-642-04916-8},
 	publisher = {Springer},
 	author = {Lovric, Miodrag},
-	month = dec,
 	year = {2010}
 }
 
 @article{Cliff1993DominanceSO,
-
-	title={{Dominance statistics: Ordinal analyses to answer ordinal questions.}},
-
+	title={{Dominance statistics: Ordinal Analyses to Answer Ordinal Questions.}},
 	author={Norman Cliff},
-
 	journal={Psychological Bulletin},
-
 	year={1993},
-
 	volume={114},
-
 	pages={494-509}
 
 }
 
 @inproceedings{romano2006exploring,
 	author = {Romano, Jeanine and Kromrey, Jeffrey D. and Coraggio, Jesse and Skowronek, Jeff and Devine, Linda},
-	biburl = {https://www.bibsonomy.org/bibtex/29fb28c468a7f6dc911f2389e76d9f7b6/becker},
 	booktitle = {Annual Meeting of the Southern Association for Institutional Research},
 	pages = {1--51},
-	title = {{Exploring methods for evaluating group differences on the NSSE and other surveys: Are the t-test and Cohen’s d indices the most appropriate choices?}},
+	title = {{Exploring Methods for Evaluating Group Differences on the NSSE and Other Surveys: Are the T-Test and Cohen’s d Indices the Most Appropriate Choices?}},
 	year = 2006
 }
 
@@ -1668,8 +1645,8 @@ doi={10.1109/ASE51524.2021.9678761}
 @InProceedings{falkner_sat_solvers_2015,
 	author={Falkner, Stefan and Lindauer, Marius and Hutter, Frank},
 	editor={Heule, Marijn and Weaver, Sean},
-	title={SpySMAC: Automated Configuration and Performance Analysis of SAT Solvers},
-	booktitle={Theory and Applications of Satisfiability Testing -- SAT 2015},
+	title={{SpySMAC: Automated Configuration and Performance Analysis of SAT Solvers}},
+	booktitle={Theory and Applications of Satisfiability Testing (SAT)},
 	year={2015},
 	publisher={Springer International Publishing},
 	pages={215-222},
@@ -1685,7 +1662,6 @@ doi={10.1109/ASE51524.2021.9678761}
 	number = {1},
 	issn = {1076-9757},
 	journal = {Journal of Artificial Intelligence Research},
-	month = {jun},
 	pages = {565--606},
 }
 
@@ -1698,7 +1674,6 @@ doi={10.1109/ASE51524.2021.9678761}
 	number = {6},
 	doi = {10.1145/2813885.2737969},
 	journal = {SIGPLAN Not.},
-	month = {jun},
 	pages = {379--390},
 }
 
@@ -1708,41 +1683,31 @@ doi={10.1109/ASE51524.2021.9678761}
 	volume = {18},
 	pages = {1312-1321},
 	year = {2013},
-	note = {2013 International Conference on Computational Science},
-	issn = {1877-0509},
-	doi = {https://doi.org/10.1016/j.procs.2013.05.298},
+	doi = {10.1016/j.procs.2013.05.298},
 	author = {Dmitry Plotnikov and Dmitry Melnik and Mamikon Vardanyan and Ruben Buchatskiy and Roman Zhuykov and Je-Hyung Lee},
 }
 
 % video editing
 @INPROCEEDINGS{maxiaguine_workload_2004,
-
 	author={Maxiaguine, A. and Yanhong Liu and Chakraborty, S. and Wei Tsang Ooi},
-
-	booktitle={2nd Workshop on Embedded Systems for Real-Time Multimedia, 2004. ESTImedia 2004.}, 
-
-	title={{Identifying "Representative" Workloads in Designing MpSoC Platforms for Media Processing}}, 
-
+	booktitle={Workshop on Embedded Systems for Real-Time Multimedia (ESTImedia)}, 
+	title={{Identifying ``Representative'' Workloads in Designing MpSoC Platforms for Media Processing}}, 
 	year={2004},
-
 	pages={41-46},
-
-	doi={10.1109/ESTMED.2004.1359702}}
+	doi={10.1109/ESTMED.2004.1359702},
+	publisher=IEEE
+}
 
 % data compression
 @INPROCEEDINGS{khavari_compression_2019,
-
 	author={Khavari Tavana, Mohammad and Sun, Yifan and Bohm Agostini, Nicolas and Kaeli, David},
-
-	booktitle={2019 IEEE International Parallel and Distributed Processing Symposium (IPDPS)}, 
-
+	booktitle={International Parallel and Distributed Processing Symposium (IPDPS)}, 
 	title={{Exploiting Adaptive Data Compression to Improve Performance and Energy-Efficiency of Compute Workloads in Multi-GPU Systems}}, 
-
 	year={2019},
-
-	pages={664-674},
-
-	doi={10.1109/IPDPS.2019.00075}}
+	pages={664--674},
+	doi={10.1109/IPDPS.2019.00075},
+	publisher=IEEE
+}
 
 % performance models
 @inproceedings{valov_comparison_2015,
@@ -1759,7 +1724,7 @@ doi={10.1109/ASE51524.2021.9678761}
 % transfer learning
 @inproceedings{valov_transferring_pareto_2020,
 	author = {Valov, Pavel and Guo, Jianmei and Czarnecki, Krzysztof},
-	title = {{Transferring Pareto Frontiers across Heterogeneous Hardware Environments}},
+	title = {{Transferring Pareto Frontiers Across Heterogeneous Hardware Environments}},
 	year = {2020},
 	publisher = {ACM},
 	doi = {10.1145/3358960.3379127},
@@ -1769,7 +1734,7 @@ doi={10.1109/ASE51524.2021.9678761}
 
 @inproceedings{valov_transferring_performance_2017,
 	author = {Valov, Pavel and Petkovich, Jean-Christophe and Guo, Jianmei and Fischmeister, Sebastian and Czarnecki, Krzysztof},
-	title = {Transferring Performance Prediction Models Across Different Hardware Platforms},
+	title = {{Transferring Performance Prediction Models Across Different Hardware Platforms}},
 	year = {2017},
 	publisher = {ACM},
 	doi = {10.1145/3030207.3030216},
@@ -1778,14 +1743,20 @@ doi={10.1109/ASE51524.2021.9678761}
 }
 
 @article{kaltenecker_interplay_2020,
-	author = {Kaltenecker, Christian and Grebhahn, Alexander and Siegmund, Norbert and Apel, Sven},
-	year = {2020},
-	month = {04},
-	title = {{The Interplay of Sampling and Machine Learning for Software Performance Prediction}},
-	volume = {PP},
-	journal = {IEEE Software},
-	doi = {10.1109/MS.2020.2987024}
+	author    = {Christian Kaltenecker and
+	Alexander Grebhahn and
+	Norbert Siegmund and
+	Sven Apel},
+	title     = {{The Interplay of Sampling and Machine Learning for Software Performance
+	Prediction}},
+	journal   = {{IEEE} Software},
+	volume    = {37},
+	number    = {4},
+	pages     = {58--66},
+	year      = {2020},
+	doi       = {10.1109/MS.2020.2987024},
 }
+
 
 @INPROCEEDINGS{bao_logdiff_ase_2019,
 	author={Bao, Lingfeng and Busany, Nimrod and Lo, David and Maoz, Shahar},
@@ -1796,9 +1767,9 @@ doi={10.1109/ASE51524.2021.9678761}
 	doi={10.1109/ASE.2019.00084}
 }
 
-@inbook{samoaa_workload_2021,
+@inproceedings{samoaa_workload_2021,
 	author = {Samoaa, Hazem and Leitner, Philipp},
-	title = {An Exploratory Study of the Impact of Parameterization on JMH Measurement Results in Open-Source Projects},
+	title = {{An Exploratory Study of the Impact of Parameterization on JMH Measurement Results in Open-Source Projects}},
 	year = {2021},
 	publisher = ACM,
 	doi = {10.1145/3427921.3450243},
@@ -1807,7 +1778,7 @@ doi={10.1109/ASE51524.2021.9678761}
 }
 
 @article{o2007caution,
-	title={{A caution regarding rules of thumb for variance inflation factors}},
+	title={{A Caution Regarding Rules of Thumb for Variance Inflation Factors}},
 	author={O'Brien, Robert M.},
 	journal={Quality \& Quantity},
 	volume={41},
@@ -1865,9 +1836,8 @@ doi={10.1109/ASE51524.2021.9678761}
 	Sebastian Kuckuk and
 	Hannah Rittich and
 	Christian Schmitt},
-	title     = {ExaStencils: Advanced Stencil-Code Engineering},
-	booktitle = {Euro-Par 2014: Parallel Processing Workshops -- Euro-Par 2014 International Workshops, Porto, Portugal, August 25-26, 2014, Revised Selected Papers,
-	Part {II}},
+	title     = {{ExaStencils: Advanced Stencil-Code Engineering}},
+	booktitle = {Parallel Processing Workshops -- Euro-Par 2014 International Workshops, Revised Selected Papers, Part {II}},
 	series    = {Lecture Notes in Computer Science},
 	volume    = {8806},
 	pages     = {553--564},
@@ -1880,7 +1850,7 @@ doi={10.1109/ASE51524.2021.9678761}
 	doi = {10.48550/ARXIV.2112.07279},
 	url = {https://arxiv.org/abs/2112.07279},	
 	author = {Lesoil, Luc and Acher, Mathieu and Blouin, Arnaud and Jézéquel, Jean-Marc},	
-	title = {{The Interaction between Inputs and Configurations fed to Software Systems: an Empirical Study}},
+	title = {{The Interaction Between Inputs and Configurations Fed to Software Systems: An Empirical Study}},
 	publisher = {arXiv},	
 	year = {2021},
 }
@@ -1961,7 +1931,7 @@ doi={10.1109/ASE51524.2021.9678761}
 
 @article{pereira_2021_learning,
 	title={{Learning Software Configuration Spaces: A Systematic Literature Review}},
-	author={Pereira, Juliana Alves and Acher, Mathieu and Martin, Hugo and J{\'e}z{\'e}quel, Jean-Marc and Botterweck, Goetz and Ventresque, Anthony},
+	author={Pereira, Juliana Alves and Acher, Mathieu and Martin, Hugo and Jézéquel, Jean-Marc and Botterweck, Goetz and Ventresque, Anthony},
 	journal=JSS,
 	volume={182},
 	pages={111044},
@@ -1973,5 +1943,5 @@ doi={10.1109/ASE51524.2021.9678761}
 	title={{Feature-Oriented Software Product Lines}},
 	author={Apel, Sven and Batory, Don and K{\"a}stner, Christian and Saake, Gunter},
 	year={2016},
-	publisher={Springer}
+	publisher={{Springer}}
 }

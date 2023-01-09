@@ -10,57 +10,59 @@
 
 \begin{document}
 	
-	\title{Analyzing the Impact of Workloads on Modeling the Performance of Configurable Software Systems (Supplementary Material)}
-	
-	\author{
-		\centering
-		\IEEEauthorblockN{
-			Stefan Mühlbauer
-		}
-		\IEEEauthorblockA{
-			Leipzig University
-		}
-		\and
-		\IEEEauthorblockN{
-			Florian Sattler
-		}
-		\IEEEauthorblockA{
-			Saarland University\\
-			Saarland Informatics Campus
-		}
-		\and
-		\IEEEauthorblockN{
-			Christian Kaltenecker
-		}
-		\IEEEauthorblockA{
-			Saarland University\\
-			Saarland Informatics Campus\\
-		}
-		\and
-		%\linebreakand
-		\IEEEauthorblockN{
-			Johannes Dorn
-		}
-		\IEEEauthorblockA{
-			Leipzig University
-		}
-		\and
-		\linebreakand
-		\IEEEauthorblockN{
-			Sven Apel
-		}
-		\IEEEauthorblockA{
-			Saarland University\\
-			Saarland Informatics Campus
-		}
-		\and
-		\IEEEauthorblockN{
-			Norbert Siegmund
-		}
-		\IEEEauthorblockA{
-			Leipzig University
-		}
+\title{Analyzing the Impact of Workloads on Modeling the Performance of Configurable Software Systems}
+
+\author{
+	\centering
+	\IEEEauthorblockN{
+		Stefan Mühlbauer
 	}
+	\IEEEauthorblockA{
+		\textit{Leipzig University}
+	}
+	\and
+	\IEEEauthorblockN{
+		Florian Sattler
+	}
+	\IEEEauthorblockA{
+		\textit{Saarland University}\\
+		\textit{Saarland Informatics Campus}
+	}
+	\and
+	\IEEEauthorblockN{
+		Christian Kaltenecker
+	}
+	\IEEEauthorblockA{
+		\textit{Saarland University}\\
+		\textit{Saarland Informatics Campus}
+	}
+	\and
+	%\linebreakand
+	\IEEEauthorblockN{
+		Johannes Dorn
+	}
+	\IEEEauthorblockA{
+		\textit{Leipzig University}
+	}
+	\and
+	\linebreakand
+	\IEEEauthorblockN{
+		Sven Apel
+	}
+	\IEEEauthorblockA{
+		\textit{Saarland University}\\
+		\textit{Saarland Informatics Campus}
+	}
+	\and
+	\IEEEauthorblockN{
+		Norbert Siegmund
+	}
+	\IEEEauthorblockA{
+		\textit{Leipzig University}\\
+		\textit{ScaDS.AI Dresden/Leipzig}
+	}
+}
+
 	
 	
 	\maketitle
@@ -103,6 +105,12 @@ For the study, we selected nine configurable software systems. Each study subjec
 		
 	\subsection{Interactive Dashboard}
 	In the study, we analyzed the data with regard to the quality of interactions between the workload and configurations ($\text{RQ}_\text{1}$), the workload sensitivity of individual configuration options ($\text{RQ}_\text{2}$), and the potential relationship between workload sensitivity and workload-specific code coverage ($\text{RQ}_\text{3}$). To explore the vast data set more easily, we implemented the corresponding analyses via an interactive dashboard. All result visualizations presented in the study~\cite{muhlbauer_workload_2023} can be generated from this dashboard as well as those omitted due to space limitations. This way, the dashboard not only complements the presentation of results in the study, but provides a means to reproduce analyses and reenact findings from our study.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/z3.pdf}
+		\caption{Hier könnte Ihre caption stehen}
+	\end{figure}
 	
 	The dashboard application is implemented using the \textsc{Python} framework \texttt{streamlit} and is provided as a containerized application (Docker) via the companion repository.
 	
