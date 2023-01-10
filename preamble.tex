@@ -12,12 +12,12 @@
 % more compact enumerations / itemizes
 \usepackage{paralist}
 
-% configure hyperlinks 
+% configure hyperlinks and fancy colors
 \definecolor{citecolor}{HTML}{b8e0d2}
 \definecolor{linkcolor}{HTML}{ffc09f}
 \definecolor{urlcolor}{HTML}{f5e960}
 \usepackage{hyperref}
-\hypersetup{%
+\hypersetup{
 	colorlinks=false,
 	urlbordercolor=urlcolor,
 	linkbordercolor=linkcolor,
@@ -25,7 +25,6 @@
 	pdfborder={0.8 0.8 0.8 },
 }%
 
-\usepackage{soul}
 \usepackage{url}
 
 % configure subfigures
@@ -37,8 +36,8 @@
 % colorfule tables / rows
 \usepackage{colortbl}
 
-%
-\usepackage{microtype}
+% useful!
+\usepackage[]{microtype}
 
 % fancy box for research questions, result summaries etc.
 \usepackage[framemethod=TikZ]{mdframed}
@@ -58,17 +57,14 @@
 	\end{mdframed}
 }
 
+% use n-dash (--) as label item
 \renewcommand\labelitemi{--}
-
-% avoidorphaned words
-%\usepackage[all]{nowidow}
-
 
 % Define thick line for tables, used in \RQ{} macro below
 \usepackage{array}
 \newcolumntype{?}{!{\vrule width 0pt}}
 
-% Macro for research questions
+% Macro for research questions \RQ{}
 \newcommand{\RQ}[2]{
 	\vspace{0.5em}
 	\noindent\hypertarget{rq:#1}{
@@ -103,7 +99,7 @@
 \newcommand{\xzwo}{\sosy{x264}}
 \newcommand{\zdrei}{\sosy{z3}}
 
-% define colors 
+% define base colors 
 \definecolor{duplicatecheck}{HTML}{ffd3b1}
 \definecolor{autocommit}{HTML}{b1c5ff}
 \definecolor{nicegreen}{HTML}{79c900}
@@ -123,7 +119,7 @@
 \colorlet{novelblue2}{xxx!90!black}
 
 
-% hack hack
+% hack hack for author alignment -> provide linebreak with centering
 % https://tex.stackexchange.com/questions/324636/centering-the-third-author-in-ieee-format
 \makeatletter % changes the catcode of @ to 11
 \newcommand{\linebreakand}{%
