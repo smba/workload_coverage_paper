@@ -1,4 +1,4 @@
-# "Analyzing the Impact of Workloads on Modeling the Performance of Configurable Software Systems" (ICSE 2024)
+# "Analyzing the Impact of Workloads on Modeling the Performance of Configurable Software Systems" (ICSE 2023)
 
 This repository contains two documents:
 * `proof.tex`: original paper (ICSE proceedings)
