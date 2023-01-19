@@ -27,11 +27,12 @@ The experimental setup comprises artifacts that are required to reproduce the ex
 
 \subsubsection{Software Configurations} For each subject system, we provide  a CSV file describing the configurations tested. Each configuration can be identified by a unique integer and specifies whether a configuration option was selected or not. 
 
-We derived configurations from a feature model, which describes the validity constraints for each software system (i.e., which configuration options can be selected in which manner). In our study, all configuration options were binary options. In cases, where a software system also exhibited numeric options, we varied its value across, at least, two levels. We provide the feature models as DIMACS files (to use with any SAT solver) as well as XML files to be used with our sampling infrastructure \textsc{SLPConqueror}\footnote{\textsc{SPLConqueror}: \url{https://github.com/se-sic/SPLConqueror/}}. Aa summary of the sampling strategies can be found in the original paper~\cite{muhlbauer_workload_2023}.
+We derived configurations from a feature model, which describes the validity constraints for each software system (i.e., which configuration options can be selected in which manner). In our study, all configuration options were binary options. In cases, where a software system also exhibited numeric options, we varied its value across, at least, two levels. We provide the feature models as DIMACS files (to use with any SAT solver) as well as XML files to be used with our sampling infrastructure \textsc{SLPConqueror}\footnote{\textsc{SPLConqueror}: \url{https://github.com/se-sic/SPLConqueror/}}. A summary of the sampling strategies can be found in the original paper~\cite{muhlbauer_workload_2023}.
 
 Due to storage quota limitations (especially for raw video files) and copyright concerns (not all workloads are licensed for redistribution), we provide only a list of workloads references. 
 
-\subsubsection{Compilation Scripts} For each \textsc{C/C++} subject system, we provide scripts to build two variants of the executable binaries with \textsc{Clang/LLVM}\footnote{Code Coverage Analysis with \textsc{Clang} and \textsc{LLVM}: \url{https://clang.llvm.org/docs/SourceBasedCodeCoverage.html}}. We build (1) binaries without any compiler optimization enabled to rule out any distortion, and (2) without compiler optimizations, but instrumentation code included to track the coverage of each line of code. 
+%
+\subsubsection{Compilation Scripts} For each \textsc{C/C++} subject system, we provide scripts to build two variants of the executable binaries with \textsc{Clang/LLVM}\footnote{Code Coverage Analysis with \textsc{Clang} and \textsc{LLVM}: \url{https://clang.llvm.org/docs/SourceBasedCodeCoverage.html}}. We build (1) binaries without any compiler optimization enabled to avoid distorted measurements, and (2) without compiler optimizations, but instrumentation code included to track the coverage of each line of code. 
 
 For each \textsc{Java} subject systems, we followed their respective build instructions to obtain an executable JAR file. Unlike above, we did not weave instrumentation code into the Java code, but instead instrumented the JVM via \textsc{Jacoco}\footnote{\textsc{Jacoco}: \url{https://www.jacoco.org/jacoco/trunk/doc/}}.
 
@@ -67,7 +68,3 @@ Via the topbar, one can select the type of analysis (correlation analysis of per
 The dashboard is implemented using the \textsc{Python}
 framework \texttt{streamlit} and is provided as a containerized
 application (\textsc{Docker}) via the companion repository. This way, the dashboard not only complements the presentation of results in the study, but provides a means to reproduce analyses and reenact findings from our study.
-
-
-
-
