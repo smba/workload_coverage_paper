@@ -15,7 +15,6 @@ The study demonstrates that workloads and configuration options may interact for
 
 \section{Artifacts}
 To complement the representative selection of results~\cite{muhlbauer_workload_2023} and, to enable \textit{repoducibility} of our findings, we provide the experimental setup, measurement data (performance and code coverage), and our analysis implementations integrated into an interactive dashboard.
-
 We make all material available under the open-source CC~{BY-SA~4.0 license\footnote{The full license text, explanations, and requirements of this open-source license can be found at \url{https://creativecommons.org/licenses/by-sa/4.0/}.} at \textit{zenodo.org}:
 \begin{quotation}
 	\url{https://doi.org/10.5281/zenodo.7504284}
@@ -32,13 +31,13 @@ We derived configurations from a feature model, which describes the validity con
 Due to storage quota limitations (especially for raw video files) and copyright concerns (not all workloads are licensed for redistribution), we provide only a list of workloads references. 
 
 %
-\subsubsection{Compilation Scripts} For each \textsc{C/C++} subject system, we provide scripts to build two variants of the executable binaries with \textsc{Clang/LLVM}\footnote{Code Coverage Analysis with \textsc{Clang} and \textsc{LLVM}: \url{https://clang.llvm.org/docs/SourceBasedCodeCoverage.html}}. We build (1) binaries without any compiler optimization enabled to avoid distorted measurements, and (2) without compiler optimizations, but instrumentation code included to track the coverage of each line of code. 
+\subsubsection{Compilation Scripts} For each \textsc{C/C++} subject system, we provide scripts to build two variants of the executable binaries with \textsc{Clang/LLVM}\footnote{\textsc{Clang}:\url{https://clang.llvm.org/docs/SourceBasedCodeCoverage.html}}. We build (1) binaries without any compiler optimization enabled to avoid distorted measurements, and (2) without compiler optimizations, but instrumentation code included to track the coverage of each line of code. 
 
 For each \textsc{Java} subject systems, we followed their respective build instructions to obtain an executable JAR file. Unlike above, we did not weave instrumentation code into the Java code, but instead instrumented the JVM via \textsc{Jacoco}\footnote{\textsc{Jacoco}: \url{https://www.jacoco.org/jacoco/trunk/doc/}}.
 
 \subsubsection{Measurement Scripts} In our experiment, we used the workload manager \textsc{Slurm}\footnote{\textsc{Slurm}: \url{https://slurm.schedmd.com/documentation.html}} to orchestrate and deploy experiment runs to different compute clusters. Nonetheless, the measurement scripts can be executed in isolation to obtain measurements. A hardware setup differing from the one used in our study~\cite{muhlbauer_workload_2023} will likely yield different results since the hardware specifications are likely to influence performance. 
 
-To repeat the experiments and reproduce the performance and coverage measurements, we provide a set of scripts that we orchestrated using \textsc{Slurm}. In particular, these scripts translate the configurations provided to runtime arguments passed to the respective binaries. We used the performance analysis tool \textsc{GNU time} to record execution times and \textsc{OLTPBench}~\cite{difallah_oltp_2013} to record throughput (for the database system \htwo).
+To repeat the experiments and reproduce the performance and coverage measurements, we provide a set of scripts that we orchestrated using \textsc{Slurm}. In particular, these scripts translate the configurations provided to runtime arguments passed to the respective binaries. We used the performance analysis tool \textsc{GNU time} to record execution times and \textsc{OLTPBench}~\footnote{\textsc{OLTPBench}: \url{https://github.com/oltpbenchmark/oltpbench}} to record throughput (for the database system \htwo).
 
 
 \subsection{Measurement Data}
@@ -56,15 +55,13 @@ In the study, we analyzed the data with regard to the quality of interactions be
 To enable the exploration of the huge amount of data, we integrated the corresponding analyses for all three research questions~\cite{muhlbauer_workload_2023} into an interactive dashboard. All result visualizations presented in the study can be generated from this dashboard as well as those omitted due to space limitations of the accompanied paper~\cite{muhlbauer_workload_2023}. 
 \begin{figure}[]
 	\centering
-	\includegraphics[width=0.95\linewidth]{images/rq2.png}
+	\includegraphics[width=0.91\linewidth]{images/rq2.png}
 	\caption{Visualization of distribution of configuration influences across different different workloads for the database system \htwo.}
 	\label{fig:dashboard}
 \end{figure}
 
-For demonstration, take as an example the visualization of distribution of configuration options' influences across different workloads for the database system \htwo presented in Fig.~\ref{fig:dashboard} using the dashboard. 
+Take as an example the visualization of distribution of configuration options' influences across different workloads for the database system \htwo presented in Fig.~\ref{fig:dashboard} using the dashboard. 
 Via the topbar, one can select the type of analysis (correlation analysis of performance distributions, distribution of performance influences across workloads, and option-wise code coverage analysis). The sidebar allows for selecting a specific configuration option to analyze and tweaking further parameters for visualization. 
 
-
 The dashboard is implemented using the \textsc{Python}
-framework \texttt{streamlit} and is provided as a containerized
-application (\textsc{Docker}) via the companion repository. This way, the dashboard not only complements the presentation of results in the study, but provides a means to reproduce analyses and reenact findings from our study.
+framework \texttt{streamlit} and is provided as a \textsc{Docker} container via the companion repository. This way, the dashboard not only complements the presentation of results in the study, but provides a means to reproduce analyses and reenact findings from our study.
